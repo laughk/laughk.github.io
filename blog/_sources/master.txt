@@ -1,0 +1,9 @@
+Sitemap
+=======
+
+.. toctree::
+   :maxdepth: 1
+
+   2013/11/18/hello_new_blog
+   pages/about
+

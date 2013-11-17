@@ -1,0 +1,26 @@
+.social-buttons {
+  background-color: #FAEBD7;
+  margin-top    : 20px ;
+  margin-bottom : 10px ;
+  border-top-style   : dotted;
+  border-bottom-style: dotted;
+  padding : 20px auto 20px auto;
+}
+
+.content-sponsor {
+  margin : 30px auto 30px auto;
+}
+
+.twitter-share-button {
+  display: inline;
+  width: 105px!important;
+}
+
+.pocket-btn {
+  display: inline;
+  width: 105px!important;
+}
+
+#___plusone_0 {
+  width: 75px!important;
+}

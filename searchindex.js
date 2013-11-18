@@ -1,1 +1,0 @@
-blog/searchindex.js

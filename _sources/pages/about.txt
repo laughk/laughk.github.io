@@ -1,5 +1,5 @@
-about
-=====
+About Me
+===========================
 
 Kei Iwasaki
 ---------------------------
@@ -9,8 +9,12 @@ MSPなインフラ屋。
 
 月一でインフラエンジニア向け勉強会 NODE-Setagaya をほそぼそと運営中。
 
-* 興味
-    LinuxMint, XPS13, Ubuntu, Vim, シェル芸, Python, Flask, fabric, Ansible, Vagrant, Provisioning
+* Twitter
+    `@laugh_k <https://twitter.com/laugh_k>`_
 
-* Twitter `@laugh_k <https://twitter.com/laugh_k>`_
-* 旧ブログ `ラフなラボ <http://laugh-labo.blogspot.com>`_
+* 旧ブログ
+    `ラフなラボ <http://laugh-labo.blogspot.com>`_
+
+
+| LinuxMint, XPS13, Ubuntu, Vim, シェル芸, Python, Flask, fabric, Ansible, Vagrant, Provisioning
+| など

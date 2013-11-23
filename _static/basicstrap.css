@@ -1,0 +1,170 @@
+/*  Bootstrap
+    ------------------------------------------------------- */
+
+/*  apply font awesome
+    ------------------------------------------------------- */
+
+div.danger p.admonition-title:before,
+div.error p.admonition-title:before,
+div.warning p.admonition-title:before,
+div.caution p.admonition-title:before,
+div.attention p.admonition-title:before,
+div.important p.admonition-title:before,
+div.note p.admonition-title:before,
+div.hint p.admonition-title:before,
+div.tip p.admonition-title:before
+{
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  margin-right: 5px;
+}
+
+div.danger p.admonition-title:before,
+div.error p.admonition-title:before {
+  content: "\f06a";
+}
+div.warning p.admonition-title:before,
+div.caution p.admonition-title:before,
+div.attention p.admonition-title:before {
+  content: "\f071";
+}
+div.important p.admonition-title:before,
+div.note p.admonition-title:before {
+  content: "\f05a";
+}
+div.hint p.admonition-title:before,
+div.tip p.admonition-title:before {
+  content: "\f0eb";
+}
+h2 { font-size: 18.5px; line-height: 18.5px;}
+
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+
+
+table.docutils th,
+table.docutils td {
+  border-top: 1px solid #dddddd;
+}
+table.docutils tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+table.docutils {
+  border: none;
+  border-top: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+}
+table.docutils th,
+table.docutils td {
+  border-left: 1px solid #dddddd;
+}
+
+table.docutils tbody tr:nth-child(odd) td,
+table.docutils tbody tr:nth-child(odd) th {
+  background-color: #f9f9f9;
+}
+
+table.docutils tbody tr:hover td,
+table.docutils tbody tr:hover th {
+  background-color: #f5f5f5;
+}
+table.docutils.field-list {
+  border: none;
+}
+
+table.width-adjust {
+  width: 0;
+}
+
+/* -- admonition -- */
+div.admonition {
+  color: #d9831f;
+  background-color: #fcf8e3;
+  border-color: #fbeed5;
+}
+
+/* -- danger, error -- */
+div.danger,
+div.error {
+  color: #d9230f;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+/* -- warning, caution, attention -- */
+div.warning,
+div.caution,
+div.attention {
+  color: #d9831f;
+  background-color: #fcf8e3;
+  border-color: #fbeed5;
+}
+
+/* -- note, important -- */
+div.note,
+div.important {
+  color: #3d9400;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+/* -- hint, tip -- */
+div.hint,
+div.tip {
+  color: #029acf;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+div.topic {
+  background-color: #f9f9f9;
+  border-color: #dddddd;
+}
+
+
+
+/* for mobile */
+@media (max-width: 480px) {
+  a.brand {
+    width: 80%;
+  }
+  searchbox .search-query {
+    width: 60%;
+  }
+}
+
+/* for desktop */
+@media (min-width: 768px) {
+  
+  .navbar-inner div.container {
+    width: 900px;
+  }
+  
+  
+  div.container {
+    width: 900px;
+  }
+  
+}

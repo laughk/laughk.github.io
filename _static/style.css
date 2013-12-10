@@ -6,7 +6,7 @@
 }
 
 body {
-  background: #FFF5EE;
+  background: #f1f1f1;
 }
 
 pre {
@@ -49,15 +49,6 @@ h1, h2, h3, h4, h5, h6 {
 h3, h4, h5, h6 {
   border-bottom: none !important;
 }
-
-h1 {
-  font-size: 35px;
-}
-
-h3 {
-  font-size: 14px !important;
-}
-
 
 .archive_link {
   margin-top    : 10px ;

@@ -4,6 +4,7 @@ Sitemap
 .. toctree::
    :maxdepth: 1
 
+   2013/12/10/ansible_with_infrastructure_engineer
    2013/11/21/irc_setup_in_terminal
    2013/11/18/hello_new_blog
    pages/about

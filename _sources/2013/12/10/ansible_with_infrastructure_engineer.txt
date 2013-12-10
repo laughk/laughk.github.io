@@ -1,0 +1,140 @@
+あるインフラエンジニアとAnsibleの付き合い方
+==============================================================
+
+
+この記事は `Ansible Advent Calender 2013 <http://qiita.com/advent-calendar/2013/ansible>`_ 10日目の記事です。
+
+私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、
+少しずつ今の仕事で ``Ansible`` を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。
+
+.. more::
+
+
+障壁1 / root権限
+----------------------------
+
+| CentOSなどのRedHad系を中心に運用している場合は意外と ``su -`` が使えても ``sudo`` が使えない。という状況があるかもしれません。
+| ``fabric`` の場合は無理やりprefixを弄って ``su -c 'command'`` をやることができなくもないですが [#fabric_su_prifix]_
+| ``ansibel`` の場合は公式で特に対応されるような気配はなく、モジュールを作るしかなさそうですがなんだか割に合わないような気もします。
+
+    * `added su capability by willthames · Pull Request #744 · ansible/ansible · GitHub <https://github.com/ansible/ansible/pull/744>`_
+
+| 私の場合もこの辺は完全に解消できているわけではないですが、極力自社で手が出せる範囲であったり
+| 新規構築の際に予め自動化の一環として少しずつ ``sudo`` を使える環境を増やしている状況です。
+| ここは ``ansible`` に限らず他の ``Provisioning`` / ``Orchestration`` 系のツールを導入する際にも必要な最低ラインなんで、頑張って確保していくしかないと思います。
+
+
+障壁2 / 踏み台を超える
+----------------------------
+
+| お客さんの環境の運用を行っている場合、
+| ここも ``ansible`` に限った話ではないですが、
+| 踏み台を経由しないとSSHアクセスができず、更に踏み台に勝手にツールを導入することができない。
+| というケースが多いかと思います。イメージとしては以下のような感じ。
+
+.. image:: graph.png
+
+| 残念ながら ``fabric`` のように踏み台サーバ指定のオプションは無いようです。
+| 以下のPullリクエストがありながら取り込まれていないところを見ると今後もコマンドや ``hostファイル`` , ``playbook`` で管理できる状況になる可能性は低いかもしれません。
+
+    * `added support for ssh tunneling using ssh&#39;s ProxyCommand option by rodlogic · Pull Request #2970 · ansible/ansible · GitHub <https://github.com/ansible/ansible/pull/2970>`_
+
+しかしながらヒント(というより答え)は↑のページにあります。
+
+    | There already is ANSIBLE_SSH_ARGS where you can specify all of SSH flags
+    | and override any Ansible may set by default, FWIW.
+
+| ということで環境変数 ``ANSIBLE_SSH_ARGS`` に ``ssh`` コマンドのオプションを渡すことができるようで、
+| 実際これに ``ANSIBLE_SSH_ARGS=' -F sshconfig.project'`` みたいな感じで渡してあげれば sshconfig ファイルを使ってお客さんごとであったりプロジェクトごとの踏み台環境と整えることができます。
+
+| これだけあれば、自社内の開発サーバだったり、
+| 最悪自分のPCのVM上などに環境を作ってしまえばなんとか使えるところまで持っていけます。
+
+
+具体的には以下のように ``sshconfig``, ``host`` ファイルを作っていけばOKです。
+
+sshconfig.project
+~~~~~~~~~~~~~~~~~~~~~~
+踏み台、内側ネットワークでそれぞれ作成
+(``Proxycommand`` で ``-F`` で自分自身を指定するのを忘れずに)、
+
+.. sourcecode:: sh
+
+    ## 踏み台サーバ
+    Host gateway
+        User login_user
+        IdentityFile /path/to/identity
+        HostName xxx.xxx.xxx.xxx
+
+    ## 接続先のLAN、ログイン情報
+    Host 192.168.0.*
+        User login_user
+        Identityfile /path/to/identity
+        Proxycommand ssh -F sshcondig.project gateway nc -w 120 %h %p
+
+host.project
+~~~~~~~~~~~~~~~~~~~~
+必要に応じて作成
+
+.. sourcecode:: sh
+
+    [web]
+    web01    ansible_ssh_host=192.168.0.11
+    web02    ansible_ssh_host=192.168.0.12
+    [db]
+    db01     ansible_ssh_host=192.168.0.21
+
+playbook-project.yml
+~~~~~~~~~~~~~~~~~~~~~~
+| あとは ``playbook-project.yml`` などの名前で playbook を作成したら以下のような感じで実行するだけ
+| 状況によって内容は変わるんで今回は割愛します。
+
+
+実行
+~~~~~~~~~~~~~~~~~~~~~~~~~
+ここまでできたら環境変数に気をつけて実行するだけです。
+
+.. sourcecode:: sh
+
+    % export ANSIBLE_SSH_ARGS=' -F sshconfig.project'
+    % ansible-playbook playbook-project.yml -i host.project
+
+
+利用シーンなど
+----------------------------------------
+
+| ``Provisioning`` / ``Orchestration`` に関するツールでは冪等性の話もかなり目にしますが、
+| 私の場合は複数の会社の人間が管理しているケースが多いため、
+| 構成の管理というよりは多数のホストに同様の作業を行う場合に恩恵を受けるケースが多いです。
+| そのため利用シーンは実は現状では以下のものくらいのところに大体とどまっています。
+
+    * 全く同じ構成のサーバを複数構築する場合
+    * お客さん側で環境全体に同じユーザーが必要になった場合 (ldapとか使えよって話かもですが、、)
+    * 複数台にドライバや診断ツールなどのベンダー配布のツールをインストールする場合
+
+| 最近ではコールドスタンバイ的な用途をしているサーバに対して
+| playbook で構成を管理しておくと結構うれしいことが多いんじゃないかなんて考えていますが
+| まだ実現に至っていません。
+
+
+最後に
+-----------------------------------------
+
+| 今回は具体的な ``playbook`` を載せたりととかはなかったですが、
+| ``ansible`` はやはりymlで手軽に ``task`` を定義していけるんで非常に使いやすいのが気に入っています。
+| またお客さんの環境を複数持っている場合はこの手のツールは様々な事情で思うように導入できないケースも多いですが、
+| クライアント側は ``ssh`` (CentOS5以下だと ``python-simplejson`` もだけど) だけ使えるのというのも ``ansible`` の強みだと思います。
+|
+| インフラ側からも十分利用価値のあるものですので、台数が多い環境の運用をされてる方なども利用を検討してみるとうれしいことがあるかもしれません。
+
+
+
+.. author:: default
+.. categories:: Adventcalender
+.. tags:: ansible, AdventCalender
+.. comments::
+
+
+.. rubric:: 脚注
+
+..  [#fabric_su_prifix] `python - switch to different user using fabric  - Stack Overflow <http://stackoverflow.com/questions/12641514/switch-to-different-user-using-fabric>`_

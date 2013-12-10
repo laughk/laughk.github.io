@@ -177,13 +177,13 @@
 <h1>あるインフラエンジニアとAnsibleの付き合い方</h1>
 <p>この記事は <a class="reference external" href="http://qiita.com/advent-calendar/2013/ansible">Ansible Advent Calender 2013</a> 10日目の記事です。</p>
 <p>私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、
-少しずつ今の仕事で <span class="docutils literal"><span class="pre">Ansible</span></span> を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。</p>
+少しずつ今の仕事で <span class="docutils literal"><span class="pre">ansible</span></span> を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。</p>
 <div id="more"> </div><div class="section" id="root">
 <h2>障壁1 / root権限</h2>
 <div class="line-block">
 <div class="line">CentOSなどのRedHad系を中心に運用している場合は意外と <span class="docutils literal"><span class="pre">su</span> <span class="pre">-</span></span> が使えても <span class="docutils literal"><span class="pre">sudo</span></span> が使えない。という状況があるかもしれません。</div>
 <div class="line"><span class="docutils literal"><span class="pre">fabric</span></span> の場合は無理やりprefixを弄って <span class="docutils literal"><span class="pre">su</span> <span class="pre">-c</span> <span class="pre">'command'</span></span> をやることができなくもないですが <a class="footnote-reference" href="#fabric-su-prifix" id="id1">[1]</a></div>
-<div class="line"><span class="docutils literal"><span class="pre">ansibel</span></span> の場合は公式で特に対応されるような気配はなく、モジュールを作るしかなさそうですがなんだか割に合わないような気もします。</div>
+<div class="line"><span class="docutils literal"><span class="pre">ansible</span></span> の場合は公式で特に対応されるような気配はなく、モジュールを作るしかなさそうですがなんだか割に合わないような気もします。</div>
 </div>
 <blockquote>
 <div><ul class="simple">
@@ -192,15 +192,15 @@
 </div></blockquote>
 <div class="line-block">
 <div class="line">私の場合もこの辺は完全に解消できているわけではないですが、極力自社で手が出せる範囲であったり</div>
-<div class="line">新規構築の際に予め自動化の一環として少しずつ <span class="docutils literal"><span class="pre">sudo</span></span> を使える環境を増やしている状況です。</div>
+<div class="line">新規構築の際に予め自動化の一環として説明して、少しずつ <span class="docutils literal"><span class="pre">sudo</span></span> を使える環境を増やしている状況です。</div>
 <div class="line">ここは <span class="docutils literal"><span class="pre">ansible</span></span> に限らず他の <span class="docutils literal"><span class="pre">Provisioning</span></span> / <span class="docutils literal"><span class="pre">Orchestration</span></span> 系のツールを導入する際にも必要な最低ラインなんで、頑張って確保していくしかないと思います。</div>
 </div>
 </div>
 <div class="section" id="id2">
 <h2>障壁2 / 踏み台を超える</h2>
 <div class="line-block">
-<div class="line">お客さんの環境の運用を行っている場合、</div>
 <div class="line">ここも <span class="docutils literal"><span class="pre">ansible</span></span> に限った話ではないですが、</div>
+<div class="line">お客さんの環境の運用を行っている場合、</div>
 <div class="line">踏み台を経由しないとSSHアクセスができず、更に踏み台に勝手にツールを導入することができない。</div>
 <div class="line">というケースが多いかと思います。イメージとしては以下のような感じ。</div>
 </div>
@@ -223,7 +223,8 @@
 </div></blockquote>
 <div class="line-block">
 <div class="line">ということで環境変数 <span class="docutils literal"><span class="pre">ANSIBLE_SSH_ARGS</span></span> に <span class="docutils literal"><span class="pre">ssh</span></span> コマンドのオプションを渡すことができるようで、</div>
-<div class="line">実際これに <span class="docutils literal"><span class="pre">ANSIBLE_SSH_ARGS='</span> <span class="pre">-F</span> <span class="pre">sshconfig.project'</span></span> みたいな感じで渡してあげれば sshconfig ファイルを使ってお客さんごとであったりプロジェクトごとの踏み台環境と整えることができます。</div>
+<div class="line">実際これに <span class="docutils literal"><span class="pre">ANSIBLE_SSH_ARGS='</span> <span class="pre">-F</span> <span class="pre">sshconfig.project'</span></span> みたいな感じで渡してあげれば sshconfig ファイルを使って</div>
+<div class="line">各お客さんごとであったり、プロジェクトごとの踏み台環境を整えることができます。</div>
 </div>
 <div class="line-block">
 <div class="line">これだけあれば、自社内の開発サーバだったり、</div>
@@ -280,8 +281,8 @@ db01     <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168
 <div class="line-block">
 <div class="line"><span class="docutils literal"><span class="pre">Provisioning</span></span> / <span class="docutils literal"><span class="pre">Orchestration</span></span> に関するツールでは冪等性の話もかなり目にしますが、</div>
 <div class="line">私の場合は複数の会社の人間が管理しているケースが多いため、</div>
-<div class="line">構成の管理というよりは多数のホストに同様の作業を行う場合に恩恵を受けるケースが多いです。</div>
-<div class="line">そのため利用シーンは実は現状では以下のものくらいのところに大体とどまっています。</div>
+<div class="line">構成の管理というよりは、多数のホストに同様の作業を行う場合に恩恵を受けるケースが多いです。</div>
+<div class="line">そのため利用シーンは現状では以下のものに大体とどまっています。</div>
 </div>
 <blockquote>
 <div><ul class="simple">
@@ -299,10 +300,10 @@ db01     <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168
 <div class="section" id="id5">
 <h2>最後に</h2>
 <div class="line-block">
-<div class="line">今回は具体的な <span class="docutils literal"><span class="pre">playbook</span></span> を載せたりととかはなかったですが、</div>
+<div class="line">今回は具体的な <span class="docutils literal"><span class="pre">playbook</span></span> を載せたりとかはなかったですが、</div>
 <div class="line"><span class="docutils literal"><span class="pre">ansible</span></span> はやはりymlで手軽に <span class="docutils literal"><span class="pre">task</span></span> を定義していけるんで非常に使いやすいのが気に入っています。</div>
-<div class="line">またお客さんの環境を複数持っている場合はこの手のツールは様々な事情で思うように導入できないケースも多いですが、</div>
-<div class="line">クライアント側は <span class="docutils literal"><span class="pre">ssh</span></span> (CentOS5以下だと <span class="docutils literal"><span class="pre">python-simplejson</span></span> もだけど) だけ使えるのというのも <span class="docutils literal"><span class="pre">ansible</span></span> の強みだと思います。</div>
+<div class="line">またお客さんの環境を複数持っている場合、この手のツールは様々な事情で思うように導入できないケースも多いですが、</div>
+<div class="line">クライアント側は <span class="docutils literal"><span class="pre">ssh</span></span> (CentOS5以下だと <span class="docutils literal"><span class="pre">python-simplejson</span></span> も必要) だけで使えるのというのも <span class="docutils literal"><span class="pre">ansible</span></span> の強みだと思います。</div>
 <div class="line"><br /></div>
 <div class="line">インフラ側からも十分利用価値のあるものですので、台数が多い環境の運用をされてる方なども利用を検討してみるとうれしいことがあるかもしれません。</div>
 </div>

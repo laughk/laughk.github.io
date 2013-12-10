@@ -18,7 +18,7 @@ pre {
   word-wrap        : normal !important;
 }
 
-.highlight {
+.highlight{
   border-radius         : 10px;
   -webkit-border-radius : 10px;
   -moz-border-radius    : 10px;
@@ -48,6 +48,25 @@ h1, h2, h3, h4, h5, h6 {
 
 h3, h4, h5, h6 {
   border-bottom: none !important;
+}
+
+
+.literal {
+  display: inline-block;
+  white-space: no-wrap;
+  background: #fff;
+  font-size: .9em;
+  line-height: 1.5em;
+  color: #555;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 0.4em;
+  -moz-border-radius: 0.4em;
+  -ms-border-radius: 0.4em;
+  -o-border-radius: 0.4em;
+  border-radius: 0.4em;
+  padding: 0 .3em;
+  margin: -1px 0;
+
 }
 
 .archive_link {

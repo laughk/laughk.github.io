@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     
-    <title>ブログ移転 ~ 続・ラフなラボ</title>
+    <title>NODE-SetagayaでTerminalのTips的なものを話してきた ~ 続・ラフなラボ</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="メモ置き場">
@@ -134,15 +134,15 @@
 </div><div class="widget">
     <h1>Recent Posts</h1>
     <ul><li>
-            <a href="../../../2014/04/13/node_setagaya9_repo.html">NODE-SetagayaでTerminalのTips的なものを話してきた</a>
+            <a href="#">NODE-SetagayaでTerminalのTips的なものを話してきた</a>
         </li><li>
-            <a href="../../../2014/04/10/shell_lian_tower.html">久々に第10回記念シェル芸勉強会行ってきたんでまとめとか</a>
+            <a href="../10/shell_lian_tower.html">久々に第10回記念シェル芸勉強会行ってきたんでまとめとか</a>
         </li><li>
-            <a href="../../12/10/ansible_with_infrastructure_engineer.html">あるインフラエンジニアとAnsibleの付き合い方</a>
+            <a href="../../../2013/12/10/ansible_with_infrastructure_engineer.html">あるインフラエンジニアとAnsibleの付き合い方</a>
         </li><li>
-            <a href="../21/irc_setup_in_terminal.html">快適Terminal環境計画 - IRC -</a>
+            <a href="../../../2013/11/21/irc_setup_in_terminal.html">快適Terminal環境計画 - IRC -</a>
         </li><li>
-            <a href="#">ブログ移転</a>
+            <a href="../../../2013/11/18/hello_new_blog.html">ブログ移転</a>
         </li></ul>
 </div>
 <div class="widget">
@@ -175,19 +175,59 @@
     }(document, 'script', 'facebook-jssdk'));
     </script>
         <div class="timestamp postmeta">
-            <span class="label label-default"><i class="fa fa-calendar"></i> 2013-11-18</span>
+            <span class="label label-default"><i class="fa fa-calendar"></i> 2014-04-13</span>
         </div>
-    <div class="section" id="id1">
-<h1>ブログ移転</h1>
-<p>これまでたまに <a class="reference external" href="http://laugh-labo.blogspot.com">ラフなラボ</a> の方でブログを書いてましたが
-もう少し効率良くアウトプットしたいこともあって、
-tinkerer + githubpage のこちらの環境に移行しました。
-やっぱりReSTで書き留めたものをそのままBlogとして公開できるのは楽でいいですね。
-(Octopress使わなかったのはMarkdownよりもReST使いたいから)</p>
-<p>旧ブログを始めた頃に比べると大分目指すべき方向性も違ってきてしまっていたし、
-まあ調度良いかなと。</p>
-<p>このブログを立てる際の作業ログも後ほどまとめる予定。
-ほとんど自分で面倒見なければいけないのはなかなか手間がかかった、、</p>
+    <div class="section" id="node-setagayaterminaltips">
+<h1>NODE-SetagayaでTerminalのTips的なものを話してきた</h1>
+<p>しばらくの間参加できていなかった <span class="docutils literal"><span class="pre">NODE-Setagaya</span></span> に参加&amp; <span class="docutils literal"><span class="pre">Terminal</span></span> の <span class="docutils literal"><span class="pre">Tips</span></span> 的なものを話してきました。
+当日利用したスライドはこちら。</p>
+<ul>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="https://speakerdeck.com/laughk/cli-mini-hack-number-1-terminaltofalseqin-mu-woshen-meyou">Cli mini Hack!#1 ~Terminalとの親睦を深めよう~</a></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Embed</span></span> しようとすると <span class="docutils literal"><span class="pre">Tinkerer</span></span> のビルドが何故かコケるのでリンクのみ共有です。。</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div id="more"> </div><div class="section" id="teminal">
+<h2>Teminalの使い方の話をしようと思ったわけ</h2>
+<div class="line-block">
+<div class="line">これまで <span class="docutils literal"><span class="pre">NODE-Setagaya</span></span> で話をする機会があった際は</div>
+<div class="line">「やってみたいんだけど、時間やきっかけなくてなかなか手が付けられてなかったものを扱うかなー」</div>
+<div class="line">という感じでテーマを選んでいたことが多かったのですが、今回はちょっと視点を変えてみました。</div>
+</div>
+<div class="line-block">
+<div class="line">そこそこの期間この業種で仕事してきたけど、案外自分の身の回りに <span class="docutils literal"><span class="pre">Twitter</span></span> 界隈とかにいそうな</div>
+<div class="line">「ザ・ `` Terminal`` 大好き！」って人がなかなか自分の周りにいないなーと思っていたところと、</div>
+<div class="line">割と自分自身では仕事を通じて <span class="docutils literal"><span class="pre">Terminal</span></span> で作業していると落ち着いくなーという人間になったので</div>
+<div class="line">現状の「俺こうやってるけどみんなどう？」って感じのものを出してみればどんな反応があるのかな？</div>
+<div class="line">という興味から今回のテーマを選んでみました。</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>感想とか</h2>
+<div class="line-block">
+<div class="line">「これは知っている！」</div>
+<div class="line">だったり</div>
+<div class="line"><span class="docutils literal"><span class="pre">vim</span></span> のあたりでは「おー！これすげー！！」</div>
+<div class="line">と反応してもらえたり</div>
+<div class="line">「普段は面倒で調べるのが後回しになってた」</div>
+<div class="line">などなど、参加メンツからは反応があり、</div>
+<div class="line">テーマとしてはよいものが選べたかな。という手応えが有りました。</div>
+</div>
+<div class="line-block">
+<div class="line">ちょっと直前にゴタゴタした状況で作ってしまい、</div>
+<div class="line">かなり多めに時間を余してしまった点や、スライド自体がちゃんと閉められてなかったのは</div>
+<div class="line">今回の反省点だったとは思います。</div>
+</div>
+<div class="line-block">
+<div class="line">最初はやりたい内容を一度に全部流してしまうと、</div>
+<div class="line">自分自身も結構しんどいし、そもそも参加しているみんながついてこれるか不安だったので</div>
+<div class="line">今回の内容も人まずは基本的なところをピックアップした半分程度にとどめましたが、</div>
+<div class="line">機会があったら、<span class="docutils literal"><span class="pre">DEMO6</span></span> の内容や今回扱いきれなかった部分を中心に</div>
+<div class="line">また <span class="docutils literal"><span class="pre">CLI</span> <span class="pre">mini</span> <span class="pre">Hack</span></span> はやってみたいかなと思いました。</div>
+</div>
+</div>
 </div>
 
     <div class="postmeta">
@@ -195,8 +235,16 @@ tinkerer + githubpage のこちらの環境に移行しました。
         <div class="author">
             <span>Posted by Kei Iwasaki</span>
         </div>
-        
-        
+        <div class="categories">
+            <span>
+                Filed under:
+                <a href="../../../categories/勉強会.html">勉強会</a></span>
+        </div>
+        <div class="tags">
+            <span>
+                Tags:
+                <a href="../../../tags/勉強会.html"><i class="fa fa-tag"></i> 勉強会</a>, <a href="../../../tags/node_setagaya.html"><i class="fa fa-tag"></i> NODE-Setagaya</a>, <a href="../../../tags/terminal.html"><i class="fa fa-tag"></i> Terminal</a>, <a href="../../../tags/シェル芸.html"><i class="fa fa-tag"></i> シェル芸</a>, <a href="../../../tags/vim.html"><i class="fa fa-tag"></i> vim</a></span>
+        </div>
         </div>
     </div>
 
@@ -253,7 +301,7 @@ tinkerer + githubpage のこちらの環境に移行しました。
 
 
     
-      <div class="fb-like" data-href="http://memo.laughk.org/2013/11/18/hello_new_blog.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+      <div class="fb-like" data-href="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
   </div>
 
@@ -272,7 +320,7 @@ tinkerer + githubpage のこちらの環境に移行しました。
 
   </div>
 
-    <div id="disqus_thread"></div><script type="text/javascript">    var disqus_shortname = "memolaughkorg";    var disqus_identifier = "2013/11/18/hello_new_blog";    disqus_thread();</script><noscript>Please enable JavaScript to view the    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <div id="disqus_thread"></div><script type="text/javascript">    var disqus_shortname = "memolaughkorg";    var disqus_identifier = "2014/04/13/node_setagaya9_repo";    disqus_thread();</script><noscript>Please enable JavaScript to view the    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                 </div>
               </div>
             </div>
@@ -313,15 +361,15 @@ tinkerer + githubpage のこちらの環境に移行しました。
 </div><div class="widget">
     <h1>Recent Posts</h1>
     <ul><li>
-            <a href="../../../2014/04/13/node_setagaya9_repo.html">NODE-SetagayaでTerminalのTips的なものを話してきた</a>
+            <a href="#">NODE-SetagayaでTerminalのTips的なものを話してきた</a>
         </li><li>
-            <a href="../../../2014/04/10/shell_lian_tower.html">久々に第10回記念シェル芸勉強会行ってきたんでまとめとか</a>
+            <a href="../10/shell_lian_tower.html">久々に第10回記念シェル芸勉強会行ってきたんでまとめとか</a>
         </li><li>
-            <a href="../../12/10/ansible_with_infrastructure_engineer.html">あるインフラエンジニアとAnsibleの付き合い方</a>
+            <a href="../../../2013/12/10/ansible_with_infrastructure_engineer.html">あるインフラエンジニアとAnsibleの付き合い方</a>
         </li><li>
-            <a href="../21/irc_setup_in_terminal.html">快適Terminal環境計画 - IRC -</a>
+            <a href="../../../2013/11/21/irc_setup_in_terminal.html">快適Terminal環境計画 - IRC -</a>
         </li><li>
-            <a href="#">ブログ移転</a>
+            <a href="../../../2013/11/18/hello_new_blog.html">ブログ移転</a>
         </li></ul>
 </div>
 <div class="widget">

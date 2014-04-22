@@ -4,6 +4,7 @@ Sitemap
 .. toctree::
    :maxdepth: 1
 
+   2014/04/21/qpstudy_20140419_report
    2014/04/13/node_setagaya9_repo
    2014/04/10/shell_lian_tower
    2013/12/10/ansible_with_infrastructure_engineer

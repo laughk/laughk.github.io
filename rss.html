@@ -5,8 +5,93 @@
         <link>http://memo.laughk.org/</link>
         <description>@laugh_k's memo</description>
         <language>en-us</language>
-        <pubDate>Mon, 21 Apr 2014 00:00:00 +0900</pubDate>
+        <pubDate>Thu, 24 Apr 2014 00:00:00 +0900</pubDate>
         
+        <item>
+            <link>http://memo.laughk.org/2014/04/24/shell_exec_log.html</link>
+            <guid>http://memo.laughk.org/2014/04/24/shell_exec_log.html</guid>
+            <title><![CDATA[シェルスクリプトが '> $logfile 2>&1' だらけにならなくて済んだ話]]></title>
+            <description><![CDATA[<div class="section" id="logfile-2-1">
+<h1>シェルスクリプトが ‘&gt; $logfile 2&gt;&amp;1’ だらけにならなくて済んだ話</h1>
+<div class="line-block">
+<div class="line">ちょっとしたバッチ処理的なものはさくっとシェルスクリプトでやっています。</div>
+<div class="line">で、ログをとっておくべくリダイレクトを噛ますわけですが、</div>
+<div class="line">スマートに書く方法を調べたのでメモ。</div>
+</div>
+<div class="line-block">
+<div class="line">元ネタは <a class="reference external" href="https://twitter.com/sechiro">@sechiro</a> さんの <a class="reference external" href="http://sechiro.hatenablog.com/entry/2013/08/15/bash%E3%81%AE%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E7%BD%AE%E6%8F%9B%E6%A9%9F%E8%83%BD%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81%E3%82%B7%E3%82%A7%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%84%E3%82%B9">bashのプロセス置換機能を活用して、シェル作業やスクリプト書きを効率化する</a> でございます。</div>
+<div class="line">本当に参考になりました。ありがとうございます。</div>
+</div>
+<div id="more"> </div><div class="section" id="id1">
+<h2>今までは</h2>
+<p>こんなことやってたわけです。</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
+
+command1 &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+command2 &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+...      &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+...      &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+...      &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+...      &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">まあ1,2行くらいならいいのですが、これが5行超えてくるともう編集するのも読むのも嫌になってきます。</div>
+<div class="line">この辺調べてみると、 <span class="docutils literal"><span class="pre">exec</span></span> コマンドによるプロセス置換で、出力を変更してあげると良いようです。</div>
+</div>
+</div>
+<div class="section" id="exec">
+<h2>execで解決</h2>
+<div class="highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
+
+<span class="nb">exec </span>1&gt; &gt;<span class="o">(</span>cat &gt;&gt; <span class="nv">$LOGFILE</span><span class="o">)</span>
+<span class="nb">exec </span>2&gt; &gt;<span class="o">(</span>cat &gt;&gt; <span class="nv">$LOGFILE</span><span class="o">)</span>
+
+command1
+command2
+...
+...
+...
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">こんな感じで書けます。</div>
+<div class="line">さらに <span class="docutils literal"><span class="pre">awk</span></span> も使って以下のようにすると、ログの各行の先頭に</div>
+<div class="line"><span class="docutils literal"><span class="pre">[YYYY-mm-dd</span> <span class="pre">HH:MM:SS]</span></span>  のようにタイムスタンプも付けられます。</div>
+</div>
+<div class="highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
+
+<span class="nb">exec </span>1&gt; &gt;<span class="o">(</span>awk <span class="s1">'{print strftime(&quot;[%Y-%m-%d %H:%M:%S] &quot;),$0 } { fflush() } '</span> &gt;&gt; <span class="nv">$LOGFILE</span><span class="o">)</span>
+<span class="nb">exec </span>2&gt; &gt;<span class="o">(</span>awk <span class="s1">'{print strftime(&quot;[%Y-%m-%d %H:%M:%S] &quot;),$0 } { fflush() } '</span> &gt;&gt; <span class="nv">$LOGFILE</span><span class="o">)</span>
+
+command1
+command2
+...
+...
+...
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><span class="docutils literal"><span class="pre">tee</span></span> コマンドを使えば出力を保ちながらロギングとかもできそうです。</div>
+<div class="line">ただしこの出力の変更は <span class="docutils literal"><span class="pre">bash</span></span> の機能らしく、シバンを <span class="docutils literal"><span class="pre">#!/bin/sh</span></span> にすると</div>
+<div class="line"><span class="docutils literal"><span class="pre">Syntax</span> <span class="pre">error:</span> <span class="pre">redirection</span> <span class="pre">unexpected</span></span> が返って来てうまく処理が動かないので</div>
+<div class="line"><span class="docutils literal"><span class="pre">#!/bin/bash</span></span> と書く必要が有ります。</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>最後に</h2>
+<p>ちょこちょこ処理が増えてきてしまうと
+すぐに <span class="docutils literal"><span class="pre">&gt;&gt;</span> <span class="pre">$logfile</span> <span class="pre">2&gt;&amp;1</span></span> まみれになってしまっていたシェルスクリプトがようやくスッキリ書けるようになりました。
+<span class="docutils literal"><span class="pre">exec</span></span> によるプロセス置換は他にも応用が効きそうなのでもっと調べると色々捗りそうです。</p>
+</div>
+</div>]]></description>
+            <category><![CDATA[ tips ]]></category>
+             <pubDate>Thu, 24 Apr 2014 00:00:00 +0900</pubDate>
+        </item>
+    
         <item>
             <link>http://memo.laughk.org/2014/04/21/qpstudy_20140419_report.html</link>
             <guid>http://memo.laughk.org/2014/04/21/qpstudy_20140419_report.html</guid>

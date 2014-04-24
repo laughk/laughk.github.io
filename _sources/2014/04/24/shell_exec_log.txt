@@ -1,0 +1,84 @@
+シェルスクリプトが '> $logfile 2>&1' だらけにならなくて済んだ話
+=========================================================================
+
+| ちょっとしたバッチ処理的なものはさくっとシェルスクリプトでやっています。
+| で、ログをとっておくべくリダイレクトを噛ますわけですが、
+| スマートに書く方法を調べたのでメモ。
+
+| 元ネタは `@sechiro <https://twitter.com/sechiro>`_ さんの `bashのプロセス置換機能を活用して、シェル作業やスクリプト書きを効率化する <http://sechiro.hatenablog.com/entry/2013/08/15/bash%E3%81%AE%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E7%BD%AE%E6%8F%9B%E6%A9%9F%E8%83%BD%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81%E3%82%B7%E3%82%A7%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%84%E3%82%B9>`_ でございます。
+| 本当に参考になりました。ありがとうございます。
+
+.. more::
+
+今までは
+--------------------------
+
+こんなことやってたわけです。
+
+.. sourcecode:: sh
+
+   #!/bin/bash
+   LOGFILE=/tmp/script-log
+
+   command1 > $LOGFILE 2>&1
+   command2 > $LOGFILE 2>&1
+   ...      > $LOGFILE 2>&1
+   ...      > $LOGFILE 2>&1
+   ...      > $LOGFILE 2>&1
+   ...      > $LOGFILE 2>&1
+
+
+| まあ1,2行くらいならいいのですが、これが5行超えてくるともう編集するのも読むのも嫌になってきます。
+| この辺調べてみると、 ``exec`` コマンドによるプロセス置換で、出力を変更してあげると良いようです。
+
+execで解決
+--------------------------
+
+.. sourcecode:: sh
+
+   #!/bin/bash
+   LOGFILE=/tmp/script-log
+
+   exec 1> >(cat >> $LOGFILE)
+   exec 2> >(cat >> $LOGFILE)
+
+   command1
+   command2
+   ...
+   ...
+   ...
+
+| こんな感じで書けます。
+| さらに ``awk`` も使って以下のようにすると、ログの各行の先頭に
+| ``[YYYY-mm-dd HH:MM:SS]``  のようにタイムスタンプも付けられます。
+
+.. sourcecode:: sh
+
+   #!/bin/bash
+   LOGFILE=/tmp/script-log
+
+   exec 1> >(awk '{print strftime("[%Y-%m-%d %H:%M:%S] "),$0 } { fflush() } ' >> $LOGFILE)
+   exec 2> >(awk '{print strftime("[%Y-%m-%d %H:%M:%S] "),$0 } { fflush() } ' >> $LOGFILE)
+
+   command1
+   command2
+   ...
+   ...
+   ...
+
+| ``tee`` コマンドを使えば出力を保ちながらロギングとかもできそうです。
+| ただしこの出力の変更は ``bash`` の機能らしく、シバンを ``#!/bin/sh`` にすると
+| ``Syntax error: redirection unexpected`` が返って来てうまく処理が動かないので
+| ``#!/bin/bash`` と書く必要が有ります。
+
+最後に
+-------------------------------
+ちょこちょこ処理が増えてきてしまうと
+すぐに ``>> $logfile 2>&1`` まみれになってしまっていたシェルスクリプトがようやくスッキリ書けるようになりました。
+``exec`` によるプロセス置換は他にも応用が効きそうなのでもっと調べると色々捗りそうです。
+
+
+.. author:: default
+.. categories:: tips
+.. tags:: shellscript
+.. comments::

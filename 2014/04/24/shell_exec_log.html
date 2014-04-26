@@ -287,10 +287,10 @@ command2
 <p>コメントにて更に素敵な方法を紹介していただけました。
 <span class="docutils literal"><span class="pre">exec</span></span> 利用でもさらにシンプルな記載ができ、 また <span class="docutils literal"><span class="pre">{}</span></span>  を使った記載方法もあるようです。</p>
 <ul>
-<li><p class="first">もっとシンプルな <span class="docutils literal"><span class="pre">exec</span></span>
-<span class="docutils literal"><span class="pre">awk</span></span> などと組み合わせてフィルタリングするのは厳しいですが、単純に出力先を指定するにはこちらがよさそうです。</p>
-<blockquote>
-<div><div class="highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<li><dl class="first docutils">
+<dt>もっとシンプルな <span class="docutils literal"><span class="pre">exec</span></span></dt>
+<dd><p class="first"><span class="docutils literal"><span class="pre">awk</span></span> などと組み合わせてフィルタリングするのは厳しいですが、単純に出力先を指定するにはこちらがよさそうです。</p>
+<div class="last highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
 
 <span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
 <span class="nb">exec</span> &gt;&gt;<span class="s2">&quot;$LOGFILE&quot;</span>
@@ -303,12 +303,13 @@ command2
 ...
 </pre></div>
 </div>
-</div></blockquote>
+</dd>
+</dl>
 </li>
-<li><p class="first"><span class="docutils literal"><span class="pre">{}</span></span> を使った方法
-この方法はコメントでご指摘いただくまで全く知りませんでした。。 こちらの記載方法のほうが汎用性が高そうで使いやすそうですね。</p>
-<blockquote>
-<div><div class="highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">{}</span></span> を使った方法</dt>
+<dd><p class="first">この方法はコメントでご指摘いただくまで全く知りませんでした。。 こちらの記載方法のほうが汎用性が高そうで使いやすそうですね。</p>
+<div class="last highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
 
 <span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
 
@@ -321,7 +322,8 @@ command2
 <span class="o">}</span> &gt;&gt; <span class="s2">&quot;$LOGFILE&quot;</span> 2&gt;&amp;1
 </pre></div>
 </div>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 </ul>
 <p>状況に応じて使い分けていければシェルスクリプトがもっと捗りそうです。</p>

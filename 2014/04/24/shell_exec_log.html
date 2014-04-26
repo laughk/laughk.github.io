@@ -196,6 +196,14 @@
         </div>
     <div class="section" id="logfile-2-1">
 <h1>シェルスクリプトが &#8216;&gt; $logfile 2&gt;&amp;1&#8217; だらけにならなくて済んだ話</h1>
+<dl class="docutils">
+<dt>※ 2014-04-26</dt>
+<dd><div class="first last line-block">
+<div class="line">追記並びに一部コマンド部分の修正を行いました。( <span class="docutils literal"><span class="pre">&gt;</span></span> =&gt; <span class="docutils literal"><span class="pre">&gt;&gt;</span></span> に変更 )</div>
+<div class="line">個人用のチラシの裏のつもりが予想以上に反響いただいていたようで非常にびっくりしております。</div>
+</div>
+</dd>
+</dl>
 <div class="line-block">
 <div class="line">ちょっとしたバッチ処理的なものはさくっとシェルスクリプトでやっています。</div>
 <div class="line">で、ログをとっておくべくリダイレクトを噛ますわけですが、</div>
@@ -211,18 +219,22 @@
 <div class="highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
 <span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
 
-command1 &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
-command2 &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
-...      &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
-...      &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
-...      &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
-...      &gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+command1 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+command2 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
+...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;&amp;1
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line">まあ1,2行くらいならいいのですが、これが5行超えてくるともう編集するのも読むのも嫌になってきます。</div>
-<div class="line">この辺調べてみると、 <span class="docutils literal"><span class="pre">exec</span></span> コマンドによるプロセス置換で、出力を変更してあげると良いようです。</div>
-</div>
+<p>まあ1,2行くらいならいいのですが、これが5行超えてくるともう編集するのも読むのも嫌になってきます。
+この辺調べてみると、 <span class="docutils literal"><span class="pre">exec</span></span> コマンド <span class="strike">によるプロセス置換 で</span> で出力を変更してあげると良いようです。</p>
+<dl class="docutils">
+<dt><span class="docutils literal"><span class="pre">2014-04-26</span></span> 追記</dt>
+<dd>下の例で出しています <span class="docutils literal"><span class="pre">awk</span></span> によるフィルタリングはプロセス置換にあたるようですが、
+単純なログのリダイレクト部分については <span class="docutils literal"><span class="pre">bash</span></span> の組み込みコマンド <span class="docutils literal"><span class="pre">exec</span></span> によるリダイレクト指定の際の挙動のようで
+プロセス置換とは別物のようです。勉強不足ですみません。。</dd>
+</dl>
 </div>
 <div class="section" id="exec">
 <h2>execで解決</h2>
@@ -269,6 +281,50 @@ command2
 <p>ちょこちょこ処理が増えてきてしまうと
 すぐに <span class="docutils literal"><span class="pre">&gt;&gt;</span> <span class="pre">$logfile</span> <span class="pre">2&gt;&amp;1</span></span> まみれになってしまっていたシェルスクリプトがようやくスッキリ書けるようになりました。
 <span class="docutils literal"><span class="pre">exec</span></span> によるプロセス置換は他にも応用が効きそうなのでもっと調べると色々捗りそうです。</p>
+</div>
+<div class="section" id="id3">
+<h2>2014-04-26 追記</h2>
+<p>コメントにて更に素敵な方法を紹介していただけました。
+<span class="docutils literal"><span class="pre">exec</span></span> 利用でもさらにシンプルな記載ができ、 また <span class="docutils literal"><span class="pre">{}</span></span>  を使った記載方法もあるようです。</p>
+<ul>
+<li><p class="first">もっとシンプルな <span class="docutils literal"><span class="pre">exec</span></span>
+<span class="docutils literal"><span class="pre">awk</span></span> などと組み合わせてフィルタリングするのは厳しいですが、単純に出力先を指定するにはこちらがよさそうです。</p>
+<blockquote>
+<div><div class="highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
+<span class="nb">exec</span> &gt;&gt;<span class="s2">&quot;$LOGFILE&quot;</span>
+<span class="nb">exec </span>2&gt;&amp;1
+
+command1
+command2
+...
+...
+...
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><span class="docutils literal"><span class="pre">{}</span></span> を使った方法
+この方法はコメントでご指摘いただくまで全く知りませんでした。。 こちらの記載方法のほうが汎用性が高そうで使いやすそうですね。</p>
+<blockquote>
+<div><div class="highlight-sh"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
+
+<span class="o">{</span>
+    command1
+    command2
+    ...
+    ...
+    ...
+<span class="o">}</span> &gt;&gt; <span class="s2">&quot;$LOGFILE&quot;</span> 2&gt;&amp;1
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>状況に応じて使い分けていければシェルスクリプトがもっと捗りそうです。</p>
 </div>
 </div>
 

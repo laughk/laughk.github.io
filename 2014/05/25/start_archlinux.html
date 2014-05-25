@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    
+    <title>Arch Linux はじめました ~ 続・ラフなラボ</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="メモ置き場">
+
+    
+        <link rel="stylesheet" href="../../../_static/css/basicstrap-base.css" type="text/css" />
+        <link rel="stylesheet" href="../../../_static/css/bootswatch-simplex.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="../../../_static/css/font-awesome-ie7.min.css">
+    <![endif]-->
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link rel="stylesheet" href="../../../_static/basicstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" /><link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/css/bootstrap-responsive.min.css" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+        <script type="text/javascript" src="../../../_static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        <script type="text/javascript" src="../../../_static/disqus.js"></script>
+        <script type="text/javascript" src="../../../_static/google_analytics.js"></script>
+        <script type="text/javascript" src="../../../_static/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.show-sidebar').click(function(e) {
+           e.preventDefault();
+           if ($(".show-sidebar").html() == "Open Table Of Contents") {
+              $('.for-mobile').removeClass('hidden-phone');
+              $(".show-sidebar").html("Close Table Of Contents");
+           } else {
+              $(".show-sidebar").html("Open Table Of Contents");
+           }
+        });
+      });
+    </script>
+    <link rel="shortcut icon" href="../../../_static/tinkerer.ico"/>
+    <link rel="top" title="続・ラフなラボ" href="../../../index.html" />
+
+ 
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top ">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="../../../index.html">続・ラフなラボ</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right">
+            
+
+
+
+                <li class="main-nav">
+                    <a href="../../../index.html">Home</a>
+                  </li>
+                <li class="main-nav">
+                    <a href="../../../pages/about.html">About Me</a>
+                  </li>
+                <li>
+                    <a href="../../../archive.html"><i class="fa fa-archive"></i> Archives</a>
+                  </li><li><a href="../../../rss.html" title="Subscribe via RSS"><i class="fa fa-rss"></i> RSS</a></li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- container -->
+    <div class="container-fluid">
+
+
+      <!-- row -->
+      <div class="row-fluid">
+        
+        
+
+        <div class="span9">
+          <div class="document">
+            <div class="documentwrapper">
+              <div class="bodywrapper">
+                <div class="body">
+                  
+
+    <div id="fb-root"></div>
+    <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=1412228335678506";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+        <div class="timestamp postmeta">
+            <span class="label label-default"><i class="fa fa-calendar"></i> 2014-05-25</span>
+        </div>
+    <div class="section" id="arch-linux">
+<h1>Arch Linux はじめました</h1>
+<a class="reference internal image-reference" href="../../../_images/screenshot1.png"><img alt="../../../_images/screenshot1.png" src="../../../_images/screenshot1.png" style="width: 576.0px; height: 324.0px;" /></a>
+<div class="line-block">
+<div class="line"><span class="docutils literal"><span class="pre">Ubuntu14.04</span></span> のリリース情報もあり、</div>
+<div class="line">これまでDELL XPS13で使ってきた <span class="docutils literal"><span class="pre">Linux</span> <span class="pre">Mint16</span></span> 環境をどうしようかなと思っていましたが、</div>
+<div class="line">いろいろ考えて <span class="docutils literal"><span class="pre">Linux</span> <span class="pre">Mint17</span></span> へのアップグレードは行わず、思い切って1週間ほど前に <span class="docutils literal"><span class="pre">ArchLinux</span></span> に引っ越しました。</div>
+<div class="line">概ね安定して使えてる感じがあります。</div>
+<div class="line"><br /></div>
+<div class="line">今回はインストールの際の簡単なメモとか、1周間ほど使ってみた感想とか。</div>
+<div class="line"><span class="docutils literal"><span class="pre">ArchLinux</span></span> は基本的な作業部分は公式 <span class="docutils literal"><span class="pre">Wiki</span></span> 見ればほとんど解決できるのであまりそういうことは書かないです。</div>
+</div>
+<div id="more"> </div><div class="section" id="virtualboxos">
+<h2>VirtualboxのゲストOSにして練習</h2>
+<div class="line-block">
+<div class="line">実は1年ほど前にも <span class="docutils literal"><span class="pre">ArchLinux</span></span> にはトライしていたのですが、</div>
+<div class="line">ちょうど <span class="docutils literal"><span class="pre">sytemd</span></span> への以降の時期だったのか公式 <span class="docutils literal"><span class="pre">wiki</span></span> の内容が実物とだいぶずれてしまっている感があり</div>
+<div class="line">その時は <span class="docutils literal"><span class="pre">GUI</span></span> 画面を見ることなく挫折してしまっていました。。</div>
+</div>
+<div class="line-block">
+<div class="line">今回はそういった背景もあり、流石に <span class="docutils literal"><span class="pre">XPS13</span></span> にいきなりインストールするのは怖かったので</div>
+<div class="line"><span class="docutils literal"><span class="pre">Virtualbox</span></span> で実際にインストールを行い、 <span class="docutils literal"><span class="pre">Gnome3</span></span> が動くところまで確認。</div>
+<div class="line">現在は公式 <span class="docutils literal"><span class="pre">Wiki</span></span> に従っていけばだいたい間違いないということを確認できたので、</div>
+<div class="line">実機にインストールする踏ん切りがつきました。</div>
+</div>
+<div class="line-block">
+<div class="line">ちなみ、 <span class="docutils literal"><span class="pre">ArchLinux</span></span> だと公式リポジトリに <span class="docutils literal"><span class="pre">virtualbox-guest-addition</span></span> が用意してあるようで非常にお手軽に試せました。</div>
+<div class="line">これさえ入れとけばドライバ周りで引っかかることもないようですし。インストールも以下のような感じでOKでした。</div>
+<div class="line">( 詳細は公式 <span class="docutils literal"><span class="pre">wiki</span></span> を見るのが一番いいと思います -&gt; <a class="reference external" href="https://wiki.archlinux.org/index.php/VirtualBox_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#Arch_Linux_.E3.82.92.E3.82.B2.E3.82.B9.E3.83.88.E3.81.AB.E3.81.99.E3.82.8B">VirtualBox (日本語) - ArchWiki</a> )</div>
+</div>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>sudo pacman -S virtualbox-guest-utils
+<span class="nv">$ </span>sudo sh -c <span class="s1">&#39;cat &gt;&gt; /etc/modules-load.d/virtualbox.conf &lt;&lt; EOF</span>
+<span class="s1">vboxguest</span>
+<span class="s1">vboxsf</span>
+<span class="s1">vboxvideo</span>
+<span class="s1">EOF&#39;</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;/usr/bin/VBoxClient-all&#39;</span> &gt;&gt; ~/.xinitrc
+</pre></div>
+</div>
+</div>
+<div class="section" id="xps13osgui">
+<h2>XPS13実機へのOSインストールからGUIインストールまで</h2>
+<div class="section" id="os">
+<h3>OSのインストール</h3>
+<div class="line-block">
+<div class="line"><span class="docutils literal"><span class="pre">Arch</span> <span class="pre">Linux</span></span> は基本的な <span class="docutils literal"><span class="pre">OS</span></span> インストールはコンソール越しのコマンドラインで行います。</div>
+<div class="line">DVDまたはCDブートがうまくいってネットワーク接続が確保できれば、</div>
+<div class="line">基本的には公式 <span class="docutils literal"><span class="pre">Wiki</span></span> のインストールガイド( <a class="reference external" href="https://wiki.archlinux.org/index.php/Installation_Guide_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29">Installation Guide (日本語) - ArchWiki</a> に従えば、基本的な <span class="docutils literal"><span class="pre">Unix</span></span> 系のコマンドライン知識で十分行える範囲だとは思います。</div>
+</div>
+<div class="line-block">
+<div class="line">ネットワークに関してはXPS13は物理NICが付いていないのですが、</div>
+<div class="line"><span class="docutils literal"><span class="pre">BUFFALO</span> <span class="pre">LUA3-U2-ATX</span></span> でUSB経由でLANをつないだところ問題なく認識されました。</div>
+<div class="line">( 基本的に <span class="docutils literal"><span class="pre">Mac</span></span> も対応しているUSB NICであれば認識してくれそうな感じはあります。)</div>
+</div>
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=laughk-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=ss_til&amp;asins=B002IT5ZPG" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe><div class="line-block">
+<div class="line">インストール作業時は <a class="reference external" href="https://wiki.archlinux.org/index.php/Dhcpcd_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29">dhcpcd (日本語) - ArchWiki</a> の手動起動部分を参考にとりあえず <span class="docutils literal"><span class="pre">DHCP</span></span> でインターネットへの接続を確保してしまうのが一番楽だと思います。</div>
+<div class="line"><span class="docutils literal"><span class="pre">interface</span></span> がわからない場合は <span class="docutils literal"><span class="pre">ls</span> <span class="pre">/sys/class/net</span></span> するのがいいでしょう。(by <a class="reference external" href="https://wiki.archlinux.org/index.php/Network_configuration">Network configuration - ArchWiki</a>) 。</div>
+</div>
+<div class="line-block">
+<div class="line">ネットワークにつながったら <span class="docutils literal"><span class="pre">Install</span> <span class="pre">Guide</span></span> を元に基本的なパッケージをどんどん突っ込んでいくことになりますが</div>
+<div class="line">とりあえず、これやっときゃいい的なものが知りたい場合、以下の記事がシンプルにまとまっていてわかりやすいです。</div>
+<div class="line"><br /></div>
+<div class="line"><a class="reference external" href="http://blog.volment.com/?p=47">実は簡単Arch Linuxのインストール手順！ | volment</a></div>
+</div>
+</div>
+<div class="section" id="gui">
+<h3>GUIインストール</h3>
+<div class="line-block">
+<div class="line"><span class="docutils literal"><span class="pre">GUI</span></span> は <strong>ディスプレイマネージャー</strong> (ログイン時にパスワードを聞かれる画面)と <strong>デスクトップ環境</strong> (<span class="docutils literal"><span class="pre">Gnome</span></span> とか <span class="docutils literal"><span class="pre">KDE</span></span>)のインストール・設定作業になります。</div>
+<div class="line">今回私は <span class="docutils literal"><span class="pre">GDM</span></span> と <span class="docutils literal"><span class="pre">Cinnamon</span></span> の組み合わせでインストールをしました。</div>
+</div>
+<div class="line-block">
+<div class="line">基本的に <span class="docutils literal"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">&lt;displaynamager_name&gt;</span> <span class="pre">&lt;desctop_name&gt;</span></span> でインストールすればOKなのですが、</div>
+<div class="line">この際に他にも必要になりそうなものは入れておくといいかもしれません。</div>
+<div class="line">特にトラックパッドを使いたい場合、ちゃんとドライバを入れとかないとマウスポインタが使えないんで要注意です。</div>
+<div class="line">(参考: <a class="reference external" href="https://wiki.archlinux.org/index.php/Touchpad_Synaptics_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29">Touchpad Synaptics (日本語) - ArchWiki</a> )</div>
+<div class="line">また、 <span class="docutils literal"><span class="pre">Ubuntu</span></span> 等他のディストリビューションでは <span class="docutils literal"><span class="pre">GUI</span></span> 環境にほぼデフォルトで <span class="docutils literal"><span class="pre">Terminal</span> <span class="pre">エミュレータ</span></span> が付属されていますが、</div>
+<div class="line">少なくとも <span class="docutils literal"><span class="pre">ArchLinux</span></span> インストールの際はついてこないので、各環境で利用できる <span class="docutils literal"><span class="pre">Termin</span> <span class="pre">エミュレータ</span></span> も入れとかないと <span class="docutils literal"><span class="pre">GUI</span></span> ログインしてからいろいろ面倒なことになります。</div>
+<div class="line">使えそうなものは <span class="docutils literal"><span class="pre">pacman</span> <span class="pre">-Ss</span> <span class="pre">terminal</span></span> などで探してみるのがいいでしょう。</div>
+</div>
+<div class="line-block">
+<div class="line">あとは一般ユーザーの作成がまだだった場合は、 <span class="docutils literal"><span class="pre">GUI</span></span> インストール前に追加しておきましょう。</div>
+<div class="line">必要であれば同時にこの段階で <span class="docutils literal"><span class="pre">sudo</span></span> 権限も付与しときましょう。</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>GUIインストール後の基本的なところ</h3>
+<p><span class="docutils literal"><span class="pre">GUI</span></span> ログインができるようになったら、あとは基本的な環境構築をやってく感じで
+この辺から他のディストリビューションとの難易度的な差がなくなってきます。
+むしろ公式 <span class="docutils literal"><span class="pre">Wiki</span></span> が充実しているのでかえって楽にさえ感じてくるかもしれないです。
+だいたいやったことを上げてみると</p>
+<ul>
+<li><p class="first"><span class="docutils literal"><span class="pre">Cinnamon</span></span> の設定からいじれるように <span class="docutils literal"><span class="pre">NetworkManager</span></span> をインストール&amp;有効化</p>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Openvpn</span></span> の追加</dt>
+<dd><p class="first last">GUIから設定できるように <span class="docutils literal"><span class="pre">networkmanager-openvpn</span></span> を入れる。詳細はこちら <a class="reference external" href="https://wiki.archlinux.org/index.php/NetworkManager_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29">NetworkManager (日本語) - ArchWiki</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">AUR</span></span> を利用するため <span class="docutils literal"><span class="pre">yaourt</span></span> をインストール。</dt>
+<dd><p class="first last"><a class="reference external" href="https://wiki.archlinux.org/index.php/Yaourt_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29">Yaourt (日本語) - ArchWiki</a> を参照</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>半透明に設定したいツールの対応。</dt>
+<dd><div class="first line-block">
+<div class="line"><span class="docutils literal"><span class="pre">Gnome-Terminal</span></span> が最新だと <span class="docutils literal"><span class="pre">Transparent</span></span> オプションがなくなってしまっていたので <span class="docutils literal"><span class="pre">devilspie</span></span> を導入。 <span class="docutils literal"><span class="pre">~/.devilspie/opacity.ds</span></span> とかを作って以下のように記載。</div>
+<div class="line">あとは <span class="docutils literal"><span class="pre">~/.xprofile</span></span> なり <span class="docutils literal"><span class="pre">Cinnamon</span></span> の自動起動するアプリケーションなりにログイン時に <span class="docutils literal"><span class="pre">devilspie</span></span> を起動するようにしておけばOK。</div>
+<div class="line">(ついでに <span class="docutils literal"><span class="pre">Gvim</span></span> も一緒に対応)</div>
+</div>
+<div class="last highlight-common-lisp"><div class="highlight"><pre><span class="p">(</span><span class="k">if</span>
+  <span class="p">(</span><span class="nv">matches</span> <span class="p">(</span><span class="nv">window_class</span><span class="p">)</span> <span class="s">&quot;Gnome-terminal&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">opacity</span> <span class="mi">90</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="p">(</span><span class="k">if</span>
+  <span class="p">(</span><span class="nv">matches</span> <span class="p">(</span><span class="nv">window_class</span><span class="p">)</span> <span class="s">&quot;Gvim&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">opacity</span> <span class="mi">85</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">日本語入力をするため <span class="docutils literal"><span class="pre">mozc-ut</span></span> をインストール</p>
+</li>
+<li><dl class="first docutils">
+<dt>日本語対応フォントをインストール</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">UI</span></span> 周り</dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Takaoフォント</span></span>, <span class="docutils literal"><span class="pre">IPAフォント</span></span>, <span class="docutils literal"><span class="pre">MSフォント</span></span> とか</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>作業環境</dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Ricty</span></span>, <span class="docutils literal"><span class="pre">Dejavu</span> <span class="pre">Sans</span></span>, <span class="docutils literal"><span class="pre">aur/powerline-fonts-git</span></span>  とか( <span class="docutils literal"><span class="pre">powerline-font</span></span> があるのが地味に嬉しい )</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>絵文字関連</dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">ttf-symbol</span></span>, <span class="docutils literal"><span class="pre">ttf-freefont</span></span> とか (これでも一部化ける。。)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>キーバインド変更</dt>
+<dd><p class="first last">右Altで入力言語の切り替えをしたかったので <span class="docutils literal"><span class="pre">~/.Xmodmap</span></span> を編集して <span class="docutils literal"><span class="pre">Alt_R</span></span> を <span class="docutils literal"><span class="pre">Zenkaku_Hankaku</span></span> にバインド。
+<span class="docutils literal"><span class="pre">~/.xprofile</span></span> なりに <span class="docutils literal"><span class="pre">xmodmap</span> <span class="pre">$HOME/.Xmodmap</span></span> を追記するのを忘れずに。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>ビットマップフォントのアンチエイリアスを有効化</dt>
+<dd><div class="first line-block">
+<div class="line">個人的にビットマップフォントまんまは見づらい。。ここは公式の情報を漁ってみるもいいものに出会えず。</div>
+<div class="line"><a class="reference external" href="http://archlinux-blogger.blogspot.jp/2013/08/arch-linux.html">普段使いのArch Linux: Arch Linuxで日本語フォントを設定 | 日本語フォントのインストール&amp;見やすく表示する設定</a> を参考にさせてもらったところうまく行った。</div>
+<div class="line">以下の内容の <span class="docutils literal"><span class="pre">~/.config/fontconfig/fonts.conf</span></span> を追加する感じで。</div>
+</div>
+<div class="last highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;fontconfig&gt;</span>
+  <span class="nt">&lt;match</span> <span class="na">target=</span><span class="s">&quot;font&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;edit</span> <span class="na">mode=</span><span class="s">&quot;assign&quot;</span> <span class="na">name=</span><span class="s">&quot;embeddedbitmap&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;bool&gt;</span>false<span class="nt">&lt;/bool&gt;</span>
+    <span class="nt">&lt;/edit&gt;</span>
+    <span class="nt">&lt;edit</span> <span class="na">mode=</span><span class="s">&quot;assign&quot;</span> <span class="na">name=</span><span class="s">&quot;hintstyle&quot;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;const&gt;</span>hintnone<span class="nt">&lt;/const&gt;</span>
+    <span class="nt">&lt;/edit&gt;</span>
+  <span class="nt">&lt;/match&gt;</span>
+<span class="nt">&lt;/fontconfig&gt;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">VMware</span> <span class="pre">Player</span></span> のインストール</dt>
+<dd><div class="first last line-block">
+<div class="line"><a class="reference external" href="https://my.vmware.com/jp/web/vmware/downloads">公式</a> から64bitバイナリ を取得して、インストール。</div>
+<div class="line">注意点があるので、そこは <a class="reference external" href="https://wiki.archlinux.org/index.php/VMware">VMware - ArchWiki</a> を参照しながらやればOK</div>
+<div class="line">ただし、現状ゲストの <span class="docutils literal"><span class="pre">Windows8.1</span></span> を一回起動すると <span class="docutils literal"><span class="pre">Super</span></span> キーがホールドされてるようなおかしな状態になってしまう。。 (解決法調査中)</div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">VirtualBox</span></span> のインストール</dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">pacman</span></span> の <span class="docutils literal"><span class="pre">community</span></span> レポジトリにあったのでコマンド一発でOK。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>その他普段使いのツールたち</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Gvim</span></span></dt>
+<dd><p class="first last">メインで使ってるエディタ</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Atom</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Github</span></span> 的なあれ。 <span class="docutils literal"><span class="pre">AUR</span></span> に <span class="docutils literal"><span class="pre">atom-editor</span></span> という名前ですでに登録済みでびっくり。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Dropbox</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Cinnamon</span></span> レポジトリにもあるけど、そちらはインストールがコケるので通常レポジトリのものでOK</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">firefox</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Web</span></span> ブラウザ</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Chromium</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Web</span></span> ブラウザ</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Google</span> <span class="pre">Chrome</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Web</span></span> ブラウザ、 <span class="docutils literal"><span class="pre">AUR</span></span> を使うと最新の <span class="docutils literal"><span class="pre">deb</span></span> からインストールしてくれる</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">KeepassX2</span></span></dt>
+<dd><p class="first last">マルチプラットフォームなパスワード管理ツール。
+<span class="docutils literal"><span class="pre">AUR</span></span> にある2系対応 <span class="docutils literal"><span class="pre">KeepassX</span></span> 。 アルファ版らしいが十分実用レベルで問題なし</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Synapse</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Linux</span></span> 版の <span class="docutils literal"><span class="pre">Alfred</span></span> 的なランチャー。多分こいつが現状開発が活発っぽい</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Zeal</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Linux</span></span> 版の <span class="docutils literal"><span class="pre">Dash</span></span> 的なドキュメントブラウザー</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Growl</span> <span class="pre">for</span> <span class="pre">Linux</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">weechat</span></span> の通知を受けたいので必須。 <span class="docutils literal"><span class="pre">AUR</span></span> にある</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Remina</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">Windows</span></span> サーバにリモデする際に必要</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">gnome-screenshot</span></span></dt>
+<dd><p class="first last">スクリーンショットツール
+<span class="docutils literal"><span class="pre">Cinnamon</span></span> 単体だと入ってないので必須</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">evince</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">PDF</span></span> ビュワー</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">gThumb</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">jpg</span></span> 、 <span class="docutils literal"><span class="pre">png</span></span> などの画像ファイルビュワー</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">GIMP</span></span></dt>
+<dd><p class="first last">定番画像加工ツール。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Inkscape</span></span></dt>
+<dd><p class="first last">定番お絵かきツール。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">LibreOffice</span></span></dt>
+<dd><p class="first last">定番フリーのオフィスツール。
+<span class="docutils literal"><span class="pre">VM</span></span> の <span class="docutils literal"><span class="pre">Windows</span></span> を使うまでもないときはやっぱ必要</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">Rhythmbox</span></span></dt>
+<dd><p class="first last">ローカルの音楽ファイル再生用</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><span class="docutils literal"><span class="pre">p7zip</span></span></dt>
+<dd><p class="first last"><span class="docutils literal"><span class="pre">7zip</span></span> 扱うときに</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>こんなところでしょうか。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>感想とかいろいろ</h2>
+<div class="line-block">
+<div class="line">ディストリ変更の理由としては、普段使いには <span class="docutils literal"><span class="pre">Mint</span></span> 使いやすいなーとは思うのですが、</div>
+<div class="line">最近だと <span class="docutils literal"><span class="pre">VMware</span></span> 環境があったり、 <span class="docutils literal"><span class="pre">tmux</span></span> や <span class="docutils literal"><span class="pre">git</span></span> の最新を追っかけるの関係であまり <span class="docutils literal"><span class="pre">apt</span></span> 経由でアプリを入れる機会も減ってきていたこと</div>
+<div class="line">あと、やはり <span class="docutils literal"><span class="pre">OS</span></span> のバージョンが上がるたびにクリインストールするのもいい加減しんどいなというあたりがあります。</div>
+<div class="line">だいぶ前に <a class="reference external" href="http://laugh-labo.blogspot.jp/2013/04/linuxmintultrabook.html">ラフなラボ: いい感じのLinuxMintなUltrabook環境を手に入れた</a> を書いた時もこのあと1週間後にはバージョンアップのためにクリインストールしてたりとかします。</div>
+</div>
+<div class="line-block">
+<div class="line">実際インストールしてみると結構面倒な作業を通過しなければいけないですが、</div>
+<div class="line">今までデスクトップ、サーバ含め <span class="docutils literal"><span class="pre">Linux</span></span> を使ってきて気に入っているものを自分で寄せ集めて環境つくりやすい面では <span class="docutils literal"><span class="pre">ArchLinux</span></span> よいですね。</div>
+<div class="line"><span class="docutils literal"><span class="pre">AUR</span></span> レポジトリを見ているとかなり最新のものも含まれていたりするので、パッケージの管理も非常にやりやすそうな感じです。</div>
+<div class="line">かといって定番のパッケージなども公式のレポジトリに含まれているので <span class="docutils literal"><span class="pre">pacman</span></span> 経由でさくっとインストールでき、非常に使いやすい印象もあります。</div>
+<div class="line"><span class="docutils literal"><span class="pre">Ubuntu</span></span> や <span class="docutils literal"><span class="pre">Mint</span></span> を使っていても結局カリカリに自分の環境を作りこんでいく方は <span class="docutils literal"><span class="pre">ArchLinux</span></span> いいんじゃないかなと思います。</div>
+<div class="line">( そいうった意味では <span class="docutils literal"><span class="pre">Gentoo</span> <span class="pre">Linux</span></span> も魅力的ですね。)</div>
+</div>
+<div class="line-block">
+<div class="line">デスクトップ環境は <span class="docutils literal"><span class="pre">Cinnamon</span></span> なのでぶっちゃけ見た目はそれほど変わってないですが</div>
+<div class="line">試したいツールや、最新の状態に保っておくにはかなりやりやすそうな感じがあって今の私のニーズ的にはいい感じです。</div>
+<div class="line">今後はしばらく <span class="docutils literal"><span class="pre">XPS13</span></span> は <span class="docutils literal"><span class="pre">ArchLinux</span></span> + <span class="docutils literal"><span class="pre">Cinnamon</span></span> 行ってみようと思います。</div>
+</div>
+</div>
+</div>
+
+    <div class="postmeta">
+    <div class="alert alert-warning">
+        <div class="author">
+            <span>Posted by Kei Iwasaki</span>
+        </div>
+        <div class="categories">
+            <span>
+                Filed under:
+                <a href="../../../categories/memo.html">memo</a></span>
+        </div>
+        <div class="tags">
+            <span>
+                Tags:
+                <a href="../../../tags/archlinux.html"><i class="fa fa-tag"></i> ArchLinux</a>, <a href="../../../tags/環境構築.html"><i class="fa fa-tag"></i> 環境構築</a></span>
+        </div>
+        </div>
+    </div>
+
+  
+  <div class="social-buttons">
+
+     
+         <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-related="laugh_k">ツイート</a>
+
+         <script>
+             !function(d,s,id){
+               var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                 if(!d.getElementById(id)){
+                   js=d.createElement(s);
+                     js.id=id;
+                     js.src=p+'://platform.twitter.com/widgets.js';
+                     fjs.parentNode.insertBefore(js,fjs);
+                 }
+             }(document, 'script', 'twitter-wjs');
+         </script>
+
+
+    
+        
+        <div class="g-plusone"></div>
+    
+        
+        <script type="text/javascript">
+          window.___gcfg = {lang: 'ja'};
+        
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+
+
+    
+      <td>
+        <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="ja"></a>
+        <script type="text/javascript">
+            !function(d,i){
+              if(!d.getElementById(i)){
+                var j=d.createElement("script");
+                j.id=i;
+                j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";
+                var w=d.getElementById(i);d.body.appendChild(j);
+              }
+            }(document,"pocket-btn-js");
+        </script>
+      </td>
+
+
+
+    
+      <div class="fb-like" data-href="http://memo.laughk.org/2014/05/25/start_archlinux.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+
+  </div>
+
+  
+  <div class="content-sponsor">
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- memo.laughk.org5 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:234px;height:60px"
+         data-ad-client="ca-pub-8841652702834940"
+         data-ad-slot="3145069802"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+  </div>
+
+    <div id="disqus_thread"></div><script type="text/javascript">    var disqus_shortname = "memolaughkorg";    var disqus_identifier = "2014/05/25/start_archlinux";    disqus_thread();</script><noscript>Please enable JavaScript to view the    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         
+<div class="span3 visible-desktop visible-tablet">
+  <div class=" sidebar hidden-phone"><div class="widget author">
+    <h1>About Me</h1>
+        <img src="/_static/about-me.jpg" align="button" >
+        <p>
+        MSPなインフラ屋。非プログラマ。
+        LinuxMint/XPS13/Ubuntu/Vim/シェル芸/NODE-Setagaya
+        Python/ansible/fabric
+        Vagrant/serverspec/Provisioning/DevOps
+        </p>
+        Twitter <a href="https://twitter.com/laugh_k" target="_new">@laugh_k</a>
+
+
+</div>
+<div class="widget">
+
+    <h1>Sponsor Link</h1>
+
+
+   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+   <!-- memo.laughk.org3 -->
+   <ins class="adsbygoogle"
+        style="display:inline-block;width:200px;height:200px"
+        data-ad-client="ca-pub-8841652702834940"
+        data-ad-slot="6182921407"></ins>
+   <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+
+</div>
+
+<div id="searchbox">
+  <h3>Quick search</h3>
+  <form class="search form-search" action="../../../search.html" method="get">
+      <div class="input-append">
+        <input type="text" class="search-query" name="q">
+        <input type="submit" class="btn" value="Go" />
+      </div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div><div class="widget">
+    <h1>Recent Posts</h1>
+    <ul><li>
+            <a href="#">Arch Linux はじめました</a>
+        </li><li>
+            <a href="../../04/24/shell_exec_log.html">シェルスクリプトが '> $logfile 2>&1' だらけにならなくて済んだ話</a>
+        </li><li>
+            <a href="../../04/21/qpstudy_20140419_report.html">#qpstudy 2014.04 に参加してきたんで自分用まとめとか</a>
+        </li><li>
+            <a href="../../04/13/node_setagaya9_repo.html">NODE-SetagayaでTerminalのTips的なものを話してきた</a>
+        </li><li>
+            <a href="../../04/10/shell_lian_tower.html">久々に第10回記念シェル芸勉強会行ってきたんでまとめとか</a>
+        </li><li>
+            <a href="../../../2013/12/10/ansible_with_infrastructure_engineer.html">あるインフラエンジニアとAnsibleの付き合い方</a>
+        </li><li>
+            <a href="../../../2013/11/21/irc_setup_in_terminal.html">快適Terminal環境計画 - IRC -</a>
+        </li><li>
+            <a href="../../../2013/11/18/hello_new_blog.html">ブログ移転</a>
+        </li></ul>
+</div>
+<div class="widget">
+    <h1>Tags</h1><a href="../../../tags/adventcalender.html"> <i class="fa fa-tag"></i> AdventCalender</a> (1), <a href="../../../tags/ansible.html"> <i class="fa fa-tag"></i> ansible</a> (1), <a href="../../../tags/archlinux.html"> <i class="fa fa-tag"></i> ArchLinux</a> (1), <a href="../../../tags/awk.html"> <i class="fa fa-tag"></i> awk</a> (1), <a href="../../../tags/grep.html"> <i class="fa fa-tag"></i> grep</a> (1), <a href="../../../tags/irc.html"> <i class="fa fa-tag"></i> irc</a> (1), <a href="../../../tags/node_setagaya.html"> <i class="fa fa-tag"></i> NODE-Setagaya</a> (1), <a href="../../../tags/qpstudy.html"> <i class="fa fa-tag"></i> qpstudy</a> (1), <a href="../../../tags/shellscript.html"> <i class="fa fa-tag"></i> shellscript</a> (1), <a href="../../../tags/terminal.html"> <i class="fa fa-tag"></i> terminal</a> (1), <a href="../../../tags/terminal.html"> <i class="fa fa-tag"></i> Terminal</a> (1), <a href="../../../tags/vim.html"> <i class="fa fa-tag"></i> vim</a> (1), <a href="../../../tags/weechat.html"> <i class="fa fa-tag"></i> weechat</a> (1), <a href="../../../tags/xargs.html"> <i class="fa fa-tag"></i> xargs</a> (1), <a href="../../../tags/インフラエンジニア.html"> <i class="fa fa-tag"></i> インフラエンジニア</a> (1), <a href="../../../tags/シェル芸.html"> <i class="fa fa-tag"></i> シェル芸</a> (2), <a href="../../../tags/勉強会.html"> <i class="fa fa-tag"></i> 勉強会</a> (3), <a href="../../../tags/環境構築.html"> <i class="fa fa-tag"></i> 環境構築</a> (1)</div>
+  </div>
+</div> 
+        
+      </div><!-- /row -->
+
+
+      
+      <div class="row-fluid hidden-desktop hidden-tablet">
+      
+<div class="span3 ">
+  <a class="visible-phone btn btn-small show-sidebar" data-toggle="collapse" data-target=".for-mobile">Open Table Of Contents</a>
+  <div class="for-mobile sidebar hidden-phone"><div class="widget author">
+    <h1>About Me</h1>
+        <img src="/_static/about-me.jpg" align="button" >
+        <p>
+        MSPなインフラ屋。非プログラマ。
+        LinuxMint/XPS13/Ubuntu/Vim/シェル芸/NODE-Setagaya
+        Python/ansible/fabric
+        Vagrant/serverspec/Provisioning/DevOps
+        </p>
+        Twitter <a href="https://twitter.com/laugh_k" target="_new">@laugh_k</a>
+
+
+</div>
+<div class="widget">
+
+    <h1>Sponsor Link</h1>
+
+
+   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+   <!-- memo.laughk.org3 -->
+   <ins class="adsbygoogle"
+        style="display:inline-block;width:200px;height:200px"
+        data-ad-client="ca-pub-8841652702834940"
+        data-ad-slot="6182921407"></ins>
+   <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+
+</div>
+
+<div id="searchbox">
+  <h3>Quick search</h3>
+  <form class="search form-search" action="../../../search.html" method="get">
+      <div class="input-append">
+        <input type="text" class="search-query" name="q">
+        <input type="submit" class="btn" value="Go" />
+      </div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div><div class="widget">
+    <h1>Recent Posts</h1>
+    <ul><li>
+            <a href="#">Arch Linux はじめました</a>
+        </li><li>
+            <a href="../../04/24/shell_exec_log.html">シェルスクリプトが '> $logfile 2>&1' だらけにならなくて済んだ話</a>
+        </li><li>
+            <a href="../../04/21/qpstudy_20140419_report.html">#qpstudy 2014.04 に参加してきたんで自分用まとめとか</a>
+        </li><li>
+            <a href="../../04/13/node_setagaya9_repo.html">NODE-SetagayaでTerminalのTips的なものを話してきた</a>
+        </li><li>
+            <a href="../../04/10/shell_lian_tower.html">久々に第10回記念シェル芸勉強会行ってきたんでまとめとか</a>
+        </li><li>
+            <a href="../../../2013/12/10/ansible_with_infrastructure_engineer.html">あるインフラエンジニアとAnsibleの付き合い方</a>
+        </li><li>
+            <a href="../../../2013/11/21/irc_setup_in_terminal.html">快適Terminal環境計画 - IRC -</a>
+        </li><li>
+            <a href="../../../2013/11/18/hello_new_blog.html">ブログ移転</a>
+        </li></ul>
+</div>
+<div class="widget">
+    <h1>Tags</h1><a href="../../../tags/adventcalender.html"> <i class="fa fa-tag"></i> AdventCalender</a> (1), <a href="../../../tags/ansible.html"> <i class="fa fa-tag"></i> ansible</a> (1), <a href="../../../tags/archlinux.html"> <i class="fa fa-tag"></i> ArchLinux</a> (1), <a href="../../../tags/awk.html"> <i class="fa fa-tag"></i> awk</a> (1), <a href="../../../tags/grep.html"> <i class="fa fa-tag"></i> grep</a> (1), <a href="../../../tags/irc.html"> <i class="fa fa-tag"></i> irc</a> (1), <a href="../../../tags/node_setagaya.html"> <i class="fa fa-tag"></i> NODE-Setagaya</a> (1), <a href="../../../tags/qpstudy.html"> <i class="fa fa-tag"></i> qpstudy</a> (1), <a href="../../../tags/shellscript.html"> <i class="fa fa-tag"></i> shellscript</a> (1), <a href="../../../tags/terminal.html"> <i class="fa fa-tag"></i> terminal</a> (1), <a href="../../../tags/terminal.html"> <i class="fa fa-tag"></i> Terminal</a> (1), <a href="../../../tags/vim.html"> <i class="fa fa-tag"></i> vim</a> (1), <a href="../../../tags/weechat.html"> <i class="fa fa-tag"></i> weechat</a> (1), <a href="../../../tags/xargs.html"> <i class="fa fa-tag"></i> xargs</a> (1), <a href="../../../tags/インフラエンジニア.html"> <i class="fa fa-tag"></i> インフラエンジニア</a> (1), <a href="../../../tags/シェル芸.html"> <i class="fa fa-tag"></i> シェル芸</a> (2), <a href="../../../tags/勉強会.html"> <i class="fa fa-tag"></i> 勉強会</a> (3), <a href="../../../tags/環境構築.html"> <i class="fa fa-tag"></i> 環境構築</a> (1)</div>
+  </div>
+</div>
+      </div>
+      
+
+
+      <!-- footer -->
+      <footer>
+          &copy; Copyright 2013, Kei Iwasaki.
+        Created using <a href="http://www.tinkerer.me/" target="_blank">Tinkerer</a> and <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </footer>
+      <!-- /footer -->
+
+    </div>
+    <!-- /container -->
+
+  </body>
+</html>

@@ -4,6 +4,7 @@ Sitemap
 .. toctree::
    :maxdepth: 1
 
+   2014/05/25/start_archlinux
    2014/04/24/shell_exec_log
    2014/04/21/qpstudy_20140419_report
    2014/04/13/node_setagaya9_repo

@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 25 May 2014 00:00:00 +0900</lastBuildDate><item><title>Arch Linux はじめました</title><link>http://memo.laughk.org/2014/05/25/start_archlinux.html</link><description>&lt;img alt="" src="/images/2014/05/25/screenshot1.png" /&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;Ubuntu14.04&lt;/tt&gt; のリリース情報もあり、&lt;/div&gt;
+&lt;div class="line"&gt;これまでDELL XPS13で使ってきた &lt;tt class="docutils literal"&gt;Linux Mint16&lt;/tt&gt; 環境をどうしようかなと思っていましたが、&lt;/div&gt;
+&lt;div class="line"&gt;いろいろ考えて &lt;tt class="docutils literal"&gt;Linux Mint17&lt;/tt&gt; へのアップグレードは行わず、思い切って1週間ほど前に &lt;tt class="docutils literal"&gt;ArchLinux&lt;/tt&gt; に引っ越しました。&lt;/div&gt;
+&lt;div class="line"&gt;概ね安定して使えてる感じがあります。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;今回はインストールの際の簡単なメモとか、1周間ほど使ってみた感想とか。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;ArchLinux&lt;/tt&gt; は基本的な作業部分は公式 &lt;tt class="docutils literal"&gt;Wiki&lt;/tt&gt; 見ればほとんど解決できるのであまりそういうことは書かないです。&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="section" id="virtualboxos"&gt;
+&lt;h2&gt;VirtualboxのゲストOSにして練習&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;実は1年ほど前にも &lt;tt class="docutils literal"&gt;ArchLinux&lt;/tt&gt; にはトライしていたのですが、&lt;/div&gt;
+&lt;div class="line"&gt;ちょうど &lt;tt class="docutils literal"&gt;sytemd&lt;/tt&gt; への以降の時期だったのか公式 &lt;tt class="docutils literal"&gt;wiki&lt;/tt&gt; の内容が実物とだいぶずれてしまっている感があり&lt;/div&gt;
+&lt;div class="line"&gt;その時は &lt;tt class="docutils literal"&gt;GUI&lt;/tt&gt; 画面を見ることなく挫折してしまっていました。。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;今回はそういった背景もあり、流石に &lt;tt class="docutils literal"&gt;XPS13&lt;/tt&gt; にいきなりインストールするのは怖かったので&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;Virtualbox&lt;/tt&gt; で実際にインストールを行い、 &lt;tt class="docutils literal"&gt;Gnome3&lt;/tt&gt; が動くところまで確認。&lt;/div&gt;
+&lt;div class="line"&gt;現在は公式 &lt;tt class="docutils literal"&gt;Wiki&lt;/tt&gt; に従っていけばだいたい間違いないということを確認できたので、&lt;/div&gt;
+&lt;div class="line"&gt;実機にインストールする踏ん切りがつきました。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ちなみ、 &lt;tt class="docutils literal"&gt;ArchLinux&lt;/tt&gt; だと公式リポジトリに &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;virtualbox-guest-addition&lt;/span&gt;&lt;/tt&gt; が用意してあるようで非常にお手軽に試せました。&lt;/div&gt;
+&lt;div class="line"&gt;これさえ入れとけばドライバ周りで引っかかることもないようですし。インストールも以下のような感じでOKでした。&lt;/div&gt;
+&lt;div class="line"&gt;( 詳細は公式 &lt;tt class="docutils literal"&gt;wiki&lt;/tt&gt; を見るのが一番いいと思います -&amp;gt; &lt;a class="reference external" href="https://wiki.archlinux.org/index.php/VirtualBox_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#Arch_Linux_.E3.82.92.E3.82.B2.E3.82.B9.E3.83.88.E3.81.AB.E3.81.99.E3.82.8B"&gt;VirtualBox (日本語) - ArchWiki&lt;/a&gt; )&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pacman -S virtualbox-guest-utils
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo sh -c &lt;span class="s1"&gt;&amp;#39;cat &amp;gt;&amp;gt; /etc/modules-load.d/virtualbox.conf &amp;lt;&amp;lt; EOF&lt;/span&gt;
+&lt;span class="s1"&gt;vboxguest&lt;/span&gt;
+&lt;span class="s1"&gt;vboxsf&lt;/span&gt;
+&lt;span class="s1"&gt;vboxvideo&lt;/span&gt;
+&lt;span class="s1"&gt;EOF&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/usr/bin/VBoxClient-all&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; ~/.xinitrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="xps13osgui"&gt;
+&lt;h2&gt;XPS13実機へのOSインストールからGUIインストールまで&lt;/h2&gt;
+&lt;div class="section" id="os"&gt;
+&lt;h3&gt;OSのインストール&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;Arch Linux&lt;/tt&gt; は基本的な &lt;tt class="docutils literal"&gt;OS&lt;/tt&gt; インストールはコンソール越しのコマンドラインで行います。&lt;/div&gt;
+&lt;div class="line"&gt;DVDまたはCDブートがうまくいってネットワーク接続が確保できれば、&lt;/div&gt;
+&lt;div class="line"&gt;基本的には公式 &lt;tt class="docutils literal"&gt;Wiki&lt;/tt&gt; のインストールガイド( &lt;a class="reference external" href="https://wiki.archlinux.org/index.php/Installation_Guide_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29"&gt;Installation Guide (日本語) - ArchWiki&lt;/a&gt; に従えば、基本的な &lt;tt class="docutils literal"&gt;Unix&lt;/tt&gt; 系のコマンドライン知識で十分行える範囲だとは思います。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ネットワークに関してはXPS13は物理NICが付いていないのですが、&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;BUFFALO &lt;span class="pre"&gt;LUA3-U2-ATX&lt;/span&gt;&lt;/tt&gt; でUSB経由でLANをつないだところ問題なく認識されました。&lt;/div&gt;
+&lt;div class="line"&gt;( 基本的に &lt;tt class="docutils literal"&gt;Mac&lt;/tt&gt; も対応しているUSB NICであれば認識してくれそうな感じはあります。)&lt;/div&gt;
+&lt;/div&gt;
+&lt;iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;amp;bc1=000000&amp;amp;IS2=1&amp;amp;bg1=FFFFFF&amp;amp;fc1=000000&amp;amp;lc1=0000FF&amp;amp;t=laughk-22&amp;amp;o=9&amp;amp;p=8&amp;amp;l=as4&amp;amp;m=amazon&amp;amp;f=ifr&amp;amp;ref=ss_til&amp;amp;asins=B002IT5ZPG" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"&gt;&lt;/iframe&gt;&lt;!-- .. amazonjp:: http://www.amazon.co.jp/gp/product/B002IT5ZPG --&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;インストール作業時は &lt;a class="reference external" href="https://wiki.archlinux.org/index.php/Dhcpcd_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29"&gt;dhcpcd (日本語) - ArchWiki&lt;/a&gt; の手動起動部分を参考にとりあえず &lt;tt class="docutils literal"&gt;DHCP&lt;/tt&gt; でインターネットへの接続を確保してしまうのが一番楽だと思います。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;interface&lt;/tt&gt; がわからない場合は &lt;tt class="docutils literal"&gt;ls /sys/class/net&lt;/tt&gt; するのがいいでしょう。(by &lt;a class="reference external" href="https://wiki.archlinux.org/index.php/Network_configuration"&gt;Network configuration - ArchWiki&lt;/a&gt;) 。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ネットワークにつながったら &lt;tt class="docutils literal"&gt;Install Guide&lt;/tt&gt; を元に基本的なパッケージをどんどん突っ込んでいくことになりますが&lt;/div&gt;
+&lt;div class="line"&gt;とりあえず、これやっときゃいい的なものが知りたい場合、以下の記事がシンプルにまとまっていてわかりやすいです。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;&lt;a class="reference external" href="http://blog.volment.com/?p=47"&gt;実は簡単Arch Linuxのインストール手順！ | volment&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gui"&gt;
+&lt;h3&gt;GUIインストール&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;GUI&lt;/tt&gt; は &lt;strong&gt;ディスプレイマネージャー&lt;/strong&gt; (ログイン時にパスワードを聞かれる画面)と &lt;strong&gt;デスクトップ環境&lt;/strong&gt; (&lt;tt class="docutils literal"&gt;Gnome&lt;/tt&gt; とか &lt;tt class="docutils literal"&gt;KDE&lt;/tt&gt;)のインストール・設定作業になります。&lt;/div&gt;
+&lt;div class="line"&gt;今回私は &lt;tt class="docutils literal"&gt;GDM&lt;/tt&gt; と &lt;tt class="docutils literal"&gt;Cinnamon&lt;/tt&gt; の組み合わせでインストールをしました。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;基本的に &lt;tt class="docutils literal"&gt;pacman &lt;span class="pre"&gt;-S&lt;/span&gt; &amp;lt;displaynamager_name&amp;gt; &amp;lt;desctop_name&amp;gt;&lt;/tt&gt; でインストールすればOKなのですが、&lt;/div&gt;
+&lt;div class="line"&gt;この際に他にも必要になりそうなものは入れておくといいかもしれません。&lt;/div&gt;
+&lt;div class="line"&gt;特にトラックパッドを使いたい場合、ちゃんとドライバを入れとかないとマウスポインタが使えないんで要注意です。&lt;/div&gt;
+&lt;div class="line"&gt;(参考: &lt;a class="reference external" href="https://wiki.archlinux.org/index.php/Touchpad_Synaptics_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29"&gt;Touchpad Synaptics (日本語) - ArchWiki&lt;/a&gt; )&lt;/div&gt;
+&lt;div class="line"&gt;また、 &lt;tt class="docutils literal"&gt;Ubuntu&lt;/tt&gt; 等他のディストリビューションでは &lt;tt class="docutils literal"&gt;GUI&lt;/tt&gt; 環境にほぼデフォルトで &lt;tt class="docutils literal"&gt;Terminal エミュレータ&lt;/tt&gt; が付属されていますが、&lt;/div&gt;
+&lt;div class="line"&gt;少なくとも &lt;tt class="docutils literal"&gt;ArchLinux&lt;/tt&gt; インストールの際はついてこないので、各環境で利用できる &lt;tt class="docutils literal"&gt;Termin エミュレータ&lt;/tt&gt; も入れとかないと &lt;tt class="docutils literal"&gt;GUI&lt;/tt&gt; ログインしてからいろいろ面倒なことになります。&lt;/div&gt;
+&lt;div class="line"&gt;使えそうなものは &lt;tt class="docutils literal"&gt;pacman &lt;span class="pre"&gt;-Ss&lt;/span&gt; terminal&lt;/tt&gt; などで探してみるのがいいでしょう。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;あとは一般ユーザーの作成がまだだった場合は、 &lt;tt class="docutils literal"&gt;GUI&lt;/tt&gt; インストール前に追加しておきましょう。&lt;/div&gt;
+&lt;div class="line"&gt;必要であれば同時にこの段階で &lt;tt class="docutils literal"&gt;sudo&lt;/tt&gt; 権限も付与しときましょう。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h3&gt;GUIインストール後の基本的なところ&lt;/h3&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;GUI&lt;/tt&gt; ログインができるようになったら、あとは基本的な環境構築をやってく感じで
+この辺から他のディストリビューションとの難易度的な差がなくなってきます。
+むしろ公式 &lt;tt class="docutils literal"&gt;Wiki&lt;/tt&gt; が充実しているのでかえって楽にさえ感じてくるかもしれないです。
+だいたいやったことを上げてみると&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;tt class="docutils literal"&gt;Cinnamon&lt;/tt&gt; の設定からいじれるように &lt;tt class="docutils literal"&gt;NetworkManager&lt;/tt&gt; をインストール&amp;amp;有効化&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Openvpn&lt;/tt&gt; の追加&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;GUIから設定できるように &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;networkmanager-openvpn&lt;/span&gt;&lt;/tt&gt; を入れる。詳細はこちら &lt;a class="reference external" href="https://wiki.archlinux.org/index.php/NetworkManager_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29"&gt;NetworkManager (日本語) - ArchWiki&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;AUR&lt;/tt&gt; を利用するため &lt;tt class="docutils literal"&gt;yaourt&lt;/tt&gt; をインストール。&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;a class="reference external" href="https://wiki.archlinux.org/index.php/Yaourt_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29"&gt;Yaourt (日本語) - ArchWiki&lt;/a&gt; を参照&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;半透明に設定したいツールの対応。&lt;/dt&gt;
+&lt;dd&gt;&lt;div class="first line-block"&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;Gnome-Terminal&lt;/span&gt;&lt;/tt&gt; が最新だと &lt;tt class="docutils literal"&gt;Transparent&lt;/tt&gt; オプションがなくなってしまっていたので &lt;tt class="docutils literal"&gt;devilspie&lt;/tt&gt; を導入。 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;~/.devilspie/opacity.ds&lt;/span&gt;&lt;/tt&gt; とかを作って以下のように記載。&lt;/div&gt;
+&lt;div class="line"&gt;あとは &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;~/.xprofile&lt;/span&gt;&lt;/tt&gt; なり &lt;tt class="docutils literal"&gt;Cinnamon&lt;/tt&gt; の自動起動するアプリケーションなりにログイン時に &lt;tt class="docutils literal"&gt;devilspie&lt;/tt&gt; を起動するようにしておけばOK。&lt;/div&gt;
+&lt;div class="line"&gt;(ついでに &lt;tt class="docutils literal"&gt;Gvim&lt;/tt&gt; も一緒に対応)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="last"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;matches&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;window_class&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Gnome-terminal&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;opacity&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;matches&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;window_class&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Gvim&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;opacity&lt;/span&gt; &lt;span class="mi"&gt;85&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;日本語入力をするため &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;mozc-ut&lt;/span&gt;&lt;/tt&gt; をインストール&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;日本語対応フォントをインストール&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last"&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;UI&lt;/tt&gt; 周り&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Takaoフォント&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;IPAフォント&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;MSフォント&lt;/tt&gt; とか&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;作業環境&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Ricty&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Dejavu Sans&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;aur/powerline-fonts-git&lt;/span&gt;&lt;/tt&gt;  とか( &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;powerline-font&lt;/span&gt;&lt;/tt&gt; があるのが地味に嬉しい )&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;絵文字関連&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;ttf-symbol&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;ttf-freefont&lt;/span&gt;&lt;/tt&gt; とか (これでも一部化ける。。)&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;キーバインド変更&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;右Altで入力言語の切り替えをしたかったので &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;~/.Xmodmap&lt;/span&gt;&lt;/tt&gt; を編集して &lt;tt class="docutils literal"&gt;Alt_R&lt;/tt&gt; を &lt;tt class="docutils literal"&gt;Zenkaku_Hankaku&lt;/tt&gt; にバインド。
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;~/.xprofile&lt;/span&gt;&lt;/tt&gt; なりに &lt;tt class="docutils literal"&gt;xmodmap &lt;span class="pre"&gt;$HOME/.Xmodmap&lt;/span&gt;&lt;/tt&gt; を追記するのを忘れずに。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;ビットマップフォントのアンチエイリアスを有効化&lt;/dt&gt;
+&lt;dd&gt;&lt;div class="first line-block"&gt;
+&lt;div class="line"&gt;個人的にビットマップフォントまんまは見づらい。。ここは公式の情報を漁ってみるもいいものに出会えず。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;a class="reference external" href="http://archlinux-blogger.blogspot.jp/2013/08/arch-linux.html"&gt;普段使いのArch Linux: Arch Linuxで日本語フォントを設定 | 日本語フォントのインストール&amp;amp;見やすく表示する設定&lt;/a&gt; を参考にさせてもらったところうまく行った。&lt;/div&gt;
+&lt;div class="line"&gt;以下の内容の &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;~/.config/fontconfig/fonts.conf&lt;/span&gt;&lt;/tt&gt; を追加する感じで。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="last"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;fontconfig&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;match&lt;/span&gt; &lt;span class="na"&gt;target=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;font&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;edit&lt;/span&gt; &lt;span class="na"&gt;mode=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;assign&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;embeddedbitmap&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;bool&amp;gt;&lt;/span&gt;false&lt;span class="nt"&gt;&amp;lt;/bool&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/edit&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;edit&lt;/span&gt; &lt;span class="na"&gt;mode=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;assign&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hintstyle&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+       &lt;span class="nt"&gt;&amp;lt;const&amp;gt;&lt;/span&gt;hintnone&lt;span class="nt"&gt;&amp;lt;/const&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/edit&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/match&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/fontconfig&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;VMware Player&lt;/tt&gt; のインストール&lt;/dt&gt;
+&lt;dd&gt;&lt;div class="first last line-block"&gt;
+&lt;div class="line"&gt;&lt;a class="reference external" href="https://my.vmware.com/jp/web/vmware/downloads"&gt;公式&lt;/a&gt; から64bitバイナリ を取得して、インストール。&lt;/div&gt;
+&lt;div class="line"&gt;注意点があるので、そこは &lt;a class="reference external" href="https://wiki.archlinux.org/index.php/VMware"&gt;VMware - ArchWiki&lt;/a&gt; を参照しながらやればOK&lt;/div&gt;
+&lt;div class="line"&gt;ただし、現状ゲストの &lt;tt class="docutils literal"&gt;Windows8.1&lt;/tt&gt; を一回起動すると &lt;tt class="docutils literal"&gt;Super&lt;/tt&gt; キーがホールドされてるようなおかしな状態になってしまう。。 (解決法調査中)&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;VirtualBox&lt;/tt&gt; のインストール&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;pacman&lt;/tt&gt; の &lt;tt class="docutils literal"&gt;community&lt;/tt&gt; レポジトリにあったのでコマンド一発でOK。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;その他普段使いのツールたち&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last"&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Gvim&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;メインで使ってるエディタ&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Atom&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Github&lt;/tt&gt; 的なあれ。 &lt;tt class="docutils literal"&gt;AUR&lt;/tt&gt; に &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;atom-editor&lt;/span&gt;&lt;/tt&gt; という名前ですでに登録済みでびっくり。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Dropbox&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Cinnamon&lt;/tt&gt; レポジトリにもあるけど、そちらはインストールがコケるので通常レポジトリのものでOK&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;firefox&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Web&lt;/tt&gt; ブラウザ&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Chromium&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Web&lt;/tt&gt; ブラウザ&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Google Chrome&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Web&lt;/tt&gt; ブラウザ、 &lt;tt class="docutils literal"&gt;AUR&lt;/tt&gt; を使うと最新の &lt;tt class="docutils literal"&gt;deb&lt;/tt&gt; からインストールしてくれる&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;KeepassX2&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;マルチプラットフォームなパスワード管理ツール。
+&lt;tt class="docutils literal"&gt;AUR&lt;/tt&gt; にある2系対応 &lt;tt class="docutils literal"&gt;KeepassX&lt;/tt&gt; 。 アルファ版らしいが十分実用レベルで問題なし&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Synapse&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Linux&lt;/tt&gt; 版の &lt;tt class="docutils literal"&gt;Alfred&lt;/tt&gt; 的なランチャー。多分こいつが現状開発が活発っぽい&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Zeal&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Linux&lt;/tt&gt; 版の &lt;tt class="docutils literal"&gt;Dash&lt;/tt&gt; 的なドキュメントブラウザー&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Growl for Linux&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;weechat&lt;/tt&gt; の通知を受けたいので必須。 &lt;tt class="docutils literal"&gt;AUR&lt;/tt&gt; にある&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Remina&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;Windows&lt;/tt&gt; サーバにリモデする際に必要&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gnome-screenshot&lt;/span&gt;&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;スクリーンショットツール
+&lt;tt class="docutils literal"&gt;Cinnamon&lt;/tt&gt; 単体だと入ってないので必須&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;evince&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;PDF&lt;/tt&gt; ビュワー&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;gThumb&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;jpg&lt;/tt&gt; 、 &lt;tt class="docutils literal"&gt;png&lt;/tt&gt; などの画像ファイルビュワー&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;GIMP&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;定番画像加工ツール。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Inkscape&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;定番お絵かきツール。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;LibreOffice&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;定番フリーのオフィスツール。
+&lt;tt class="docutils literal"&gt;VM&lt;/tt&gt; の &lt;tt class="docutils literal"&gt;Windows&lt;/tt&gt; を使うまでもないときはやっぱ必要&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;Rhythmbox&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;ローカルの音楽ファイル再生用&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;p7zip&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;&lt;tt class="docutils literal"&gt;7zip&lt;/tt&gt; 扱うときに&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;こんなところでしょうか。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h2&gt;感想とかいろいろ&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ディストリ変更の理由としては、普段使いには &lt;tt class="docutils literal"&gt;Mint&lt;/tt&gt; 使いやすいなーとは思うのですが、&lt;/div&gt;
+&lt;div class="line"&gt;最近だと &lt;tt class="docutils literal"&gt;VMware&lt;/tt&gt; 環境があったり、 &lt;tt class="docutils literal"&gt;tmux&lt;/tt&gt; や &lt;tt class="docutils literal"&gt;git&lt;/tt&gt; の最新を追っかけるの関係であまり &lt;tt class="docutils literal"&gt;apt&lt;/tt&gt; 経由でアプリを入れる機会も減ってきていたこと&lt;/div&gt;
+&lt;div class="line"&gt;あと、やはり &lt;tt class="docutils literal"&gt;OS&lt;/tt&gt; のバージョンが上がるたびにクリインストールするのもいい加減しんどいなというあたりがあります。&lt;/div&gt;
+&lt;div class="line"&gt;だいぶ前に &lt;a class="reference external" href="http://laugh-labo.blogspot.jp/2013/04/linuxmintultrabook.html"&gt;ラフなラボ: いい感じのLinuxMintなUltrabook環境を手に入れた&lt;/a&gt; を書いた時もこのあと1週間後にはバージョンアップのためにクリインストールしてたりとかします。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;実際インストールしてみると結構面倒な作業を通過しなければいけないですが、&lt;/div&gt;
+&lt;div class="line"&gt;今までデスクトップ、サーバ含め &lt;tt class="docutils literal"&gt;Linux&lt;/tt&gt; を使ってきて気に入っているものを自分で寄せ集めて環境つくりやすい面では &lt;tt class="docutils literal"&gt;ArchLinux&lt;/tt&gt; よいですね。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;AUR&lt;/tt&gt; レポジトリを見ているとかなり最新のものも含まれていたりするので、パッケージの管理も非常にやりやすそうな感じです。&lt;/div&gt;
+&lt;div class="line"&gt;かといって定番のパッケージなども公式のレポジトリに含まれているので &lt;tt class="docutils literal"&gt;pacman&lt;/tt&gt; 経由でさくっとインストールでき、非常に使いやすい印象もあります。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;Ubuntu&lt;/tt&gt; や &lt;tt class="docutils literal"&gt;Mint&lt;/tt&gt; を使っていても結局カリカリに自分の環境を作りこんでいく方は &lt;tt class="docutils literal"&gt;ArchLinux&lt;/tt&gt; いいんじゃないかなと思います。&lt;/div&gt;
+&lt;div class="line"&gt;( そいうった意味では &lt;tt class="docutils literal"&gt;Gentoo Linux&lt;/tt&gt; も魅力的ですね。)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;デスクトップ環境は &lt;tt class="docutils literal"&gt;Cinnamon&lt;/tt&gt; なのでぶっちゃけ見た目はそれほど変わってないですが&lt;/div&gt;
+&lt;div class="line"&gt;試したいツールや、最新の状態に保っておくにはかなりやりやすそうな感じがあって今の私のニーズ的にはいい感じです。&lt;/div&gt;
+&lt;div class="line"&gt;今後はしばらく &lt;tt class="docutils literal"&gt;XPS13&lt;/tt&gt; は &lt;tt class="docutils literal"&gt;ArchLinux&lt;/tt&gt; + &lt;tt class="docutils literal"&gt;Cinnamon&lt;/tt&gt; 行ってみようと思います。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Sun, 25 May 2014 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2014-05-25:2014/05/25/start_archlinux.html</guid><category>ArchLinux</category><category>環境構築</category></item><item><title>シェルスクリプトが '&gt; $logfile 2&gt;&amp;1' だらけにならなくて済んだ話</title><link>http://memo.laughk.org/2014/04/24/shell_exec_log.html</link><description>&lt;dl class="docutils"&gt;
+&lt;dt&gt;※ 2014-04-26&lt;/dt&gt;
+&lt;dd&gt;&lt;div class="first last line-block"&gt;
+&lt;div class="line"&gt;追記並びに一部コマンド部分の修正を行いました。( &lt;tt class="docutils literal"&gt;&amp;gt;&lt;/tt&gt; =&amp;gt; &lt;tt class="docutils literal"&gt;&amp;gt;&amp;gt;&lt;/tt&gt; に変更 )&lt;/div&gt;
+&lt;div class="line"&gt;個人用のチラシの裏のつもりが予想以上に反響いただいていたようで非常にびっくりしております。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ちょっとしたバッチ処理的なものはさくっとシェルスクリプトでやっています。&lt;/div&gt;
+&lt;div class="line"&gt;で、ログをとっておくべくリダイレクトを噛ますわけですが、&lt;/div&gt;
+&lt;div class="line"&gt;スマートに書く方法を調べたのでメモ。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;元ネタは &lt;a class="reference external" href="https://twitter.com/sechiro"&gt;&amp;#64;sechiro&lt;/a&gt; さんの &lt;a class="reference external" href="http://sechiro.hatenablog.com/entry/2013/08/15/bash%E3%81%AE%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E7%BD%AE%E6%8F%9B%E6%A9%9F%E8%83%BD%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81%E3%82%B7%E3%82%A7%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%84%E3%82%B9"&gt;bashのプロセス置換機能を活用して、シェル作業やスクリプト書きを効率化する&lt;/a&gt; でございます。&lt;/div&gt;
+&lt;div class="line"&gt;本当に参考になりました。ありがとうございます。&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;今までは&lt;/h2&gt;
+&lt;p&gt;こんなことやってたわけです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nv"&gt;LOGFILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/tmp/script-log
+
+command1 &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt; 2&amp;gt;&amp;amp;1
+command2 &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt; 2&amp;gt;&amp;amp;1
+...      &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt; 2&amp;gt;&amp;amp;1
+...      &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt; 2&amp;gt;&amp;amp;1
+...      &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt; 2&amp;gt;&amp;amp;1
+...      &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt; 2&amp;gt;&amp;amp;1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;まあ1,2行くらいならいいのですが、これが5行超えてくるともう編集するのも読むのも嫌になってきます。
+この辺調べてみると、 &lt;tt class="docutils literal"&gt;exec&lt;/tt&gt; コマンド &lt;span class="strike"&gt;によるプロセス置換 で&lt;/span&gt; で出力を変更してあげると良いようです。&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;2014-04-26&lt;/span&gt;&lt;/tt&gt; 追記&lt;/dt&gt;
+&lt;dd&gt;下の例で出しています &lt;tt class="docutils literal"&gt;awk&lt;/tt&gt; によるフィルタリングはプロセス置換にあたるようですが、
+単純なログのリダイレクト部分については &lt;tt class="docutils literal"&gt;bash&lt;/tt&gt; の組み込みコマンド &lt;tt class="docutils literal"&gt;exec&lt;/tt&gt; によるリダイレクト指定の際の挙動のようで
+プロセス置換とは別物のようです。勉強不足ですみません。。&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class="section" id="exec"&gt;
+&lt;h2&gt;execで解決&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nv"&gt;LOGFILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/tmp/script-log
+
+&lt;span class="nb"&gt;exec &lt;/span&gt;1&amp;gt; &amp;gt;&lt;span class="o"&gt;(&lt;/span&gt;cat &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;exec &lt;/span&gt;2&amp;gt; &amp;gt;&lt;span class="o"&gt;(&lt;/span&gt;cat &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+
+command1
+command2
+...
+...
+...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;こんな感じで書けます。&lt;/div&gt;
+&lt;div class="line"&gt;さらに &lt;tt class="docutils literal"&gt;awk&lt;/tt&gt; も使って以下のようにすると、ログの各行の先頭に&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;[YYYY-mm-dd&lt;/span&gt; HH:MM:SS]&lt;/tt&gt;  のようにタイムスタンプも付けられます。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nv"&gt;LOGFILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/tmp/script-log
+
+&lt;span class="nb"&gt;exec &lt;/span&gt;1&amp;gt; &amp;gt;&lt;span class="o"&gt;(&lt;/span&gt;awk &lt;span class="s1"&gt;&amp;#39;{print strftime(&amp;quot;[%Y-%m-%d %H:%M:%S] &amp;quot;),$0 } { fflush() } &amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;exec &lt;/span&gt;2&amp;gt; &amp;gt;&lt;span class="o"&gt;(&lt;/span&gt;awk &lt;span class="s1"&gt;&amp;#39;{print strftime(&amp;quot;[%Y-%m-%d %H:%M:%S] &amp;quot;),$0 } { fflush() } &amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$LOGFILE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+
+command1
+command2
+...
+...
+...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;tee&lt;/tt&gt; コマンドを使えば出力を保ちながらロギングとかもできそうです。&lt;/div&gt;
+&lt;div class="line"&gt;ただしこの出力の変更は &lt;tt class="docutils literal"&gt;bash&lt;/tt&gt; の機能らしく、シバンを &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;#!/bin/sh&lt;/span&gt;&lt;/tt&gt; にすると&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;Syntax error: redirection unexpected&lt;/tt&gt; が返って来てうまく処理が動かないので&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;#!/bin/bash&lt;/span&gt;&lt;/tt&gt; と書く必要が有ります。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;最後に&lt;/h2&gt;
+&lt;p&gt;ちょこちょこ処理が増えてきてしまうと
+すぐに &lt;tt class="docutils literal"&gt;&amp;gt;&amp;gt; $logfile &lt;span class="pre"&gt;2&amp;gt;&amp;amp;1&lt;/span&gt;&lt;/tt&gt; まみれになってしまっていたシェルスクリプトがようやくスッキリ書けるようになりました。
+&lt;tt class="docutils literal"&gt;exec&lt;/tt&gt; によるプロセス置換は他にも応用が効きそうなのでもっと調べると色々捗りそうです。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h2&gt;2014-04-26 追記&lt;/h2&gt;
+&lt;p&gt;コメントにて更に素敵な方法を紹介していただけました。
+&lt;tt class="docutils literal"&gt;exec&lt;/tt&gt; 利用でもさらにシンプルな記載ができ、 また &lt;tt class="docutils literal"&gt;{}&lt;/tt&gt;  を使った記載方法もあるようです。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;もっとシンプルな &lt;tt class="docutils literal"&gt;exec&lt;/tt&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first"&gt;&lt;tt class="docutils literal"&gt;awk&lt;/tt&gt; などと組み合わせてフィルタリングするのは厳しいですが、単純に出力先を指定するにはこちらがよさそうです。&lt;/p&gt;
+&lt;div class="last"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="nv"&gt;LOGFILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/tmp/script-log
+&lt;span class="nb"&gt;exec&lt;/span&gt; &amp;gt;&amp;gt;&lt;span class="s2"&gt;&amp;quot;$LOGFILE&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;exec &lt;/span&gt;2&amp;gt;&amp;amp;1
+
+command1
+command2
+...
+...
+...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;{}&lt;/tt&gt; を使った方法&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first"&gt;この方法はコメントでご指摘いただくまで全く知りませんでした。。 こちらの記載方法のほうが汎用性が高そうで使いやすそうですね。&lt;/p&gt;
+&lt;div class="last"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class="nv"&gt;LOGFILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/tmp/script-log
+
+&lt;span class="o"&gt;{&lt;/span&gt;
+    command1
+    command2
+    ...
+    ...
+    ...
+&lt;span class="o"&gt;}&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="s2"&gt;&amp;quot;$LOGFILE&amp;quot;&lt;/span&gt; 2&amp;gt;&amp;amp;1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;状況に応じて使い分けていければシェルスクリプトがもっと捗りそうです。&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Thu, 24 Apr 2014 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2014-04-24:2014/04/24/shell_exec_log.html</guid><category>shellscript</category></item><item><title>#qpstudy 2014.04 に参加してきたんで自分用まとめとか</title><link>http://memo.laughk.org/2014/04/21/qpstudy_20140419_report.html</link><description>&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;だいぶ出遅れてしまいましたが、先週末 &lt;a class="reference external" href="http://www.zusaar.com/event/4897007"&gt;qpstudy 2014.04&lt;/a&gt; に一般枠で参加させてもらってきたので&lt;/div&gt;
+&lt;div class="line"&gt;感想や学びになったことのまとめをメモしておきます。&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;他にもまとめている方が多いですが、セッションごとのスライドは以下の通り。&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;第1セッション　構築作業の全体フェーズ&lt;/dt&gt;
+&lt;dd&gt;&lt;a class="reference external" href="http://www.slideshare.net/sho7650/ss-33703096"&gt;qpstudy 2014.04 インフラエンジニアとは、なんだ&lt;/a&gt;&lt;/dd&gt;
+&lt;dt&gt;第2セッション　今回の想定アーキテクチャとアーキテクチャ設計の勘所&lt;/dt&gt;
+&lt;dd&gt;&lt;a class="reference external" href="http://www.slideshare.net/sechiro/qpstudy201404"&gt;Qpstudy201404 インフラ設計の勘所&lt;/a&gt;&lt;/dd&gt;
+&lt;dt&gt;第3セッション　ハードウェア設計の勘所&lt;/dt&gt;
+&lt;dd&gt;&lt;a class="reference external" href="http://www.slideshare.net/TakeshiHasegawa1/qpstudy201404-dist"&gt;qpstudy 2014.04 ハードウェア設計の勘所&lt;/a&gt;&lt;/dd&gt;
+&lt;dt&gt;第4セッション　ネットワーク/OS設計の勘所&lt;/dt&gt;
+&lt;dd&gt;&lt;a class="reference external" href="http://www.slideshare.net/yktko/20140419qpstudyosnw"&gt;20140419【qpstudy】OSとNW設計の勘所&lt;/a&gt;&lt;/dd&gt;
+&lt;dt&gt;第5セッション　ミドルウェア（Web、Ap、DB）設計の勘所&lt;/dt&gt;
+&lt;dd&gt;&lt;a class="reference external" href="https://www.slideshare.net/nekoruri/4-33705917"&gt;qpstudy 2014.04 ミドルウェア設計の勘所&lt;/a&gt;&lt;/dd&gt;
+&lt;dt&gt;第6セッション　今後のインフラエンジニアとは&lt;/dt&gt;
+&lt;dd&gt;heartbeats &lt;a class="reference external" href="https://twitter.com/netmarkjp"&gt;馬場さん(&amp;#64;netmarkjp)&lt;/a&gt; によるプレゼン。こちらだけスライドは非公開&lt;/dd&gt;
+&lt;dt&gt;また当日の &lt;tt class="docutils literal"&gt;Togetter&lt;/tt&gt; がまとめられておりました。&lt;/dt&gt;
+&lt;dd&gt;&lt;a class="reference external" href="http://togetter.com/li/657194"&gt;qpstudy 2014.04 〜俺の屍を超えて行け、でも踏まないで〜 #qpstudy&lt;/a&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;div class="section" id="id5"&gt;
+&lt;h2&gt;全体的な感想をつらつらと&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;各セクションの詳細だったりは他の方のブログや、すでに共有されているスライド、&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;Togetter&lt;/tt&gt; を見てもらえれば大丈夫そうなので割愛します。(今更感有りまししね。。)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id6"&gt;
+&lt;h3&gt;本編側&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;私自身、 &lt;tt class="docutils literal"&gt;MSP&lt;/tt&gt; の業務をやり始めてまだ2年半程度でとても経験豊富と言えるわけでもないため、&lt;/div&gt;
+&lt;div class="line"&gt;今回の新人向けに企画していただいた各セッションはどれもスライドを何度も見返してしまうような刺さる内容ばかりでした。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;その中でも特に最後の馬場さんのセッション内容は本当に基本的な部分でありながらも、&lt;/div&gt;
+&lt;div class="line"&gt;時代が変わろうとも絶対変わらないだろうコアな部分を再認識出来ました。&lt;/div&gt;
+&lt;/div&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;「段取り力」&lt;/dt&gt;
+&lt;dd&gt;過去にこれでコケて失敗してしまうことが何度もありました。何しても、何かをやる際はそのバックグラウンドを正しく見積もって段取りをしっかりやらなければいけないですね。&lt;/dd&gt;
+&lt;dt&gt;なんか合った時にシャっとうごいて成果を出す。&lt;/dt&gt;
+&lt;dd&gt;ローカルにフォーカスして、「隙間」を見つけてみようという視点は得意不得意があるかもしれませんが
+確かに生き残っていく手段としては非常に大事な視点だと思いました。
+同じ部署内でも、みんながなかなか手をつけられない、付けたがらないことにグイグイ首を突っ込んでいけると
+自ずと振られる仕事もそちらの方面に持っていける傾向は確かにあるなと。
+ただ、部署のカルチャーなども考慮すると、単純に「何の評価もされずに使い潰されて終わり」という状況にもなりかねないのでさじ加減は難しいところもあるかなとは感じました。&lt;/dd&gt;
+&lt;dt&gt;宿題が良かった&lt;/dt&gt;
+&lt;dd&gt;「さくらVPS+お名前ドットコムあたりの環境で、 &lt;tt class="docutils literal"&gt;PHP&lt;/tt&gt; や &lt;tt class="docutils literal"&gt;Ruby&lt;/tt&gt; でなにかサービスを作って動かして &lt;tt class="docutils literal"&gt;qpstudy&lt;/tt&gt; で仲良くなった人たちに公開して運用してみよう」というものでした。
+実は私が新卒で1年目だったあたりにも(状況は違ったでしょうが、、) 個人で利用できレンタルサーバーやDNSサービス自体はあったのだとは思いますが、当時私はその情報までたどり着けませんでした。
+周りにそのノウハウや &lt;tt class="docutils literal"&gt;Tips&lt;/tt&gt; を語ってくれる先輩等はいなかったというのが一番の原因では有りますが、具体的なサービス名を出してもらえると
+業界に入りたての方でも最悪「とりあえずこのキーワードをググって...」から色々な可能性にトライしていけるのではないでしょうか。
+なんだかんだで、多少業務で使ってるディストリビューションとズレがあったとしても、自分で管理できるサーバを実際に「運用」してみると、手っ取り早く色々なものを得ることができると思います。(私もそうでした)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id7"&gt;
+&lt;h3&gt;ビアバッシュ、懇親会&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;雰囲気としては、&lt;tt class="docutils literal"&gt;qpstudy&lt;/tt&gt; 自体は今回が2回めの参加となりましたが、&lt;/div&gt;
+&lt;div class="line"&gt;なんとなく前回参加させていただいた際にちらっと耳にした「今回はなんかみんなおとなしい」の意味がわかった気がしました。w&lt;/div&gt;
+&lt;div class="line"&gt;ビアバッシュが本当にカオスな感じで、みんなでビール飲みながらLTをやりながらワイワイ色々言い合ったりで、&lt;/div&gt;
+&lt;div class="line"&gt;はじめの方は戸惑ったものの、十二分に楽しむことが出来ました。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;今回は非公式の2次会まで参加させてもらいましたが、&lt;/div&gt;
+&lt;div class="line"&gt;今自分が業務で扱っている仕事やら興味がある技術的な話を利害関係など関係なく&lt;/div&gt;
+&lt;div class="line"&gt;話ができる人と出会えるのは本当にいいですね。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Mon, 21 Apr 2014 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2014-04-21:2014/04/21/qpstudy_20140419_report.html</guid><category>勉強会</category><category>qpstudy</category><category>インフラエンジニア</category></item><item><title>NODE-SetagayaでTerminalのTips的なものを話してきた</title><link>http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html</link><description>&lt;p&gt;しばらくの間参加できていなかった &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;NODE-Setagaya&lt;/span&gt;&lt;/tt&gt; に参加&amp;amp; &lt;tt class="docutils literal"&gt;Terminal&lt;/tt&gt; の &lt;tt class="docutils literal"&gt;Tips&lt;/tt&gt; 的なものを話してきました。
+当日利用したスライドはこちら。&lt;/p&gt;
+&lt;div style="width: 65%"&gt;
+&lt;script async class="speakerdeck-embed" data-id="d7cfa250a4ef0131c78c4612bbd7ec99" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+&lt;/div&gt;&lt;p&gt;&lt;a class="reference external" href="https://speakerdeck.com/laughk/cli-mini-hack-number-1-terminaltofalseqin-mu-woshen-meyou"&gt;Cli mini Hack!#1 ~Terminalとの親睦を深めよう~&lt;/a&gt;&lt;/p&gt;
+&lt;s&gt;Embed しようとすると Tinkerer のビルドが何故かコケるのでリンクのみ共有です。。&lt;/s&gt;&lt;p&gt;&lt;tt class="docutils literal"&gt;Pelican&lt;/tt&gt; に以降したらコケなくなったので埋め込みました！&lt;/p&gt;
+
+&lt;div class="section" id="teminal"&gt;
+&lt;h2&gt;Teminalの使い方の話をしようと思ったわけ&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;これまで &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;NODE-Setagaya&lt;/span&gt;&lt;/tt&gt; で話をする機会があった際は&lt;/div&gt;
+&lt;div class="line"&gt;「やってみたいんだけど、時間やきっかけなくてなかなか手が付けられてなかったものを扱うかなー」&lt;/div&gt;
+&lt;div class="line"&gt;という感じでテーマを選んでいたことが多かったのですが、今回はちょっと視点を変えてみました。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;そこそこの期間この業種で仕事してきたけど、案外自分の身の回りに &lt;tt class="docutils literal"&gt;Twitter&lt;/tt&gt; 界隈とかにいそうな&lt;/div&gt;
+&lt;div class="line"&gt;「ザ・ &lt;tt class="docutils literal"&gt;Terminal&lt;/tt&gt; 大好き！」って人がなかなか自分の周りにいないなーと思っていたところと、&lt;/div&gt;
+&lt;div class="line"&gt;割と自分自身では仕事を通じて &lt;tt class="docutils literal"&gt;Terminal&lt;/tt&gt; で作業していると落ち着いくなーという人間になったので&lt;/div&gt;
+&lt;div class="line"&gt;現状の「俺こうやってるけどみんなどう？」って感じのものを出してみればどんな反応があるのかな？&lt;/div&gt;
+&lt;div class="line"&gt;という興味から今回のテーマを選んでみました。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;感想とか&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;「これは知っている！」&lt;/div&gt;
+&lt;div class="line"&gt;だったり&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;vim&lt;/tt&gt; のあたりでは「おー！これすげー！！」&lt;/div&gt;
+&lt;div class="line"&gt;と反応してもらえたり&lt;/div&gt;
+&lt;div class="line"&gt;「普段は面倒で調べるのが後回しになってた」&lt;/div&gt;
+&lt;div class="line"&gt;などなど、参加メンツからは反応があり、&lt;/div&gt;
+&lt;div class="line"&gt;テーマとしてはよいものが選べたかな。という手応えが有りました。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ちょっと直前にゴタゴタした状況で作ってしまい、&lt;/div&gt;
+&lt;div class="line"&gt;かなり多めに時間を余してしまった点や、スライド自体がちゃんと閉められてなかったのは&lt;/div&gt;
+&lt;div class="line"&gt;今回の反省点だったとは思います。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;最初はやりたい内容を一度に全部流してしまうと、&lt;/div&gt;
+&lt;div class="line"&gt;自分自身も結構しんどいし、そもそも参加しているみんながついてこれるか不安だったので&lt;/div&gt;
+&lt;div class="line"&gt;今回の内容も人まずは基本的なところをピックアップした半分程度にとどめましたが、&lt;/div&gt;
+&lt;div class="line"&gt;機会があったら、&lt;tt class="docutils literal"&gt;DEMO6&lt;/tt&gt; の内容や今回扱いきれなかった部分を中心に&lt;/div&gt;
+&lt;div class="line"&gt;また &lt;tt class="docutils literal"&gt;CLI mini Hack&lt;/tt&gt; はやってみたいかなと思いました。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Sun, 13 Apr 2014 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2014-04-13:2014/04/13/node_setagaya9_repo.html</guid><category>勉強会</category><category>NODE-Setagaya</category><category>Terminal</category><category>シェル芸</category><category>vim</category></item><item><title>久々に第10回記念シェル芸勉強会行ってきたんでまとめとか</title><link>http://memo.laughk.org/2014/04/10/shell_lian_tower.html</link><description>&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ブログ更新自体がかなりお久しぶりです。&lt;/div&gt;
+&lt;div class="line"&gt;何とか生きてました。身の回りの環境が最近がらりと変わったわけですが、&lt;/div&gt;
+&lt;div class="line"&gt;そのへんはまた近々別のエントリにでもしたいと思います。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;今回は久々にシェル芸勉強会に行ってきたのでそのまとめを。&lt;/div&gt;
+&lt;div class="line"&gt;といいつつも、実際の会場の様子は以下の &lt;tt class="docutils literal"&gt;Togetter&lt;/tt&gt; を見てもらったほうが早いかと。&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://togetter.com/li/651837"&gt;第10回記念シェル芸勉強会&amp;#64;シェルリアンタワー&amp;amp;第28回場所が未定だったが決まったぞ定例会 - Togetterまとめ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;過去のシェル芸勉強会ブログではいちいち自分の &lt;tt class="docutils literal"&gt;Tweet&lt;/tt&gt; 拾って引用したりと面倒な真似してましたが、&lt;/div&gt;
+&lt;div class="line"&gt;今回からは実際に自分で実行したコマンドたちは &lt;tt class="docutils literal"&gt;gist&lt;/tt&gt; にまとめてみました。&lt;/div&gt;
+&lt;/div&gt;
+&lt;script src="https://gist.github.com/laughk/10381390.js"&gt;&lt;/script&gt;&lt;p&gt;最終問題についてはお察しください。&lt;/p&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;収穫とか&lt;/h2&gt;
+&lt;p&gt;せっかくなので今回の収穫とか&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;sed &lt;span class="pre"&gt;'s/./&amp;amp;\n/g'&lt;/span&gt;&lt;/tt&gt; より &lt;tt class="docutils literal"&gt;grep &lt;span class="pre"&gt;-o&lt;/span&gt; .&lt;/tt&gt; が便利。&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first"&gt;会場でたちまち &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt; ブームが発生しておりましたが、純粋にマッチ部分だけ抜き出す &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-o&lt;/span&gt;&lt;/tt&gt; で縦表示にするテクニックがあるのに今まで気づかず目からウロコものでした。&lt;/p&gt;
+&lt;div class="last"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo &lt;/span&gt;aabbcdabbcccdd | grep -o .
+a
+a
+b
+b
+c
+d
+a
+b
+b
+c
+c
+c
+d
+d
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;grep &lt;span class="pre"&gt;-q&lt;/span&gt;&lt;/tt&gt; で結果を表示しない。&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first"&gt;これは個人的に地味にいいなと思ったしらなかったオプションで、今までシェルスクリプトを書くときなんかに「ファイル内に文字列があるかないか判定したいだけ」のときなんかリターンコードを見るためだけにわざわざ &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt; して &lt;tt class="docutils literal"&gt;/dev/null&lt;/tt&gt; に捨てるような無駄なことをしていたのですが、これからはスッキリ書けそうです。&lt;/p&gt;
+&lt;div class="last"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;grep huga file2
+huga
+&lt;span class="nv"&gt;$ &lt;/span&gt;grep -q huga file2
+&lt;span class="c"&gt;##  なにも表示されない&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;tt class="docutils literal"&gt;xargs&lt;/tt&gt; で余計なレイアウトを取っ払える。&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first"&gt;もはやシェル芸の定番と思っていた &lt;tt class="docutils literal"&gt;xargs&lt;/tt&gt; もこの使い方は知らなかったです。具体的には以下のような感じ。&lt;/p&gt;
+&lt;div class="last"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;cat toi2.txt
+             1
+2 3
+                 4                     5
+                                 6     7
+ 8         9
+&lt;span class="nv"&gt;$ &lt;/span&gt;cat toi2.txt | xargs
+1 2 3 4 5 6 7 8 9
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;大きかったのはこのあたりです。他にも &lt;tt class="docutils literal"&gt;awk&lt;/tt&gt; で &lt;tt class="docutils literal"&gt;$0&lt;/tt&gt; をうまく置き換えることによって &lt;tt class="docutils literal"&gt;print&lt;/tt&gt; を省略できたりとかありそうでしたが、&lt;/div&gt;
+&lt;div class="line"&gt;この辺は色々試しながらものにしていきたいものです。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h2&gt;感想とか&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;勉強会自体、最近全然顔を出せていませんでしたが、&lt;/div&gt;
+&lt;div class="line"&gt;シェル芸勉強会は私みたいな泥臭いインフラ運用なんかをやってる人間にとってはすぐに仕事に活かせそうな &lt;tt class="docutils literal"&gt;Tips&lt;/tt&gt; がごろごろ転がってて&lt;/div&gt;
+&lt;div class="line"&gt;楽しみながら習得できる感じが相変わらず良いですね。&lt;/div&gt;
+&lt;div class="line"&gt;今回は懇親会まで行けませんでしたが、また次回参加したいですね。&lt;/div&gt;
+&lt;div class="line"&gt;(といっても確か次回は大阪だったはず..orz)&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Thu, 10 Apr 2014 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2014-04-10:2014/04/10/shell_lian_tower.html</guid><category>シェル芸</category><category>awk</category><category>grep</category><category>xargs</category><category>勉強会</category></item><item><title>あるインフラエンジニアとAnsibleの付き合い方</title><link>http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html</link><description>&lt;p&gt;この記事は &lt;a class="reference external" href="http://qiita.com/advent-calendar/2013/ansible"&gt;Ansible Advent Calender 2013&lt;/a&gt; 10日目の記事です。&lt;/p&gt;
+&lt;p&gt;私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、
+少しずつ今の仕事で &lt;tt class="docutils literal"&gt;ansible&lt;/tt&gt; を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。&lt;/p&gt;
+
+&lt;div class="section" id="root"&gt;
+&lt;h2&gt;障壁1 / root権限&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;CentOSなどのRedHad系を中心に運用している場合は意外と &lt;tt class="docutils literal"&gt;su -&lt;/tt&gt; が使えても &lt;tt class="docutils literal"&gt;sudo&lt;/tt&gt; が使えない。という状況があるかもしれません。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;fabric&lt;/tt&gt; の場合は無理やりprefixを弄って &lt;tt class="docutils literal"&gt;su &lt;span class="pre"&gt;-c&lt;/span&gt; 'command'&lt;/tt&gt; をやることができなくもないですが &lt;a class="footnote-reference" href="#fabric-su-prifix" id="id1"&gt;[1]&lt;/a&gt;&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;ansible&lt;/tt&gt; の場合は公式で特に対応されるような気配はなく、モジュールを作るしかなさそうですがなんだか割に合わないような気もします。&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/ansible/ansible/pull/744"&gt;added su capability by willthames · Pull Request #744 · ansible/ansible · GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;私の場合もこの辺は完全に解消できているわけではないですが、極力自社で手が出せる範囲であったり&lt;/div&gt;
+&lt;div class="line"&gt;新規構築の際に予め自動化の一環として説明して、少しずつ &lt;tt class="docutils literal"&gt;sudo&lt;/tt&gt; を使える環境を増やしている状況です。&lt;/div&gt;
+&lt;div class="line"&gt;ここは &lt;tt class="docutils literal"&gt;ansible&lt;/tt&gt; に限らず他の &lt;tt class="docutils literal"&gt;Provisioning&lt;/tt&gt; / &lt;tt class="docutils literal"&gt;Orchestration&lt;/tt&gt; 系のツールを導入する際にも必要な最低ラインなんで、頑張って確保していくしかないと思います。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;障壁2 / 踏み台を超える&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ここも &lt;tt class="docutils literal"&gt;ansible&lt;/tt&gt; に限った話ではないですが、&lt;/div&gt;
+&lt;div class="line"&gt;お客さんの環境の運用を行っている場合、&lt;/div&gt;
+&lt;div class="line"&gt;踏み台を経由しないとSSHアクセスができず、更に踏み台に勝手にツールを導入することができない。&lt;/div&gt;
+&lt;div class="line"&gt;というケースが多いかと思います。イメージとしては以下のような感じ。&lt;/div&gt;
+&lt;/div&gt;
+&lt;img alt="" src="/images/2013/12/10/graph.png" /&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;残念ながら &lt;tt class="docutils literal"&gt;fabric&lt;/tt&gt; のように踏み台サーバ指定のオプションは無いようです。&lt;/div&gt;
+&lt;div class="line"&gt;以下のPullリクエストがありながら取り込まれていないところを見ると今後もコマンドや &lt;tt class="docutils literal"&gt;hostファイル&lt;/tt&gt; , &lt;tt class="docutils literal"&gt;playbook&lt;/tt&gt; で管理できる状況になる可能性は低いかもしれません。&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/ansible/ansible/pull/2970"&gt;added support for ssh tunneling using ssh&amp;amp;#39;s ProxyCommand option by rodlogic · Pull Request #2970 · ansible/ansible · GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;しかしながらヒント(というより答え)は↑のページにあります。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;There already is ANSIBLE_SSH_ARGS where you can specify all of SSH flags&lt;/div&gt;
+&lt;div class="line"&gt;and override any Ansible may set by default, FWIW.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ということで環境変数 &lt;tt class="docutils literal"&gt;ANSIBLE_SSH_ARGS&lt;/tt&gt; に &lt;tt class="docutils literal"&gt;ssh&lt;/tt&gt; コマンドのオプションを渡すことができるようで、&lt;/div&gt;
+&lt;div class="line"&gt;実際これに &lt;tt class="docutils literal"&gt;ANSIBLE_SSH_ARGS=' &lt;span class="pre"&gt;-F&lt;/span&gt; sshconfig.project'&lt;/tt&gt; みたいな感じで渡してあげれば sshconfig ファイルを使って&lt;/div&gt;
+&lt;div class="line"&gt;各お客さんごとであったり、プロジェクトごとの踏み台環境を整えることができます。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;これだけあれば、自社内の開発サーバだったり、&lt;/div&gt;
+&lt;div class="line"&gt;最悪自分のPCのVM上などに環境を作ってしまえばなんとか使えるところまで持っていけます。&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;具体的には以下のように &lt;tt class="docutils literal"&gt;sshconfig&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;host&lt;/tt&gt; ファイルを作っていけばOKです。&lt;/p&gt;
+&lt;div class="section" id="sshconfig-project"&gt;
+&lt;h3&gt;sshconfig.project&lt;/h3&gt;
+&lt;p&gt;踏み台、内側ネットワークでそれぞれ作成
+(&lt;tt class="docutils literal"&gt;Proxycommand&lt;/tt&gt; で &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-F&lt;/span&gt;&lt;/tt&gt; で自分自身を指定するのを忘れずに)、&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;## 踏み台サーバ&lt;/span&gt;
+Host gateway
+    User login_user
+    IdentityFile /path/to/identity
+    HostName xxx.xxx.xxx.xxx
+
+&lt;span class="c"&gt;## 接続先のLAN、ログイン情報&lt;/span&gt;
+Host 192.168.0.*
+    User login_user
+    Identityfile /path/to/identity
+    Proxycommand ssh -F sshcondig.project gateway nc -w 120 %h %p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="host-project"&gt;
+&lt;h3&gt;host.project&lt;/h3&gt;
+&lt;p&gt;必要に応じて作成&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;[&lt;/span&gt;web&lt;span class="o"&gt;]&lt;/span&gt;
+web01    &lt;span class="nv"&gt;ansible_ssh_host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;192.168.0.11
+web02    &lt;span class="nv"&gt;ansible_ssh_host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;192.168.0.12
+&lt;span class="o"&gt;[&lt;/span&gt;db&lt;span class="o"&gt;]&lt;/span&gt;
+db01     &lt;span class="nv"&gt;ansible_ssh_host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;192.168.0.21
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="playbook-project-yml"&gt;
+&lt;h3&gt;playbook-project.yml&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;あとは &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;playbook-project.yml&lt;/span&gt;&lt;/tt&gt; などの名前で playbook を作成したら以下のような感じで実行するだけ&lt;/div&gt;
+&lt;div class="line"&gt;状況によって内容は変わるんで今回は割愛します。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h3&gt;実行&lt;/h3&gt;
+&lt;p&gt;ここまでできたら環境変数に気をつけて実行するだけです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;% &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;ANSIBLE_SSH_ARGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; -F sshconfig.project&amp;#39;&lt;/span&gt;
+% ansible-playbook playbook-project.yml -i host.project
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id4"&gt;
+&lt;h2&gt;利用シーンなど&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;Provisioning&lt;/tt&gt; / &lt;tt class="docutils literal"&gt;Orchestration&lt;/tt&gt; に関するツールでは冪等性の話もかなり目にしますが、&lt;/div&gt;
+&lt;div class="line"&gt;私の場合は複数の会社の人間が管理しているケースが多いため、&lt;/div&gt;
+&lt;div class="line"&gt;構成の管理というよりは、多数のホストに同様の作業を行う場合に恩恵を受けるケースが多いです。&lt;/div&gt;
+&lt;div class="line"&gt;そのため利用シーンは現状では以下のものに大体とどまっています。&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;全く同じ構成のサーバを複数構築する場合&lt;/li&gt;
+&lt;li&gt;お客さん側で環境全体に同じユーザーが必要になった場合 (ldapとか使えよって話かもですが、、)&lt;/li&gt;
+&lt;li&gt;複数台にドライバや診断ツールなどのベンダー配布のツールをインストールする場合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;最近ではコールドスタンバイ的な用途をしているサーバに対して&lt;/div&gt;
+&lt;div class="line"&gt;playbook で構成を管理しておくと結構うれしいことが多いんじゃないかなんて考えていますが&lt;/div&gt;
+&lt;div class="line"&gt;まだ実現に至っていません。&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id5"&gt;
+&lt;h2&gt;最後に&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;今回は具体的な &lt;tt class="docutils literal"&gt;playbook&lt;/tt&gt; を載せたりとかはなかったですが、&lt;/div&gt;
+&lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;ansible&lt;/tt&gt; はやはりymlで手軽に &lt;tt class="docutils literal"&gt;task&lt;/tt&gt; を定義していけるんで非常に使いやすいのが気に入っています。&lt;/div&gt;
+&lt;div class="line"&gt;またお客さんの環境を複数持っている場合、この手のツールは様々な事情で思うように導入できないケースも多いですが、&lt;/div&gt;
+&lt;div class="line"&gt;クライアント側は &lt;tt class="docutils literal"&gt;ssh&lt;/tt&gt; (CentOS5以下だと &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;python-simplejson&lt;/span&gt;&lt;/tt&gt; も必要) だけで使えるのというのも &lt;tt class="docutils literal"&gt;ansible&lt;/tt&gt; の強みだと思います。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;インフラ側からも十分利用価値のあるものですので、台数が多い環境の運用をされてる方なども利用を検討してみるとうれしいことがあるかもしれません。&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class="rubric"&gt;脚注&lt;/p&gt;
+&lt;table class="docutils footnote" frame="void" id="fabric-su-prifix" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label" /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a class="reference external" href="http://stackoverflow.com/questions/12641514/switch-to-different-user-using-fabric"&gt;python - switch to different user using fabric  - Stack Overflow&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Tue, 10 Dec 2013 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2013-12-10:2013/12/10/ansible_with_infrastructure_engineer.html</guid><category>ansible</category><category>AdventCalender</category></item><item><title>快適Terminal環境計画 - IRC -</title><link>http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html</link><description>&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;前から tmux と組み合わせて irc bouncer 的な使い方をしていた weechat ですが。&lt;/div&gt;
+&lt;div class="line"&gt;いい加減本格的に移行したのでメモ。&lt;/div&gt;
+&lt;div class="line"&gt;ちなみに私は今のところ Ubuntu13.10 な 24時間起動のサーバ立てて使っとります。&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;インストール&lt;/h2&gt;
+&lt;p&gt;ググって出てくる情報見るとapt版だとISO-2022-JPガーみたいな話あるようですが、最近は特に問題ないようです。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo aptitude install weechat
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;プラグインとか&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;デフォで起動してもいいかもしれないですが、ここは先人の知恵に従って便利なプラグインを導入します。&lt;/div&gt;
+&lt;div class="line"&gt;今のところは最低限以下のものだけ入れるだけでもだいぶ違います。&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;weeget&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;weechatのプラグインを管理できるプラグイン&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;growl&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;ハイライトしたキーワードをネットワーク経由でGrowl通知してくれる。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;highmon&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;ハイライトしたキーワードのレスだけを流してくれるバッファができる。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;buffers&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;横に接続中のサーバ、入室中のチャンネルなどバッファの一覧を出してくれる。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;go&lt;/dt&gt;
+&lt;dd&gt;&lt;p class="first last"&gt;指定したチャンネルにダイレクトにジャンプできる。関係ないチャンネルを既読にしないで飛べるので地味に便利。&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;まずはweegetを導入して、他のプラグインを入れてあげればいい感じです。&lt;/div&gt;
+&lt;div class="line"&gt;手順はこちらに従え問題無いかと -&amp;gt; &lt;a class="reference external" href="http://blog.glidenote.com/blog/2012/02/11/weechat-plugins/"&gt;Weegetを利用して、WeeChatのPlugin管理を楽にする&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h2&gt;起動/設定&lt;/h2&gt;
+&lt;div class="section" id="weechat-logger-conf"&gt;
+&lt;h3&gt;~/.weechat/logger.conf&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ロギングはしときたいんでloggerの設定を以下のように変更します。&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;%plugin.$name/%Y%m%d.weechatlog&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tmux-conf"&gt;
+&lt;h3&gt;~/.tmux.conf&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;tmux 内であげっぱなしにするので以下の設定も追加しときます。これをやっとかないと表示がおかしくなります。&lt;/div&gt;
+&lt;div class="line"&gt;基本的にIRC内で流れていることは常にキャッチしておきたいのです。(まあbouncer使えよって話かもしれないですが)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -g default-terminal &lt;span class="s2"&gt;&amp;quot;screen-256color&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id4"&gt;
+&lt;h3&gt;起動&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;このあたりでtmux -&amp;gt; weechatを起動&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tmux
+weechat-curses
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id5"&gt;
+&lt;h3&gt;設定&lt;/h3&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;接続先の設定&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;## 普通のIRCサーバの場合
+/server add example1 irc.example1.com/6667
+
+## SSL かつ 起動時に自動で接続するように
+/server add example2 irc.example2.com/6667 -ssl -autoconnect
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;オレオレ証明書(自己署名証明書)なSSLな場合は以下も実行します。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/set irc.server.example.ssl_verify = off
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;自分の名前とか拾いたいワードをhighlightに追加しときます&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/set weechat.look.highlight *iwasaki*,*laughk*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;growl プラグイン接続先も追加&lt;/div&gt;
+&lt;div class="line"&gt;当然クライントPCにGrowlが入っていることが条件。ネットワーク経由での通知もできるようにしとく。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;## 通常使うクライアントPCのIP情報
+/set plugins.ver.python.growl.hostname 192.168.xxx.yyy
+
+## クライアント側のGrowlパスワード
+/set plugins.var.python.growl.password ****************
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;go プラグインのキーバインドもやっとく。&lt;/div&gt;
+&lt;div class="line"&gt;ひとまずバッティングしなさそうだった Alt+g で&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/key bind meta-g /go
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;iso-2022-jp なチャンネルは文字コードの設定も忘れずに。&lt;/div&gt;
+&lt;div class="line"&gt;特にweechatは結構いい感じに文字コード直してくれたりするんで自分では化けてることに気づかないケースもあります。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;## 対象のチャンネルで
+/charset iso2022jp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;他の細かいところなども &lt;a class="reference external" href="http://www.weechat.org/doc/"&gt;公式のドキュメント&lt;/a&gt; 見ながら設定をして&lt;/div&gt;
+&lt;div class="line"&gt;大体いいかなというところで変更を保存します。&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/save
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;こんな感じ。まあほぼ見せられないのでモザイクだらけですが&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;img alt="" src="/images/2013/11/21/shot2013-11-23_1.png" /&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;Yea!!&lt;/div&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Thu, 21 Nov 2013 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2013-11-21:2013/11/21/irc_setup_in_terminal.html</guid><category>terminal</category><category>weechat</category><category>irc</category></item><item><title>ブログ移転</title><link>http://memo.laughk.org/2013/11/18/hello_new_blog.html</link><description>&lt;p&gt;これまでたまに &lt;a class="reference external" href="http://laugh-labo.blogspot.com"&gt;ラフなラボ&lt;/a&gt; の方でブログを書いてましたが
+もう少し効率良くアウトプットしたいこともあって、
+tinkerer + githubpage のこちらの環境に移行しました。
+やっぱりReSTで書き留めたものをそのままBlogとして公開できるのは楽でいいですね。
+(Octopress使わなかったのはMarkdownよりもReST使いたいから)&lt;/p&gt;
+&lt;p&gt;旧ブログを始めた頃に比べると大分目指すべき方向性も違ってきてしまっていたし、
+まあ調度良いかなと。&lt;/p&gt;
+&lt;p&gt;このブログを立てる際の作業ログも後ほどまとめる予定。
+ほとんど自分で面倒見なければいけないのはなかなか手間がかかった、、&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Mon, 18 Nov 2013 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2013-11-18:2013/11/18/hello_new_blog.html</guid><category>none</category></item></channel></rss>

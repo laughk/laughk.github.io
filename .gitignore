@@ -1,0 +1,7 @@
+.python-version
+cache/
+content/
+output/
+pelican-plugins/
+*.pyc
+*.pid

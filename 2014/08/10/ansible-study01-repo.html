@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>快適Terminal環境計画 - IRC - - 続・ラフなラボ</title>
+    <title>第一回Ansible勉強会でLTさせてもらった - 続・ラフなラボ</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,9 +13,9 @@
 
     <!-- Open Graph tags -->
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="快適Terminal環境計画 - IRC -"/>
-            <meta property="og:url" content="http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html"/>
-            <meta property="og:description" content="前から tmux と組み合わせて irc bouncer 的な使い方をしていた weechat ですが。 いい加減本格的に移行したのでメモ。 ちなみに私は今のところ Ubuntu13.10 な 24時間起動のサーバ立てて使っとります。"/>
+            <meta property="og:title" content="第一回Ansible勉強会でLTさせてもらった"/>
+            <meta property="og:url" content="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html"/>
+            <meta property="og:description" content="Ansible 勉強会 #1 Ansible勉強会 #1 まとめ - Togetterまとめ すでに開催から2ヶ月近く経とうとしていますが、自分用の記録として今更書いておきます。 なんかゴメンナサイ。"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -69,13 +69,13 @@
             <header class="page-header">
                 <span class="label label-default">
                     <i class="fa fa-calendar"></i>
-                        2013-11-21
+                        2014-08-10
                 </span>
                 <h1>
-                    <a href="http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html"
+                    <a href="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html"
                        rel="bookmark"
-                       title="Permalink to 快適Terminal環境計画 - IRC -">
-                        快適Terminal環境計画 - IRC -
+                       title="Permalink to 第一回Ansible勉強会でLTさせてもらった">
+                        第一回Ansible勉強会でLTさせてもらった
                     </a>
                 </h1>
                     <div id="fb-root"></div>
@@ -90,172 +90,35 @@
                     </script>
             </header>
             <div class="entry-content">
-                <div class="line-block">
-<div class="line">前から tmux と組み合わせて irc bouncer 的な使い方をしていた weechat ですが。</div>
-<div class="line">いい加減本格的に移行したのでメモ。</div>
-<div class="line">ちなみに私は今のところ Ubuntu13.10 な 24時間起動のサーバ立てて使っとります。</div>
-</div>
-
-<div class="section" id="id1">
-<h2>インストール</h2>
-<p>ググって出てくる情報見るとapt版だとISO-2022-JPガーみたいな話あるようですが、最近は特に問題ないようです。</p>
-<div class="highlight"><pre>sudo aptitude install weechat
-</pre></div>
-</div>
-<div class="section" id="id2">
-<h2>プラグインとか</h2>
-<div class="line-block">
-<div class="line">デフォで起動してもいいかもしれないですが、ここは先人の知恵に従って便利なプラグインを導入します。</div>
-<div class="line">今のところは最低限以下のものだけ入れるだけでもだいぶ違います。</div>
-</div>
-<ul>
-<li><dl class="first docutils">
-<dt>weeget</dt>
-<dd><p class="first last">weechatのプラグインを管理できるプラグイン</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>growl</dt>
-<dd><p class="first last">ハイライトしたキーワードをネットワーク経由でGrowl通知してくれる。</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>highmon</dt>
-<dd><p class="first last">ハイライトしたキーワードのレスだけを流してくれるバッファができる。</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>buffers</dt>
-<dd><p class="first last">横に接続中のサーバ、入室中のチャンネルなどバッファの一覧を出してくれる。</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>go</dt>
-<dd><p class="first last">指定したチャンネルにダイレクトにジャンプできる。関係ないチャンネルを既読にしないで飛べるので地味に便利。</p>
-</dd>
-</dl>
-</li>
+                <ul>
+<li><a href="http://ansible-users.connpass.com/event/5968/">Ansible 勉強会 #1</a></li>
+<li><a href="http://togetter.com/li/678544">Ansible勉強会 #1 まとめ - Togetterまとめ</a></li>
 </ul>
-<div class="line-block">
-<div class="line">まずはweegetを導入して、他のプラグインを入れてあげればいい感じです。</div>
-<div class="line">手順はこちらに従え問題無いかと -&gt; <a class="reference external" href="http://blog.glidenote.com/blog/2012/02/11/weechat-plugins/">Weegetを利用して、WeeChatのPlugin管理を楽にする</a></div>
-</div>
-</div>
-<div class="section" id="id3">
-<h2>起動/設定</h2>
-<div class="section" id="weechat-logger-conf">
-<h3>~/.weechat/logger.conf</h3>
-<div class="line-block">
-<div class="line">ロギングはしときたいんでloggerの設定を以下のように変更します。</div>
-</div>
-<div class="highlight"><pre><span class="nv">mask</span> <span class="o">=</span> <span class="s2">&quot;%plugin.$name/%Y%m%d.weechatlog&quot;</span>
-</pre></div>
-</div>
-<div class="section" id="tmux-conf">
-<h3>~/.tmux.conf</h3>
-<div class="line-block">
-<div class="line">tmux 内であげっぱなしにするので以下の設定も追加しときます。これをやっとかないと表示がおかしくなります。</div>
-<div class="line">基本的にIRC内で流れていることは常にキャッチしておきたいのです。(まあbouncer使えよって話かもしれないですが)</div>
-</div>
-<div class="highlight"><pre><span class="nb">set</span> -g default-terminal <span class="s2">&quot;screen-256color&quot;</span>
-</pre></div>
-</div>
-<div class="section" id="id4">
-<h3>起動</h3>
-<div class="line-block">
-<div class="line">このあたりでtmux -&gt; weechatを起動</div>
-</div>
-<div class="highlight"><pre>tmux
-weechat-curses
-</pre></div>
-</div>
-<div class="section" id="id5">
-<h3>設定</h3>
-<div class="line-block">
-<div class="line">接続先の設定</div>
-</div>
-<div class="highlight"><pre>## 普通のIRCサーバの場合
-/server add example1 irc.example1.com/6667
+<p>すでに開催から2ヶ月近く経とうとしていますが、自分用の記録として今更書いておきます。
+なんかゴメンナサイ。</p>
 
-## SSL かつ 起動時に自動で接続するように
-/server add example2 irc.example2.com/6667 -ssl -autoconnect
-</pre></div>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">オレオレ証明書(自己署名証明書)なSSLな場合は以下も実行します。</div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight"><pre>/set irc.server.example.ssl_verify = off
-</pre></div>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">自分の名前とか拾いたいワードをhighlightに追加しときます</div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight"><pre>/set weechat.look.highlight *iwasaki*,*laughk*
-</pre></div>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">growl プラグイン接続先も追加</div>
-<div class="line">当然クライントPCにGrowlが入っていることが条件。ネットワーク経由での通知もできるようにしとく。</div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight"><pre>## 通常使うクライアントPCのIP情報
-/set plugins.ver.python.growl.hostname 192.168.xxx.yyy
 
-## クライアント側のGrowlパスワード
-/set plugins.var.python.growl.password ****************
-</pre></div>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">go プラグインのキーバインドもやっとく。</div>
-<div class="line">ひとまずバッティングしなさそうだった Alt+g で</div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight"><pre>/key bind meta-g /go
-</pre></div>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">iso-2022-jp なチャンネルは文字コードの設定も忘れずに。</div>
-<div class="line">特にweechatは結構いい感じに文字コード直してくれたりするんで自分では化けてることに気づかないケースもあります。</div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight"><pre>## 対象のチャンネルで
-/charset iso2022jp
-</pre></div>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">他の細かいところなども <a class="reference external" href="http://www.weechat.org/doc/">公式のドキュメント</a> 見ながら設定をして</div>
-<div class="line">大体いいかなというところで変更を保存します。</div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight"><pre>/save
-</pre></div>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">こんな感じ。まあほぼ見せられないのでモザイクだらけですが</div>
-<div class="line"><br /></div>
-</div>
-<img alt="" src="/images/2013/11/21/shot2013-11-23_1.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">Yea!!</div>
-<div class="line"><br /></div>
-</div>
-</div>
+<p>LTの際に使ったスライドはこちら</p>
+<div style="width: 65%">
+<script async class="speakerdeck-embed" data-id="604718d0d2c40131cd584eace499ef8a" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 </div>
 
+<p>実は <a href="http://qiita.com/advent-calendar/2013/ansible">Ansible Advent Calendar 2013</a> で投稿させてもらった以下のものが元ネタだったりします。</p>
+<p><a href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html">あるインフラエンジニアとAnsibleの付き合い方</a></p>
+<p>内容としてはあまり突っ込んだことよりも、MSPな人間でも現実的に使えそうで嬉しいよみたいな感じでお話させてもらったつもりです。
+踏み台越えの話のところで反応頂いたりしていたようで、当日gkbr状態で緊張しながらもお話させた頂いて本当に良かったなと思っております。</p>
+<p>内輪の勉強会では色々話をしていますが、ここまで多数の方の前でお話させていただいたのは初めてで非常に良い機会となりました。
+また、実際にAnsibleを運用の現場で使われている話も多数聞くことができて実際のところ自分もまだまだ使いこなせていない部分が多いなとも痛感しました。
+個人的には<a href="https://github.com/livedoor/yabitz">Yabitz</a>の存在を知ることができたことも大きかったです。</p>
+<p>この2ヶ月の間にも関連の記事もかなり増えてきたり、本が出たりとAnsibleかなり盛り上がってきている感がありますね。
+今後はちょっと仕事の関係で使う機会が減るかもしれないですが、ある程度使い慣れている部分もあるので自宅マシンの構成管理とかにはこれからも引き続き使っていきたいです。</p>
                 <div class="panel">
                     <div class="panel-body">
                     <!-- <div class="alert alert-dismissable alert-warning"> -->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-21T00:00:00"> 2013-11-21</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-10T11:00:00"> 2014-08-10</time>
     </span>
     <span class="label label-default">By</span>
     <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
@@ -263,11 +126,9 @@ weechat-curses
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://memo.laughk.org/tag/terminal.html">terminal</a>
+	<a href="http://memo.laughk.org/tag/mian-qiang-hui.html">勉強会</a>
         /
-	<a href="http://memo.laughk.org/tag/weechat.html">weechat</a>
-        /
-	<a href="http://memo.laughk.org/tag/irc.html">irc</a>
+	<a href="http://memo.laughk.org/tag/ansible.html">Ansible</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -276,9 +137,9 @@ weechat-curses
 <!-- AddThis Button BEGIN -->
 <div class="social_tools">
 
-    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2014/08/10/ansible-study01-repo.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 
-        <div class="fb-like" data-href="http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+        <div class="fb-like" data-href="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
         <a href="https://twitter.com/share" class="twitter-share-button addthis_button_tweet" data-lang="ja" data-related="laugh_k">ツイート</a>
 
@@ -340,8 +201,8 @@ weechat-curses
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
-            var disqus_identifier = 'irc_setup_in_terminal';
-            var disqus_url = 'http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html';
+            var disqus_identifier = 'ansible-study01-repo';
+            var disqus_url = 'http://memo.laughk.org/2014/08/10/ansible-study01-repo.html';
             var disqus_config = function () {
                 this.language = "ja";
             };

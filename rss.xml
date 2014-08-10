@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 25 May 2014 00:00:00 +0900</lastBuildDate><item><title>Arch Linux はじめました</title><link>http://memo.laughk.org/2014/05/25/start_archlinux.html</link><description>&lt;img alt="" src="/images/2014/05/25/screenshot1.png" /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 10 Aug 2014 11:00:00 +0900</lastBuildDate><item><title>第一回Ansible勉強会でLTさせてもらった</title><link>http://memo.laughk.org/2014/08/10/ansible-study01-repo.html</link><description>&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://ansible-users.connpass.com/event/5968/"&gt;Ansible 勉強会 #1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://togetter.com/li/678544"&gt;Ansible勉強会 #1 まとめ - Togetterまとめ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;すでに開催から2ヶ月近く経とうとしていますが、自分用の記録として今更書いておきます。
+なんかゴメンナサイ。&lt;/p&gt;
+
+
+&lt;p&gt;LTの際に使ったスライドはこちら&lt;/p&gt;
+&lt;div style="width: 65%"&gt;
+&lt;script async class="speakerdeck-embed" data-id="604718d0d2c40131cd584eace499ef8a" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;p&gt;実は &lt;a href="http://qiita.com/advent-calendar/2013/ansible"&gt;Ansible Advent Calendar 2013&lt;/a&gt; で投稿させてもらった以下のものが元ネタだったりします。&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html"&gt;あるインフラエンジニアとAnsibleの付き合い方&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;内容としてはあまり突っ込んだことよりも、MSPな人間でも現実的に使えそうで嬉しいよみたいな感じでお話させてもらったつもりです。
+踏み台越えの話のところで反応頂いたりしていたようで、当日gkbr状態で緊張しながらもお話させた頂いて本当に良かったなと思っております。&lt;/p&gt;
+&lt;p&gt;内輪の勉強会では色々話をしていますが、ここまで多数の方の前でお話させていただいたのは初めてで非常に良い機会となりました。
+また、実際にAnsibleを運用の現場で使われている話も多数聞くことができて実際のところ自分もまだまだ使いこなせていない部分が多いなとも痛感しました。
+個人的には&lt;a href="https://github.com/livedoor/yabitz"&gt;Yabitz&lt;/a&gt;の存在を知ることができたことも大きかったです。&lt;/p&gt;
+&lt;p&gt;この2ヶ月の間にも関連の記事もかなり増えてきたり、本が出たりとAnsibleかなり盛り上がってきている感がありますね。
+今後はちょっと仕事の関係で使う機会が減るかもしれないですが、ある程度使い慣れている部分もあるので自宅マシンの構成管理とかにはこれからも引き続き使っていきたいです。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Sun, 10 Aug 2014 11:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2014-08-10:2014/08/10/ansible-study01-repo.html</guid><category>勉強会</category><category>Ansible</category></item><item><title>Arch Linux はじめました</title><link>http://memo.laughk.org/2014/05/25/start_archlinux.html</link><description>&lt;img alt="" src="/images/2014/05/25/screenshot1.png" /&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;Ubuntu14.04&lt;/tt&gt; のリリース情報もあり、&lt;/div&gt;
 &lt;div class="line"&gt;これまでDELL XPS13で使ってきた &lt;tt class="docutils literal"&gt;Linux Mint16&lt;/tt&gt; 環境をどうしようかなと思っていましたが、&lt;/div&gt;

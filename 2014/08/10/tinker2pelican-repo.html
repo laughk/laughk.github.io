@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>ブログジェネレータをTinkererからPelicanに移行した - 続・ラフなラボ</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="http://memo.laughk.org/images/favicon.ico" rel="icon">
+
+    <!-- Open Graph tags -->
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="ブログジェネレータをTinkererからPelicanに移行した"/>
+            <meta property="og:url" content="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html"/>
+            <meta property="og:description" content="これまでしばらくSphinxベースのTinkererを使ってReST -> HTML 変換を行いGithubpageにホスティングする形でやっておりましたが、Tinkererの部分をPelicanに移行しました。 移行の際にやったことをメモしておきます。 ちなみに、以下のものはすでに使えることを前提にします。 pyenv, pyenv-virtualenv git githubpage"/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
+    <link href="http://memo.laughk.org/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://memo.laughk.org/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://memo.laughk.org/theme/css/style.css" type="text/css"/>
+        <link href="http://memo.laughk.org/static/custom.css" rel="stylesheet">
+
+        <link href="http://memo.laughk.org/atom.xml" type="application/atom+xml" rel="alternate"
+              title="続・ラフなラボ ATOM Feed"/>
+        <link href="http://memo.laughk.org/rss.xml" type="application/atom+xml" rel="alternate"
+              title="続・ラフなラボ RSS Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://memo.laughk.org/" class="navbar-brand">
+続・ラフなラボ            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/rss.xml"><i class="fa fa-rss"></i>RSS</a></li>
+                    <li><a href="https://twitter.com/laugh_k"><i class="fa fa-twitter"></i>twitter</a></li>
+                    <li><a href="https://github.com/laughk"><i class="fa fa-github"></i>Github</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://memo.laughk.org/archives"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <span class="label label-default">
+                    <i class="fa fa-calendar"></i>
+                        2014-08-10
+                </span>
+                <h1>
+                    <a href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html"
+                       rel="bookmark"
+                       title="Permalink to ブログジェネレータをTinkererからPelicanに移行した">
+                        ブログジェネレータをTinkererからPelicanに移行した
+                    </a>
+                </h1>
+                    <div id="fb-root"></div>
+                    <script>
+                    (function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=1412228335678506";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                    </script>
+            </header>
+            <div class="entry-content">
+                <p>これまでしばらくSphinxベースの<a href="http://tinkerer.me/">Tinkerer</a>を使って<code>ReST</code> -&gt; <code>HTML</code> 変換を行いGithubpageにホスティングする形でやっておりましたが、Tinkererの部分を<a href="https://github.com/getpelican/pelican">Pelican</a>に移行しました。</p>
+<p>移行の際にやったことをメモしておきます。</p>
+<p>ちなみに、以下のものはすでに使えることを前提にします。</p>
+<ul>
+<li>pyenv, pyenv-virtualenv</li>
+<li>git</li>
+<li>githubpage</li>
+</ul>
+
+
+<h2>Pelicanのインストール</h2>
+<ol>
+<li>
+<p>python2.7系最新をインストール(3系の対応が完璧でないっぽいため)  </p>
+<div class="highlight"><pre><span class="c"># 最新版を確認</span>
+% pyenv install -l | grep 2.7
+
+% pyenv install 2.7.8
+% pyenv virtualenv 2.7.8 pelican
+</pre></div>
+
+
+</li>
+<li>
+<p>作業ディレクトリを適当に作成</p>
+<div class="highlight"><pre>% mkdir -p ~/work/blog
+% <span class="nb">cd</span> ~/work/blog
+% pyenv <span class="nb">local </span>pelican
+</pre></div>
+
+
+</li>
+<li>
+<p>Pelicanをインストール</p>
+<div class="highlight"><pre><span class="c">## Pelican 本体をインストール</span>
+% pip install pelican
+
+<span class="c">## Markdown も使いたいのでインストール</span>
+% pip install markdown
+
+<span class="c">## plugin, themeもクローン</span>
+% git clone https://github.com/getpelican/pelican-plugins.git
+% git clone https://github.com/getpelican/pelican-themes.git
+</pre></div>
+
+
+<p>これで <code>~/work/blog</code> 配下で pelican コマンドが使えるようになります。</p>
+</li>
+<li>
+<p><code>pelican</code>コマンドが使えるようになったら <code>QuickStart</code> しておきましょう。</p>
+<div class="highlight"><pre><span class="c">% pelican-quickstart </span>
+<span class="n">Welcome</span> <span class="n">to</span> <span class="n">pelican</span><span class="o">-</span><span class="n">quickstart</span> <span class="n">v3</span><span class="p">.</span><span class="mf">4.0</span><span class="p">.</span>
+
+<span class="n">This</span> <span class="n">script</span> <span class="n">will</span> <span class="n">help</span> <span class="n">you</span> <span class="n">create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Pelican</span><span class="o">-</span><span class="n">based</span> <span class="n">website</span><span class="p">.</span>
+
+<span class="n">Please</span> <span class="n">answer</span> <span class="n">the</span> <span class="n">following</span> <span class="n">questions</span> <span class="n">so</span> <span class="n">this</span> <span class="n">script</span> <span class="n">can</span> <span class="n">generate</span> <span class="n">the</span> <span class="n">files</span>
+<span class="n">needed</span> <span class="n">by</span> <span class="n">Pelican</span><span class="p">.</span>
+
+<span class="o">&gt;</span> <span class="n">Where</span> <span class="n">do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">create</span> <span class="n">your</span> <span class="n">new</span> <span class="n">web</span> <span class="n">site</span>? <span class="p">[.]</span> 
+<span class="o">&gt;</span> <span class="n">What</span> <span class="n">will</span> <span class="n">be</span> <span class="n">the</span> <span class="n">title</span> <span class="n">of</span> <span class="n">this</span> <span class="n">web</span> <span class="n">site</span>? 続・ラフなラボ
+<span class="o">&gt;</span> <span class="n">Who</span> <span class="n">will</span> <span class="n">be</span> <span class="n">the</span> <span class="n">author</span> <span class="n">of</span> <span class="n">this</span> <span class="n">web</span> <span class="n">site</span>? <span class="n">Kei</span> <span class="n">Iwasaki</span>
+<span class="o">&gt;</span> <span class="n">What</span> <span class="n">will</span> <span class="n">be</span> <span class="n">the</span> <span class="n">default</span> <span class="n">language</span> <span class="n">of</span> <span class="n">this</span> <span class="n">web</span> <span class="n">site</span>? <span class="p">[</span><span class="n">en</span><span class="p">]</span> <span class="n">ja</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">specify</span> <span class="n">a</span> <span class="n">URL</span> <span class="n">prefix</span>? <span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>   <span class="p">(</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="n">n</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">article</span> <span class="n">pagination</span>? <span class="p">(</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="n">n</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">generate</span> <span class="n">a</span> <span class="n">Fabfile</span><span class="o">/</span><span class="n">Makefile</span> <span class="n">to</span> <span class="n">automate</span> <span class="n">generation</span> <span class="n">and</span> <span class="n">publishing</span>? <span class="p">(</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="n">Y</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">an</span> <span class="n">auto</span><span class="o">-</span><span class="n">reload</span> <span class="o">&amp;</span> <span class="n">simpleHTTP</span> <span class="n">script</span> <span class="n">to</span> <span class="n">assist</span> <span class="n">with</span> <span class="n">theme</span> <span class="n">and</span> <span class="n">site</span> <span class="n">development</span>? <span class="p">(</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="n">Y</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">upload</span> <span class="n">your</span> <span class="n">website</span> <span class="n">using</span> <span class="n">FTP</span>? <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span> <span class="n">N</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">upload</span> <span class="n">your</span> <span class="n">website</span> <span class="n">using</span> <span class="n">SSH</span>? <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span> <span class="n">N</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">upload</span> <span class="n">your</span> <span class="n">website</span> <span class="n">using</span> <span class="n">Dropbox</span>? <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span> <span class="n">N</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">upload</span> <span class="n">your</span> <span class="n">website</span> <span class="n">using</span> <span class="n">S3</span>? <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span> <span class="n">N</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">upload</span> <span class="n">your</span> <span class="n">website</span> <span class="n">using</span> <span class="n">Rackspace</span> <span class="n">Cloud</span> <span class="n">Files</span>? <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span> <span class="n">N</span>
+<span class="o">&gt;</span> <span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">upload</span> <span class="n">your</span> <span class="n">website</span> <span class="n">using</span> <span class="n">GitHub</span> <span class="n">Pages</span>? <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span> <span class="n">y</span>
+<span class="o">&gt;</span> <span class="n">Is</span> <span class="n">this</span> <span class="n">your</span> <span class="n">personal</span> <span class="n">page</span> <span class="p">(</span><span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="p">)</span>? <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">)</span> <span class="n">y</span>
+<span class="n">Done</span><span class="p">.</span> <span class="n">Your</span> <span class="n">new</span> <span class="n">project</span> <span class="n">is</span> <span class="n">available</span> <span class="n">at</span> <span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">blog</span>
+</pre></div>
+
+
+<p>するとだいたい以下のような感じでファイルが生成されると思います。</p>
+<div class="highlight"><pre><span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">blog</span>
+       <span class="err">├──</span> <span class="n">content</span>
+       <span class="err">├──</span> <span class="n">develop_server</span><span class="p">.</span><span class="n">sh</span>
+       <span class="err">├──</span> <span class="n">fabfile</span><span class="p">.</span><span class="n">py</span>
+       <span class="err">├──</span> <span class="n">Makefile</span>
+       <span class="err">├──</span> <span class="n">output</span>
+       <span class="err">├──</span> <span class="n">pelicanconf</span><span class="p">.</span><span class="n">py</span>
+       <span class="err">└──</span> <span class="n">publishconf</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+</li>
+</ol>
+<h2>TinkererからReSTファイルを移行</h2>
+<p>TinkererはSphinxベースのツールで元々ReSTはサポートしていますが、
+微妙に方言に違いがあって、そのままPelicanでビルドしようとすると落っこちます。
+また、デフォルト設定だとTinkerer管理のような <code>content/YYYY/MM/DD/&lt;slug&gt;.rst</code> の形式も日付や生成されるファイルのパス情報として読み込んでくれないかったり、画像ファイルを各日付ごとのディレクトリにおいても特に面倒は見てくれません。
+そのへん自力でなんとかする必要があります。(軽く調べた感じ、特に移行ツールなどは見つかりませんでした...)</p>
+<h3>ReSTファイルのコンバート, 画像ファイルの移動</h3>
+<p>一部ファイル書き換え程度ならシェル芸でさくっと行けたかもしれないですが、
+ファイルの内容を違う行に移動させるのが流石にしんどかったので、今回はやっつけなpythonスクリプトを書きかました。<em>※pyenv-virtualenv 環境に合わせるため2.7系で書いてます。</em></p>
+<p><a href="https://github.com/laughk/tinker2pelican-rst">laughk/tinker2pelican-rst</a></p>
+<p>基本的にこちらの<code>README.md</code> に従っていけば、とりあえずコンテンツの移行はできると思います。</p>
+<h3>Githubpage向けのファイルを移行</h3>
+<p>Githubpage を利用してホスティングする際に必要な静的ファイルも移行します。
+<code>output</code> ディレクトリ配下を git 管理することになるので私の場合はHTMLを生成する際に一緒に生成されるようにしています。</p>
+<p>そのため以下のような感じでファイルを置き、<code>pelicanconf.py</code> の設定をしています。</p>
+<ul>
+<li>
+<p>ファイル</p>
+<div class="highlight"><pre><span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">blog</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">extra</span>
+                      <span class="o">|----</span> <span class="n">empty</span>           <span class="p">(</span><span class="err">空ファイル</span><span class="p">,</span> <span class="n">Githubpage</span><span class="err">用</span> <span class="p">.</span><span class="n">nojekyll</span><span class="err">として利用する。</span><span class="p">)</span>
+                      <span class="o">|----</span> <span class="n">gitignore</span>       <span class="p">(</span><span class="n">output</span><span class="err">用の</span><span class="n">gitignore</span><span class="p">)</span>
+                      <span class="o">|----</span> <span class="n">CNAME</span>           <span class="p">(</span><span class="n">Githubpage</span><span class="err">用の</span> <span class="n">CNAME</span><span class="err">ファイル</span><span class="p">)</span>
+                      <span class="err">`</span><span class="o">----</span> <span class="n">gooleXXXXXXXX</span>   <span class="p">(</span><span class="n">GoogleAnalytics</span><span class="err">用のの静的</span><span class="n">HTML</span><span class="err">ファイル。テンプレート扱いされないように拡張子はなし</span><span class="p">)</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>pelicanconf.py</p>
+<div class="highlight"><pre><span class="n">EXTRA_PATH_METADATA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;images&#39;</span><span class="p">:</span>           <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;images&#39;</span>     <span class="p">},</span>
+    <span class="s">&#39;extra/CNAME&#39;</span><span class="p">:</span>      <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;CNAME&#39;</span>      <span class="p">},</span>       <span class="c"># for original domain</span>
+    <span class="s">&#39;extra/empty&#39;</span><span class="p">:</span>      <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;.nojekyll&#39;</span>  <span class="p">},</span>       <span class="c"># for Githubpage</span>
+    <span class="s">&#39;extra/gitignore&#39;</span><span class="p">:</span>  <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;.gitignore&#39;</span> <span class="p">},</span>       <span class="c"># for Githubpage</span>
+    <span class="s">&#39;extra/gooleXXXXXXXX&#39;</span><span class="p">:</span>
+        <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;gooleXXXXXXXX&#39;</span> <span class="p">},</span>                    <span class="c"># for google analytics</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+</ul>
+<h3>試しにブログを生成してブラウザから見てみる</h3>
+<p>ここまできたら、一度HTMLファイルを生成してローカルでプレビューしてみます。</p>
+<div class="highlight"><pre>% pelican content -S pelicanconf.py -o output
+
+<span class="c">## pelican-quickstartの際に Makefile を生成していた場合は以下でもOK</span>
+% make html
+
+% <span class="nb">cd </span>output <span class="o">&amp;&amp;</span> python -m SimpleHTTPServer
+</pre></div>
+
+
+<p>この状態で http://localhost:8000 にアクセスすれば、生成されたブログをブラウザから確認できます。</p>
+<h2>設定をいじって自分好みにカスタムしていく</h2>
+<p>データの移行ができたらあとは純粋にPelicanを自分用に作りこんでいきます。
+詳細なカスタマイズに関しては今回は割愛しますが、公式のドキュメントが充実していたり、テーマも充実しているので色々試してみるのがいいと思います。</p>
+<ul>
+<li>公式ドキュメント <a href="https://pelican.readthedocs.org/en/3.4.0/">Pelican 3.4.0 &mdash; Pelican 3.4.0 documentation</a></li>
+<li>テーマ <a href="https://github.com/getpelican/pelican-themes">getpelican/pelican-themes</a></li>
+</ul>
+<h2>その他テーマをいじっていた時のメモ</h2>
+<p>この辺はざっくりと。</p>
+<ul>
+<li>完全に気に入るようなものは Pelican の充実したテーマの中でも見つからないんで、結局カスタム。</li>
+<li><code>pelican-bootstrap3</code> が一番カスタムしやすそうだったので、ベースに導入。</li>
+<li><a href="http://www.addthis.com/">Addthis</a> でソーシャルボタンが一発で行けるかと思いきやURLに勝手に <code>#xx-xxxxxxx</code> ってつけられてキモいので削除、自力でテンプレ作成。</li>
+<li>広告入れる場合はレスポンシブデザインか小さいサイズにしておかないと思わぬところでデザインが崩れる。</li>
+<li>画像もレスポンシブ対策をCSSにしないとデザインが崩れる。</li>
+<li><code>pulishconf.py</code> に <code>RELATEVE_URLS = True</code> 入れておかないとホスティングの際にDISCUSのコメント欄が死ぬ (相対パスになっちゃったSITEURLがDISCUS用のJSのパラメータに渡っちゃうため)</li>
+<li>生成に必要な部分と生成物はこれまで違うレポジトリで管理していたけど、<code>ghp-import</code> なるものがあったので、生成物を<code>gh-pages</code>ブランチ、設定ファイルや元のMarkdown,ReSTファイルなどは<code>master</code>ブランチという形でレポジトリを統合。</li>
+</ul>
+<h2>最後に</h2>
+<p>単純にTinkererからPelicanに移す場合はReSTの方言に気をつければそこまで手間がかかることではないかもしてませんが、テーマを作りこんだりPelicanそのものの使い勝手がよくわからずはまってしまったり、せっかくの機会だからブランチを意識して一人プルリクフローで作っていったり、各ブランチに違うレポジトリ追加して管理方法を変えてみたりとやっていたら想像以上に大掛かりな作業になってしまいました。。(まるまる4日間)</p>
+<p>ただ、Pelicanはテーマも充実していますしMarkdownも使えたり、一部<code>iframe</code>を埋め込もうとするとビルドが落っこちるとかはないので非常によいですね。
+MarkdownとReSTの混合状態でもいい感じでビルドしてくれます。MarkdownのGFM対応がちょっと中途半端な感じがあるのが残念ですが、概ね Tinkerer より個人的にしっくり来ています。</p>
+                <div class="panel">
+                    <div class="panel-body">
+                    <!-- <div class="alert alert-dismissable alert-warning"> -->
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-08-10T21:30:00"> 2014-08-10</time>
+    </span>
+    <span class="label label-default">By</span>
+    <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://memo.laughk.org/tag/tinkerer.html">tinkerer</a>
+        /
+	<a href="http://memo.laughk.org/tag/pelican.html">pelican</a>
+        /
+	<a href="http://memo.laughk.org/tag/githubpage.html">githubpage</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+            </div>
+            <!-- /.entry-content -->
+<!-- AddThis Button BEGIN -->
+<div class="social_tools">
+
+    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+        <div class="fb-like" data-href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+
+        <a href="https://twitter.com/share" class="twitter-share-button addthis_button_tweet" data-lang="ja" data-related="laugh_k">ツイート</a>
+
+        <script>
+            !function(d,s,id){
+              var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                if(!d.getElementById(id)){
+                  js=d.createElement(s);
+                    js.id=id;
+                    js.src=p+'://platform.twitter.com/widgets.js';
+                    fjs.parentNode.insertBefore(js,fjs);
+                }
+            }(document, 'script', 'twitter-wjs');
+        </script>
+
+        <div class="g-plusone "></div>
+
+        <script type="text/javascript">
+          window.___gcfg = {lang: 'ja'};
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+
+        <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="ja"></a>
+        <script type="text/javascript">
+            !function(d,i){
+              if(!d.getElementById(i)){
+                var j=d.createElement("script");
+                j.id=i;
+                j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";
+                var w=d.getElementById(i);d.body.appendChild(j);
+              }
+            }(document,"pocket-btn-js");
+        </script>
+
+
+</div>
+<!-- AddThis Button END -->            <div class="adsense">
+               <!-- Google Adsense -->
+               <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+               <!-- memo.laughk.org-postfoot -->
+               <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-8841652702834940"
+                    data-ad-slot="4223982601"
+                    data-ad-format="auto"></ins>
+               <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+               </script>
+               <!-- Google Adsense END -->
+            </div>
+    <hr />
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
+            var disqus_identifier = 'tinker2pelican-repo';
+            var disqus_url = 'http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html';
+            var disqus_config = function () {
+                this.language = "ja";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer class="all">
+   <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+<h4><i class="fa fa-user fa-lg"></i><span class="icon-label">About Me</span></h4>
+<div>
+  <img src="/images/laughk.jpg" align="button" id="author_img">
+  Kei Iwasaki
+</div>
+<ul id="social">
+  <li class="list-group-item">
+    <a href="https://twitter.com/laugh_k">
+      <i class="fa fa-twitter-square fa-lg"></i> twitter
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a href="https://github.com/laughk">
+      <i class="fa fa-github-square fa-lg"></i> github
+    </a>
+  </li>
+</ul>        </div>
+
+        <div class="col-lg-5">
+
+<h4><i class="fa fa-th-list fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+<ul id="recentposts">
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html">
+            ブログジェネレータをTinkererからPelicanに移行した
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html">
+            第一回Ansible勉強会でLTさせてもらった
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/05/25/start_archlinux.html">
+            Arch Linux はじめました
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/04/24/shell_exec_log.html">
+            シェルスクリプトが '&gt; $logfile 2&gt;&amp;1' だらけにならなくて済んだ話
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/04/21/qpstudy_20140419_report.html">
+            #qpstudy 2014.04 に参加してきたんで自分用まとめとか
+        </a>
+    </li>
+</ul>
+
+        </div>
+
+        <div class="col-lg-4">
+
+<h4><i class="fa fa-star fa-lg"></i><span class="icon-label">Popular Posts</span></h4>
+<script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript">
+Hatena.BookmarkWidget.url   = "http://memo.laughk.org";
+Hatena.BookmarkWidget.sort  = "hot";
+Hatena.BookmarkWidget.width = 0;
+Hatena.BookmarkWidget.num   = 5;
+Hatena.BookmarkWidget.theme = "hatenadiary";
+Hatena.BookmarkWidget.load();
+</script>        </div>
+
+      <hr />
+
+       <div class="col-xs-10">&copy; 2014 Kei Iwasaki
+          &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+          <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+          <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>       </div>
+       <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="//code.jquery.com/jquery.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://memo.laughk.org/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://memo.laughk.org/theme/js/respond.min.js"></script>
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-16164514-8']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+</html>

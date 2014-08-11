@@ -20,6 +20,10 @@ pre {
   word-wrap        : normal !important;
 }
 
+h2 {
+    border-bottom      : dotted 1px !important;
+    border-bottom-color: #cccccc    !important;;
+}
 
 .highlight{
   border-radius         : 10px;

@@ -1,5 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 10 Aug 2014 11:00:00 +0900</lastBuildDate><item><title>第一回Ansible勉強会でLTさせてもらった</title><link>http://memo.laughk.org/2014/08/10/ansible-study01-repo.html</link><description>&lt;ul&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 10 Aug 2014 21:30:00 +0900</lastBuildDate><item><title>ブログジェネレータをTinkererからPelicanに移行した</title><link>http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html</link><description>&lt;p&gt;これまでしばらくSphinxベースの&lt;a href="http://tinkerer.me/"&gt;Tinkerer&lt;/a&gt;を使って&lt;code&gt;ReST&lt;/code&gt; -&amp;gt; &lt;code&gt;HTML&lt;/code&gt; 変換を行いGithubpageにホスティングする形でやっておりましたが、Tinkererの部分を&lt;a href="https://github.com/getpelican/pelican"&gt;Pelican&lt;/a&gt;に移行しました。&lt;/p&gt;
+&lt;p&gt;移行の際にやったことをメモしておきます。&lt;/p&gt;
+&lt;p&gt;ちなみに、以下のものはすでに使えることを前提にします。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pyenv, pyenv-virtualenv&lt;/li&gt;
+&lt;li&gt;git&lt;/li&gt;
+&lt;li&gt;githubpage&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Pelicanのインストール&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;python2.7系最新をインストール(3系の対応が完璧でないっぽいため)  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# 最新版を確認&lt;/span&gt;
+% pyenv install -l | grep 2.7
+
+% pyenv install 2.7.8
+% pyenv virtualenv 2.7.8 pelican
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;作業ディレクトリを適当に作成&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;% mkdir -p ~/work/blog
+% &lt;span class="nb"&gt;cd&lt;/span&gt; ~/work/blog
+% pyenv &lt;span class="nb"&gt;local &lt;/span&gt;pelican
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pelicanをインストール&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;## Pelican 本体をインストール&lt;/span&gt;
+% pip install pelican
+
+&lt;span class="c"&gt;## Markdown も使いたいのでインストール&lt;/span&gt;
+% pip install markdown
+
+&lt;span class="c"&gt;## plugin, themeもクローン&lt;/span&gt;
+% git clone https://github.com/getpelican/pelican-plugins.git
+% git clone https://github.com/getpelican/pelican-themes.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;これで &lt;code&gt;~/work/blog&lt;/code&gt; 配下で pelican コマンドが使えるようになります。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;pelican&lt;/code&gt;コマンドが使えるようになったら &lt;code&gt;QuickStart&lt;/code&gt; しておきましょう。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;% pelican-quickstart &lt;/span&gt;
+&lt;span class="n"&gt;Welcome&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;quickstart&lt;/span&gt; &lt;span class="n"&gt;v3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;4.0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;based&lt;/span&gt; &lt;span class="n"&gt;website&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;following&lt;/span&gt; &lt;span class="n"&gt;questions&lt;/span&gt; &lt;span class="n"&gt;so&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;generate&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt;
+&lt;span class="n"&gt;needed&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;Pelican&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Where&lt;/span&gt; &lt;span class="n"&gt;do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt; &lt;span class="n"&gt;site&lt;/span&gt;? &lt;span class="p"&gt;[.]&lt;/span&gt; 
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;What&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt; &lt;span class="n"&gt;site&lt;/span&gt;? 続・ラフなラボ
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Who&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt; &lt;span class="n"&gt;site&lt;/span&gt;? &lt;span class="n"&gt;Kei&lt;/span&gt; &lt;span class="n"&gt;Iwasaki&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;What&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt; &lt;span class="n"&gt;language&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt; &lt;span class="n"&gt;site&lt;/span&gt;? &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;ja&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;specify&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;URL&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt;? &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;.,&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;enable&lt;/span&gt; &lt;span class="n"&gt;article&lt;/span&gt; &lt;span class="n"&gt;pagination&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;generate&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;Fabfile&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Makefile&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;automate&lt;/span&gt; &lt;span class="n"&gt;generation&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;publishing&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Y&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;auto&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;reload&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;simpleHTTP&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;assist&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;theme&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;site&lt;/span&gt; &lt;span class="n"&gt;development&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Y&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;upload&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;website&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;FTP&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;upload&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;website&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;SSH&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;upload&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;website&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;Dropbox&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;upload&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;website&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;S3&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;upload&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;website&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;Rackspace&lt;/span&gt; &lt;span class="n"&gt;Cloud&lt;/span&gt; &lt;span class="n"&gt;Files&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Do&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;upload&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;website&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;GitHub&lt;/span&gt; &lt;span class="n"&gt;Pages&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Is&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;personal&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;? &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
+&lt;span class="n"&gt;Done&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Your&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;project&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;available&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;work&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;blog&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;するとだいたい以下のような感じでファイルが生成されると思います。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;work&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;blog&lt;/span&gt;
+       &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;
+       &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;develop_server&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
+       &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;fabfile&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+       &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;Makefile&lt;/span&gt;
+       &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;
+       &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;pelicanconf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+       &lt;span class="err"&gt;└──&lt;/span&gt; &lt;span class="n"&gt;publishconf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;TinkererからReSTファイルを移行&lt;/h2&gt;
+&lt;p&gt;TinkererはSphinxベースのツールで元々ReSTはサポートしていますが、
+微妙に方言に違いがあって、そのままPelicanでビルドしようとすると落っこちます。
+また、デフォルト設定だとTinkerer管理のような &lt;code&gt;content/YYYY/MM/DD/&amp;lt;slug&amp;gt;.rst&lt;/code&gt; の形式も日付や生成されるファイルのパス情報として読み込んでくれないかったり、画像ファイルを各日付ごとのディレクトリにおいても特に面倒は見てくれません。
+そのへん自力でなんとかする必要があります。(軽く調べた感じ、特に移行ツールなどは見つかりませんでした...)&lt;/p&gt;
+&lt;h3&gt;ReSTファイルのコンバート, 画像ファイルの移動&lt;/h3&gt;
+&lt;p&gt;一部ファイル書き換え程度ならシェル芸でさくっと行けたかもしれないですが、
+ファイルの内容を違う行に移動させるのが流石にしんどかったので、今回はやっつけなpythonスクリプトを書きかました。&lt;em&gt;※pyenv-virtualenv 環境に合わせるため2.7系で書いてます。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/laughk/tinker2pelican-rst"&gt;laughk/tinker2pelican-rst&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;基本的にこちらの&lt;code&gt;README.md&lt;/code&gt; に従っていけば、とりあえずコンテンツの移行はできると思います。&lt;/p&gt;
+&lt;h3&gt;Githubpage向けのファイルを移行&lt;/h3&gt;
+&lt;p&gt;Githubpage を利用してホスティングする際に必要な静的ファイルも移行します。
+&lt;code&gt;output&lt;/code&gt; ディレクトリ配下を git 管理することになるので私の場合はHTMLを生成する際に一緒に生成されるようにしています。&lt;/p&gt;
+&lt;p&gt;そのため以下のような感じでファイルを置き、&lt;code&gt;pelicanconf.py&lt;/code&gt; の設定をしています。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;ファイル&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;work&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;blog&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;extra&lt;/span&gt;
+                      &lt;span class="o"&gt;|----&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt;           &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;空ファイル&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Githubpage&lt;/span&gt;&lt;span class="err"&gt;用&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nojekyll&lt;/span&gt;&lt;span class="err"&gt;として利用する。&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                      &lt;span class="o"&gt;|----&lt;/span&gt; &lt;span class="n"&gt;gitignore&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="err"&gt;用の&lt;/span&gt;&lt;span class="n"&gt;gitignore&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                      &lt;span class="o"&gt;|----&lt;/span&gt; &lt;span class="n"&gt;CNAME&lt;/span&gt;           &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Githubpage&lt;/span&gt;&lt;span class="err"&gt;用の&lt;/span&gt; &lt;span class="n"&gt;CNAME&lt;/span&gt;&lt;span class="err"&gt;ファイル&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                      &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="o"&gt;----&lt;/span&gt; &lt;span class="n"&gt;gooleXXXXXXXX&lt;/span&gt;   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GoogleAnalytics&lt;/span&gt;&lt;span class="err"&gt;用のの静的&lt;/span&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="err"&gt;ファイル。テンプレート扱いされないように拡張子はなし&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;pelicanconf.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;EXTRA_PATH_METADATA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;images&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;           &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;images&amp;#39;&lt;/span&gt;     &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;extra/CNAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;      &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;CNAME&amp;#39;&lt;/span&gt;      &lt;span class="p"&gt;},&lt;/span&gt;       &lt;span class="c"&gt;# for original domain&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;extra/empty&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;      &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.nojekyll&amp;#39;&lt;/span&gt;  &lt;span class="p"&gt;},&lt;/span&gt;       &lt;span class="c"&gt;# for Githubpage&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;extra/gitignore&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.gitignore&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;       &lt;span class="c"&gt;# for Githubpage&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;extra/gooleXXXXXXXX&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;path&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;gooleXXXXXXXX&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;                    &lt;span class="c"&gt;# for google analytics&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;試しにブログを生成してブラウザから見てみる&lt;/h3&gt;
+&lt;p&gt;ここまできたら、一度HTMLファイルを生成してローカルでプレビューしてみます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;% pelican content -S pelicanconf.py -o output
+
+&lt;span class="c"&gt;## pelican-quickstartの際に Makefile を生成していた場合は以下でもOK&lt;/span&gt;
+% make html
+
+% &lt;span class="nb"&gt;cd &lt;/span&gt;output &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; python -m SimpleHTTPServer
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;この状態で http://localhost:8000 にアクセスすれば、生成されたブログをブラウザから確認できます。&lt;/p&gt;
+&lt;h2&gt;設定をいじって自分好みにカスタムしていく&lt;/h2&gt;
+&lt;p&gt;データの移行ができたらあとは純粋にPelicanを自分用に作りこんでいきます。
+詳細なカスタマイズに関しては今回は割愛しますが、公式のドキュメントが充実していたり、テーマも充実しているので色々試してみるのがいいと思います。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;公式ドキュメント &lt;a href="https://pelican.readthedocs.org/en/3.4.0/"&gt;Pelican 3.4.0 &amp;mdash; Pelican 3.4.0 documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;テーマ &lt;a href="https://github.com/getpelican/pelican-themes"&gt;getpelican/pelican-themes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;その他テーマをいじっていた時のメモ&lt;/h2&gt;
+&lt;p&gt;この辺はざっくりと。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;完全に気に入るようなものは Pelican の充実したテーマの中でも見つからないんで、結局カスタム。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pelican-bootstrap3&lt;/code&gt; が一番カスタムしやすそうだったので、ベースに導入。&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.addthis.com/"&gt;Addthis&lt;/a&gt; でソーシャルボタンが一発で行けるかと思いきやURLに勝手に &lt;code&gt;#xx-xxxxxxx&lt;/code&gt; ってつけられてキモいので削除、自力でテンプレ作成。&lt;/li&gt;
+&lt;li&gt;広告入れる場合はレスポンシブデザインか小さいサイズにしておかないと思わぬところでデザインが崩れる。&lt;/li&gt;
+&lt;li&gt;画像もレスポンシブ対策をCSSにしないとデザインが崩れる。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pulishconf.py&lt;/code&gt; に &lt;code&gt;RELATEVE_URLS = True&lt;/code&gt; 入れておかないとホスティングの際にDISCUSのコメント欄が死ぬ (相対パスになっちゃったSITEURLがDISCUS用のJSのパラメータに渡っちゃうため)&lt;/li&gt;
+&lt;li&gt;生成に必要な部分と生成物はこれまで違うレポジトリで管理していたけど、&lt;code&gt;ghp-import&lt;/code&gt; なるものがあったので、生成物を&lt;code&gt;gh-pages&lt;/code&gt;ブランチ、設定ファイルや元のMarkdown,ReSTファイルなどは&lt;code&gt;master&lt;/code&gt;ブランチという形でレポジトリを統合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;最後に&lt;/h2&gt;
+&lt;p&gt;単純にTinkererからPelicanに移す場合はReSTの方言に気をつければそこまで手間がかかることではないかもしてませんが、テーマを作りこんだりPelicanそのものの使い勝手がよくわからずはまってしまったり、せっかくの機会だからブランチを意識して一人プルリクフローで作っていったり、各ブランチに違うレポジトリ追加して管理方法を変えてみたりとやっていたら想像以上に大掛かりな作業になってしまいました。。(まるまる4日間)&lt;/p&gt;
+&lt;p&gt;ただ、Pelicanはテーマも充実していますしMarkdownも使えたり、一部&lt;code&gt;iframe&lt;/code&gt;を埋め込もうとするとビルドが落っこちるとかはないので非常によいですね。
+MarkdownとReSTの混合状態でもいい感じでビルドしてくれます。MarkdownのGFM対応がちょっと中途半端な感じがあるのが残念ですが、概ね Tinkerer より個人的にしっくり来ています。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Sun, 10 Aug 2014 21:30:00 +0900</pubDate><guid>tag:memo.laughk.org,2014-08-10:2014/08/10/tinker2pelican-repo.html</guid><category>tinkerer</category><category>pelican</category><category>githubpage</category></item><item><title>第一回Ansible勉強会でLTさせてもらった</title><link>http://memo.laughk.org/2014/08/10/ansible-study01-repo.html</link><description>&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://ansible-users.connpass.com/event/5968/"&gt;Ansible 勉強会 #1&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://togetter.com/li/678544"&gt;Ansible勉強会 #1 まとめ - Togetterまとめ&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;

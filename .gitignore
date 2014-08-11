@@ -2,6 +2,7 @@
 cache/
 content/
 output/
+packages.txt
 pelican-plugins/
 *.pyc
 *.pid

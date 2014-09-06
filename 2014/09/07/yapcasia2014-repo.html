@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>YAPC::Asiaに初参加してきた #yapcasia - 続・ラフなラボ</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="http://memo.laughk.org/images/favicon.ico" rel="icon">
+
+    <!-- Open Graph tags -->
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="YAPC::Asiaに初参加してきた #yapcasia"/>
+            <meta property="og:url" content="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html"/>
+            <meta property="og:description" content="先週末、初めてYAPC::Asiaに参加してきたので簡単にレポート。 0日目は一人で、1日目以降は @tkr0429 さんと二人で参加した。 yapcasia前夜祭来てみたら予想以上にいろいろもらえたw すげーw pic.twitter.com/gygtkJ7d4h— Kei Iwasaki (@laugh_k) 2014, 8月 28"/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
+    <link href="http://memo.laughk.org/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://memo.laughk.org/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://memo.laughk.org/theme/css/style.css" type="text/css"/>
+        <link href="http://memo.laughk.org/static/custom.css" rel="stylesheet">
+
+        <link href="http://memo.laughk.org/atom.xml" type="application/atom+xml" rel="alternate"
+              title="続・ラフなラボ ATOM Feed"/>
+        <link href="http://memo.laughk.org/rss.xml" type="application/atom+xml" rel="alternate"
+              title="続・ラフなラボ RSS Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://memo.laughk.org/" class="navbar-brand">
+続・ラフなラボ            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/rss.xml"><i class="fa fa-rss"></i>RSS</a></li>
+                    <li><a href="https://twitter.com/laugh_k"><i class="fa fa-twitter"></i>twitter</a></li>
+                    <li><a href="https://github.com/laughk"><i class="fa fa-github"></i>Github</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://memo.laughk.org/archives"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <span class="label label-default">
+                    <i class="fa fa-calendar"></i>
+                        2014-09-07
+                </span>
+                <h1>
+                    <a href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html"
+                       rel="bookmark"
+                       title="Permalink to YAPC::Asiaに初参加してきた #yapcasia">
+                        YAPC::Asiaに初参加してきた #yapcasia
+                    </a>
+                </h1>
+                    <div id="fb-root"></div>
+                    <script>
+                    (function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=1412228335678506";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                    </script>
+            </header>
+            <div class="entry-content">
+                <p>先週末、初めて<a href="http://yapcasia.org">YAPC::Asia</a>に参加してきたので簡単にレポート。<br />
+0日目は一人で、1日目以降は <a href="https://twitter.com/tkr0429">@tkr0429</a> さんと二人で参加した。</p>
+<blockquote class="twitter-tweet" lang="ja"><p>yapcasia前夜祭来てみたら予想以上にいろいろもらえたw すげーw <a href="http://t.co/gygtkJ7d4h">pic.twitter.com/gygtkJ7d4h</a></p>&mdash; Kei Iwasaki (@laugh_k) <a href="https://twitter.com/laugh_k/status/504923405821296640">2014, 8月 28</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+<h2>0日目</h2>
+<p>前夜祭ということでLT祭り。
+初めてでビールとかもらえるのを知らずに普通にコンビニで飲み物を買ってから会場に行ってしまったのはやや失敗だった。</p>
+<p>LTからすでにPerl関係なくフリーダムな感じで、非常に面白かった。<br />
+特に wri.pe なんて普通に自分が使いたいサービスとしていいなって思ったし、「プライベートで3年間チーム開発した話」は本当に好きでやっている感があってすごく良かった。
+ただ最後のクイズを支える技術に全部持って行かれた感は否めない。デモが面白すぎた。</p>
+<h2>1日目</h2>
+<p>セッションをまわりつつ、無限コーヒーをいただいたり。<br />
+YAPC::Asia ってこんな感じなんだなーということを感じながらすごしていた。</p>
+<p>セッションは私も@tkr0429さんもインフラエンジニアなのでそれに関するものを選んだ傾向が強い。<br />
+特に<a href="https://twitter.com/studio3104">@studio3104</a>さん の「インフラエンジニア(狭義)は死んだ」はちょうど自分自身がほぼ同様ののことを色々と考えていたこともあり、非常に響いた内容だった。</p>
+<blockquote class="twitter-tweet" lang="ja"><p>コードかけない/読めないと運用屋は死ぬってのはひしひしと感じていた... <a href="https://twitter.com/hashtag/yapcasia?src=hash">#yapcasia</a></p>&mdash; Kei Iwasaki (@laugh_k) <a href="https://twitter.com/laugh_k/status/505166130357338112">2014, 8月 29</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>その時のTLの反応とか見ていると、「コードかけない奴が死んでいくのは何もインフラエンジニアに限ったことじゃなくインターネットで仕事しているエンジニア全般に言えることでは？」みたいなものが流れていた気がするし、実際そうだと思う。
+ただ、自分がいた環境からは少なくとも「いやいや、仕事インフラの方だからコードとか関係ないし」みたいな
+どこか他人事のような意識を持ってしまっている人は結構多いんじゃないかなと感じていて、
+そういった人たちにはぜひ聞いてほしいなと思えるような内容で、個人的にすごくよかった。
+また「カンファレンスとか来ても自分が何をやっているのかということを話せないとなかなか仲良くなりづらい。ブログ書きましょう。アウトプットしよう」というのはホントだなと感じた。アウトプットがんばろう。</p>
+<p>お昼のセッションでもらえたお弁当は美味しかったり、
+イベントホールで休んでいるとライブコーディングが始まってワイワイしたりと本当にお祭りという感じだった。</p>
+<blockquote class="twitter-tweet" lang="ja"><p>開封 <a href="https://twitter.com/hashtag/yapcasia?src=hash">#yapcasia</a> <a href="http://t.co/FBBGype6sk">pic.twitter.com/FBBGype6sk</a></p>&mdash; Kei Iwasaki (@laugh_k) <a href="https://twitter.com/laugh_k/status/505190141661429761">2014, 8月 29</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>残念ながら懇親会から溢れてしまっていたことと、
+次の日は朝からセッションに行きたいと思っていたのでこの日は早めに退散。(この時はHubが開放されてるの知らなかったのが最大の失敗)</p>
+<h2>2日目</h2>
+<p>2日目も基本的には1日目と同様の流れですごしてみて、
+キーノートからHubに流れた感じ。</p>
+<blockquote class="twitter-tweet" lang="ja"><p>旨そうである <a href="https://twitter.com/hashtag/yapcasia?src=hash">#yapcasia</a> <a href="http://t.co/MEKG7UL0ST">pic.twitter.com/MEKG7UL0ST</a></p>&mdash; Kei Iwasaki (@laugh_k) <a href="https://twitter.com/laugh_k/status/505552486778683392">2014, 8月 30</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>2日目もお弁当ゲット。実際うまかったけど、思った以上に卵たっぷりボリュームたっぷりで若干胃がやられた感はある。</p>
+<hr />
+<p>この日聞いたセッションでは<a href="https://twitter.com/koemu">@koemu</a>さんの「<a href="http://www.koemu.com/etc/yapcasia2014/#/">突然ITインフラを任された人のための…監視設計入門</a>」
+がMSPでインフラをやっていた人間としては非常に共感もでき、まだまだ意識が足りないところもあったなという気付きもあった(監視サーバの場所、処理フローからの逆算など)。これはインフラをやっている人はもちろん、Web系の技術者の方なら一度は絶対に聞いてほしいなと感じた。あと、デモで利用していたshioriは個人的にちょっと使ってみたいなと思った。</p>
+<blockquote class="twitter-tweet" lang="ja"><p>誤報なれは確かに怖い。通知受けてもまたアレかって感覚になっちゃうし <a href="https://twitter.com/hashtag/yapcasia?src=hash">#yapcasia</a></p>&mdash; Kei Iwasaki (@laugh_k) <a href="https://twitter.com/laugh_k/status/505535267826978816">2014, 8月 30</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" lang="ja"><p>障害時の意思決定ホント大事だわ. 事前に決めとかないといざという時ホントに泣きを見る... <a href="https://twitter.com/hashtag/yapcasia?src=hash">#yapcasia</a></p>&mdash; Kei Iwasaki (@laugh_k) <a href="https://twitter.com/laugh_k/status/505536101864312832">2014, 8月 30</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" lang="ja"><p>IaaSの障害の時は確かに登録IDとか本人確認とか色々聞かれるからどこに情報あるか認識合わせておくのすごく大事 <a href="https://twitter.com/hashtag/yapcasia?src=hash">#yapcasia</a></p>&mdash; Kei Iwasaki (@laugh_k) <a href="https://twitter.com/laugh_k/status/505536763733884928">2014, 8月 30</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>また、<a href="https://twitter.com/mackee_w">@mackee_w</a>さんの「趣味開発のためのVPS/クラウド活用術」は20分の時間で全体の話までは聞けなかったけど<a href="https://vultr.com">VULTR</a>というサービスは知らなかったのでちょっと試してみようと思った。</p>
+<p>あとこの日は特に事前受付などはしていなかったけど、Bot作ってみるとか面白そうだなと思ってPerl入学式に飛び入りで参加させてもらえた。最近あまりPerlは触れていなかったけど、<a href="https://twitter.com/__papix__">@__papix__</a>さん中心とした講師陣の説明がとにかく丁寧でお題にもいい感じで取り組むことができた。雰囲気も非常によくてPerlというか、とりあえずプログラミング始めたい！って人はPerl入学式行ってみればいいと思った。</p>
+<blockquote class="twitter-tweet" lang="ja"><p>とりあえず「ぬるぽ」って入れたら「ガッ」してもらうようにした <a href="https://twitter.com/hashtag/yapcasia?src=hash">#yapcasia</a> <a href="https://twitter.com/hashtag/Perl%E5%85%A5%E5%AD%A6%E5%BC%8F?src=hash">#Perl入学式</a></p>&mdash; Kei Iwasaki (@laugh_k) <a href="https://twitter.com/laugh_k/status/505590125808459776">2014, 8月 30</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>クライマックスのLT祭りも面白く、特に<a href="https://speakerdeck.com/onigra/twitterqu-dong-tuo-chu-xin-zhe-number-yapcasia">TDD(Twitter Driven Datsu-Syoshinsya) / Twitter駆動脱初心者 #yapcasia</a>がよかった。</p>
+<p>最後の<a href="https://twitter.com/typester">@typestar</a>さんのキーノートに関しては、
+エンジニアとしての生き方みたいな話でいろんな人との関わりだったり、技術者としての強みをもつことだったり。
+本当に今後の生き方を考えさせられた。
+特に、「受託を行うことで自分が知らない技術に出会える」ということに関しては、
+確実に技術者としての強み、仕事で関わる人通しのつながり・信頼がないと到達できないだろうなと思った。</p>
+<blockquote class="twitter-tweet" lang="ja"><p>20代残り少ないけどまだまだがんばらにゃって思った。いい話だった。 <a href="https://twitter.com/hashtag/yapcasia?src=hash">#yapcasia</a></p>&mdash; Kei Iwasaki (@laugh_k) <a href="https://twitter.com/laugh_k/status/505647071173431297">2014, 8月 30</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>最後はなんだかこれで「これで2日間終わりかー」という感じでお祭りの終わりみたいな雰囲気があった。</p>
+<hr />
+<p>メインのセッションが終了したところで会場の下の階にあったHubが開放されているので立ち寄ったが、
+こちらはまだまだお祭りのまっただ中という感じ。</p>
+<p>たまたまテーブルで一緒に座った<a href="https://twitter.com/do_aki">@do_aki</a>さんとYAPCに関して色々お話できたり、
+「インフラエンジニア(狭義)は死んだ」の<a href="https://twitter.com/studio3104">@studio3104</a>さんと直接お話しできたり
+会場のネットワークのCONBUの方のYAPC会場のネットワーク品質に対する情熱トークが聞けたり...</p>
+<p>本当に濃い3日間だった。</p>
+<h2>全体的な感想</h2>
+<p>YAPC::Asiaは去年あたりからすでにPerlメインで使っている人でも楽しめる！みたいな感じな話は目にしていて、
+今年は事前に募集されていたトークの内容からして「IT技術者なら誰でも楽しめそうなものがゴロゴロしてそう」という感じで初参加してみた。</p>
+<p>実際参加してみると、ホントにガチガチなカンファレンスという感じではなく、
+会場の至るところに参加者の方がフラフラしていていい意味でゆるい感じでいいな思った。</p>
+<p>ただ、参加人数が人数なだけに
+基本的にセッション聞くのは床に座るのがほぼ当たり前になって、そうなってしまうとなかなかスライドが見えなかったりで
+会場のキャパとしては結構キツイものがあるのかなという感じはした。(とはいえ、これだけの人数のカンファレンスなので、仕方ない部分もあるとは思う)</p>
+<p>なので、YAPC::Asiaの醍醐味としてはセッショントークやイベントスペースで発生する催しもあるけどやっぱり、
+セッションやっている人だったりHUBなりに居る人と直接いろんな話ができることなのかなと勝手に思った。</p>
+<p>1つだけ間違いないと思うのは、YAPC::Asia はITに関するエンジニアの方なら誰でも楽しめる
+「エンジニアのお祭り」なんだなということ。来年もまた参加したい！</p>
+                <div class="panel">
+                    <div class="panel-body">
+                    <!-- <div class="alert alert-dismissable alert-warning"> -->
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-09-07T02:10:00"> 2014-09-07</time>
+    </span>
+    <span class="label label-default">By</span>
+    <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
+
+
+
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+            </div>
+            <!-- /.entry-content -->
+<!-- AddThis Button BEGIN -->
+<div class="social_tools">
+
+    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+        <div class="fb-like" data-href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+
+        <a href="https://twitter.com/share" class="twitter-share-button addthis_button_tweet" data-lang="ja" data-related="laugh_k">ツイート</a>
+
+        <script>
+            !function(d,s,id){
+              var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                if(!d.getElementById(id)){
+                  js=d.createElement(s);
+                    js.id=id;
+                    js.src=p+'://platform.twitter.com/widgets.js';
+                    fjs.parentNode.insertBefore(js,fjs);
+                }
+            }(document, 'script', 'twitter-wjs');
+        </script>
+
+        <div class="g-plusone "></div>
+
+        <script type="text/javascript">
+          window.___gcfg = {lang: 'ja'};
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+
+        <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="ja"></a>
+        <script type="text/javascript">
+            !function(d,i){
+              if(!d.getElementById(i)){
+                var j=d.createElement("script");
+                j.id=i;
+                j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";
+                var w=d.getElementById(i);d.body.appendChild(j);
+              }
+            }(document,"pocket-btn-js");
+        </script>
+
+
+</div>
+<!-- AddThis Button END -->            <div class="adsense">
+               <!-- Google Adsense -->
+               <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+               <!-- memo.laughk.org-postfoot -->
+               <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-8841652702834940"
+                    data-ad-slot="4223982601"
+                    data-ad-format="auto"></ins>
+               <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+               </script>
+               <!-- Google Adsense END -->
+            </div>
+    <hr />
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
+            var disqus_identifier = 'yapcasia2014-repo';
+            var disqus_url = 'http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html';
+            var disqus_config = function () {
+                this.language = "ja";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer class="all">
+   <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+<h4><i class="fa fa-user fa-lg"></i><span class="icon-label">About Me</span></h4>
+<div>
+  <img src="/images/laughk.jpg" align="button" id="author_img">
+  Kei Iwasaki
+</div>
+<ul id="social">
+  <li class="list-group-item">
+    <a href="https://twitter.com/laugh_k">
+      <i class="fa fa-twitter-square fa-lg"></i> twitter
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a href="https://github.com/laughk">
+      <i class="fa fa-github-square fa-lg"></i> github
+    </a>
+  </li>
+</ul>        </div>
+
+        <div class="col-lg-5">
+
+<h4><i class="fa fa-th-list fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+<ul id="recentposts">
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html">
+            YAPC::Asiaに初参加してきた #yapcasia
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html">
+            ブログジェネレータをTinkererからPelicanに移行した
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html">
+            第一回Ansible勉強会でLTさせてもらった
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/05/25/start_archlinux.html">
+            Arch Linux はじめました
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/04/24/shell_exec_log.html">
+            シェルスクリプトが '&gt; $logfile 2&gt;&amp;1' だらけにならなくて済んだ話
+        </a>
+    </li>
+</ul>
+
+        </div>
+
+        <div class="col-lg-4">
+
+<h4><i class="fa fa-star fa-lg"></i><span class="icon-label">Popular Posts</span></h4>
+<script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript">
+Hatena.BookmarkWidget.url   = "http://memo.laughk.org";
+Hatena.BookmarkWidget.sort  = "count";
+Hatena.BookmarkWidget.width = 0;
+Hatena.BookmarkWidget.num   = 5;
+Hatena.BookmarkWidget.theme = "hatenadiary";
+Hatena.BookmarkWidget.load();
+</script>        </div>
+
+      <hr />
+
+       <div class="col-xs-10">&copy; 2014 Kei Iwasaki
+          &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+          <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+          <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>       </div>
+       <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="//code.jquery.com/jquery.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://memo.laughk.org/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://memo.laughk.org/theme/js/respond.min.js"></script>
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-16164514-8']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+</html>

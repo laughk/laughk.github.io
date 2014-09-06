@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="ブログジェネレータをTinkererからPelicanに移行した"/>
             <meta property="og:url" content="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html"/>
-            <meta property="og:description" content="これまでしばらくSphinxベースのTinkererを使ってReST -> HTML 変換を行いGithubpageにホスティングする形でやっておりましたが、Tinkererの部分をPelicanに移行しました。 移行の際にやったことをメモしておきます。 ちなみに、以下のものはすでに使えることを前提にします。 pyenv, pyenv-virtualenv git githubpage"/>
+            <meta property="og:description" content="2014/09/06 一部タイポと文言を修正しました これまでしばらくSphinxベースのTinkererを使ってReST -> HTML 変換を行いGithubpageにホスティングする形でやっておりましたが、Tinkererの部分をPelicanに移行しました。 移行の際にやったことをメモしておきます。 ちなみに、以下のものはすでに使えることを前提にします。 pyenv, pyenv-virtualenv git githubpage"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -90,7 +90,10 @@
                     </script>
             </header>
             <div class="entry-content">
-                <p>これまでしばらくSphinxベースの<a href="http://tinkerer.me/">Tinkerer</a>を使って<code>ReST</code> -&gt; <code>HTML</code> 変換を行いGithubpageにホスティングする形でやっておりましたが、Tinkererの部分を<a href="https://github.com/getpelican/pelican">Pelican</a>に移行しました。</p>
+                <p><strong>2014/09/06</strong>
+一部タイポと文言を修正しました</p>
+<hr />
+<p>これまでしばらくSphinxベースの<a href="http://tinkerer.me/">Tinkerer</a>を使って<code>ReST</code> -&gt; <code>HTML</code> 変換を行いGithubpageにホスティングする形でやっておりましたが、Tinkererの部分を<a href="https://github.com/getpelican/pelican">Pelican</a>に移行しました。</p>
 <p>移行の際にやったことをメモしておきます。</p>
 <p>ちなみに、以下のものはすでに使えることを前提にします。</p>
 <ul>
@@ -182,8 +185,8 @@
 </li>
 </ol>
 <h2>TinkererからReSTファイルを移行</h2>
-<p>TinkererはSphinxベースのツールで元々ReSTはサポートしていますが、
-微妙に方言に違いがあって、そのままPelicanでビルドしようとすると落っこちます。
+<p>PelicanはReST、Markdownともにサポートしてますし、TinkererはSphinxベースのツールで元々ReSTはサポートしています。
+ただ、微妙に方言に違いがあってTinkererで使ってた<code>*.rst</code>ファイルをそのままPelicanでビルドしようとすると落っこちます。
 また、デフォルト設定だとTinkerer管理のような <code>content/YYYY/MM/DD/&lt;slug&gt;.rst</code> の形式も日付や生成されるファイルのパス情報として読み込んでくれないかったり、画像ファイルを各日付ごとのディレクトリにおいても特に面倒は見てくれません。
 そのへん自力でなんとかする必要があります。(軽く調べた感じ、特に移行ツールなどは見つかりませんでした...)</p>
 <h3>ReSTファイルのコンバート, 画像ファイルの移動</h3>
@@ -249,7 +252,7 @@
 <li><a href="http://www.addthis.com/">Addthis</a> でソーシャルボタンが一発で行けるかと思いきやURLに勝手に <code>#xx-xxxxxxx</code> ってつけられてキモいので削除、自力でテンプレ作成。</li>
 <li>広告入れる場合はレスポンシブデザインか小さいサイズにしておかないと思わぬところでデザインが崩れる。</li>
 <li>画像もレスポンシブ対策をCSSにしないとデザインが崩れる。</li>
-<li><code>pulishconf.py</code> に <code>RELATEVE_URLS = True</code> 入れておかないとホスティングの際にDISCUSのコメント欄が死ぬ (相対パスになっちゃったSITEURLがDISCUS用のJSのパラメータに渡っちゃうため)</li>
+<li><code>pulishconf.py</code> に <code>RELATEVE_URLS = False</code> 入れておかないとホスティングの際にDISCUSのコメント欄が死ぬ (相対パスになっちゃったSITEURLがDISCUS用のJSのパラメータに渡っちゃうため)</li>
 <li>生成に必要な部分と生成物はこれまで違うレポジトリで管理していたけど、<code>ghp-import</code> なるものがあったので、生成物を<code>gh-pages</code>ブランチ、設定ファイルや元のMarkdown,ReSTファイルなどは<code>master</code>ブランチという形でレポジトリを統合。</li>
 </ul>
 <h2>最後に</h2>
@@ -401,6 +404,12 @@ MarkdownとReSTの混合状態でもいい感じでビルドしてくれます�
 <ul id="recentposts">
     <li class="list-group-item">
         <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html">
+            YAPC::Asiaに初参加してきた #yapcasia
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
         <a href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html">
             ブログジェネレータをTinkererからPelicanに移行した
         </a>
@@ -421,12 +430,6 @@ MarkdownとReSTの混合状態でもいい感じでビルドしてくれます�
         <i class="fa fa-file-text fa-lg"></i>
         <a href="http://memo.laughk.org/2014/04/24/shell_exec_log.html">
             シェルスクリプトが '&gt; $logfile 2&gt;&amp;1' だらけにならなくて済んだ話
-        </a>
-    </li>
-    <li class="list-group-item">
-        <i class="fa fa-file-text fa-lg"></i>
-        <a href="http://memo.laughk.org/2014/04/21/qpstudy_20140419_report.html">
-            #qpstudy 2014.04 に参加してきたんで自分用まとめとか
         </a>
     </li>
 </ul>

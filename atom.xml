@@ -1,5 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2014-08-10T21:30:00+09:00</updated><entry><title>ブログジェネレータをTinkererからPelicanに移行した</title><link href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html" rel="alternate"></link><updated>2014-08-10T21:30:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-08-10:2014/08/10/tinker2pelican-repo.html</id><summary type="html">&lt;p&gt;これまでしばらくSphinxベースの&lt;a href="http://tinkerer.me/"&gt;Tinkerer&lt;/a&gt;を使って&lt;code&gt;ReST&lt;/code&gt; -&amp;gt; &lt;code&gt;HTML&lt;/code&gt; 変換を行いGithubpageにホスティングする形でやっておりましたが、Tinkererの部分を&lt;a href="https://github.com/getpelican/pelican"&gt;Pelican&lt;/a&gt;に移行しました。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2014-09-07T02:10:00+09:00</updated><entry><title>YAPC::Asiaに初参加してきた #yapcasia</title><link href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html" rel="alternate"></link><updated>2014-09-07T02:10:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-09-07:2014/09/07/yapcasia2014-repo.html</id><summary type="html">&lt;p&gt;先週末、初めて&lt;a href="http://yapcasia.org"&gt;YAPC::Asia&lt;/a&gt;に参加してきたので簡単にレポート。&lt;br /&gt;
+0日目は一人で、1日目以降は &lt;a href="https://twitter.com/tkr0429"&gt;@tkr0429&lt;/a&gt; さんと二人で参加した。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;yapcasia前夜祭来てみたら予想以上にいろいろもらえたw すげーw &lt;a href="http://t.co/gygtkJ7d4h"&gt;pic.twitter.com/gygtkJ7d4h&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/504923405821296640"&gt;2014, 8月 28&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+
+
+&lt;h2&gt;0日目&lt;/h2&gt;
+&lt;p&gt;前夜祭ということでLT祭り。
+初めてでビールとかもらえるのを知らずに普通にコンビニで飲み物を買ってから会場に行ってしまったのはやや失敗だった。&lt;/p&gt;
+&lt;p&gt;LTからすでにPerl関係なくフリーダムな感じで、非常に面白かった。&lt;br /&gt;
+特に wri.pe なんて普通に自分が使いたいサービスとしていいなって思ったし、「プライベートで3年間チーム開発した話」は本当に好きでやっている感があってすごく良かった。
+ただ最後のクイズを支える技術に全部持って行かれた感は否めない。デモが面白すぎた。&lt;/p&gt;
+&lt;h2&gt;1日目&lt;/h2&gt;
+&lt;p&gt;セッションをまわりつつ、無限コーヒーをいただいたり。&lt;br /&gt;
+YAPC::Asia ってこんな感じなんだなーということを感じながらすごしていた。&lt;/p&gt;
+&lt;p&gt;セッションは私も@tkr0429さんもインフラエンジニアなのでそれに関するものを選んだ傾向が強い。&lt;br /&gt;
+特に&lt;a href="https://twitter.com/studio3104"&gt;@studio3104&lt;/a&gt;さん の「インフラエンジニア(狭義)は死んだ」はちょうど自分自身がほぼ同様ののことを色々と考えていたこともあり、非常に響いた内容だった。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;コードかけない/読めないと運用屋は死ぬってのはひしひしと感じていた... &lt;a href="https://twitter.com/hashtag/yapcasia?src=hash"&gt;#yapcasia&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/505166130357338112"&gt;2014, 8月 29&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;その時のTLの反応とか見ていると、「コードかけない奴が死んでいくのは何もインフラエンジニアに限ったことじゃなくインターネットで仕事しているエンジニア全般に言えることでは？」みたいなものが流れていた気がするし、実際そうだと思う。
+ただ、自分がいた環境からは少なくとも「いやいや、仕事インフラの方だからコードとか関係ないし」みたいな
+どこか他人事のような意識を持ってしまっている人は結構多いんじゃないかなと感じていて、
+そういった人たちにはぜひ聞いてほしいなと思えるような内容で、個人的にすごくよかった。
+また「カンファレンスとか来ても自分が何をやっているのかということを話せないとなかなか仲良くなりづらい。ブログ書きましょう。アウトプットしよう」というのはホントだなと感じた。アウトプットがんばろう。&lt;/p&gt;
+&lt;p&gt;お昼のセッションでもらえたお弁当は美味しかったり、
+イベントホールで休んでいるとライブコーディングが始まってワイワイしたりと本当にお祭りという感じだった。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;開封 &lt;a href="https://twitter.com/hashtag/yapcasia?src=hash"&gt;#yapcasia&lt;/a&gt; &lt;a href="http://t.co/FBBGype6sk"&gt;pic.twitter.com/FBBGype6sk&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/505190141661429761"&gt;2014, 8月 29&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;残念ながら懇親会から溢れてしまっていたことと、
+次の日は朝からセッションに行きたいと思っていたのでこの日は早めに退散。(この時はHubが開放されてるの知らなかったのが最大の失敗)&lt;/p&gt;
+&lt;h2&gt;2日目&lt;/h2&gt;
+&lt;p&gt;2日目も基本的には1日目と同様の流れですごしてみて、
+キーノートからHubに流れた感じ。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;旨そうである &lt;a href="https://twitter.com/hashtag/yapcasia?src=hash"&gt;#yapcasia&lt;/a&gt; &lt;a href="http://t.co/MEKG7UL0ST"&gt;pic.twitter.com/MEKG7UL0ST&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/505552486778683392"&gt;2014, 8月 30&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;2日目もお弁当ゲット。実際うまかったけど、思った以上に卵たっぷりボリュームたっぷりで若干胃がやられた感はある。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;この日聞いたセッションでは&lt;a href="https://twitter.com/koemu"&gt;@koemu&lt;/a&gt;さんの「&lt;a href="http://www.koemu.com/etc/yapcasia2014/#/"&gt;突然ITインフラを任された人のための…監視設計入門&lt;/a&gt;」
+がMSPでインフラをやっていた人間としては非常に共感もでき、まだまだ意識が足りないところもあったなという気付きもあった(監視サーバの場所、処理フローからの逆算など)。これはインフラをやっている人はもちろん、Web系の技術者の方なら一度は絶対に聞いてほしいなと感じた。あと、デモで利用していたshioriは個人的にちょっと使ってみたいなと思った。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;誤報なれは確かに怖い。通知受けてもまたアレかって感覚になっちゃうし &lt;a href="https://twitter.com/hashtag/yapcasia?src=hash"&gt;#yapcasia&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/505535267826978816"&gt;2014, 8月 30&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;障害時の意思決定ホント大事だわ. 事前に決めとかないといざという時ホントに泣きを見る... &lt;a href="https://twitter.com/hashtag/yapcasia?src=hash"&gt;#yapcasia&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/505536101864312832"&gt;2014, 8月 30&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;IaaSの障害の時は確かに登録IDとか本人確認とか色々聞かれるからどこに情報あるか認識合わせておくのすごく大事 &lt;a href="https://twitter.com/hashtag/yapcasia?src=hash"&gt;#yapcasia&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/505536763733884928"&gt;2014, 8月 30&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;また、&lt;a href="https://twitter.com/mackee_w"&gt;@mackee_w&lt;/a&gt;さんの「趣味開発のためのVPS/クラウド活用術」は20分の時間で全体の話までは聞けなかったけど&lt;a href="https://vultr.com"&gt;VULTR&lt;/a&gt;というサービスは知らなかったのでちょっと試してみようと思った。&lt;/p&gt;
+&lt;p&gt;あとこの日は特に事前受付などはしていなかったけど、Bot作ってみるとか面白そうだなと思ってPerl入学式に飛び入りで参加させてもらえた。最近あまりPerlは触れていなかったけど、&lt;a href="https://twitter.com/__papix__"&gt;@__papix__&lt;/a&gt;さん中心とした講師陣の説明がとにかく丁寧でお題にもいい感じで取り組むことができた。雰囲気も非常によくてPerlというか、とりあえずプログラミング始めたい！って人はPerl入学式行ってみればいいと思った。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;とりあえず「ぬるぽ」って入れたら「ガッ」してもらうようにした &lt;a href="https://twitter.com/hashtag/yapcasia?src=hash"&gt;#yapcasia&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/Perl%E5%85%A5%E5%AD%A6%E5%BC%8F?src=hash"&gt;#Perl入学式&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/505590125808459776"&gt;2014, 8月 30&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;クライマックスのLT祭りも面白く、特に&lt;a href="https://speakerdeck.com/onigra/twitterqu-dong-tuo-chu-xin-zhe-number-yapcasia"&gt;TDD(Twitter Driven Datsu-Syoshinsya) / Twitter駆動脱初心者 #yapcasia&lt;/a&gt;がよかった。&lt;/p&gt;
+&lt;p&gt;最後の&lt;a href="https://twitter.com/typester"&gt;@typestar&lt;/a&gt;さんのキーノートに関しては、
+エンジニアとしての生き方みたいな話でいろんな人との関わりだったり、技術者としての強みをもつことだったり。
+本当に今後の生き方を考えさせられた。
+特に、「受託を行うことで自分が知らない技術に出会える」ということに関しては、
+確実に技術者としての強み、仕事で関わる人通しのつながり・信頼がないと到達できないだろうなと思った。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;20代残り少ないけどまだまだがんばらにゃって思った。いい話だった。 &lt;a href="https://twitter.com/hashtag/yapcasia?src=hash"&gt;#yapcasia&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/505647071173431297"&gt;2014, 8月 30&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;最後はなんだかこれで「これで2日間終わりかー」という感じでお祭りの終わりみたいな雰囲気があった。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;メインのセッションが終了したところで会場の下の階にあったHubが開放されているので立ち寄ったが、
+こちらはまだまだお祭りのまっただ中という感じ。&lt;/p&gt;
+&lt;p&gt;たまたまテーブルで一緒に座った&lt;a href="https://twitter.com/do_aki"&gt;@do_aki&lt;/a&gt;さんとYAPCに関して色々お話できたり、
+「インフラエンジニア(狭義)は死んだ」の&lt;a href="https://twitter.com/studio3104"&gt;@studio3104&lt;/a&gt;さんと直接お話しできたり
+会場のネットワークのCONBUの方のYAPC会場のネットワーク品質に対する情熱トークが聞けたり...&lt;/p&gt;
+&lt;p&gt;本当に濃い3日間だった。&lt;/p&gt;
+&lt;h2&gt;全体的な感想&lt;/h2&gt;
+&lt;p&gt;YAPC::Asiaは去年あたりからすでにPerlメインで使っている人でも楽しめる！みたいな感じな話は目にしていて、
+今年は事前に募集されていたトークの内容からして「IT技術者なら誰でも楽しめそうなものがゴロゴロしてそう」という感じで初参加してみた。&lt;/p&gt;
+&lt;p&gt;実際参加してみると、ホントにガチガチなカンファレンスという感じではなく、
+会場の至るところに参加者の方がフラフラしていていい意味でゆるい感じでいいな思った。&lt;/p&gt;
+&lt;p&gt;ただ、参加人数が人数なだけに
+基本的にセッション聞くのは床に座るのがほぼ当たり前になって、そうなってしまうとなかなかスライドが見えなかったりで
+会場のキャパとしては結構キツイものがあるのかなという感じはした。(とはいえ、これだけの人数のカンファレンスなので、仕方ない部分もあるとは思う)&lt;/p&gt;
+&lt;p&gt;なので、YAPC::Asiaの醍醐味としてはセッショントークやイベントスペースで発生する催しもあるけどやっぱり、
+セッションやっている人だったりHUBなりに居る人と直接いろんな話ができることなのかなと勝手に思った。&lt;/p&gt;
+&lt;p&gt;1つだけ間違いないと思うのは、YAPC::Asia はITに関するエンジニアの方なら誰でも楽しめる
+「エンジニアのお祭り」なんだなということ。来年もまた参加したい！&lt;/p&gt;</summary></entry><entry><title>ブログジェネレータをTinkererからPelicanに移行した</title><link href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html" rel="alternate"></link><updated>2014-08-10T21:30:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-08-10:2014/08/10/tinker2pelican-repo.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;2014/09/06&lt;/strong&gt;
+一部タイポと文言を修正しました&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;これまでしばらくSphinxベースの&lt;a href="http://tinkerer.me/"&gt;Tinkerer&lt;/a&gt;を使って&lt;code&gt;ReST&lt;/code&gt; -&amp;gt; &lt;code&gt;HTML&lt;/code&gt; 変換を行いGithubpageにホスティングする形でやっておりましたが、Tinkererの部分を&lt;a href="https://github.com/getpelican/pelican"&gt;Pelican&lt;/a&gt;に移行しました。&lt;/p&gt;
 &lt;p&gt;移行の際にやったことをメモしておきます。&lt;/p&gt;
 &lt;p&gt;ちなみに、以下のものはすでに使えることを前提にします。&lt;/p&gt;
 &lt;ul&gt;
@@ -91,8 +188,8 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;TinkererからReSTファイルを移行&lt;/h2&gt;
-&lt;p&gt;TinkererはSphinxベースのツールで元々ReSTはサポートしていますが、
-微妙に方言に違いがあって、そのままPelicanでビルドしようとすると落っこちます。
+&lt;p&gt;PelicanはReST、Markdownともにサポートしてますし、TinkererはSphinxベースのツールで元々ReSTはサポートしています。
+ただ、微妙に方言に違いがあってTinkererで使ってた&lt;code&gt;*.rst&lt;/code&gt;ファイルをそのままPelicanでビルドしようとすると落っこちます。
 また、デフォルト設定だとTinkerer管理のような &lt;code&gt;content/YYYY/MM/DD/&amp;lt;slug&amp;gt;.rst&lt;/code&gt; の形式も日付や生成されるファイルのパス情報として読み込んでくれないかったり、画像ファイルを各日付ごとのディレクトリにおいても特に面倒は見てくれません。
 そのへん自力でなんとかする必要があります。(軽く調べた感じ、特に移行ツールなどは見つかりませんでした...)&lt;/p&gt;
 &lt;h3&gt;ReSTファイルのコンバート, 画像ファイルの移動&lt;/h3&gt;
@@ -158,7 +255,7 @@
 &lt;li&gt;&lt;a href="http://www.addthis.com/"&gt;Addthis&lt;/a&gt; でソーシャルボタンが一発で行けるかと思いきやURLに勝手に &lt;code&gt;#xx-xxxxxxx&lt;/code&gt; ってつけられてキモいので削除、自力でテンプレ作成。&lt;/li&gt;
 &lt;li&gt;広告入れる場合はレスポンシブデザインか小さいサイズにしておかないと思わぬところでデザインが崩れる。&lt;/li&gt;
 &lt;li&gt;画像もレスポンシブ対策をCSSにしないとデザインが崩れる。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;pulishconf.py&lt;/code&gt; に &lt;code&gt;RELATEVE_URLS = True&lt;/code&gt; 入れておかないとホスティングの際にDISCUSのコメント欄が死ぬ (相対パスになっちゃったSITEURLがDISCUS用のJSのパラメータに渡っちゃうため)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pulishconf.py&lt;/code&gt; に &lt;code&gt;RELATEVE_URLS = False&lt;/code&gt; 入れておかないとホスティングの際にDISCUSのコメント欄が死ぬ (相対パスになっちゃったSITEURLがDISCUS用のJSのパラメータに渡っちゃうため)&lt;/li&gt;
 &lt;li&gt;生成に必要な部分と生成物はこれまで違うレポジトリで管理していたけど、&lt;code&gt;ghp-import&lt;/code&gt; なるものがあったので、生成物を&lt;code&gt;gh-pages&lt;/code&gt;ブランチ、設定ファイルや元のMarkdown,ReSTファイルなどは&lt;code&gt;master&lt;/code&gt;ブランチという形でレポジトリを統合。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;最後に&lt;/h2&gt;

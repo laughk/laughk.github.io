@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2014-09-07T02:10:00+09:00</updated><entry><title>YAPC::Asiaに初参加してきた #yapcasia</title><link href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html" rel="alternate"></link><updated>2014-09-07T02:10:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-09-07:2014/09/07/yapcasia2014-repo.html</id><summary type="html">&lt;p&gt;先週末、初めて&lt;a href="http://yapcasia.org"&gt;YAPC::Asia&lt;/a&gt;に参加してきたので簡単にレポート。&lt;br /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2014-09-07T13:00:00+09:00</updated><entry><title>GMOペパボに入社した</title><link href="http://memo.laughk.org/2014/09/07/join-pepabo.html" rel="alternate"></link><updated>2014-09-07T13:00:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-09-07:2014/09/07/join-pepabo.html</id><summary type="html">&lt;p&gt;先月8月末で主に監視障害対応を請け負うインフラエンジニアとして勤務していた都内の某MSP業社を退職し&lt;br /&gt;
+9月1日から&lt;a href="http://pepabo.com/"&gt;GMOペパボ株式会社&lt;/a&gt;にインフラエンジニアとして入社しました。&lt;/p&gt;
+&lt;p&gt;[注意]&lt;br /&gt;
+いわゆる転職エントリーというもので、個人的な日記です。&lt;br /&gt;
+苦手な方はそっとブラウザバックを押していただくこと推奨です。&lt;/p&gt;
+
+
+&lt;h2&gt;転職の経緯とか&lt;/h2&gt;
+&lt;p&gt;これまでのMSPとしての監視運用を中心とする業務を通じて、&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;より運用改善をガッツリやってみたい&lt;/li&gt;
+&lt;li&gt;ひとつのサービスに特化した運用を経験してみたい&lt;/li&gt;
+&lt;li&gt;バリバリコーディングをしてレイヤを問わずに問題を解決できるようになりたい&lt;/li&gt;
+&lt;li&gt;運用の際に発生する痛みを解消出来るだけの知見を身につけたい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;という思いが日に日に強くなっていたこと&lt;/p&gt;
+&lt;p&gt;加えて、割と最近までは個人で色々勉強会に行ってみたりで少しずつは回収できていたのですが&lt;br /&gt;
+今年に入って結婚して生活環境が大幅に変わり、
+これまでの「個人で勉強会に行ってネタを仕入れて職場にちょっとずつ導入」のペースだと
+モチベーション的にも体力的にも持たなくなると感じたことが大きいです。&lt;/p&gt;
+&lt;h2&gt;GMOペパボ&lt;/h2&gt;
+&lt;p&gt;そんな中でGMOペパボを選んだ理由としては、だいたい以下のものが該当します。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;勉強会で中の人と話をしたり、中の人の発表内容やブログをみていてまさに自分がやりたいと思っていた運用改善を積極的に行っていた&lt;/li&gt;
+&lt;li&gt;エンジニアの制度に関するブログを見ていても、インフラ側も含めて考えていて、自分のポジションからでも会社を盛り上げるチャンスがあると思ったから&lt;/li&gt;
+&lt;li&gt;転職を本格的に考える段階になった時に出ていた募集要項内容を見て、今この機会を逃したら確実に後悔すると思ったから&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;入社してまだ1周間程度しか経っていませんが
+社内のアウトプット内容を見ているだけでもエンジニアとして尊敬できる方が多く、当初の考えは間違っていなかったと感じています。&lt;/p&gt;
+&lt;h2&gt;これから&lt;/h2&gt;
+&lt;p&gt;正直なところまわりの方々と今の自分の技術力のギャップはかなり感じていて、
+「ちゃんとついていけるかな...」と不安に思うところもあります。&lt;/p&gt;
+&lt;p&gt;ただ逆に言えば、自分のエンジニアとして今までこれまで伸ばせていなかった部分を存分に成長させるチャンスでもあります。
+まわりにいらっしゃる方々から色んな物を吸収しながら、前向きに、転職時に抱いた思いを実現させるべく頑張っていこうと思います。&lt;/p&gt;</summary><category term="日記"></category></entry><entry><title>YAPC::Asiaに初参加してきた #yapcasia</title><link href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html" rel="alternate"></link><updated>2014-09-07T02:10:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-09-07:2014/09/07/yapcasia2014-repo.html</id><summary type="html">&lt;p&gt;先週末、初めて&lt;a href="http://yapcasia.org"&gt;YAPC::Asia&lt;/a&gt;に参加してきたので簡単にレポート。&lt;br /&gt;
 0日目は一人で、1日目以降は &lt;a href="https://twitter.com/tkr0429"&gt;@tkr0429&lt;/a&gt; さんと二人で参加した。&lt;/p&gt;
 &lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p&gt;yapcasia前夜祭来てみたら予想以上にいろいろもらえたw すげーw &lt;a href="http://t.co/gygtkJ7d4h"&gt;pic.twitter.com/gygtkJ7d4h&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/504923405821296640"&gt;2014, 8月 28&lt;/a&gt;&lt;/blockquote&gt;
 
@@ -74,7 +107,7 @@ YAPC::Asia ってこんな感じなんだなーということを感じながら
 
 &lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 
-&lt;p&gt;最後はなんだかこれで「これで2日間終わりかー」という感じでお祭りの終わりみたいな雰囲気があった。&lt;/p&gt;
+&lt;p&gt;最後は「これで2日間終わりかー」という感じでお祭りの終わりみたいな雰囲気があった。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;メインのセッションが終了したところで会場の下の階にあったHubが開放されているので立ち寄ったが、
 こちらはまだまだお祭りのまっただ中という感じ。&lt;/p&gt;
@@ -83,7 +116,7 @@ YAPC::Asia ってこんな感じなんだなーということを感じながら
 会場のネットワークのCONBUの方のYAPC会場のネットワーク品質に対する情熱トークが聞けたり...&lt;/p&gt;
 &lt;p&gt;本当に濃い3日間だった。&lt;/p&gt;
 &lt;h2&gt;全体的な感想&lt;/h2&gt;
-&lt;p&gt;YAPC::Asiaは去年あたりからすでにPerlメインで使っている人でも楽しめる！みたいな感じな話は目にしていて、
+&lt;p&gt;YAPC::Asiaは去年あたりからすでにPerlメインで使ってない人でも楽しめる！みたいな感じな話は目にしていて、
 今年は事前に募集されていたトークの内容からして「IT技術者なら誰でも楽しめそうなものがゴロゴロしてそう」という感じで初参加してみた。&lt;/p&gt;
 &lt;p&gt;実際参加してみると、ホントにガチガチなカンファレンスという感じではなく、
 会場の至るところに参加者の方がフラフラしていていい意味でゆるい感じでいいな思った。&lt;/p&gt;

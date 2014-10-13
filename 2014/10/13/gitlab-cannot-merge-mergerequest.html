@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>GitLab でマージリクエストのマージができなくなった - 続・ラフなラボ</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="http://memo.laughk.org/images/favicon.ico" rel="icon">
+
+    <!-- Open Graph tags -->
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="GitLab でマージリクエストのマージができなくなった"/>
+            <meta property="og:url" content="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html"/>
+            <meta property="og:description" content="背景 所用で最近個人的にGitLabを使い始めたが、 マージリクエストをブラウザ越しにマージする際に、ボタンをクリックしても何故か画面が先に進まず、 延々とマージされない状況が続くという事態に陥ってしまった。"/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
+    <link href="http://memo.laughk.org/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://memo.laughk.org/theme/css/pygments/solarizeddark.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://memo.laughk.org/theme/css/style.css" type="text/css"/>
+        <link href="http://memo.laughk.org/static/custom.css" rel="stylesheet">
+
+        <link href="http://memo.laughk.org/atom.xml" type="application/atom+xml" rel="alternate"
+              title="続・ラフなラボ ATOM Feed"/>
+        <link href="http://memo.laughk.org/rss.xml" type="application/atom+xml" rel="alternate"
+              title="続・ラフなラボ RSS Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://memo.laughk.org/" class="navbar-brand">
+続・ラフなラボ            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/rss.xml"><i class="fa fa-rss"></i>RSS</a></li>
+                    <li><a href="https://twitter.com/laugh_k"><i class="fa fa-twitter"></i>twitter</a></li>
+                    <li><a href="https://github.com/laughk"><i class="fa fa-github"></i>Github</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://memo.laughk.org/archives"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <span class="label label-default">
+                    <i class="fa fa-calendar"></i>
+                        2014-10-13
+                </span>
+                <h1>
+                    <a href="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html"
+                       rel="bookmark"
+                       title="Permalink to GitLab でマージリクエストのマージができなくなった">
+                        GitLab でマージリクエストのマージができなくなった
+                    </a>
+                </h1>
+                    <div id="fb-root"></div>
+                    <script>
+                    (function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=1412228335678506";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                    </script>
+            </header>
+            <div class="entry-content">
+                <h2>背景</h2>
+<p>所用で最近個人的に<a href="https://about.gitlab.com/">GitLab</a>を使い始めたが、
+マージリクエストをブラウザ越しにマージする際に、ボタンをクリックしても何故か画面が先に進まず、
+延々とマージされない状況が続くという事態に陥ってしまった。</p>
+
+
+<h2>原因</h2>
+<p>ひとまずログを調査したところ、<code>githost.log</code> に以下の文言を発見。</p>
+<div class="highlight"><pre><span class="n">October</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2014</span> <span class="mi">15</span><span class="o">:</span><span class="mi">21</span> <span class="o">-&gt;</span> <span class="n">ERROR</span> <span class="o">-&gt;</span> <span class="n">Command</span> <span class="n">failed</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">git</span> <span class="o">--</span><span class="n">git</span><span class="o">-</span><span class="n">dir</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">satellites</span><span class="o">/</span><span class="n">hoge</span><span class="o">/</span><span class="n">huga</span><span class="o">/</span><span class="p">.</span><span class="n">git</span> <span class="o">--</span><span class="n">work</span><span class="o">-</span><span class="n">tree</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">satellites</span><span class="o">/</span><span class="n">hoge</span><span class="o">/</span><span class="n">huga</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+
+<span class="nl">remote:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="o">/</span><span class="n">spec_set</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">92</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">block</span> <span class="k">in</span> <span class="n">materialize</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">Could</span> <span class="n">not</span> <span class="n">find</span> <span class="n">rake</span><span class="o">-</span><span class="mf">10.3.2</span> <span class="k">in</span> <span class="n">any</span> <span class="n">of</span> <span class="n">the</span> <span class="n">sources</span> <span class="p">(</span><span class="n">Bundler</span><span class="o">::</span><span class="n">GemNotFound</span><span class="p">)</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="o">/</span><span class="n">spec_set</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">85</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">map</span><span class="o">!</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="o">/</span><span class="n">spec_set</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">85</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">materialize</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="o">/</span><span class="n">definition</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">132</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">specs</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="o">/</span><span class="n">definition</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">177</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">specs_for</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="o">/</span><span class="n">definition</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">166</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">requested_specs</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="o">/</span><span class="n">environment</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">requested_specs</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="o">/</span><span class="n">runtime</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">13</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">setup</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">121</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">setup</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">ruby</span><span class="o">-</span><span class="mf">2.1.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">2.1.0</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">bundler</span><span class="o">-</span><span class="mf">1.7.3</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">bundler</span><span class="o">/</span><span class="n">setup</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">17</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="o">&lt;</span><span class="n">top</span> <span class="p">(</span><span class="n">required</span><span class="p">)</span><span class="o">&gt;</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="mf">1.9.1</span><span class="o">/</span><span class="n">rubygems</span><span class="o">/</span><span class="n">custom_require</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">36</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">require</span><span class="err">&#39;</span>        
+<span class="nl">remote:</span>     <span class="n">from</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ruby</span><span class="o">/</span><span class="mf">1.9.1</span><span class="o">/</span><span class="n">rubygems</span><span class="o">/</span><span class="n">custom_require</span><span class="p">.</span><span class="n">rb</span><span class="o">:</span><span class="mi">36</span><span class="o">:</span><span class="k">in</span> <span class="err">`</span><span class="n">require</span><span class="err">&#39;</span>        
+<span class="n">To</span> <span class="o">/</span><span class="n">strage</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">repositories</span><span class="o">/</span><span class="n">node</span><span class="o">-</span><span class="n">setagaya</span><span class="o">/</span><span class="n">private</span><span class="o">-</span><span class="n">docs</span><span class="p">.</span><span class="n">git</span>
+ <span class="o">!</span> <span class="p">[</span><span class="n">remote</span> <span class="n">rejected</span><span class="p">]</span> <span class="n">master</span> <span class="o">-&gt;</span> <span class="n">master</span> <span class="p">(</span><span class="n">pre</span><span class="o">-</span><span class="n">receive</span> <span class="n">hook</span> <span class="n">declined</span><span class="p">)</span>
+ <span class="nl">error:</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">push</span> <span class="n">some</span> <span class="n">refs</span> <span class="n">to</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">repositories</span><span class="o">/</span><span class="n">hoge</span><span class="o">/</span><span class="n">huga</span><span class="p">.</span><span class="n">git</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<p>私は Ubuntu14.04サーバ上の <code>/usr/local/apps/ruby</code> 配下にコンパイルしたrubyを使っていたはずなのだが、
+<code>apt</code>経由で入ってしまっていた<code>ruby1.9.1</code>も参照していた模様。<br />
+(どうやら <code>vim-nox</code> を入れた際に一緒に入ってしまっていた。。)</p>
+<p>また、このエラーに関して調べてみたら以下のIssueも上がっていた模様<br />
+<a href="https://github.com/gitlabhq/gitlabhq/issues/7230">Could not find rake-10.3.2 in any of the sources #7230 </a></p>
+<h2>解決策</h2>
+<p>解決方法はシンプルで、<code>apt</code>経由での<code>ruby1.9.1</code>を削除したらブラウザからもマージできるようになった。</p>
+<div class="highlight"><pre>% sudo aptitude purge ruby1.9.1
+</pre></div>
+
+
+<p>依存関係で<code>vim-nox</code>は消えるが、最近のUbuntuサーバは <code>vim.basic</code> を入れれば最低限 <code>vim</code> は使えるし、
+<code>lua</code>とか使いたいならコンパイルすればいいのでそれほど問題ではない。<br />
+(そもそもGitLabサーバなんだからバリバリ作業したりもないだろうからそこまでしなくてもいい気がする。)</p>
+                <div class="panel">
+                    <div class="panel-body">
+                    <!-- <div class="alert alert-dismissable alert-warning"> -->
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-10-13T15:53:00"> 2014-10-13</time>
+    </span>
+    <span class="label label-default">By</span>
+    <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://memo.laughk.org/tag/gitlab.html">gitlab</a>
+        /
+	<a href="http://memo.laughk.org/tag/git.html">git</a>
+        /
+	<a href="http://memo.laughk.org/tag/ubuntu.html">ubuntu</a>
+        /
+	<a href="http://memo.laughk.org/tag/ruby.html">ruby</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+            </div>
+            <!-- /.entry-content -->
+<!-- AddThis Button BEGIN -->
+<div class="social_tools">
+
+    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+        <div class="fb-like" data-href="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+
+        <a href="https://twitter.com/share" class="twitter-share-button addthis_button_tweet" data-lang="ja" data-related="laugh_k">ツイート</a>
+
+        <script>
+            !function(d,s,id){
+              var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                if(!d.getElementById(id)){
+                  js=d.createElement(s);
+                    js.id=id;
+                    js.src=p+'://platform.twitter.com/widgets.js';
+                    fjs.parentNode.insertBefore(js,fjs);
+                }
+            }(document, 'script', 'twitter-wjs');
+        </script>
+
+        <div class="g-plusone "></div>
+
+        <script type="text/javascript">
+          window.___gcfg = {lang: 'ja'};
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+
+        <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="ja"></a>
+        <script type="text/javascript">
+            !function(d,i){
+              if(!d.getElementById(i)){
+                var j=d.createElement("script");
+                j.id=i;
+                j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";
+                var w=d.getElementById(i);d.body.appendChild(j);
+              }
+            }(document,"pocket-btn-js");
+        </script>
+
+
+</div>
+<!-- AddThis Button END -->            <div class="adsense">
+               <!-- Google Adsense -->
+               <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+               <!-- memo.laughk.org-postfoot -->
+               <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-8841652702834940"
+                    data-ad-slot="4223982601"
+                    data-ad-format="auto"></ins>
+               <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+               </script>
+               <!-- Google Adsense END -->
+            </div>
+    <hr />
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
+            var disqus_identifier = 'gitlab-cannot-merge-mergerequest';
+            var disqus_url = 'http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html';
+            var disqus_config = function () {
+                this.language = "ja";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer class="all">
+   <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+<h4><i class="fa fa-user fa-lg"></i><span class="icon-label">About Me</span></h4>
+<div>
+  <img src="/images/laughk.jpg" align="button" id="author_img">
+  Kei Iwasaki
+</div>
+<ul id="social">
+  <li class="list-group-item">
+    <a href="https://twitter.com/laugh_k">
+      <i class="fa fa-twitter-square fa-lg"></i> twitter
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a href="https://github.com/laughk">
+      <i class="fa fa-github-square fa-lg"></i> github
+    </a>
+  </li>
+</ul>        </div>
+
+        <div class="col-lg-5">
+
+<h4><i class="fa fa-th-list fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+<ul id="recentposts">
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html">
+            GitLab でマージリクエストのマージができなくなった
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/09/07/join-pepabo.html">
+            GMOペパボに入社した
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html">
+            YAPC::Asiaに初参加してきた #yapcasia
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html">
+            ブログジェネレータをTinkererからPelicanに移行した
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html">
+            第一回Ansible勉強会でLTさせてもらった
+        </a>
+    </li>
+</ul>
+
+        </div>
+
+        <div class="col-lg-4">
+
+<h4><i class="fa fa-star fa-lg"></i><span class="icon-label">Popular Posts</span></h4>
+<script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript">
+Hatena.BookmarkWidget.url   = "http://memo.laughk.org";
+Hatena.BookmarkWidget.sort  = "count";
+Hatena.BookmarkWidget.width = 0;
+Hatena.BookmarkWidget.num   = 5;
+Hatena.BookmarkWidget.theme = "hatenadiary";
+Hatena.BookmarkWidget.load();
+</script>        </div>
+
+      <hr />
+
+       <div class="col-xs-10">&copy; 2014 Kei Iwasaki
+          &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+          <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+          <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>       </div>
+       <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="//code.jquery.com/jquery.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://memo.laughk.org/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://memo.laughk.org/theme/js/respond.min.js"></script>
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-16164514-8']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+</html>

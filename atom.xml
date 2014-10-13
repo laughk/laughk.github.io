@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2014-10-13T15:53:00+09:00</updated><entry><title>GitLab でマージリクエストのマージができなくなった</title><link href="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html" rel="alternate"></link><updated>2014-10-13T15:53:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-10-13:2014/10/13/gitlab-cannot-merge-mergerequest.html</id><summary type="html">&lt;h2&gt;背景&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2014-10-13T15:53:00+09:00</updated><entry><title>GitLab でマージリクエストのマージができなくなってハマった話</title><link href="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html" rel="alternate"></link><updated>2014-10-13T15:53:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-10-13:2014/10/13/gitlab-cannot-merge-mergerequest.html</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;紛らわしい箇所を修正しました(タイトル修正, 利用中GitLabのバージョン明記)&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;背景&lt;/h2&gt;
 &lt;p&gt;所用で最近個人的に&lt;a href="https://about.gitlab.com/"&gt;GitLab&lt;/a&gt;を使い始めたが、
 マージリクエストをブラウザ越しにマージする際に、ボタンをクリックしても何故か画面が先に進まず、
 延々とマージされない状況が続くという事態に陥ってしまった。&lt;/p&gt;
+&lt;p&gt;※ GitLab 7.3.2 での話です&lt;/p&gt;
 
 
 &lt;h2&gt;原因&lt;/h2&gt;

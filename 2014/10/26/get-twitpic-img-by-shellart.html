@@ -98,10 +98,11 @@
 
 
 <h2>結果</h2>
-<p>とりあえず、結果からのせると以下のような感じ。</p>
+<p>とりあえず、結果からのせると以下のような感じ。<br />
+(追記) <code>png</code> を考慮するの漏れてたので修正しました。(追記おわり)</p>
 <div class="highlight"><pre>% <span class="nb">cd</span> /path/to/put_dir
 % <span class="nv">TWITPIC_URL</span><span class="o">=</span><span class="s2">&quot;http://twitpic.com/photos/laugh_k&quot;</span>
-% seq 1 <span class="k">$(</span> curl -s <span class="k">${</span><span class="nv">TWITPIC_URL</span><span class="k">}</span> | perl -nle <span class="s1">&#39;if(/&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span> | <span class="k">while </span><span class="nb">read </span>page ; <span class="k">do </span>curl -s <span class="s2">&quot;${TWITPIC_URL}?page=${page}&quot;</span> | grep <span class="s1">&#39;&lt;a href=&quot;/&#39;</span> | tail -n +8 | head -20 | perl -nle <span class="s1">&#39;if(/\/[^&quot;]+/){ print &quot;http://twitpic.com/$&amp;&quot; }&#39;</span> ; <span class="k">done</span> | <span class="k">while </span><span class="nb">read </span>img_page ; <span class="k">do </span>curl -sL <span class="s2">&quot;${img_page}&quot;</span> | perl -nle <span class="s1">&#39;if(/&lt;img src=&quot;(https:\/\/[^.^&quot;]+\.cloudfront.net\/photos\/large\/[^&quot;]+)&quot;/){ print $1 }&#39;</span> ; <span class="k">done</span>  | <span class="k">while </span><span class="nb">read </span>img_url ; <span class="k">do </span><span class="nv">file</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;${img_url}&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.jpg&#39;</span> <span class="k">)</span> ; wget -O <span class="k">${</span><span class="nv">file</span><span class="k">}</span> <span class="s2">&quot;${img_url}&quot;</span> ; <span class="k">done</span> 
+% seq 1 <span class="k">$(</span> curl -s <span class="k">${</span><span class="nv">TWITPIC_URL</span><span class="k">}</span> | perl -nle <span class="s1">&#39;if(/&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span> | <span class="k">while </span><span class="nb">read </span>page ; <span class="k">do </span>curl -s <span class="s2">&quot;${TWITPIC_URL}?page=${page}&quot;</span> | grep <span class="s1">&#39;&lt;a href=&quot;/&#39;</span> | tail -n +8 | head -20 | perl -nle <span class="s1">&#39;if(/\/[^&quot;]+/){ print &quot;http://twitpic.com/$&amp;&quot; }&#39;</span> ; <span class="k">done</span> | <span class="k">while </span><span class="nb">read </span>img_page ; <span class="k">do </span>curl -sL <span class="s2">&quot;${img_page}&quot;</span> | perl -nle <span class="s1">&#39;if(/&lt;img src=&quot;(https:\/\/[^.^&quot;]+\.cloudfront.net\/photos\/large\/[^&quot;]+)&quot;/){ print $1 }&#39;</span> ; <span class="k">done</span>  | <span class="k">while </span><span class="nb">read </span>img_url ; <span class="k">do </span><span class="nv">img_name</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;${img_url}&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.(jpe?g|png|gif)&#39;</span> <span class="k">)</span> ; wget -O <span class="k">${</span><span class="nv">file</span><span class="k">}</span> <span class="s2">&quot;${img_url}&quot;</span> ; <span class="k">done</span> 
 </pre></div>
 
 
@@ -126,7 +127,7 @@
 &gt; <span class="k">done</span> |
 &gt; <span class="k">while </span><span class="nb">read </span>img_url
 &gt; <span class="k">do</span>
-&gt;   <span class="nv">img_name</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;${img_url}&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.jpg&#39;</span> <span class="k">)</span>
+&gt;   <span class="nv">img_name</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;${img_url}&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.(jpe?g|png)&#39;</span> <span class="k">)</span>
 &gt;   wget -O <span class="k">${</span><span class="nv">img_name</span><span class="k">}</span> <span class="s2">&quot;${img_url}&quot;</span>
 &gt; <span class="k">done</span>
 </pre></div>
@@ -149,7 +150,7 @@
 </ul>
 <h2>最後に</h2>
 <p>わざわざ画像取得するのにWindows起動するのも面倒だなとなって「よろしいならばシェル芸だ」とやってみたら意外にすんなり行けた。<br />
-糞長いし、ハードコーディング的にやっててゴリ押し感半端無いし、もっとよさ気な方法あるかもだけど問題が解決できたのでよしとする。<br />
+糞長いし、ゴリ押し感半端無いし、もっとよさ気な方法あるかもだけど問題が解決できたのでよしとする。<br />
 Twitpicからの画像データ救出、他の言語の練習題材としてもよさ気な感じですね。  </p>
                 <div class="panel">
                     <div class="panel-body">

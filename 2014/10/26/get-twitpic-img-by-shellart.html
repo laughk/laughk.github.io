@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>久々に第10回記念シェル芸勉強会行ってきたんでまとめとか - 続・ラフなラボ</title>
+    <title>TwitPicに上げてる画像をシェル芸で救出してみた - 続・ラフなラボ</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,9 +13,9 @@
 
     <!-- Open Graph tags -->
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="久々に第10回記念シェル芸勉強会行ってきたんでまとめとか"/>
-            <meta property="og:url" content="http://memo.laughk.org/2014/04/10/shell_lian_tower.html"/>
-            <meta property="og:description" content="ブログ更新自体がかなりお久しぶりです。 何とか生きてました。身の回りの環境が最近がらりと変わったわけですが、 そのへんはまた近々別のエントリにでもしたいと思います。 今回は久々にシェル芸勉強会に行ってきたのでそのまとめを。 といいつつも、実際の会場の様子は以下の Togetter を見てもらったほうが早いかと。 第10回記念シェル芸勉強会@シェルリアンタワー&第28回場所が未定だったが決まったぞ定例会 - Togetterまとめ"/>
+            <meta property="og:title" content="TwitPicに上げてる画像をシェル芸で救出してみた"/>
+            <meta property="og:url" content="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html"/>
+            <meta property="og:description" content="概要 最近になって twitpic が終わったり終わらなかったりな状況で 今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -69,13 +69,13 @@
             <header class="page-header">
                 <span class="label label-default">
                     <i class="fa fa-calendar"></i>
-                        2014-04-10
+                        2014-10-26
                 </span>
                 <h1>
-                    <a href="http://memo.laughk.org/2014/04/10/shell_lian_tower.html"
+                    <a href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html"
                        rel="bookmark"
-                       title="Permalink to 久々に第10回記念シェル芸勉強会行ってきたんでまとめとか">
-                        久々に第10回記念シェル芸勉強会行ってきたんでまとめとか
+                       title="Permalink to TwitPicに上げてる画像をシェル芸で救出してみた">
+                        TwitPicに上げてる画像をシェル芸で救出してみた
                     </a>
                 </h1>
                     <div id="fb-root"></div>
@@ -90,100 +90,74 @@
                     </script>
             </header>
             <div class="entry-content">
-                <div class="line-block">
-<div class="line">ブログ更新自体がかなりお久しぶりです。</div>
-<div class="line">何とか生きてました。身の回りの環境が最近がらりと変わったわけですが、</div>
-<div class="line">そのへんはまた近々別のエントリにでもしたいと思います。</div>
-</div>
-<div class="line-block">
-<div class="line">今回は久々にシェル芸勉強会に行ってきたのでそのまとめを。</div>
-<div class="line">といいつつも、実際の会場の様子は以下の <tt class="docutils literal">Togetter</tt> を見てもらったほうが早いかと。</div>
-</div>
-<ul class="simple">
-<li><a class="reference external" href="http://togetter.com/li/651837">第10回記念シェル芸勉強会&#64;シェルリアンタワー&amp;第28回場所が未定だったが決まったぞ定例会 - Togetterまとめ</a></li>
-</ul>
+                <!-- 冒頭 -->
 
-<div class="line-block">
-<div class="line">過去のシェル芸勉強会ブログではいちいち自分の <tt class="docutils literal">Tweet</tt> 拾って引用したりと面倒な真似してましたが、</div>
-<div class="line">今回からは実際に自分で実行したコマンドたちは <tt class="docutils literal">gist</tt> にまとめてみました。</div>
-</div>
-<script src="https://gist.github.com/laughk/10381390.js"></script><p>最終問題についてはお察しください。</p>
-<div class="section" id="id2">
-<h2>収穫とか</h2>
-<p>せっかくなので今回の収穫とか</p>
+<h2>概要</h2>
+<p>最近になって twitpic が終わったり終わらなかったりな状況で<br />
+今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。</p>
+
+
+<h2>結果</h2>
+<p>とりあえず、結果からのせると以下のような感じ。</p>
+<div class="highlight"><pre>% <span class="nb">cd</span> /path/to/put_dir
+% <span class="nv">TWITPIC_URL</span><span class="o">=</span><span class="s2">&quot;http://twitpic.com/photos/laugh_k&quot;</span>
+% <span class="o">(</span> seq 1 <span class="k">$(</span> curl -s <span class="k">${</span><span class="nv">TWITPIC_URL</span><span class="k">}</span> | perl -nle <span class="s1">&#39;if(/&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span> | <span class="k">while </span><span class="nb">read </span>page ; <span class="k">do </span>curl -s <span class="s2">&quot;${TWITPIC_URL}?page=${page}&quot;</span> | grep <span class="s1">&#39;&lt;a href=&quot;/&#39;</span> | tail -n +8 | head -20 | perl -nle <span class="s1">&#39;if(/\/[^&quot;]+/){ print &quot;http://twitpic.com/$&amp;&quot; }&#39;</span> ; <span class="k">done</span> <span class="o">)</span> | <span class="k">while </span><span class="nb">read </span>img_page ; <span class="k">do </span>curl -sL <span class="s2">&quot;${img_page}&quot;</span> | perl -nle <span class="s1">&#39;if(/&lt;img src=&quot;(https:\/\/[^.^&quot;]+\.cloudfront.net\/photos\/large\/[^&quot;]+)&quot;/){ print $1 }&#39;</span> ; <span class="k">done</span>  | <span class="k">while </span><span class="nb">read </span>img_url ; <span class="k">do </span><span class="nv">file</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;$img_url&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.jpg&#39;</span> <span class="k">)</span> ; wget -O <span class="k">${</span><span class="nv">file</span><span class="k">}</span> <span class="s2">&quot;${img_url}&quot;</span> ; <span class="k">done</span> 
+</pre></div>
+
+
+<p>流石にこれだとわかりづらいんでちょっと形成すると以下のような感じ</p>
+<div class="highlight"><pre>% <span class="nv">TWITPIC_URL</span><span class="o">=</span><span class="s2">&quot;http://twitpic.com/photos/laugh_k&quot;</span>
+
+<span class="c">### さすがに長ったらしいので、最後のページ情報取得は一旦分ける</span>
+% <span class="nv">LAST</span><span class="o">=</span><span class="k">$(</span> curl -s <span class="k">${</span><span class="nv">TWITPIC_URL</span><span class="k">}</span> | perl -nle <span class="s1">&#39;if( /&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/ ){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span>
+
+% seq 1 <span class="k">${</span><span class="nv">LAST</span><span class="k">}</span> | <span class="k">while </span><span class="nb">read </span>page
+&gt; <span class="k">do</span>
+&gt;   curl -sL <span class="s2">&quot;${TWITPIC_URL}?page=${page}&quot;</span> | 
+&gt;     grep <span class="s1">&#39;&lt;a href=&quot;/&#39;</span> |
+&gt;     tail -n +8        |
+&gt;     head -n 20        |
+&gt;     perl -nle <span class="s1">&#39;if(/\/[^&quot;]+/){ print &quot;http://twitpic.com/$&amp;&quot; }&#39;</span>
+&gt; <span class="k">done</span> |
+&gt; <span class="k">while </span><span class="nb">read </span>img_page
+&gt; <span class="k">do</span>
+&gt;   curl -sL <span class="nv">$img_page</span> |
+&gt;     perl -nle <span class="s1">&#39;if(/&lt;img src=&quot;(https:\/\/[^.^&quot;]+\.cloudfront.net\/photos\/large\/[^&quot;]+)&quot;/){ print $1 }&#39;</span>
+&gt; <span class="k">done</span> |
+&gt; <span class="k">while </span><span class="nb">read </span>img_url
+&gt; <span class="k">do</span>
+&gt;   <span class="nv">img_name</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;$img_url&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.jpg&#39;</span> <span class="k">)</span>
+&gt;   wget -O <span class="k">${</span><span class="nv">img_name</span><span class="k">}</span> <span class="s2">&quot;$img_url&quot;</span>
+&gt; <span class="k">done</span>
+</pre></div>
+
+
+<h3>気にした点</h3>
 <ul>
-<li><dl class="first docutils">
-<dt><tt class="docutils literal">sed <span class="pre">'s/./&amp;\n/g'</span></tt> より <tt class="docutils literal">grep <span class="pre">-o</span> .</tt> が便利。</dt>
-<dd><p class="first">会場でたちまち <tt class="docutils literal">grep</tt> ブームが発生しておりましたが、純粋にマッチ部分だけ抜き出す <tt class="docutils literal"><span class="pre">-o</span></tt> で縦表示にするテクニックがあるのに今まで気づかず目からウロコものでした。</p>
-<div class="last"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo </span>aabbcdabbcccdd | grep -o .
-a
-a
-b
-b
-c
-d
-a
-b
-b
-c
-c
-c
-d
-d
-</pre></div>
-</div></dd>
-</dl>
+<li>
+<p>ページャーになってるんで最後のページ情報どうするか</p>
+<p>=&gt; ユーザーページトップにLASTのリンクがあったのでそこからひっぱった</p>
 </li>
-<li><dl class="first docutils">
-<dt><tt class="docutils literal">grep <span class="pre">-q</span></tt> で結果を表示しない。</dt>
-<dd><p class="first">これは個人的に地味にいいなと思ったしらなかったオプションで、今までシェルスクリプトを書くときなんかに「ファイル内に文字列があるかないか判定したいだけ」のときなんかリターンコードを見るためだけにわざわざ <tt class="docutils literal">grep</tt> して <tt class="docutils literal">/dev/null</tt> に捨てるような無駄なことをしていたのですが、これからはスッキリ書けそうです。</p>
-<div class="last"><div class="highlight"><pre><span class="nv">$ </span>grep huga file2
-huga
-<span class="nv">$ </span>grep -q huga file2
-<span class="c">##  なにも表示されない</span>
-</pre></div>
-</div></dd>
-</dl>
+<li>
+<p>各画像のページのURLをどうやってピンポイントで出すか  </p>
+<p>=&gt; レイアウト的にどのリンクが引っかかるかわかったんで、<code>head</code>,<code>tail</code>でゴリ押し</p>
 </li>
-<li><dl class="first docutils">
-<dt><tt class="docutils literal">xargs</tt> で余計なレイアウトを取っ払える。</dt>
-<dd><p class="first">もはやシェル芸の定番と思っていた <tt class="docutils literal">xargs</tt> もこの使い方は知らなかったです。具体的には以下のような感じ。</p>
-<div class="last"><div class="highlight"><pre><span class="nv">$ </span>cat toi2.txt
-             1
-2 3
-                 4                     5
-                                 6     7
- 8         9
-<span class="nv">$ </span>cat toi2.txt | xargs
-1 2 3 4 5 6 7 8 9
-</pre></div>
-</div></dd>
-</dl>
+<li>
+<p>最終的にCloudfrontのリンクが取れるが、まんまwgetするとファイル名が大変なことになるので、その辺よしなに保存したい  </p>
+<p>=&gt; <code>sed</code> 使っても良かったけどパターン的に抽出のほうが楽そうだったので <code>grep -o -E</code> でファイル名を直接引っこ抜き</p>
 </li>
 </ul>
-<div class="line-block">
-<div class="line">大きかったのはこのあたりです。他にも <tt class="docutils literal">awk</tt> で <tt class="docutils literal">$0</tt> をうまく置き換えることによって <tt class="docutils literal">print</tt> を省略できたりとかありそうでしたが、</div>
-<div class="line">この辺は色々試しながらものにしていきたいものです。</div>
-</div>
-</div>
-<div class="section" id="id3">
-<h2>感想とか</h2>
-<div class="line-block">
-<div class="line">勉強会自体、最近全然顔を出せていませんでしたが、</div>
-<div class="line">シェル芸勉強会は私みたいな泥臭いインフラ運用なんかをやってる人間にとってはすぐに仕事に活かせそうな <tt class="docutils literal">Tips</tt> がごろごろ転がってて</div>
-<div class="line">楽しみながら習得できる感じが相変わらず良いですね。</div>
-<div class="line">今回は懇親会まで行けませんでしたが、また次回参加したいですね。</div>
-<div class="line">(といっても確か次回は大阪だったはず..orz)</div>
-</div>
-</div>
-
+<h2>最後に</h2>
+<p>わざわざ画像取得するのにWindows起動するのも面倒だなとなって「よろしいならばシェル芸だ」とやってみたら意外にすんなり行けた。<br />
+糞長いし、ハードコーディング的にやっててゴリ押し感半端無いし、もっとよさ気な方法あるかもだけど問題が解決できたのでよしとする。<br />
+Twitpicからの画像データ救出、他の言語の練習題材としてもよさ気な感じですね。  </p>
                 <div class="panel">
                     <div class="panel-body">
                     <!-- <div class="alert alert-dismissable alert-warning"> -->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-04-10T00:00:00"> 2014-04-10</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-10-26T19:20:00"> 2014-10-26</time>
     </span>
     <span class="label label-default">By</span>
     <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
@@ -193,13 +167,7 @@ huga
 <span class="label label-default">Tags</span>
 	<a href="http://memo.laughk.org/tag/shieruyun.html">シェル芸</a>
         /
-	<a href="http://memo.laughk.org/tag/awk.html">awk</a>
-        /
-	<a href="http://memo.laughk.org/tag/grep.html">grep</a>
-        /
-	<a href="http://memo.laughk.org/tag/xargs.html">xargs</a>
-        /
-	<a href="http://memo.laughk.org/tag/mian-qiang-hui.html">勉強会</a>
+	<a href="http://memo.laughk.org/tag/neta.html">ネタ</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -208,9 +176,9 @@ huga
 <!-- AddThis Button BEGIN -->
 <div class="social_tools">
 
-    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2014/04/10/shell_lian_tower.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 
-        <div class="fb-like" data-href="http://memo.laughk.org/2014/04/10/shell_lian_tower.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+        <div class="fb-like" data-href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
         <a href="https://twitter.com/share" class="twitter-share-button addthis_button_tweet" data-lang="ja" data-related="laugh_k">ツイート</a>
 
@@ -272,8 +240,8 @@ huga
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
-            var disqus_identifier = 'shell_lian_tower';
-            var disqus_url = 'http://memo.laughk.org/2014/04/10/shell_lian_tower.html';
+            var disqus_identifier = 'get-twitpic-img-by-shellart';
+            var disqus_url = 'http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html';
             var disqus_config = function () {
                 this.language = "ja";
             };

@@ -101,7 +101,7 @@
 <p>とりあえず、結果からのせると以下のような感じ。</p>
 <div class="highlight"><pre>% <span class="nb">cd</span> /path/to/put_dir
 % <span class="nv">TWITPIC_URL</span><span class="o">=</span><span class="s2">&quot;http://twitpic.com/photos/laugh_k&quot;</span>
-% <span class="o">(</span> seq 1 <span class="k">$(</span> curl -s <span class="k">${</span><span class="nv">TWITPIC_URL</span><span class="k">}</span> | perl -nle <span class="s1">&#39;if(/&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span> | <span class="k">while </span><span class="nb">read </span>page ; <span class="k">do </span>curl -s <span class="s2">&quot;${TWITPIC_URL}?page=${page}&quot;</span> | grep <span class="s1">&#39;&lt;a href=&quot;/&#39;</span> | tail -n +8 | head -20 | perl -nle <span class="s1">&#39;if(/\/[^&quot;]+/){ print &quot;http://twitpic.com/$&amp;&quot; }&#39;</span> ; <span class="k">done</span> <span class="o">)</span> | <span class="k">while </span><span class="nb">read </span>img_page ; <span class="k">do </span>curl -sL <span class="s2">&quot;${img_page}&quot;</span> | perl -nle <span class="s1">&#39;if(/&lt;img src=&quot;(https:\/\/[^.^&quot;]+\.cloudfront.net\/photos\/large\/[^&quot;]+)&quot;/){ print $1 }&#39;</span> ; <span class="k">done</span>  | <span class="k">while </span><span class="nb">read </span>img_url ; <span class="k">do </span><span class="nv">file</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;$img_url&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.jpg&#39;</span> <span class="k">)</span> ; wget -O <span class="k">${</span><span class="nv">file</span><span class="k">}</span> <span class="s2">&quot;${img_url}&quot;</span> ; <span class="k">done</span> 
+% seq 1 <span class="k">$(</span> curl -s <span class="k">${</span><span class="nv">TWITPIC_URL</span><span class="k">}</span> | perl -nle <span class="s1">&#39;if(/&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span> | <span class="k">while </span><span class="nb">read </span>page ; <span class="k">do </span>curl -s <span class="s2">&quot;${TWITPIC_URL}?page=${page}&quot;</span> | grep <span class="s1">&#39;&lt;a href=&quot;/&#39;</span> | tail -n +8 | head -20 | perl -nle <span class="s1">&#39;if(/\/[^&quot;]+/){ print &quot;http://twitpic.com/$&amp;&quot; }&#39;</span> ; <span class="k">done</span> | <span class="k">while </span><span class="nb">read </span>img_page ; <span class="k">do </span>curl -sL <span class="s2">&quot;${img_page}&quot;</span> | perl -nle <span class="s1">&#39;if(/&lt;img src=&quot;(https:\/\/[^.^&quot;]+\.cloudfront.net\/photos\/large\/[^&quot;]+)&quot;/){ print $1 }&#39;</span> ; <span class="k">done</span>  | <span class="k">while </span><span class="nb">read </span>img_url ; <span class="k">do </span><span class="nv">file</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;${img_url}&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.jpg&#39;</span> <span class="k">)</span> ; wget -O <span class="k">${</span><span class="nv">file</span><span class="k">}</span> <span class="s2">&quot;${img_url}&quot;</span> ; <span class="k">done</span> 
 </pre></div>
 
 
@@ -121,13 +121,13 @@
 &gt; <span class="k">done</span> |
 &gt; <span class="k">while </span><span class="nb">read </span>img_page
 &gt; <span class="k">do</span>
-&gt;   curl -sL <span class="nv">$img_page</span> |
+&gt;   curl -sL <span class="k">${</span><span class="nv">img_page</span><span class="k">}</span> |
 &gt;     perl -nle <span class="s1">&#39;if(/&lt;img src=&quot;(https:\/\/[^.^&quot;]+\.cloudfront.net\/photos\/large\/[^&quot;]+)&quot;/){ print $1 }&#39;</span>
 &gt; <span class="k">done</span> |
 &gt; <span class="k">while </span><span class="nb">read </span>img_url
 &gt; <span class="k">do</span>
-&gt;   <span class="nv">img_name</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;$img_url&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.jpg&#39;</span> <span class="k">)</span>
-&gt;   wget -O <span class="k">${</span><span class="nv">img_name</span><span class="k">}</span> <span class="s2">&quot;$img_url&quot;</span>
+&gt;   <span class="nv">img_name</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;${img_url}&quot;</span> | grep -o -E <span class="s1">&#39;[^/]+\.jpg&#39;</span> <span class="k">)</span>
+&gt;   wget -O <span class="k">${</span><span class="nv">img_name</span><span class="k">}</span> <span class="s2">&quot;${img_url}&quot;</span>
 &gt; <span class="k">done</span>
 </pre></div>
 

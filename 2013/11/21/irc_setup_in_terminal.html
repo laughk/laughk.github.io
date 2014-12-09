@@ -152,7 +152,7 @@
 <div class="line-block">
 <div class="line">ロギングはしときたいんでloggerの設定を以下のように変更します。</div>
 </div>
-<div class="highlight"><pre><span class="nv">mask</span> <span class="o">=</span> <span class="s2">&quot;%plugin.$name/%Y%m%d.weechatlog&quot;</span>
+<div class="highlight"><pre><span class="nv">mask</span> <span class="o">=</span> <span class="s2">&quot;%plugin.</span><span class="nv">$name</span><span class="s2">/%Y%m%d.weechatlog&quot;</span>
 </pre></div>
 </div>
 <div class="section" id="tmux-conf">
@@ -255,7 +255,7 @@ weechat-curses
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-21T00:00:00"> 2013-11-21</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-21T00:00:00+09:00"> 2013-11-21</time>
     </span>
     <span class="label label-default">By</span>
     <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
@@ -394,6 +394,12 @@ weechat-curses
 <ul id="recentposts">
     <li class="list-group-item">
         <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html">
+            tmux 内で SSH した時のロギングを自動でやる
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
         <a href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html">
             TwitPicに上げてる画像をシェル芸で救出してみた
         </a>
@@ -414,12 +420,6 @@ weechat-curses
         <i class="fa fa-file-text fa-lg"></i>
         <a href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html">
             YAPC::Asiaに初参加してきた #yapcasia
-        </a>
-    </li>
-    <li class="list-group-item">
-        <i class="fa fa-file-text fa-lg"></i>
-        <a href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html">
-            ブログジェネレータをTinkererからPelicanに移行した
         </a>
     </li>
 </ul>

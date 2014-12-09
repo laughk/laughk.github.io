@@ -115,7 +115,7 @@
 <li><dl class="first docutils">
 <dt><tt class="docutils literal">sed <span class="pre">'s/./&amp;\n/g'</span></tt> より <tt class="docutils literal">grep <span class="pre">-o</span> .</tt> が便利。</dt>
 <dd><p class="first">会場でたちまち <tt class="docutils literal">grep</tt> ブームが発生しておりましたが、純粋にマッチ部分だけ抜き出す <tt class="docutils literal"><span class="pre">-o</span></tt> で縦表示にするテクニックがあるのに今まで気づかず目からウロコものでした。</p>
-<div class="last"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo </span>aabbcdabbcccdd | grep -o .
+<div class="last"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo </span>aabbcdabbcccdd <span class="p">|</span> grep -o .
 a
 a
 b
@@ -150,12 +150,12 @@ huga
 <dd><p class="first">もはやシェル芸の定番と思っていた <tt class="docutils literal">xargs</tt> もこの使い方は知らなかったです。具体的には以下のような感じ。</p>
 <div class="last"><div class="highlight"><pre><span class="nv">$ </span>cat toi2.txt
              1
-2 3
-                 4                     5
-                                 6     7
- 8         9
-<span class="nv">$ </span>cat toi2.txt | xargs
-1 2 3 4 5 6 7 8 9
+<span class="m">2</span> 3
+                 <span class="m">4</span>                     5
+                                 <span class="m">6</span>     7
+ <span class="m">8</span>         9
+<span class="nv">$ </span>cat toi2.txt <span class="p">|</span> xargs
+<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> 9
 </pre></div>
 </div></dd>
 </dl>
@@ -183,7 +183,7 @@ huga
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-04-10T00:00:00"> 2014-04-10</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-04-10T00:00:00+09:00"> 2014-04-10</time>
     </span>
     <span class="label label-default">By</span>
     <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
@@ -326,6 +326,12 @@ huga
 <ul id="recentposts">
     <li class="list-group-item">
         <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html">
+            tmux 内で SSH した時のロギングを自動でやる
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
         <a href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html">
             TwitPicに上げてる画像をシェル芸で救出してみた
         </a>
@@ -346,12 +352,6 @@ huga
         <i class="fa fa-file-text fa-lg"></i>
         <a href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html">
             YAPC::Asiaに初参加してきた #yapcasia
-        </a>
-    </li>
-    <li class="list-group-item">
-        <i class="fa fa-file-text fa-lg"></i>
-        <a href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html">
-            ブログジェネレータをTinkererからPelicanに移行した
         </a>
     </li>
 </ul>

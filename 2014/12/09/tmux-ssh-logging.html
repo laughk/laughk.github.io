@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>あるインフラエンジニアとAnsibleの付き合い方 - 続・ラフなラボ</title>
+    <title>tmux 内で SSH した時のロギングを自動でやる - 続・ラフなラボ</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,9 +13,9 @@
 
     <!-- Open Graph tags -->
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="あるインフラエンジニアとAnsibleの付き合い方"/>
-            <meta property="og:url" content="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html"/>
-            <meta property="og:description" content="この記事は Ansible Advent Calender 2013 10日目の記事です。 私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、 少しずつ今の仕事で ansible を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。"/>
+            <meta property="og:title" content="tmux 内で SSH した時のロギングを自動でやる"/>
+            <meta property="og:url" content="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html"/>
+            <meta property="og:description" content="この記事は Pepabo AdventCalendar 2014 の9日目の記事です。 前日はinouetakuyaさんでした！ 明日はtnmtさんです！ 今年まさかアドベントカレンダーに参加することになるとは思っていませんでしたが、 今朝社内IRCにてチーム内で反響があった tmux で作業をする際の tip を紹介したいと思います。"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -69,13 +69,13 @@
             <header class="page-header">
                 <span class="label label-default">
                     <i class="fa fa-calendar"></i>
-                        2013-12-10
+                        2014-12-09
                 </span>
                 <h1>
-                    <a href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html"
+                    <a href="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html"
                        rel="bookmark"
-                       title="Permalink to あるインフラエンジニアとAnsibleの付き合い方">
-                        あるインフラエンジニアとAnsibleの付き合い方
+                       title="Permalink to tmux 内で SSH した時のロギングを自動でやる">
+                        tmux 内で SSH した時のロギングを自動でやる
                     </a>
                 </h1>
                     <div id="fb-root"></div>
@@ -90,152 +90,134 @@
                     </script>
             </header>
             <div class="entry-content">
-                <p>この記事は <a class="reference external" href="http://qiita.com/advent-calendar/2013/ansible">Ansible Advent Calender 2013</a> 10日目の記事です。</p>
-<p>私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、
-少しずつ今の仕事で <tt class="docutils literal">ansible</tt> を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。</p>
+                <p>この記事は <a href="http://qiita.com/advent-calendar/2014/pepabo">Pepabo AdventCalendar 2014</a> の9日目の記事です。<br />
+前日は<a href="http://blog.inouetakuya.info/entry/2014/12/08/214435">inouetakuya</a>さんでした！
+明日は<a href="http://qiita.com/tnmt">tnmt</a>さんです！</p>
+<p>今年まさかアドベントカレンダーに参加することになるとは思っていませんでしたが、<br />
+今朝社内IRCにてチーム内で反響があった tmux で作業をする際の tip を紹介したいと思います。</p>
 
-<div class="section" id="root">
-<h2>障壁1 / root権限</h2>
-<div class="line-block">
-<div class="line">CentOSなどのRedHad系を中心に運用している場合は意外と <tt class="docutils literal">su -</tt> が使えても <tt class="docutils literal">sudo</tt> が使えない。という状況があるかもしれません。</div>
-<div class="line"><tt class="docutils literal">fabric</tt> の場合は無理やりprefixを弄って <tt class="docutils literal">su <span class="pre">-c</span> 'command'</tt> をやることができなくもないですが <a class="footnote-reference" href="#fabric-su-prifix" id="id1">[1]</a></div>
-<div class="line"><tt class="docutils literal">ansible</tt> の場合は公式で特に対応されるような気配はなく、モジュールを作るしかなさそうですがなんだか割に合わないような気もします。</div>
-</div>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="https://github.com/ansible/ansible/pull/744">added su capability by willthames · Pull Request #744 · ansible/ansible · GitHub</a></li>
-</ul>
-</blockquote>
-<div class="line-block">
-<div class="line">私の場合もこの辺は完全に解消できているわけではないですが、極力自社で手が出せる範囲であったり</div>
-<div class="line">新規構築の際に予め自動化の一環として説明して、少しずつ <tt class="docutils literal">sudo</tt> を使える環境を増やしている状況です。</div>
-<div class="line">ここは <tt class="docutils literal">ansible</tt> に限らず他の <tt class="docutils literal">Provisioning</tt> / <tt class="docutils literal">Orchestration</tt> 系のツールを導入する際にも必要な最低ラインなんで、頑張って確保していくしかないと思います。</div>
-</div>
-</div>
-<div class="section" id="id2">
-<h2>障壁2 / 踏み台を超える</h2>
-<div class="line-block">
-<div class="line">ここも <tt class="docutils literal">ansible</tt> に限った話ではないですが、</div>
-<div class="line">お客さんの環境の運用を行っている場合、</div>
-<div class="line">踏み台を経由しないとSSHアクセスができず、更に踏み台に勝手にツールを導入することができない。</div>
-<div class="line">というケースが多いかと思います。イメージとしては以下のような感じ。</div>
-</div>
-<img alt="" src="/images/2013/12/10/graph.png" />
-<div class="line-block">
-<div class="line">残念ながら <tt class="docutils literal">fabric</tt> のように踏み台サーバ指定のオプションは無いようです。</div>
-<div class="line">以下のPullリクエストがありながら取り込まれていないところを見ると今後もコマンドや <tt class="docutils literal">hostファイル</tt> , <tt class="docutils literal">playbook</tt> で管理できる状況になる可能性は低いかもしれません。</div>
-</div>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="https://github.com/ansible/ansible/pull/2970">added support for ssh tunneling using ssh&amp;#39;s ProxyCommand option by rodlogic · Pull Request #2970 · ansible/ansible · GitHub</a></li>
-</ul>
-</blockquote>
-<p>しかしながらヒント(というより答え)は↑のページにあります。</p>
-<blockquote>
-<div class="line-block">
-<div class="line">There already is ANSIBLE_SSH_ARGS where you can specify all of SSH flags</div>
-<div class="line">and override any Ansible may set by default, FWIW.</div>
-</div>
-</blockquote>
-<div class="line-block">
-<div class="line">ということで環境変数 <tt class="docutils literal">ANSIBLE_SSH_ARGS</tt> に <tt class="docutils literal">ssh</tt> コマンドのオプションを渡すことができるようで、</div>
-<div class="line">実際これに <tt class="docutils literal">ANSIBLE_SSH_ARGS=' <span class="pre">-F</span> sshconfig.project'</tt> みたいな感じで渡してあげれば sshconfig ファイルを使って</div>
-<div class="line">各お客さんごとであったり、プロジェクトごとの踏み台環境を整えることができます。</div>
-</div>
-<div class="line-block">
-<div class="line">これだけあれば、自社内の開発サーバだったり、</div>
-<div class="line">最悪自分のPCのVM上などに環境を作ってしまえばなんとか使えるところまで持っていけます。</div>
-</div>
-<p>具体的には以下のように <tt class="docutils literal">sshconfig</tt>, <tt class="docutils literal">host</tt> ファイルを作っていけばOKです。</p>
-<div class="section" id="sshconfig-project">
-<h3>sshconfig.project</h3>
-<p>踏み台、内側ネットワークでそれぞれ作成
-(<tt class="docutils literal">Proxycommand</tt> で <tt class="docutils literal"><span class="pre">-F</span></tt> で自分自身を指定するのを忘れずに)、</p>
-<div class="highlight"><pre><span class="c">## 踏み台サーバ</span>
-Host gateway
-    User login_user
-    IdentityFile /path/to/identity
-    HostName xxx.xxx.xxx.xxx
 
-<span class="c">## 接続先のLAN、ログイン情報</span>
-Host 192.168.0.*
-    User login_user
-    Identityfile /path/to/identity
-    Proxycommand ssh -F sshcondig.project gateway nc -w <span class="m">120</span> %h %p
+<hr />
+<h2>今朝のチームのIRCの一幕</h2>
+<p>私はいちいち手動で作業ログを取得するのが面倒なので普段から踏み台サーバの tmux で pip-pane を使ってほぼ自動的にやっているのですが、
+今朝以下を zipper さんに発見されたのをきっかけにすこし盛り上がりました。</p>
+<div class="highlight"><pre>laughk 11803 0.1 0.0 74852 1496     ? Ss  10:23 0:00 tmux -2
+laughk 11804 0.1 0.0 65764 3200 pts/3 Ss+ 10:23 0:00 \_ -bash
+laughk 11861 0.0 0.0 54660 2756 pts/9 Ss+ 10:23 0:00 \_ ssh db002.******************
+laughk 11863 0.0 0.0 63824 1124     ? S   10:23 0:00 \_ sh -c cat &gt;&gt; /home/laughk/.tmuxlog/db002.****************/2014-12/09/102348.log
+laughk 11864 0.0 0.0 58888  532     ? S   10:23 0:00 \_ cat
 </pre></div>
-</div>
-<div class="section" id="host-project">
-<h3>host.project</h3>
-<p>必要に応じて作成</p>
-<div class="highlight"><pre><span class="o">[</span>web<span class="o">]</span>
-web01    <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168.0.11
-web02    <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168.0.12
-<span class="o">[</span>db<span class="o">]</span>
-db01     <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168.0.21
-</pre></div>
-</div>
-<div class="section" id="playbook-project-yml">
-<h3>playbook-project.yml</h3>
-<div class="line-block">
-<div class="line">あとは <tt class="docutils literal"><span class="pre">playbook-project.yml</span></tt> などの名前で playbook を作成したら以下のような感じで実行するだけ</div>
-<div class="line">状況によって内容は変わるんで今回は割愛します。</div>
-</div>
-</div>
-<div class="section" id="id3">
-<h3>実行</h3>
-<p>ここまでできたら環境変数に気をつけて実行するだけです。</p>
-<div class="highlight"><pre>% <span class="nb">export </span><span class="nv">ANSIBLE_SSH_ARGS</span><span class="o">=</span><span class="s1">&#39; -F sshconfig.project&#39;</span>
-% ansible-playbook playbook-project.yml -i host.project
-</pre></div>
-</div>
-</div>
-<div class="section" id="id4">
-<h2>利用シーンなど</h2>
-<div class="line-block">
-<div class="line"><tt class="docutils literal">Provisioning</tt> / <tt class="docutils literal">Orchestration</tt> に関するツールでは冪等性の話もかなり目にしますが、</div>
-<div class="line">私の場合は複数の会社の人間が管理しているケースが多いため、</div>
-<div class="line">構成の管理というよりは、多数のホストに同様の作業を行う場合に恩恵を受けるケースが多いです。</div>
-<div class="line">そのため利用シーンは現状では以下のものに大体とどまっています。</div>
-</div>
-<blockquote>
-<ul class="simple">
-<li>全く同じ構成のサーバを複数構築する場合</li>
-<li>お客さん側で環境全体に同じユーザーが必要になった場合 (ldapとか使えよって話かもですが、、)</li>
-<li>複数台にドライバや診断ツールなどのベンダー配布のツールをインストールする場合</li>
-</ul>
-</blockquote>
-<div class="line-block">
-<div class="line">最近ではコールドスタンバイ的な用途をしているサーバに対して</div>
-<div class="line">playbook で構成を管理しておくと結構うれしいことが多いんじゃないかなんて考えていますが</div>
-<div class="line">まだ実現に至っていません。</div>
-</div>
-</div>
-<div class="section" id="id5">
-<h2>最後に</h2>
-<div class="line-block">
-<div class="line">今回は具体的な <tt class="docutils literal">playbook</tt> を載せたりとかはなかったですが、</div>
-<div class="line"><tt class="docutils literal">ansible</tt> はやはりymlで手軽に <tt class="docutils literal">task</tt> を定義していけるんで非常に使いやすいのが気に入っています。</div>
-<div class="line">またお客さんの環境を複数持っている場合、この手のツールは様々な事情で思うように導入できないケースも多いですが、</div>
-<div class="line">クライアント側は <tt class="docutils literal">ssh</tt> (CentOS5以下だと <tt class="docutils literal"><span class="pre">python-simplejson</span></tt> も必要) だけで使えるのというのも <tt class="docutils literal">ansible</tt> の強みだと思います。</div>
-<div class="line"><br /></div>
-<div class="line">インフラ側からも十分利用価値のあるものですので、台数が多い環境の運用をされてる方なども利用を検討してみるとうれしいことがあるかもしれません。</div>
-</div>
-<p class="rubric">脚注</p>
-<table class="docutils footnote" frame="void" id="fabric-su-prifix" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/12641514/switch-to-different-user-using-fabric">python - switch to different user using fabric  - Stack Overflow</a></td></tr>
-</tbody>
-</table>
-</div>
 
+
+<p>IRCログ</p>
+<div class="highlight"><pre>10:26:21    zipper | 全然関係ないけど、いわっちさー作業ログってどうやって取ってるの？
+10:26:48   iwasaki | お
+10:26:51    zipper | http://ghe.**********/gist/zipper/30d0d4a03553bab1d70e
+10:26:54    zipper | これ気になる
+10:26:56    zipper | cat &gt;&gt; ?
+10:27:09   iwasaki | ああ
+10:27:51   iwasaki | tmux pipe-pane って機能使ってやってる感じです。
+10:28:07   iwasaki | せっかくなのでgistに書き起こしてみます
+10:28:31    zipper | pipe-paneか
+10:28:36    zipper | 使ってる使ってる
+10:28:51    zipper | pipe-pane使うとフォークするんだなぁってことを知った
+10:28:56    zipper | そりゃそうだ感あるけどｗ
+10:28:56  Bob_tani | おれも、いわっちの話きいてまねしていれた。
+10:30:05   iwasaki | http://ghe.**********/gist/laughk/cd3e1755bffcd899efc9
+10:30:05        -- | Notice(zipper): bind-key H command-prompt -p &quot;logname:&quot; &quot;pipe-pane &#39;cat &gt;&gt; $HOME/logs/%%.log&#39; \; display-message
+                   | &#39;Started logging to $HOME/logs/%%.log&#39;&quot;
+10:30:05        -- | Notice(zipper): bind-key h pipe-pane \; display-message &#39;Ended logging&#39;
+10:30:11    zipper | ↑こんな感じで入れてた
+10:30:17      tora | ほうほう
+10:30:19    zipper | っても、glidenoteさんのパクリな気がする
+10:30:21      tora | さっそくパクろう
+10:30:21   iwasaki | 相当強引ですが、↑ を bashrc に書いてますねー
+10:30:26    zipper | なるほど
+10:30:37   iwasaki | tmux 内で ssh すれば自動的にロギング開始です
+10:30:40    zipper | tmuxならdefault-commandあたりでできそうな気がする
+10:30:43    zipper | おお
+10:30:46    zipper | かっこいい
+10:31:03      tora | 自動！
+10:31:14      tora | ログイン先にログがでるのはいいすね
+10:31:41   iwasaki | いちいちロギング有効にしたりするのがダルかった+忘れることが多かったので頑張って見た感じです
+10:31:43        -- | Notice(tora): やっぱりそうなるよねぇ &gt; /home/laughk/bin/tmux
+10:31:57    zipper | tmuxバージョンあげよう計画
+10:32:01    zipper | ってか、rpm作ろうｗ
+10:32:11    zipper | *****-repoにうｐればよい
+10:32:42    zipper | みんな俺俺tmux入れるのはツライ
+10:34:11    zipper | RHEL Client relase …？
+10:34:21    zipper | Tikango
+10:34:26    zipper | Tikanga
+10:36:42        -- | Notice -&gt; #**********: なんかアドベントカレンダーのネタこっちのほうが良さげ (tmux 自動ロギング)
+10:37:04    zipper | 両方書けばいいんだよ！！！
+10:37:11        -- | Notice -&gt; #**********: weechat ネタ8割がたすでに書いてる...
+10:37:17        -- | Notice -&gt; #**********: はっ
+10:37:28    zipper | 別に1つである必要はないのだよ！
+10:37:35        -- | Notice(tora): じゃあ僕の回で代わりに書いて下さい。
+10:37:39        -- | Notice(zipper): それはダメｗ
+10:37:44        -- | Notice -&gt; #**********: ちょｗ
+10:37:46        -- | Notice(tora): えっ
+10:38:23    zipper | 12/25空いてるよｗ
+10:38:27   iwasaki | wwww
+10:38:35    zipper | http://qiita.com/advent-calendar/2014/pepabo
+10:38:55   iwasaki | ちなみにアドベントカレンダーでtmuxのロギングネタ書くとしたら、今のIRCのやりとり引用してもよいです？
+10:39:37    zipper | 私はいいよ
+10:39:38      tora | 開かれたチャンネルなので引用に断りはいらないとおもわれ
+10:39:48    zipper | そうね
+10:39:48   iwasaki | 了解っす！
+10:40:33    zipper | 既知かもしれないけど、私の設定の元ネタこれね https://github.com/glidenote/dotfiles/blob/master/.tmux.conf#L53
+10:40:38    zipper | パクったった
+10:40:47        -- | Notice(zipper): けど、bind Hはめんどい
+10:40:52        -- | Notice(zipper): 変えたいと思っている
+10:41:08   iwasaki | 実は自分もこれをパクった後頑張って自動で走らせるようにしました！ｗ
+10:41:13    zipper | だよねーｗ
+</pre></div>
+
+
+<h2>やっていること</h2>
+<p>やりかたは様々ありそうですが、私の場合は <code>~/.tmux.conf</code> をいじるのではなく、<br />
+<code>~/.bashrc</code> または <code>~/.zshrc</code> に以下の関数を定義してssh コマンドに細工をしています。</p>
+<div class="highlight"><pre><span class="c">## Tmux + SSH --------------------------------------------------------</span>
+<span class="k">function</span> ssh_tmux<span class="o">()</span> <span class="o">{</span>
+  tmux  <span class="nb">set</span>-option default-terminal <span class="s2">&quot;screen&quot;</span> <span class="se">\;</span> <span class="se">\</span>
+        new-window -n <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$@</span> <span class="p">|</span> perl -ple <span class="s1">&#39;s/(^|\s)-[^\s] *[^\s]+//g&#39;</span> <span class="p">|</span> cut -d<span class="s2">&quot; &quot;</span> -f2 <span class="k">)</span> <span class="s2">&quot;exec ssh </span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$@</span><span class="k">)</span><span class="s2">&quot;</span> <span class="se">\;</span> <span class="se">\</span>
+        run-shell        <span class="s2">&quot;[ ! -d </span><span class="nv">$HOME</span><span class="s2">/.tmuxlog/#W/</span><span class="k">$(</span>date +%Y-%m/%d<span class="k">)</span><span class="s2"> ] &amp;&amp; mkdir -p </span><span class="nv">$HOME</span><span class="s2">/.tmuxlog/#W/</span><span class="k">$(</span>date +%Y-%m/%d<span class="k">)</span><span class="s2">&quot;</span> <span class="se">\;</span> <span class="se">\</span>
+        pipe-pane        <span class="s2">&quot;cat &gt;&gt; </span><span class="nv">$HOME</span><span class="s2">/.tmuxlog/#W/</span><span class="k">$(</span>date +%Y-%m/%d/%H%M%S.log<span class="k">)</span><span class="s2">&quot;</span> <span class="se">\;</span> <span class="se">\</span>
+        display-message  <span class="s2">&quot;Started logging to </span><span class="nv">$HOME</span><span class="s2">/.tmuxlog/#W/</span><span class="k">$(</span>date +%Y-%m/%d/%H%M%S.log<span class="k">)</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$TERM</span> <span class="o">=</span> screen <span class="o">]]</span> <span class="o">||</span> <span class="o">[[</span> <span class="nv">$TERM</span> <span class="o">=</span> screen-256color <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+  <span class="nb">alias </span><span class="nv">ssh</span><span class="o">=</span>ssh_tmux
+<span class="k">fi</span>
+</pre></div>
+
+
+<p>これを仕込むことでtmux上でのsshコマンドが以下のようになります。</p>
+<ul>
+<li>新しい window で <code>TERM=screen</code> でリモートセッションが始まる。</li>
+<li>作成された window 名が接続先のホスト名またはIPアドレスになる</li>
+<li><code>~/.tmuxlog/(接続先ホスト名またはIPアドレス)/YYYY-MM/DD/HHMMSS.log</code> というファイルに接続先での作業のロギングをする。</li>
+</ul>
+<p>個人的にはログを保存するディレクトリはホストごとに分けたいし、<br />
+window名はホストと同じにしてどこにログイン中なのかわかるようにしておきたい。<br />
+あとは<code>screen-256color</code>が有効なまんまだとリモート先で悪さされることが結構あるのでよしなにしたい<br />
+といった思いからこんな感じになっております。 (強引だとは思うのでもっといい方法あったら知りたい...)</p>
+<p>これを普段踏み台で使っているサーバに仕込んでおけば、tmuxを起動するだけでロギングするのを忘れずにすみます。
+上記IRCログにあるようにtmuxが古いと使えなかったり、地味にtopをやりっぱなしにしておくとログがとんでもなく肥大したりしますが概ね快適に使えています。  </p>
+<p>取得したログを確認したい場合は<code>script</code>コマンドで取得したもの同様にエスケープシーケンスも入っているので <code>less -r</code> や <code>less -R</code> で確認するといい感じです。</p>
+<h2>参考という名の偉大なる元ネタ様</h2>
+<ul>
+<li><a href="http://blog.glidenote.com/blog/2013/02/04/tmux-pipe-pane-logging/">tmuxのpipe-paneを利用してリモートサーバでの作業ログをローカルに記録する - Glide Note - グライドノート</a></li>
+<li><a href="http://blog.repl.info/2011/12/03/ssh-with-tmux-and-zsh/">tmux内でコマンドを実行する際に新しいウィンドウやウィンドウを分割して実行する | うどん駆動開発</a> </li>
+<li><code>man tmux</code></li>
+</ul>
                 <div class="panel">
                     <div class="panel-body">
                     <!-- <div class="alert alert-dismissable alert-warning"> -->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-12-10T00:00:00+09:00"> 2013-12-10</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-12-09T00:00:00+09:00"> 2014-12-09</time>
     </span>
     <span class="label label-default">By</span>
     <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
@@ -243,9 +225,9 @@ db01     <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://memo.laughk.org/tag/ansible.html">ansible</a>
-        /
 	<a href="http://memo.laughk.org/tag/adventcalendar.html">AdventCalendar</a>
+        /
+	<a href="http://memo.laughk.org/tag/tmux.html">tmux</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -254,9 +236,9 @@ db01     <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168
 <!-- AddThis Button BEGIN -->
 <div class="social_tools">
 
-    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 
-        <div class="fb-like" data-href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+        <div class="fb-like" data-href="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
         <a href="https://twitter.com/share" class="twitter-share-button addthis_button_tweet" data-lang="ja" data-related="laugh_k">ツイート</a>
 
@@ -318,8 +300,8 @@ db01     <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
-            var disqus_identifier = 'ansible_with_infrastructure_engineer';
-            var disqus_url = 'http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html';
+            var disqus_identifier = 'tmux-ssh-logging';
+            var disqus_url = 'http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html';
             var disqus_config = function () {
                 this.language = "ja";
             };

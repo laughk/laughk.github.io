@@ -108,7 +108,7 @@
 <li>
 <p>python2.7系最新をインストール(3系の対応が完璧でないっぽいため)  </p>
 <div class="highlight"><pre><span class="c"># 最新版を確認</span>
-% pyenv install -l | grep 2.7
+% pyenv install -l <span class="p">|</span> grep 2.7
 
 % pyenv install 2.7.8
 % pyenv virtualenv 2.7.8 pelican
@@ -171,14 +171,14 @@
 
 
 <p>するとだいたい以下のような感じでファイルが生成されると思います。</p>
-<div class="highlight"><pre><span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">blog</span>
-       <span class="err">├──</span> <span class="n">content</span>
-       <span class="err">├──</span> <span class="n">develop_server</span><span class="p">.</span><span class="n">sh</span>
-       <span class="err">├──</span> <span class="n">fabfile</span><span class="p">.</span><span class="n">py</span>
-       <span class="err">├──</span> <span class="n">Makefile</span>
-       <span class="err">├──</span> <span class="n">output</span>
-       <span class="err">├──</span> <span class="n">pelicanconf</span><span class="p">.</span><span class="n">py</span>
-       <span class="err">└──</span> <span class="n">publishconf</span><span class="p">.</span><span class="n">py</span>
+<div class="highlight"><pre>~/work/blog
+       ├── content
+       ├── develop_server.sh
+       ├── fabfile.py
+       ├── Makefile
+       ├── output
+       ├── pelicanconf.py
+       └── publishconf.py
 </pre></div>
 
 
@@ -201,11 +201,11 @@
 <ul>
 <li>
 <p>ファイル</p>
-<div class="highlight"><pre><span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">blog</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">extra</span>
-                      <span class="o">|----</span> <span class="n">empty</span>           <span class="p">(</span><span class="err">空ファイル</span><span class="p">,</span> <span class="n">Githubpage</span><span class="err">用</span> <span class="p">.</span><span class="n">nojekyll</span><span class="err">として利用する。</span><span class="p">)</span>
-                      <span class="o">|----</span> <span class="n">gitignore</span>       <span class="p">(</span><span class="n">output</span><span class="err">用の</span><span class="n">gitignore</span><span class="p">)</span>
-                      <span class="o">|----</span> <span class="n">CNAME</span>           <span class="p">(</span><span class="n">Githubpage</span><span class="err">用の</span> <span class="n">CNAME</span><span class="err">ファイル</span><span class="p">)</span>
-                      <span class="err">`</span><span class="o">----</span> <span class="n">gooleXXXXXXXX</span>   <span class="p">(</span><span class="n">GoogleAnalytics</span><span class="err">用のの静的</span><span class="n">HTML</span><span class="err">ファイル。テンプレート扱いされないように拡張子はなし</span><span class="p">)</span>
+<div class="highlight"><pre>~/work/blog/content/extra
+                      |---- empty           (空ファイル, Githubpage用 .nojekyllとして利用する。)
+                      |---- gitignore       (output用のgitignore)
+                      |---- CNAME           (Githubpage用の CNAMEファイル)
+                      `---- gooleXXXXXXXX   (GoogleAnalytics用のの静的HTMLファイル。テンプレート扱いされないように拡張子はなし)
 </pre></div>
 
 
@@ -265,7 +265,7 @@ MarkdownとReSTの混合状態でもいい感じでビルドしてくれます�
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-08-10T21:30:00"> 2014-08-10</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-08-10T21:30:00+09:00"> 2014-08-10</time>
     </span>
     <span class="label label-default">By</span>
     <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
@@ -404,6 +404,12 @@ MarkdownとReSTの混合状態でもいい感じでビルドしてくれます�
 <ul id="recentposts">
     <li class="list-group-item">
         <i class="fa fa-file-text fa-lg"></i>
+        <a href="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html">
+            tmux 内で SSH した時のロギングを自動でやる
+        </a>
+    </li>
+    <li class="list-group-item">
+        <i class="fa fa-file-text fa-lg"></i>
         <a href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html">
             TwitPicに上げてる画像をシェル芸で救出してみた
         </a>
@@ -424,12 +430,6 @@ MarkdownとReSTの混合状態でもいい感じでビルドしてくれます�
         <i class="fa fa-file-text fa-lg"></i>
         <a href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html">
             YAPC::Asiaに初参加してきた #yapcasia
-        </a>
-    </li>
-    <li class="list-group-item">
-        <i class="fa fa-file-text fa-lg"></i>
-        <a href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html">
-            ブログジェネレータをTinkererからPelicanに移行した
         </a>
     </li>
 </ul>

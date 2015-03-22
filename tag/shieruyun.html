@@ -75,7 +75,14 @@
 <h2>概要</h2>
 <p>最近になって twitpic が終わったり終わらなかったりな状況で<br />
 今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。</p>
+<!-- PELICAN_END_SUMMARY -->
 
+<h2>結果</h2>
+<p>とりあえず、結果からのせると以下のような感じ。<br />
+(追記) <code>png</code> を考慮するの漏れてたので修正しました。(追記おわり)</p>
+<div class="highlight"><pre>% <span class="nb">cd</span> /path/to/put_dir
+% <span class="nv">TWITPIC_URL</span><span class="o">=</span><span class="s2">&quot;http://twitpic.com/photos/laugh_k&quot;</span>
+% seq <span class="m">1</span> <span class="k">$(</span> curl -s <span class="si">${</span><span class="nv">TWITPIC_URL</span><span class="si">}</span> <span class="p">|</span> perl -nle <span class="s1">&#39;if(/&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span> <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>page <span class="p">;</span> <span class="k">do</span> curl -s <span class="s2">&quot;</span><span class="si">${</span><span class="nv">TWITPIC_URL</span><span class="si">}</span><span class="s2">?page=</span><span class="si">${</span><span class="nv">page</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> grep ...</pre></div></!--></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html">Read more ...</a> -->
                 </div>
@@ -93,7 +100,29 @@
 <script async class="speakerdeck-embed" data-id="d7cfa250a4ef0131c78c4612bbd7ec99" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 </div><p><a class="reference external" href="https://speakerdeck.com/laughk/cli-mini-hack-number-1-terminaltofalseqin-mu-woshen-meyou">Cli mini Hack!#1 ~Terminalとの親睦を深めよう~</a></p>
 <s>Embed しようとすると Tinkerer のビルドが何故かコケるのでリンクのみ共有です。。</s><p><tt class="docutils literal">Pelican</tt> に以降したらコケなくなったので埋め込みました！</p>
-
+<!-- PELICAN_END_SUMMARY -->
+<div class="section" id="teminal">
+<h2>Teminalの使い方の話をしようと思ったわけ</h2>
+<div class="line-block">
+<div class="line">これまで <tt class="docutils literal"><span class="pre">NODE-Setagaya</span></tt> で話をする機会があった際は</div>
+<div class="line">「やってみたいんだけど、時間やきっかけなくてなかなか手が付けられてなかったものを扱うかなー」</div>
+<div class="line">という感じでテーマを選んでいたことが多かったのですが、今回はちょっと視点を変えてみました。</div>
+</div>
+<div class="line-block">
+<div class="line">そこそこの期間この業種で仕事してきたけど、案外自分の身の回りに <tt class="docutils literal">Twitter</tt> 界隈とかにいそうな</div>
+<div class="line">「ザ・ <tt class="docutils literal">Terminal</tt> 大好き！」って人がなかなか自分の周りにいないなーと思っていたところと、</div>
+<div class="line">割と自分自身では仕事を通じて <tt class="docutils literal">Terminal</tt> で作業していると落ち着いくなーという人間になったので</div>
+<div class="line">現状の「俺こうやってるけどみんなどう？」って感じのものを出してみればどんな反応があるのかな？</div>
+<div class="line">という興味から今回のテーマを選んでみました。</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>感想とか</h2>
+<div class="line-block">
+<div class="line">「これは知っている！」</div>
+<div class="line">だったり</div>
+<div class="line"><tt class="docutils literal">vim</tt> のあたりでは「おー！これすげー！！」</div>
+<div class="line">と反応してもらえたり ...</div></div></div></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html">Read more ...</a> -->
                 </div>
@@ -117,7 +146,30 @@
 <ul class="simple">
 <li><a class="reference external" href="http://togetter.com/li/651837">第10回記念シェル芸勉強会&#64;シェルリアンタワー&amp;第28回場所が未定だったが決まったぞ定例会 - Togetterまとめ</a></li>
 </ul>
-
+<!-- PELICAN_END_SUMMARY -->
+<div class="line-block">
+<div class="line">過去のシェル芸勉強会ブログではいちいち自分の <tt class="docutils literal">Tweet</tt> 拾って引用したりと面倒な真似してましたが、</div>
+<div class="line">今回からは実際に自分で実行したコマンドたちは <tt class="docutils literal">gist</tt> にまとめてみました。</div>
+</div>
+<script src="https://gist.github.com/laughk/10381390.js"></script><p>最終問題についてはお察しください。</p>
+<div class="section" id="id2">
+<h2>収穫とか</h2>
+<p>せっかくなので今回の収穫とか</p>
+<ul>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal">sed <span class="pre">'s/./&amp;\n/g'</span></tt> より <tt class="docutils literal">grep <span class="pre">-o</span> .</tt> が便利。</dt>
+<dd><p class="first">会場でたちまち <tt class="docutils literal">grep</tt> ブームが発生しておりましたが、純粋にマッチ部分だけ抜き出す <tt class="docutils literal"><span class="pre">-o</span></tt> で縦表示にするテクニックがあるのに今まで気づかず目からウロコものでした。</p>
+<div class="last"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo </span>aabbcdabbcccdd <span class="p">|</span> grep -o .
+a
+a
+b
+b
+c
+d
+a
+b
+b
+c ...</pre></div></div></dd></dl></li></ul></div></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/04/10/shell_lian_tower.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/04/10/shell_lian_tower.html">Read more ...</a> -->
                 </div>

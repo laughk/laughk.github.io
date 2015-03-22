@@ -87,7 +87,22 @@
 <div class="line">元ネタは <a class="reference external" href="https://twitter.com/sechiro">&#64;sechiro</a> さんの <a class="reference external" href="http://sechiro.hatenablog.com/entry/2013/08/15/bash%E3%81%AE%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E7%BD%AE%E6%8F%9B%E6%A9%9F%E8%83%BD%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81%E3%82%B7%E3%82%A7%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%84%E3%82%B9">bashのプロセス置換機能を活用して、シェル作業やスクリプト書きを効率化する</a> でございます。</div>
 <div class="line">本当に参考になりました。ありがとうございます。</div>
 </div>
+<!-- PELICAN_END_SUMMARY -->
+<div class="section" id="id1">
+<h2>今までは</h2>
+<p>こんなことやってたわけです。</p>
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
 
+command1 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
+command2 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
+...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
+...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
+...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
+...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
+</pre></div>
+<p>まあ1,2行くらいならいいのですが、これが5行超えてくるともう編集するのも読むのも嫌になってきます。
+この辺調べてみると、 <tt class="docutils literal">exec</tt> コマンド <span class="strike">によるプロセス置換 ...</span></p></div></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/04/24/shell_exec_log.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/04/24/shell_exec_log.html">Read more ...</a> -->
                 </div>

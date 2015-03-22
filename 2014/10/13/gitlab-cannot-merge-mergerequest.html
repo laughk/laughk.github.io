@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="GitLab でマージリクエストのマージができなくなってハマった話"/>
             <meta property="og:url" content="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html"/>
-            <meta property="og:description" content="紛らわしい箇所を修正しました(タイトル修正, 利用中GitLabのバージョン明記) 背景 所用で最近個人的にGitLabを使い始めたが、 マージリクエストをブラウザ越しにマージする際に、ボタンをクリックしても何故か画面が先に進まず、 延々とマージされない状況が続くという事態に陥ってしまった。 ※ GitLab 7.3.2 での話です"/>
+            <meta property="og:description" content="紛らわしい箇所を修正しました(タイトル修正, 利用中GitLabのバージョン明記) 背景 所用で最近個人的にGitLabを使い始めたが、 マージリクエストをブラウザ越しにマージする際に、ボタンをクリックしても何故か画面が先に進まず、 延々とマージされない状況が続くという事態に陥ってしまった。 ※ GitLab 7.3.2 での話です 原因 ひとまずログを調査したところ、githost.log に以下の文言を発見。 October 13, 2014 15:21 -> ERROR -> Command failed [1]: /usr/bin/git --git-dir=/path/to/git/gitlab-satellites/hoge/huga/.git --work-tree=/path/to/git/gitlab-satellites/hoge ..."/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -98,7 +98,7 @@
 マージリクエストをブラウザ越しにマージする際に、ボタンをクリックしても何故か画面が先に進まず、
 延々とマージされない状況が続くという事態に陥ってしまった。</p>
 <p>※ GitLab 7.3.2 での話です</p>
-
+<!-- PELICAN_END_SUMMARY -->
 
 <h2>原因</h2>
 <p>ひとまずログを調査したところ、<code>githost.log</code> に以下の文言を発見。</p>

@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="TwitPicに上げてる画像をシェル芸で救出してみた"/>
             <meta property="og:url" content="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html"/>
-            <meta property="og:description" content="概要 最近になって twitpic が終わったり終わらなかったりな状況で 今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。"/>
+            <meta property="og:description" content="概要 最近になって twitpic が終わったり終わらなかったりな状況で 今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。 結果 とりあえず、結果からのせると以下のような感じ。 (追記) png を考慮するの漏れてたので修正しました。(追記おわり) % cd /path/to/put_dir % TWITPIC_URL="http://twitpic.com/photos/laugh_k" % seq 1 $( curl -s ${TWITPIC_URL} | perl -nle 'if(/<a href="\?page=([0-9]+)">Last<\/a>/){ print $1, "\n" }' ) | while read page ; do curl -s "${TWITPIC_URL}?page=${page}" | grep ..."/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -95,7 +95,7 @@
 <h2>概要</h2>
 <p>最近になって twitpic が終わったり終わらなかったりな状況で<br />
 今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。</p>
-
+<!-- PELICAN_END_SUMMARY -->
 
 <h2>結果</h2>
 <p>とりあえず、結果からのせると以下のような感じ。<br />

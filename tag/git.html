@@ -78,7 +78,11 @@
 マージリクエストをブラウザ越しにマージする際に、ボタンをクリックしても何故か画面が先に進まず、
 延々とマージされない状況が続くという事態に陥ってしまった。</p>
 <p>※ GitLab 7.3.2 での話です</p>
+<!-- PELICAN_END_SUMMARY -->
 
+<h2>原因</h2>
+<p>ひとまずログを調査したところ、<code>githost.log</code> に以下の文言を発見。</p>
+<div class="highlight"><pre><span class="n">October</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2014</span> <span class="mi">15</span><span class="o">:</span><span class="mi">21</span> <span class="o">-&gt;</span> <span class="n">ERROR</span> <span class="o">-&gt;</span> <span class="n">Command</span> <span class="n">failed</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">git</span> <span class="o">--</span><span class="n">git</span><span class="o">-</span><span class="n">dir</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">satellites</span><span class="o">/</span><span class="n">hoge</span><span class="o">/</span><span class="n">huga</span><span class="o">/</span><span class="p">.</span><span class="n">git</span> <span class="o">--</span><span class="n">work</span><span class="o">-</span><span class="n">tree</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">satellites</span><span class="o">/</span><span class="n">hoge ...</span></pre></div></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html">Read more ...</a> -->
                 </div>

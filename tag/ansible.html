@@ -76,7 +76,22 @@
 </ul>
 <p>すでに開催から2ヶ月近く経とうとしていますが、自分用の記録として今更書いておきます。
 なんかゴメンナサイ。</p>
+<!-- PELICAN_END_SUMMARY -->
 
+<p>LTの際に使ったスライドはこちら</p>
+<div style="width: 65%">
+<script async class="speakerdeck-embed" data-id="604718d0d2c40131cd584eace499ef8a" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+</div>
+
+<p>実は <a href="http://qiita.com/advent-calendar/2013/ansible">Ansible Advent Calendar 2013</a> で投稿させてもらった以下のものが元ネタだったりします。</p>
+<p><a href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html">あるインフラエンジニアとAnsibleの付き合い方</a></p>
+<p>内容としてはあまり突っ込んだことよりも、MSPな人間でも現実的に使えそうで嬉しいよみたいな感じでお話させてもらったつもりです。
+踏み台越えの話のところで反応頂いたりしていたようで、当日gkbr状態で緊張しながらもお話させた頂いて本当に良かったなと思っております。</p>
+<p>内輪の勉強会では色々話をしていますが、ここまで多数の方の前でお話させていただいたのは初めてで非常に良い機会となりました。
+また、実際にAnsibleを運用の現場で使われている話も多数聞くことができて実際のところ自分もまだまだ使いこなせていない部分が多いなとも痛感しました。
+個人的には<a href="https://github.com/livedoor/yabitz">Yabitz</a>の存在を知ることができたことも大きかったです。</p>
+<p>この2ヶ月の間にも関連の記事もかなり増えてきたり、本が出たりとAnsibleかなり盛り上がってきている感がありますね。
+今後はちょっと仕事の関係で使う機会が減るかもしれないですが、ある程度使い慣れている部分もあるので自宅マシンの構成管理とかにはこれからも引き続き使っていきたいです。</p>
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html">Read more ...</a> -->
                 </div>
@@ -91,7 +106,23 @@
                 <div class="summary"><p>この記事は <a class="reference external" href="http://qiita.com/advent-calendar/2013/ansible">Ansible Advent Calender 2013</a> 10日目の記事です。</p>
 <p>私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、
 少しずつ今の仕事で <tt class="docutils literal">ansible</tt> を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。</p>
-
+<!-- PELICAN_END_SUMMARY -->
+<div class="section" id="root">
+<h2>障壁1 / root権限</h2>
+<div class="line-block">
+<div class="line">CentOSなどのRedHad系を中心に運用している場合は意外と <tt class="docutils literal">su -</tt> が使えても <tt class="docutils literal">sudo</tt> が使えない。という状況があるかもしれません。</div>
+<div class="line"><tt class="docutils literal">fabric</tt> の場合は無理やりprefixを弄って <tt class="docutils literal">su <span class="pre">-c</span> 'command'</tt> をやることができなくもないですが <a class="footnote-reference" href="#fabric-su-prifix" id="id1">[1]</a></div>
+<div class="line"><tt class="docutils literal">ansible</tt> の場合は公式で特に対応されるような気配はなく、モジュールを作るしかなさそうですがなんだか割に合わないような気もします。</div>
+</div>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/ansible/ansible/pull/744">added su capability by willthames · Pull Request #744 · ansible/ansible · GitHub</a></li>
+</ul>
+</blockquote>
+<div class="line-block">
+<div class="line">私の場合もこの辺は完全に解消できているわけではないですが、極力自社で手が出せる範囲であったり</div>
+<div class="line">新規構築の際に予め自動化の一環として説明して、少しずつ <tt class="docutils literal">sudo</tt> を使える環境を増やしている状況です。</div>
+<div class="line">ここは <tt class="docutils literal">ansible</tt> に限らず他の <tt class="docutils literal">Provisioning</tt> / <tt class="docutils literal">Orchestration ...</tt></div></div></div></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html">Read more ...</a> -->
                 </div>

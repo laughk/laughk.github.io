@@ -75,14 +75,7 @@
 明日は<a href="http://qiita.com/tnmt">tnmt</a>さんです！</p>
 <p>今年まさかアドベントカレンダーに参加することになるとは思っていませんでしたが、<br />
 今朝社内IRCにてチーム内で反響があった tmux で作業をする際の tip を紹介したいと思います。</p>
-<!-- PELICAN_END_SUMMARY -->
 
-<hr />
-<h2>今朝のチームのIRCの一幕</h2>
-<p>私はいちいち手動で作業ログを取得するのが面倒なので普段から踏み台サーバの tmux で pip-pane を使ってほぼ自動的にやっているのですが、
-今朝以下を zipper さんに発見されたのをきっかけにすこし盛り上がりました。</p>
-<div class="highlight"><pre>laughk 11803 0.1 0.0 74852 1496     ? Ss  10:23 0:00 tmux -2
-laughk 11804 0.1 0.0 65764 3200 pts ...</pre></div></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html">Read more ...</a> -->
                 </div>
@@ -99,14 +92,7 @@ laughk 11804 0.1 0.0 65764 3200 pts ...</pre></div></!-->
 <h2>概要</h2>
 <p>最近になって twitpic が終わったり終わらなかったりな状況で<br />
 今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。</p>
-<!-- PELICAN_END_SUMMARY -->
 
-<h2>結果</h2>
-<p>とりあえず、結果からのせると以下のような感じ。<br />
-(追記) <code>png</code> を考慮するの漏れてたので修正しました。(追記おわり)</p>
-<div class="highlight"><pre>% <span class="nb">cd</span> /path/to/put_dir
-% <span class="nv">TWITPIC_URL</span><span class="o">=</span><span class="s2">&quot;http://twitpic.com/photos/laugh_k&quot;</span>
-% seq <span class="m">1</span> <span class="k">$(</span> curl -s <span class="si">${</span><span class="nv">TWITPIC_URL</span><span class="si">}</span> <span class="p">|</span> perl -nle <span class="s1">&#39;if(/&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span> <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>page <span class="p">;</span> <span class="k">do</span> curl -s <span class="s2">&quot;</span><span class="si">${</span><span class="nv">TWITPIC_URL</span><span class="si">}</span><span class="s2">?page=</span><span class="si">${</span><span class="nv">page</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> grep ...</pre></div></!--></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html">Read more ...</a> -->
                 </div>
@@ -126,11 +112,7 @@ laughk 11804 0.1 0.0 65764 3200 pts ...</pre></div></!-->
 マージリクエストをブラウザ越しにマージする際に、ボタンをクリックしても何故か画面が先に進まず、
 延々とマージされない状況が続くという事態に陥ってしまった。</p>
 <p>※ GitLab 7.3.2 での話です</p>
-<!-- PELICAN_END_SUMMARY -->
 
-<h2>原因</h2>
-<p>ひとまずログを調査したところ、<code>githost.log</code> に以下の文言を発見。</p>
-<div class="highlight"><pre><span class="n">October</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2014</span> <span class="mi">15</span><span class="o">:</span><span class="mi">21</span> <span class="o">-&gt;</span> <span class="n">ERROR</span> <span class="o">-&gt;</span> <span class="n">Command</span> <span class="n">failed</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">git</span> <span class="o">--</span><span class="n">git</span><span class="o">-</span><span class="n">dir</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">satellites</span><span class="o">/</span><span class="n">hoge</span><span class="o">/</span><span class="n">huga</span><span class="o">/</span><span class="p">.</span><span class="n">git</span> <span class="o">--</span><span class="n">work</span><span class="o">-</span><span class="n">tree</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">satellites</span><span class="o">/</span><span class="n">hoge ...</span></pre></div></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/10/13/gitlab-cannot-merge-mergerequest.html">Read more ...</a> -->
                 </div>
@@ -147,35 +129,7 @@ laughk 11804 0.1 0.0 65764 3200 pts ...</pre></div></!-->
 <p>[注意]<br />
 いわゆる転職エントリーというもので、個人的な日記です。<br />
 苦手な方はそっとブラウザバックを押していただくこと推奨です。</p>
-<!-- PELICAN_END_SUMMARY -->
 
-<h2>転職の経緯とか</h2>
-<p>これまでのMSPとしての監視運用を中心とする業務を通じて、</p>
-<ul>
-<li>より運用改善をガッツリやってみたい</li>
-<li>ひとつのサービスに特化した運用を経験してみたい</li>
-<li>バリバリコーディングをしてレイヤを問わずに問題を解決できるようになりたい</li>
-<li>運用の際に発生する痛みを解消出来るだけの知見を身につけたい</li>
-</ul>
-<p>という思いが日に日に強くなっていたこと</p>
-<p>加えて、割と最近までは個人で色々勉強会に行ってみたりで少しずつは回収できていたのですが<br />
-今年に入って結婚して生活環境が大幅に変わり、
-これまでの「個人で勉強会に行ってネタを仕入れて職場にちょっとずつ導入」のペースだと
-モチベーション的にも体力的にも持たなくなると感じたことが大きいです。</p>
-<h2>GMOペパボ</h2>
-<p>そんな中でGMOペパボを選んだ理由としては、だいたい以下のものが該当します。</p>
-<ul>
-<li>勉強会で中の人と話をしたり、中の人の発表内容やブログをみていてまさに自分がやりたいと思っていた運用改善を積極的に行っていた</li>
-<li>エンジニアの制度に関するブログを見ていても、インフラ側も含めて考えていて、自分のポジションからでも会社を盛り上げるチャンスがあると思ったから</li>
-<li>転職を本格的に考える段階になった時に出ていた募集要項内容を見て、今この機会を逃したら確実に後悔すると思ったから</li>
-</ul>
-<p>入社してまだ1周間程度しか経っていませんが
-社内のアウトプット内容を見ているだけでもエンジニアとして尊敬できる方が多く、当初の考えは間違っていなかったと感じています。</p>
-<h2>これから</h2>
-<p>正直なところまわりの方々と今の自分の技術力のギャップはかなり感じていて、
-「ちゃんとついていけるかな...」と不安に思うところもあります。</p>
-<p>ただ逆に言えば、自分のエンジニアとして今までこれまで伸ばせていなかった部分を存分に成長させるチャンスでもあります。
-まわりにいらっしゃる方々から色んな物を吸収しながら、前向きに、転職時に抱いた思いを実現させるべく頑張っていこうと思います。</p>
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/09/07/join-pepabo.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/09/07/join-pepabo.html">Read more ...</a> -->
                 </div>
@@ -193,19 +147,7 @@ laughk 11804 0.1 0.0 65764 3200 pts ...</pre></div></!-->
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<!-- PELICAN_END_SUMMARY -->
 
-<h2>0日目</h2>
-<p>前夜祭ということでLT祭り。
-初めてでビールとかもらえるのを知らずに普通にコンビニで飲み物を買ってから会場に行ってしまったのはやや失敗だった。</p>
-<p>LTからすでにPerl関係なくフリーダムな感じで、非常に面白かった。<br />
-特に wri.pe なんて普通に自分が使いたいサービスとしていいなって思ったし、「プライベートで3年間チーム開発した話」は本当に好きでやっている感があってすごく良かった。
-ただ最後のクイズを支える技術に全部持って行かれた感は否めない。デモが面白すぎた。</p>
-<h2>1日目</h2>
-<p>セッションをまわりつつ、無限コーヒーをいただいたり。<br />
-YAPC::Asia ってこんな感じなんだなーということを感じながらすごしていた。</p>
-<p>セッションは私も@tkr0429さんもインフラエンジニアなのでそれに関するものを選んだ傾向が強い。<br />
-特に<a href="https://twitter.com/studio3104">@studio3104</a>さん の「インフラエンジニア(狭義)は死んだ」はちょうど自分自身がほぼ同様ののことを色々と考えていたこともあり ...</p></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/09/07/yapcasia2014-repo.html">Read more ...</a> -->
                 </div>
@@ -228,25 +170,7 @@ YAPC::Asia ってこんな感じなんだなーということを感じながら
 <li>git</li>
 <li>githubpage</li>
 </ul>
-<!-- PELICAN_END_SUMMARY -->
 
-<h2>Pelicanのインストール</h2>
-<ol>
-<li>
-<p>python2.7系最新をインストール(3系の対応が完璧でないっぽいため)  </p>
-<div class="highlight"><pre><span class="c"># 最新版を確認</span>
-% pyenv install -l <span class="p">|</span> grep 2.7
-
-% pyenv install 2.7.8
-% pyenv virtualenv 2.7.8 pelican
-</pre></div>
-
-
-</li>
-<li>
-<p>作業ディレクトリを適当に作成</p>
-<div class="highlight"><pre>% mkdir -p ~/work/blog
-% <span class="nb">cd</span> ~/work/blog ...</pre></div></li></ol></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/08/10/tinker2pelican-repo.html">Read more ...</a> -->
                 </div>
@@ -264,22 +188,7 @@ YAPC::Asia ってこんな感じなんだなーということを感じながら
 </ul>
 <p>すでに開催から2ヶ月近く経とうとしていますが、自分用の記録として今更書いておきます。
 なんかゴメンナサイ。</p>
-<!-- PELICAN_END_SUMMARY -->
 
-<p>LTの際に使ったスライドはこちら</p>
-<div style="width: 65%">
-<script async class="speakerdeck-embed" data-id="604718d0d2c40131cd584eace499ef8a" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-</div>
-
-<p>実は <a href="http://qiita.com/advent-calendar/2013/ansible">Ansible Advent Calendar 2013</a> で投稿させてもらった以下のものが元ネタだったりします。</p>
-<p><a href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html">あるインフラエンジニアとAnsibleの付き合い方</a></p>
-<p>内容としてはあまり突っ込んだことよりも、MSPな人間でも現実的に使えそうで嬉しいよみたいな感じでお話させてもらったつもりです。
-踏み台越えの話のところで反応頂いたりしていたようで、当日gkbr状態で緊張しながらもお話させた頂いて本当に良かったなと思っております。</p>
-<p>内輪の勉強会では色々話をしていますが、ここまで多数の方の前でお話させていただいたのは初めてで非常に良い機会となりました。
-また、実際にAnsibleを運用の現場で使われている話も多数聞くことができて実際のところ自分もまだまだ使いこなせていない部分が多いなとも痛感しました。
-個人的には<a href="https://github.com/livedoor/yabitz">Yabitz</a>の存在を知ることができたことも大きかったです。</p>
-<p>この2ヶ月の間にも関連の記事もかなり増えてきたり、本が出たりとAnsibleかなり盛り上がってきている感がありますね。
-今後はちょっと仕事の関係で使う機会が減るかもしれないですが、ある程度使い慣れている部分もあるので自宅マシンの構成管理とかにはこれからも引き続き使っていきたいです。</p>
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/08/10/ansible-study01-repo.html">Read more ...</a> -->
                 </div>
@@ -301,22 +210,7 @@ YAPC::Asia ってこんな感じなんだなーということを感じながら
 <div class="line">今回はインストールの際の簡単なメモとか、1周間ほど使ってみた感想とか。</div>
 <div class="line"><tt class="docutils literal">ArchLinux</tt> は基本的な作業部分は公式 <tt class="docutils literal">Wiki</tt> 見ればほとんど解決できるのであまりそういうことは書かないです。</div>
 </div>
-<!-- PELICAN_END_SUMMARY -->
-<div class="section" id="virtualboxos">
-<h2>VirtualboxのゲストOSにして練習</h2>
-<div class="line-block">
-<div class="line">実は1年ほど前にも <tt class="docutils literal">ArchLinux</tt> にはトライしていたのですが、</div>
-<div class="line">ちょうど <tt class="docutils literal">sytemd</tt> への以降の時期だったのか公式 <tt class="docutils literal">wiki</tt> の内容が実物とだいぶずれてしまっている感があり</div>
-<div class="line">その時は <tt class="docutils literal">GUI</tt> 画面を見ることなく挫折してしまっていました。。</div>
-</div>
-<div class="line-block">
-<div class="line">今回はそういった背景もあり、流石に <tt class="docutils literal">XPS13</tt> にいきなりインストールするのは怖かったので</div>
-<div class="line"><tt class="docutils literal">Virtualbox</tt> で実際にインストールを行い、 <tt class="docutils literal">Gnome3</tt> が動くところまで確認。</div>
-<div class="line">現在は公式 <tt class="docutils literal">Wiki</tt> に従っていけばだいたい間違いないということを確認できたので、</div>
-<div class="line">実機にインストールする踏ん切りがつきました。</div>
-</div>
-<div class="line-block">
-<div class="line">ちなみ、 <tt class="docutils literal">ArchLinux</tt> だと公式リポジトリに <tt class="docutils literal"><span class="pre">virtualbox-guest-addition ...</span></tt></div></div></div></!-->
+
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/05/25/start_archlinux.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/05/25/start_archlinux.html">Read more ...</a> -->
                 </div>
@@ -345,22 +239,7 @@ YAPC::Asia ってこんな感じなんだなーということを感じながら
 <div class="line">元ネタは <a class="reference external" href="https://twitter.com/sechiro">&#64;sechiro</a> さんの <a class="reference external" href="http://sechiro.hatenablog.com/entry/2013/08/15/bash%E3%81%AE%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E7%BD%AE%E6%8F%9B%E6%A9%9F%E8%83%BD%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81%E3%82%B7%E3%82%A7%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%84%E3%82%B9">bashのプロセス置換機能を活用して、シェル作業やスクリプト書きを効率化する</a> でございます。</div>
 <div class="line">本当に参考になりました。ありがとうございます。</div>
 </div>
-<!-- PELICAN_END_SUMMARY -->
-<div class="section" id="id1">
-<h2>今までは</h2>
-<p>こんなことやってたわけです。</p>
-<div class="highlight"><pre><span class="c">#!/bin/bash</span>
-<span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
 
-command1 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-command2 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-</pre></div>
-<p>まあ1,2行くらいならいいのですが、これが5行超えてくるともう編集するのも読むのも嫌になってきます。
-この辺調べてみると、 <tt class="docutils literal">exec</tt> コマンド <span class="strike">によるプロセス置換 ...</span></p></div></!-->
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/04/24/shell_exec_log.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/04/24/shell_exec_log.html">Read more ...</a> -->
                 </div>
@@ -376,22 +255,7 @@ command2 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</s
 <div class="line">だいぶ出遅れてしまいましたが、先週末 <a class="reference external" href="http://www.zusaar.com/event/4897007">qpstudy 2014.04</a> に一般枠で参加させてもらってきたので</div>
 <div class="line">感想や学びになったことのまとめをメモしておきます。</div>
 </div>
-<!-- PELICAN_END_SUMMARY -->
-<p>他にもまとめている方が多いですが、セッションごとのスライドは以下の通り。</p>
-<dl class="docutils">
-<dt>第1セッション　構築作業の全体フェーズ</dt>
-<dd><a class="reference external" href="http://www.slideshare.net/sho7650/ss-33703096">qpstudy 2014.04 インフラエンジニアとは、なんだ</a></dd>
-<dt>第2セッション　今回の想定アーキテクチャとアーキテクチャ設計の勘所</dt>
-<dd><a class="reference external" href="http://www.slideshare.net/sechiro/qpstudy201404">Qpstudy201404 インフラ設計の勘所</a></dd>
-<dt>第3セッション　ハードウェア設計の勘所</dt>
-<dd><a class="reference external" href="http://www.slideshare.net/TakeshiHasegawa1/qpstudy201404-dist">qpstudy 2014.04 ハードウェア設計の勘所</a></dd>
-<dt>第4セッション　ネットワーク/OS設計の勘所</dt>
-<dd><a class="reference external" href="http://www.slideshare.net/yktko/20140419qpstudyosnw">20140419【qpstudy】OSとNW設計の勘所</a></dd>
-<dt>第5セッション　ミドルウェア（Web、Ap、DB）設計の勘所</dt>
-<dd><a class="reference external" href="https://www.slideshare.net/nekoruri/4-33705917">qpstudy 2014.04 ミドルウェア設計の勘所</a></dd>
-<dt>第6セッション　今後のインフラエンジニアとは</dt>
-<dd>heartbeats <a class="reference external" href="https://twitter.com/netmarkjp">馬場さん(&#64;netmarkjp)</a> によるプレゼン。こちらだけスライドは非公開</dd>
-<dt>また当日の ...</dt></dl></!-->
+
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/04/21/qpstudy_20140419_report.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/04/21/qpstudy_20140419_report.html">Read more ...</a> -->
                 </div>

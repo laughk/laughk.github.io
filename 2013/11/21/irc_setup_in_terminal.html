@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="快適Terminal環境計画 - IRC -"/>
             <meta property="og:url" content="http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html"/>
-            <meta property="og:description" content="前から tmux と組み合わせて irc bouncer 的な使い方をしていた weechat ですが。 いい加減本格的に移行したのでメモ。 ちなみに私は今のところ Ubuntu13.10 な 24時間起動のサーバ立てて使っとります。 インストール ググって出てくる情報見るとapt版だとISO-2022-JPガーみたいな話あるようですが、最近は特に問題ないようです。 sudo aptitude install weechat プラグインとか デフォで起動してもいいかもしれないですが、ここは先人の知恵に従って便利なプラグインを導入します。 今のところは最低限以下のものだけ入れるだけでもだいぶ違います。 weeget weechatのプラグインを管理できるプラグイン growl ハイライトしたキーワードをネットワーク経由でGrowl通知してくれる。 highmon ハイライトしたキーワードのレスだけを流してくれるバッファができる。 buffers 横に接続中のサーバ、入室中のチャンネルなどバッファの一覧を出してくれる。 go 指定したチャンネルにダイレクトにジャンプできる。関係ないチャンネルを既読にしないで飛べるので地味に便利。 まずはweegetを導入して、他のプラグインを入れてあげればいい感じです。 手順はこちらに従え問題無いかと -> Weegetを利用して、WeeChatのPlugin管理を楽にする 起動/設定 ~/.weechat/logger.conf ロギングはしときたいんでloggerの設定を以下のように変更します。 mask = "%plugin ..."/>
+            <meta property="og:description" content="前から tmux と組み合わせて irc bouncer 的な使い方をしていた weechat ですが。 いい加減本格的に移行したのでメモ。 ちなみに私は今のところ Ubuntu13.10 な 24時間起動のサーバ立てて使っとります。"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -95,7 +95,7 @@
 <div class="line">いい加減本格的に移行したのでメモ。</div>
 <div class="line">ちなみに私は今のところ Ubuntu13.10 な 24時間起動のサーバ立てて使っとります。</div>
 </div>
-<!-- PELICAN_END_SUMMARY -->
+
 <div class="section" id="id1">
 <h2>インストール</h2>
 <p>ググって出てくる情報見るとapt版だとISO-2022-JPガーみたいな話あるようですが、最近は特に問題ないようです。</p>

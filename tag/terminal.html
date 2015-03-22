@@ -76,29 +76,7 @@
 <script async class="speakerdeck-embed" data-id="d7cfa250a4ef0131c78c4612bbd7ec99" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 </div><p><a class="reference external" href="https://speakerdeck.com/laughk/cli-mini-hack-number-1-terminaltofalseqin-mu-woshen-meyou">Cli mini Hack!#1 ~Terminalとの親睦を深めよう~</a></p>
 <s>Embed しようとすると Tinkerer のビルドが何故かコケるのでリンクのみ共有です。。</s><p><tt class="docutils literal">Pelican</tt> に以降したらコケなくなったので埋め込みました！</p>
-<!-- PELICAN_END_SUMMARY -->
-<div class="section" id="teminal">
-<h2>Teminalの使い方の話をしようと思ったわけ</h2>
-<div class="line-block">
-<div class="line">これまで <tt class="docutils literal"><span class="pre">NODE-Setagaya</span></tt> で話をする機会があった際は</div>
-<div class="line">「やってみたいんだけど、時間やきっかけなくてなかなか手が付けられてなかったものを扱うかなー」</div>
-<div class="line">という感じでテーマを選んでいたことが多かったのですが、今回はちょっと視点を変えてみました。</div>
-</div>
-<div class="line-block">
-<div class="line">そこそこの期間この業種で仕事してきたけど、案外自分の身の回りに <tt class="docutils literal">Twitter</tt> 界隈とかにいそうな</div>
-<div class="line">「ザ・ <tt class="docutils literal">Terminal</tt> 大好き！」って人がなかなか自分の周りにいないなーと思っていたところと、</div>
-<div class="line">割と自分自身では仕事を通じて <tt class="docutils literal">Terminal</tt> で作業していると落ち着いくなーという人間になったので</div>
-<div class="line">現状の「俺こうやってるけどみんなどう？」って感じのものを出してみればどんな反応があるのかな？</div>
-<div class="line">という興味から今回のテーマを選んでみました。</div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>感想とか</h2>
-<div class="line-block">
-<div class="line">「これは知っている！」</div>
-<div class="line">だったり</div>
-<div class="line"><tt class="docutils literal">vim</tt> のあたりでは「おー！これすげー！！」</div>
-<div class="line">と反応してもらえたり ...</div></div></div></!-->
+
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html">Read more ...</a> -->
                 </div>
@@ -115,64 +93,7 @@
 <div class="line">いい加減本格的に移行したのでメモ。</div>
 <div class="line">ちなみに私は今のところ Ubuntu13.10 な 24時間起動のサーバ立てて使っとります。</div>
 </div>
-<!-- PELICAN_END_SUMMARY -->
-<div class="section" id="id1">
-<h2>インストール</h2>
-<p>ググって出てくる情報見るとapt版だとISO-2022-JPガーみたいな話あるようですが、最近は特に問題ないようです。</p>
-<div class="highlight"><pre>sudo aptitude install weechat
-</pre></div>
-</div>
-<div class="section" id="id2">
-<h2>プラグインとか</h2>
-<div class="line-block">
-<div class="line">デフォで起動してもいいかもしれないですが、ここは先人の知恵に従って便利なプラグインを導入します。</div>
-<div class="line">今のところは最低限以下のものだけ入れるだけでもだいぶ違います。</div>
-</div>
-<ul>
-<li><dl class="first docutils">
-<dt>weeget</dt>
-<dd><p class="first last">weechatのプラグインを管理できるプラグイン</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>growl</dt>
-<dd><p class="first last">ハイライトしたキーワードをネットワーク経由でGrowl通知してくれる。</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>highmon</dt>
-<dd><p class="first last">ハイライトしたキーワードのレスだけを流してくれるバッファができる。</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>buffers</dt>
-<dd><p class="first last">横に接続中のサーバ、入室中のチャンネルなどバッファの一覧を出してくれる。</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>go</dt>
-<dd><p class="first last">指定したチャンネルにダイレクトにジャンプできる。関係ないチャンネルを既読にしないで飛べるので地味に便利。</p>
-</dd>
-</dl>
-</li>
-</ul>
-<div class="line-block">
-<div class="line">まずはweegetを導入して、他のプラグインを入れてあげればいい感じです。</div>
-<div class="line">手順はこちらに従え問題無いかと -&gt; <a class="reference external" href="http://blog.glidenote.com/blog/2012/02/11/weechat-plugins/">Weegetを利用して、WeeChatのPlugin管理を楽にする</a></div>
-</div>
-</div>
-<div class="section" id="id3">
-<h2>起動/設定</h2>
-<div class="section" id="weechat-logger-conf">
-<h3>~/.weechat/logger.conf</h3>
-<div class="line-block">
-<div class="line">ロギングはしときたいんでloggerの設定を以下のように変更します。</div>
-</div>
-<div class="highlight"><pre><span class="nv">mask</span> <span class="o">=</span> <span class="s2">&quot;%plugin ...</span></pre></div></div></div></!-->
+
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html">Read more ...</a> -->
                 </div>

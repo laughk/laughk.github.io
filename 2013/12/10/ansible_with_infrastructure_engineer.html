@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="あるインフラエンジニアとAnsibleの付き合い方"/>
             <meta property="og:url" content="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html"/>
-            <meta property="og:description" content="この記事は Ansible Advent Calender 2013 10日目の記事です。 私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、 少しずつ今の仕事で ansible を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。 障壁1 / root権限 CentOSなどのRedHad系を中心に運用している場合は意外と su - が使えても sudo が使えない。という状況があるかもしれません。 fabric の場合は無理やりprefixを弄って su -c 'command' をやることができなくもないですが [1] ansible の場合は公式で特に対応されるような気配はなく、モジュールを作るしかなさそうですがなんだか割に合わないような気もします。 added su capability by willthames · Pull Request #744 · ansible/ansible · GitHub 私の場合もこの辺は完全に解消できているわけではないですが、極力自社で手が出せる範囲であったり 新規構築の際に予め自動化の一環として説明して、少しずつ sudo を使える環境を増やしている状況です。 ここは ansible に限らず他の Provisioning / Orchestration ..."/>
+            <meta property="og:description" content="この記事は Ansible Advent Calender 2013 10日目の記事です。 私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、 少しずつ今の仕事で ansible を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -93,7 +93,7 @@
                 <p>この記事は <a class="reference external" href="http://qiita.com/advent-calendar/2013/ansible">Ansible Advent Calender 2013</a> 10日目の記事です。</p>
 <p>私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、
 少しずつ今の仕事で <tt class="docutils literal">ansible</tt> を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。</p>
-<!-- PELICAN_END_SUMMARY -->
+
 <div class="section" id="root">
 <h2>障壁1 / root権限</h2>
 <div class="line-block">

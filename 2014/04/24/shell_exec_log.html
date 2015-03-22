@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="シェルスクリプトが '> $logfile 2>&1' だらけにならなくて済んだ話"/>
             <meta property="og:url" content="http://memo.laughk.org/2014/04/24/shell_exec_log.html"/>
-            <meta property="og:description" content="※ 2014-04-26 追記並びに一部コマンド部分の修正を行いました。( > => >> に変更 ) 個人用のチラシの裏のつもりが予想以上に反響いただいていたようで非常にびっくりしております。 ちょっとしたバッチ処理的なものはさくっとシェルスクリプトでやっています。 で、ログをとっておくべくリダイレクトを噛ますわけですが、 スマートに書く方法を調べたのでメモ。 元ネタは @sechiro さんの bashのプロセス置換機能を活用して、シェル作業やスクリプト書きを効率化する でございます。 本当に参考になりました。ありがとうございます。 今までは こんなことやってたわけです。 #!/bin/bash LOGFILE=/tmp/script-log command1 >> $LOGFILE 2>&1 command2 >> $LOGFILE 2>&1 ... >> $LOGFILE 2>&1 ... >> $LOGFILE 2>&1 ... >> $LOGFILE 2>&1 ... >> $LOGFILE 2>&1 まあ1,2行くらいならいいのですが、これが5行超えてくるともう編集するのも読むのも嫌になってきます。 この辺調べてみると、 exec コマンド によるプロセス置換 ..."/>
+            <meta property="og:description" content="※ 2014-04-26 追記並びに一部コマンド部分の修正を行いました。( > => >> に変更 ) 個人用のチラシの裏のつもりが予想以上に反響いただいていたようで非常にびっくりしております。 ちょっとしたバッチ処理的なものはさくっとシェルスクリプトでやっています。 で、ログをとっておくべくリダイレクトを噛ますわけですが、 スマートに書く方法を調べたのでメモ。 元ネタは @sechiro さんの bashのプロセス置換機能を活用して、シェル作業やスクリプト書きを効率化する でございます。 本当に参考になりました。ありがとうございます。"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.cosmo.min.css" type="text/css"/>
@@ -107,7 +107,7 @@
 <div class="line">元ネタは <a class="reference external" href="https://twitter.com/sechiro">&#64;sechiro</a> さんの <a class="reference external" href="http://sechiro.hatenablog.com/entry/2013/08/15/bash%E3%81%AE%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E7%BD%AE%E6%8F%9B%E6%A9%9F%E8%83%BD%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81%E3%82%B7%E3%82%A7%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%84%E3%82%B9">bashのプロセス置換機能を活用して、シェル作業やスクリプト書きを効率化する</a> でございます。</div>
 <div class="line">本当に参考になりました。ありがとうございます。</div>
 </div>
-<!-- PELICAN_END_SUMMARY -->
+
 <div class="section" id="id1">
 <h2>今までは</h2>
 <p>こんなことやってたわけです。</p>

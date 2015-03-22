@@ -4,7 +4,7 @@
 明日は&lt;a href="http://qiita.com/tnmt"&gt;tnmt&lt;/a&gt;さんです！&lt;/p&gt;
 &lt;p&gt;今年まさかアドベントカレンダーに参加することになるとは思っていませんでしたが、&lt;br /&gt;
 今朝社内IRCにてチーム内で反響があった tmux で作業をする際の tip を紹介したいと思います。&lt;/p&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 
 &lt;hr /&gt;
 &lt;h2&gt;今朝のチームのIRCの一幕&lt;/h2&gt;
@@ -124,7 +124,7 @@ window名はホストと同じにしてどこにログイン中なのかわか�
 &lt;h2&gt;概要&lt;/h2&gt;
 &lt;p&gt;最近になって twitpic が終わったり終わらなかったりな状況で&lt;br /&gt;
 今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。&lt;/p&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 
 &lt;h2&gt;結果&lt;/h2&gt;
 &lt;p&gt;とりあえず、結果からのせると以下のような感じ。&lt;br /&gt;
@@ -188,7 +188,7 @@ Twitpicからの画像データ救出、他の言語の練習題材としても�
 マージリクエストをブラウザ越しにマージする際に、ボタンをクリックしても何故か画面が先に進まず、
 延々とマージされない状況が続くという事態に陥ってしまった。&lt;/p&gt;
 &lt;p&gt;※ GitLab 7.3.2 での話です&lt;/p&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 
 &lt;h2&gt;原因&lt;/h2&gt;
 &lt;p&gt;ひとまずログを調査したところ、&lt;code&gt;githost.log&lt;/code&gt; に以下の文言を発見。&lt;/p&gt;
@@ -230,7 +230,7 @@ Twitpicからの画像データ救出、他の言語の練習題材としても�
 &lt;p&gt;[注意]&lt;br /&gt;
 いわゆる転職エントリーというもので、個人的な日記です。&lt;br /&gt;
 苦手な方はそっとブラウザバックを押していただくこと推奨です。&lt;/p&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 
 &lt;h2&gt;転職の経緯とか&lt;/h2&gt;
 &lt;p&gt;これまでのMSPとしての監視運用を中心とする業務を通じて、&lt;/p&gt;
@@ -264,7 +264,7 @@ Twitpicからの画像データ救出、他の言語の練習題材としても�
 
 &lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 
 &lt;h2&gt;0日目&lt;/h2&gt;
 &lt;p&gt;前夜祭ということでLT祭り。
@@ -363,7 +363,7 @@ YAPC::Asia ってこんな感じなんだなーということを感じながら
 &lt;li&gt;git&lt;/li&gt;
 &lt;li&gt;githubpage&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 
 &lt;h2&gt;Pelicanのインストール&lt;/h2&gt;
 &lt;ol&gt;
@@ -526,7 +526,7 @@ MarkdownとReSTの混合状態でもいい感じでビルドしてくれます�
 &lt;/ul&gt;
 &lt;p&gt;すでに開催から2ヶ月近く経とうとしていますが、自分用の記録として今更書いておきます。
 なんかゴメンナサイ。&lt;/p&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 
 &lt;p&gt;LTの際に使ったスライドはこちら&lt;/p&gt;
 &lt;div style="width: 65%"&gt;
@@ -551,7 +551,7 @@ MarkdownとReSTの混合状態でもいい感じでビルドしてくれます�
 &lt;div class="line"&gt;今回はインストールの際の簡単なメモとか、1周間ほど使ってみた感想とか。&lt;/div&gt;
 &lt;div class="line"&gt;&lt;tt class="docutils literal"&gt;ArchLinux&lt;/tt&gt; は基本的な作業部分は公式 &lt;tt class="docutils literal"&gt;Wiki&lt;/tt&gt; 見ればほとんど解決できるのであまりそういうことは書かないです。&lt;/div&gt;
 &lt;/div&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 &lt;div class="section" id="virtualboxos"&gt;
 &lt;h2&gt;VirtualboxのゲストOSにして練習&lt;/h2&gt;
 &lt;div class="line-block"&gt;
@@ -905,7 +905,7 @@ MarkdownとReSTの混合状態でもいい感じでビルドしてくれます�
 &lt;div class="line"&gt;元ネタは &lt;a class="reference external" href="https://twitter.com/sechiro"&gt;&amp;#64;sechiro&lt;/a&gt; さんの &lt;a class="reference external" href="http://sechiro.hatenablog.com/entry/2013/08/15/bash%E3%81%AE%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E7%BD%AE%E6%8F%9B%E6%A9%9F%E8%83%BD%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%A6%E3%80%81%E3%82%B7%E3%82%A7%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%84%E3%82%B9"&gt;bashのプロセス置換機能を活用して、シェル作業やスクリプト書きを効率化する&lt;/a&gt; でございます。&lt;/div&gt;
 &lt;div class="line"&gt;本当に参考になりました。ありがとうございます。&lt;/div&gt;
 &lt;/div&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 &lt;div class="section" id="id1"&gt;
 &lt;h2&gt;今までは&lt;/h2&gt;
 &lt;p&gt;こんなことやってたわけです。&lt;/p&gt;
@@ -1020,7 +1020,7 @@ command2
 &lt;div class="line"&gt;だいぶ出遅れてしまいましたが、先週末 &lt;a class="reference external" href="http://www.zusaar.com/event/4897007"&gt;qpstudy 2014.04&lt;/a&gt; に一般枠で参加させてもらってきたので&lt;/div&gt;
 &lt;div class="line"&gt;感想や学びになったことのまとめをメモしておきます。&lt;/div&gt;
 &lt;/div&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 &lt;p&gt;他にもまとめている方が多いですが、セッションごとのスライドは以下の通り。&lt;/p&gt;
 &lt;dl class="docutils"&gt;
 &lt;dt&gt;第1セッション　構築作業の全体フェーズ&lt;/dt&gt;
@@ -1091,7 +1091,7 @@ command2
 &lt;script async class="speakerdeck-embed" data-id="d7cfa250a4ef0131c78c4612bbd7ec99" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
 &lt;/div&gt;&lt;p&gt;&lt;a class="reference external" href="https://speakerdeck.com/laughk/cli-mini-hack-number-1-terminaltofalseqin-mu-woshen-meyou"&gt;Cli mini Hack!#1 ~Terminalとの親睦を深めよう~&lt;/a&gt;&lt;/p&gt;
 &lt;s&gt;Embed しようとすると Tinkerer のビルドが何故かコケるのでリンクのみ共有です。。&lt;/s&gt;&lt;p&gt;&lt;tt class="docutils literal"&gt;Pelican&lt;/tt&gt; に以降したらコケなくなったので埋め込みました！&lt;/p&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 &lt;div class="section" id="teminal"&gt;
 &lt;h2&gt;Teminalの使い方の話をしようと思ったわけ&lt;/h2&gt;
 &lt;div class="line-block"&gt;
@@ -1143,7 +1143,7 @@ command2
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://togetter.com/li/651837"&gt;第10回記念シェル芸勉強会&amp;#64;シェルリアンタワー&amp;amp;第28回場所が未定だったが決まったぞ定例会 - Togetterまとめ&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;過去のシェル芸勉強会ブログではいちいち自分の &lt;tt class="docutils literal"&gt;Tweet&lt;/tt&gt; 拾って引用したりと面倒な真似してましたが、&lt;/div&gt;
 &lt;div class="line"&gt;今回からは実際に自分で実行したコマンドたちは &lt;tt class="docutils literal"&gt;gist&lt;/tt&gt; にまとめてみました。&lt;/div&gt;
@@ -1220,7 +1220,7 @@ huga
 </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Thu, 10 Apr 2014 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2014-04-10:2014/04/10/shell_lian_tower.html</guid><category>シェル芸</category><category>awk</category><category>grep</category><category>xargs</category><category>勉強会</category></item><item><title>あるインフラエンジニアとAnsibleの付き合い方</title><link>http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html</link><description>&lt;p&gt;この記事は &lt;a class="reference external" href="http://qiita.com/advent-calendar/2013/ansible"&gt;Ansible Advent Calender 2013&lt;/a&gt; 10日目の記事です。&lt;/p&gt;
 &lt;p&gt;私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、
 少しずつ今の仕事で &lt;tt class="docutils literal"&gt;ansible&lt;/tt&gt; を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。&lt;/p&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 &lt;div class="section" id="root"&gt;
 &lt;h2&gt;障壁1 / root権限&lt;/h2&gt;
 &lt;div class="line-block"&gt;
@@ -1360,7 +1360,7 @@ db01     &lt;span class="nv"&gt;ansible_ssh_host&lt;/span&gt;&lt;span class="o"&
 &lt;div class="line"&gt;いい加減本格的に移行したのでメモ。&lt;/div&gt;
 &lt;div class="line"&gt;ちなみに私は今のところ Ubuntu13.10 な 24時間起動のサーバ立てて使っとります。&lt;/div&gt;
 &lt;/div&gt;
-&lt;!-- PELICAN_END_SUMMARY --&gt;
+
 &lt;div class="section" id="id1"&gt;
 &lt;h2&gt;インストール&lt;/h2&gt;
 &lt;p&gt;ググって出てくる情報見るとapt版だとISO-2022-JPガーみたいな話あるようですが、最近は特に問題ないようです。&lt;/p&gt;

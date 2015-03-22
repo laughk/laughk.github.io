@@ -76,29 +76,7 @@
 <script async class="speakerdeck-embed" data-id="d7cfa250a4ef0131c78c4612bbd7ec99" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 </div><p><a class="reference external" href="https://speakerdeck.com/laughk/cli-mini-hack-number-1-terminaltofalseqin-mu-woshen-meyou">Cli mini Hack!#1 ~Terminalとの親睦を深めよう~</a></p>
 <s>Embed しようとすると Tinkerer のビルドが何故かコケるのでリンクのみ共有です。。</s><p><tt class="docutils literal">Pelican</tt> に以降したらコケなくなったので埋め込みました！</p>
-<!-- PELICAN_END_SUMMARY -->
-<div class="section" id="teminal">
-<h2>Teminalの使い方の話をしようと思ったわけ</h2>
-<div class="line-block">
-<div class="line">これまで <tt class="docutils literal"><span class="pre">NODE-Setagaya</span></tt> で話をする機会があった際は</div>
-<div class="line">「やってみたいんだけど、時間やきっかけなくてなかなか手が付けられてなかったものを扱うかなー」</div>
-<div class="line">という感じでテーマを選んでいたことが多かったのですが、今回はちょっと視点を変えてみました。</div>
-</div>
-<div class="line-block">
-<div class="line">そこそこの期間この業種で仕事してきたけど、案外自分の身の回りに <tt class="docutils literal">Twitter</tt> 界隈とかにいそうな</div>
-<div class="line">「ザ・ <tt class="docutils literal">Terminal</tt> 大好き！」って人がなかなか自分の周りにいないなーと思っていたところと、</div>
-<div class="line">割と自分自身では仕事を通じて <tt class="docutils literal">Terminal</tt> で作業していると落ち着いくなーという人間になったので</div>
-<div class="line">現状の「俺こうやってるけどみんなどう？」って感じのものを出してみればどんな反応があるのかな？</div>
-<div class="line">という興味から今回のテーマを選んでみました。</div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>感想とか</h2>
-<div class="line-block">
-<div class="line">「これは知っている！」</div>
-<div class="line">だったり</div>
-<div class="line"><tt class="docutils literal">vim</tt> のあたりでは「おー！これすげー！！」</div>
-<div class="line">と反応してもらえたり ...</div></div></div></!-->
+
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html">Read more ...</a> -->
                 </div>
@@ -122,30 +100,7 @@
 <ul class="simple">
 <li><a class="reference external" href="http://togetter.com/li/651837">第10回記念シェル芸勉強会&#64;シェルリアンタワー&amp;第28回場所が未定だったが決まったぞ定例会 - Togetterまとめ</a></li>
 </ul>
-<!-- PELICAN_END_SUMMARY -->
-<div class="line-block">
-<div class="line">過去のシェル芸勉強会ブログではいちいち自分の <tt class="docutils literal">Tweet</tt> 拾って引用したりと面倒な真似してましたが、</div>
-<div class="line">今回からは実際に自分で実行したコマンドたちは <tt class="docutils literal">gist</tt> にまとめてみました。</div>
-</div>
-<script src="https://gist.github.com/laughk/10381390.js"></script><p>最終問題についてはお察しください。</p>
-<div class="section" id="id2">
-<h2>収穫とか</h2>
-<p>せっかくなので今回の収穫とか</p>
-<ul>
-<li><dl class="first docutils">
-<dt><tt class="docutils literal">sed <span class="pre">'s/./&amp;\n/g'</span></tt> より <tt class="docutils literal">grep <span class="pre">-o</span> .</tt> が便利。</dt>
-<dd><p class="first">会場でたちまち <tt class="docutils literal">grep</tt> ブームが発生しておりましたが、純粋にマッチ部分だけ抜き出す <tt class="docutils literal"><span class="pre">-o</span></tt> で縦表示にするテクニックがあるのに今まで気づかず目からウロコものでした。</p>
-<div class="last"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo </span>aabbcdabbcccdd <span class="p">|</span> grep -o .
-a
-a
-b
-b
-c
-d
-a
-b
-b
-c ...</pre></div></div></dd></dl></li></ul></div></!-->
+
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2014/04/10/shell_lian_tower.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2014/04/10/shell_lian_tower.html">Read more ...</a> -->
                 </div>
@@ -160,23 +115,7 @@ c ...</pre></div></div></dd></dl></li></ul></div></!-->
                 <div class="summary"><p>この記事は <a class="reference external" href="http://qiita.com/advent-calendar/2013/ansible">Ansible Advent Calender 2013</a> 10日目の記事です。</p>
 <p>私は普段MSPな一応インフラエンジニア的なことをやっている人間ですが、
 少しずつ今の仕事で <tt class="docutils literal">ansible</tt> を利用し始めているのでその導入の際に障壁になったことや利用しているシーンを紹介したいと思います。</p>
-<!-- PELICAN_END_SUMMARY -->
-<div class="section" id="root">
-<h2>障壁1 / root権限</h2>
-<div class="line-block">
-<div class="line">CentOSなどのRedHad系を中心に運用している場合は意外と <tt class="docutils literal">su -</tt> が使えても <tt class="docutils literal">sudo</tt> が使えない。という状況があるかもしれません。</div>
-<div class="line"><tt class="docutils literal">fabric</tt> の場合は無理やりprefixを弄って <tt class="docutils literal">su <span class="pre">-c</span> 'command'</tt> をやることができなくもないですが <a class="footnote-reference" href="#fabric-su-prifix" id="id1">[1]</a></div>
-<div class="line"><tt class="docutils literal">ansible</tt> の場合は公式で特に対応されるような気配はなく、モジュールを作るしかなさそうですがなんだか割に合わないような気もします。</div>
-</div>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="https://github.com/ansible/ansible/pull/744">added su capability by willthames · Pull Request #744 · ansible/ansible · GitHub</a></li>
-</ul>
-</blockquote>
-<div class="line-block">
-<div class="line">私の場合もこの辺は完全に解消できているわけではないですが、極力自社で手が出せる範囲であったり</div>
-<div class="line">新規構築の際に予め自動化の一環として説明して、少しずつ <tt class="docutils literal">sudo</tt> を使える環境を増やしている状況です。</div>
-<div class="line">ここは <tt class="docutils literal">ansible</tt> に限らず他の <tt class="docutils literal">Provisioning</tt> / <tt class="docutils literal">Orchestration ...</tt></div></div></div></!-->
+
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2013/12/10/ansible_with_infrastructure_engineer.html">Read more ...</a> -->
                 </div>
@@ -193,64 +132,7 @@ c ...</pre></div></div></dd></dl></li></ul></div></!-->
 <div class="line">いい加減本格的に移行したのでメモ。</div>
 <div class="line">ちなみに私は今のところ Ubuntu13.10 な 24時間起動のサーバ立てて使っとります。</div>
 </div>
-<!-- PELICAN_END_SUMMARY -->
-<div class="section" id="id1">
-<h2>インストール</h2>
-<p>ググって出てくる情報見るとapt版だとISO-2022-JPガーみたいな話あるようですが、最近は特に問題ないようです。</p>
-<div class="highlight"><pre>sudo aptitude install weechat
-</pre></div>
-</div>
-<div class="section" id="id2">
-<h2>プラグインとか</h2>
-<div class="line-block">
-<div class="line">デフォで起動してもいいかもしれないですが、ここは先人の知恵に従って便利なプラグインを導入します。</div>
-<div class="line">今のところは最低限以下のものだけ入れるだけでもだいぶ違います。</div>
-</div>
-<ul>
-<li><dl class="first docutils">
-<dt>weeget</dt>
-<dd><p class="first last">weechatのプラグインを管理できるプラグイン</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>growl</dt>
-<dd><p class="first last">ハイライトしたキーワードをネットワーク経由でGrowl通知してくれる。</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>highmon</dt>
-<dd><p class="first last">ハイライトしたキーワードのレスだけを流してくれるバッファができる。</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>buffers</dt>
-<dd><p class="first last">横に接続中のサーバ、入室中のチャンネルなどバッファの一覧を出してくれる。</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>go</dt>
-<dd><p class="first last">指定したチャンネルにダイレクトにジャンプできる。関係ないチャンネルを既読にしないで飛べるので地味に便利。</p>
-</dd>
-</dl>
-</li>
-</ul>
-<div class="line-block">
-<div class="line">まずはweegetを導入して、他のプラグインを入れてあげればいい感じです。</div>
-<div class="line">手順はこちらに従え問題無いかと -&gt; <a class="reference external" href="http://blog.glidenote.com/blog/2012/02/11/weechat-plugins/">Weegetを利用して、WeeChatのPlugin管理を楽にする</a></div>
-</div>
-</div>
-<div class="section" id="id3">
-<h2>起動/設定</h2>
-<div class="section" id="weechat-logger-conf">
-<h3>~/.weechat/logger.conf</h3>
-<div class="line-block">
-<div class="line">ロギングはしときたいんでloggerの設定を以下のように変更します。</div>
-</div>
-<div class="highlight"><pre><span class="nv">mask</span> <span class="o">=</span> <span class="s2">&quot;%plugin ...</span></pre></div></div></div></!-->
+
                     <a class="btn btn-primary btn-xs" href="http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html">Read more ...</a>
                     <!-- <a href="http://memo.laughk.org/2013/11/21/irc_setup_in_terminal.html">Read more ...</a> -->
                 </div>

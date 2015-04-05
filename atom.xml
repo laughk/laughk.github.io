@@ -1,5 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2014-12-09T00:00:00+09:00</updated><entry><title>tmux 内で SSH した時のロギングを自動でやる</title><link href="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html" rel="alternate"></link><updated>2014-12-09T00:00:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-12-09:2014/12/09/tmux-ssh-logging.html</id><summary type="html">&lt;p&gt;この記事は &lt;a href="http://qiita.com/advent-calendar/2014/pepabo"&gt;Pepabo AdventCalendar 2014&lt;/a&gt; の9日目の記事です。&lt;br /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2015-04-05T18:47:00+09:00</updated><entry><title>ブログのデプロイにWerckerを使って楽に投稿できる環境にした</title><link href="http://memo.laughk.org/2015/04/05/blog-build-ci-by-wercker.html" rel="alternate"></link><updated>2015-04-05T18:47:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-04-05:2015/04/05/blog-build-ci-by-wercker.html</id><summary type="html">&lt;p&gt;先週くらいに&lt;a href="http://wercker.com/"&gt;wercker&lt;/a&gt;を導入してこのブログのビルドを全自動にしたのでその時のメモ書き&lt;/p&gt;
+
+
+&lt;h2&gt;これまで&lt;/h2&gt;
+&lt;p&gt;このブログはこれまでは新しくエントリを書くときに以下の様な感じでやってました。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;bitbucketのプライベートレポジトリでMarkdownかReSTで書かれた元のエントリを管理&lt;/li&gt;
+&lt;li&gt;新しくエントリを書いたら &lt;a href="http://blog.getpelican.com/"&gt;pelican&lt;/a&gt; でビルド&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;python -m http.server&lt;/code&gt; とかでローカルで軽く表示の確認&lt;/li&gt;
+&lt;li&gt;githubpages のレポジトリにコミットして push&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;今&lt;/h2&gt;
+&lt;p&gt;CIができるサービスだと Travis CI や Circle CI をよく目にしますが&lt;br /&gt;
+今回は個人用途ということで、フリーでbitbucketのプライベートレポジトリまで使える wercker を導入しました。&lt;br /&gt;
+すると以下のとおり。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;ブログエントリとなる Markdown ファイルを bitbucket のレポジトリにコミットする&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以上。&lt;/p&gt;
+&lt;p&gt;後は wercker が自動でビルドしてくれて、&lt;br /&gt;
+特に問題なければそのまま githubpages のレポジトリにコミットして push してくれます。&lt;br /&gt;
+これまでエントリを書いた後が結構面倒だったのですがめっちゃ楽になりました。&lt;/p&gt;
+&lt;p&gt;イメージとしては以下のような感じ。
+&lt;code&gt;git push&lt;/code&gt; だけ自分でやれば後は wercker がよしなにやってくれます。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;+--------+  git push   +-----------+  webhook   +----------------+  deploy   +-------------+
+| laptop | ----------&amp;gt; | bitbucket | ---------&amp;gt; | wercker(build) | --------&amp;gt; | githubpages |
++--------+             +-----------+            +----------------+           +-------------+
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;導入の流れのメモ&lt;/h1&gt;
+&lt;h2&gt;wercker の設定&lt;/h2&gt;
+&lt;p&gt;アカウントを登録してから &lt;code&gt;ADD APPLICATION&lt;/code&gt; をしていく流れまでは情報が既に多数あるので割愛。&lt;br /&gt;
+(最初は wercker.yml ファイルに関して一旦そのままにして進んだほうが楽かも)&lt;/p&gt;
+&lt;h3&gt;Applications に登録ができたらデプロイターゲット情報を追加&lt;/h3&gt;
+&lt;h4&gt;自動デプロイの設定&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="" src="/images/2015/04/blog-build-ci-by-wercker01.jpg" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Deploy target name:&lt;/code&gt; は管理しやすい任意の名前で登録&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Auto deploy&lt;/code&gt; にチェックを入れて、bitbacket管理のソースレポジトリでhookしたいブランチ名を指定。シンプルにmasterにした。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;デプロイ先のgithubpagesレポジトリの情報を追加&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="" src="/images/2015/04/blog-build-ci-by-wercker02.jpg" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Deploy pipeline&lt;/code&gt; に githubpages 用のレポジトリ情報を持たせておくと wercker.yml 側でpushに必要なtoken情報を持たせなくて良くなるので便利&lt;/li&gt;
+&lt;li&gt;github のレポジトリは &lt;code&gt;https://&amp;lt;API_TOKEN&amp;gt;@github.com/&amp;lt;USER&amp;gt;/&amp;lt;REPOSITORY&amp;gt;.git&lt;/code&gt; と指定すればそのままpushできるので、気をつけながら使えばかなり便利&lt;/li&gt;
+&lt;li&gt;ただし、TOKENなどの外部に漏れちゃまずい情報はProtectedにチェックを入れるのを忘れずに&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;wercker.yml ファイルの準備&lt;/h3&gt;
+&lt;p&gt;2015-04-05現在は以下の様な感じで落ち着いています。&lt;br /&gt;
+&lt;code&gt;pip-install&lt;/code&gt;, &lt;code&gt;virtualenv:&lt;/code&gt; あたりの詳細はこちらを確認するのが確実。 &lt;a href="https://github.com/wercker/step-pip-install"&gt;wercker/step-pip-install&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;box&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;wercker&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;steps&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;python_location&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="sr"&gt;/usr/bin/&lt;/span&gt;&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;informatoin&lt;/span&gt;
+        &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+           &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;python version $(python -V) running&amp;quot;&lt;/span&gt;
+           &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;from location $(which python)&amp;quot;&lt;/span&gt;
+           &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;pip freeze: $(pip freeze)&amp;quot;&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;
+        &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;|-&lt;/span&gt;
+          &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;
+          &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;submodule&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;
+          &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;..&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;build&lt;/span&gt; &lt;span class="n"&gt;blog&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;Pelican&lt;/span&gt;
+        &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="n"&gt;publish&lt;/span&gt;
+
+&lt;span class="n"&gt;deploy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;steps&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;python_location&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="sr"&gt;/usr/bin/&lt;/span&gt;&lt;span class="n"&gt;python3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;requirements_file&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;packages_list&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ghp-import&amp;quot;&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;informatoin&lt;/span&gt;
+        &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+           &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;python version $(python -V) running&amp;quot;&lt;/span&gt;
+           &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;from location $(which python)&amp;quot;&lt;/span&gt;
+           &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;pip freeze: $(pip freeze)&amp;quot;&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Configute&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;
+        &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;|-&lt;/span&gt;
+          &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;global&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;email&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;**********+wercker@gmail.com&amp;quot;&lt;/span&gt;
+          &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;global&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;name&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Wercker&amp;quot;&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Setup&lt;/span&gt; &lt;span class="n"&gt;github&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="n"&gt;repository&lt;/span&gt;
+        &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;|-&lt;/span&gt;
+          &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="n"&gt;ghp&lt;/span&gt; &lt;span class="n"&gt;$GHP_REPOSITORY&lt;/span&gt;
+          &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;fetch&lt;/span&gt; &lt;span class="n"&gt;ghp&lt;/span&gt;
+          &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt; &lt;span class="n"&gt;gh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="n"&gt;ghp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Deploy&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;github&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt;
+        &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;|-&lt;/span&gt;
+          &lt;span class="n"&gt;ghp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="n"&gt;gh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Update by wercker&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+          &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;ghp&lt;/span&gt; &lt;span class="n"&gt;gh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;以下の点を意識した&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;標準の box-python にも python3.4 はインストールされているので virtualenv で環境を作って使うように&lt;br /&gt;
+    (参考: https://github.com/wercker/box-python )&lt;/li&gt;
+&lt;li&gt;pelican-plugins は submodule で管理するのでビルド前に &lt;code&gt;git submodule update --init&lt;/code&gt; するのを忘れずに&lt;/li&gt;
+&lt;li&gt;デプロイの際はビルドの際に使うモジュールは破棄されるので &lt;code&gt;ghp-import&lt;/code&gt; の改めてのインストールは忘れずに&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;設定は以上&lt;/h2&gt;
+&lt;p&gt;これだけやれば準備は完了。&lt;br /&gt;
+wercker.yml を作る際に最初だけは色々試行錯誤しますが、1度出来てしまえば
+bitbucket レポジトリに純粋にブログエントリを書いた Markdown をコミットするだけでブログの更新が完了します。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;python 環境系の情報があまりな印象でしたがやってみたらそれほど苦労せずに出来ました。  &lt;/p&gt;
+&lt;p&gt;ここまで持ってくれれば自分で静的ページを生成してホスティングするやり方のブログでも&lt;br /&gt;
+Bitbucket の Web 画面から直接 Markdown ファイルを追加してブログ更新出来たりとかで、書いた後の煩わしさから開放されそうです。&lt;/p&gt;
+&lt;p&gt;はてなブログやらTumblrやらQiitaやら使えよって話かもしれませんが、&lt;br /&gt;
+やっぱり元のエントリはちゃんと自分でgit管理しておきたいし、CIを実際に触って便利感を実感できたのでよしとします。&lt;/p&gt;</summary><category term="pelican"></category><category term="wercker"></category><category term="ci"></category><category term="githubpages"></category></entry><entry><title>tmux 内で SSH した時のロギングを自動でやる</title><link href="http://memo.laughk.org/2014/12/09/tmux-ssh-logging.html" rel="alternate"></link><updated>2014-12-09T00:00:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2014-12-09:2014/12/09/tmux-ssh-logging.html</id><summary type="html">&lt;p&gt;この記事は &lt;a href="http://qiita.com/advent-calendar/2014/pepabo"&gt;Pepabo AdventCalendar 2014&lt;/a&gt; の9日目の記事です。&lt;br /&gt;
 前日は&lt;a href="http://blog.inouetakuya.info/entry/2014/12/08/214435"&gt;inouetakuya&lt;/a&gt;さんでした！
 明日は&lt;a href="http://qiita.com/tnmt"&gt;tnmt&lt;/a&gt;さんです！&lt;/p&gt;
 &lt;p&gt;今年まさかアドベントカレンダーに参加することになるとは思っていませんでしたが、&lt;br /&gt;

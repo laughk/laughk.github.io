@@ -1,5 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2015-04-05T18:47:00+09:00</updated><entry><title>ブログのデプロイにWerckerを使って楽に投稿できる環境にした</title><link href="http://memo.laughk.org/2015/04/05/blog-build-ci-by-wercker.html" rel="alternate"></link><updated>2015-04-05T18:47:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-04-05:2015/04/05/blog-build-ci-by-wercker.html</id><summary type="html">&lt;p&gt;先週くらいに&lt;a href="http://wercker.com/"&gt;wercker&lt;/a&gt;を導入してこのブログのビルドを全自動にしたのでその時のメモ書き&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2015-06-07T00:00:00+09:00</updated><entry><title>kite-string(凧糸)というtakosanクライアントを公開してPyPIデビューしていた</title><link href="http://memo.laughk.org/2015/06/07/kite-string-release.html" rel="alternate"></link><updated>2015-06-07T00:00:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-06-07:2015/06/07/kite-string-release.html</id><summary type="html">&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/kentaro/takosan"&gt;takosan&lt;/a&gt; 向けの簡単なコマンドラインクライアントをpythonで書いてみた&lt;/li&gt;
+&lt;li&gt;ついでに PyPI デビューもできてよかった&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;hr /&gt;
+&lt;p&gt;会社のチャットツールがSlackになってからは通知面ですっかりお馴染みになったSlack版ikachanの&lt;a href="https://github.com/kentaro/takosan"&gt;takosan&lt;/a&gt;。&lt;br /&gt;
+特に最近では &lt;a href="https://github.com/kentaro/takosan/pull/5"&gt;dojinekoさんの素晴らしいPR&lt;/a&gt;が取り込まれてHTTPリクエストだけでかなりいい感じの通知ができるようになりました。&lt;/p&gt;
+&lt;p&gt;ただパラメタが増えて今まで通りコマンドラインで &lt;code&gt;curl&lt;/code&gt; で色々やるときに結構面倒になってきたので、同じようなノリで使える雑なCLI wrapperをpythonで作ってみました。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/laughk/kite-string"&gt;laughk/kite-string&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;PyPI: &lt;a href="https://pypi.python.org/pypi/kite-string"&gt;https://pypi.python.org/pypi/kite-string&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;使い方とかInstall方法とか&lt;/h3&gt;
+&lt;p&gt;PyPIに公開していますので以下のとおりでインストールできます。&lt;br /&gt;
+あまり細かく動作確認はできていませんが、python2.6以降(3系も含む)なら動きます。
+(python環境は必要に応じて &lt;code&gt;virtualenv&lt;/code&gt; なりと組み合わせてください)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install kite-string
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;できること&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/kentaro/takosan/pull/5"&gt;dojinekoさんのPR&lt;/a&gt;のサンプル内にある key にそのまま対応するオプションを用意してます。( ただし field 周りはまだ実装できてないので未対応です。)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--channel&lt;/code&gt; オプションを複数指定すれば複数チャンネルに同時にポストすることも出来ます。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;使用例&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;kite &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --channel&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;@laughk&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --message&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;*Hello* \`shachikun\`&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --icon&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;:ocra:&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --name&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;shachikun&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --color&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#3498db&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --pretext&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Tell you about slack :ocean:&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --author-name&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Slack&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --author-icon&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://slack.global.ssl.fastly.net/272a/img/icons/favicon-32.png&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --author-link&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://slack.com/&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --title&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Slack (software)&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --title-link&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://ja.wikipedia.org/wiki/Slack_(software)&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --text&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Slack is a team communication tool co-founded by Stewart Butterfield, Eric Costello, Cal Henderson, and Serguei Mourachov. Slack began as an internal tool used by their company Tiny Speck in the development of Glitch, the defunct online game. Slack was launched in August, 2013, and signed up 8000 customers within 24 hours of launch.&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; --image-url&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://slack.global.ssl.fastly.net/558b/img/slack_logo.png&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&amp;gt; http://takosan.example.com:4979
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="image" src="/images/2015/06/70f30678-038d-11e5-829f-05f898c4e4f2.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;補完&lt;/h4&gt;
+&lt;p&gt;bashは&lt;a href="http://click.pocoo.org/4/bashcomplete/"&gt;clickの補完生成&lt;/a&gt;で、zshは&lt;a href="https://pypi.python.org/pypi/genzshcomp/0.5.2"&gt;genzshcomp&lt;/a&gt;で生成して completion も用意してみました。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/laughk/kite-string/tree/master/data"&gt;https://github.com/laughk/kite-string/tree/master/data&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;bash&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/images/2015/06/5d4522a0-038d-11e5-9ff6-8f7e46e5d63e.jpg" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;zsh&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="/images/2015/06/640292da-038d-11e5-9f5c-ea691de49f89.jpg" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h3&gt;ついでにPyPIデビューもできた&lt;/h3&gt;
+&lt;p&gt;この kite-string は元も「オレオレ便利ツールにして社内GH;E環境くらいにとどめとうこうかな」と思ってたのですが
+よくよく考えると takosan そのものがオープンなツールなわけで別に公開しない理由もなさそうと思ったので、&lt;code&gt;setup.py&lt;/code&gt; の書き方を調べてPyPIに登録するところまでやってみました。&lt;/p&gt;
+&lt;p&gt;そのあたりを調べるときにdistributeなど古い情報が多数引っかかってしまってなかなかほしい情報が出てこなかったのですが、&lt;a href="https://github.com/fabric/fabric"&gt;fabric&lt;/a&gt;など普段お世話になっているモジュールの&lt;code&gt;setup.py&lt;/code&gt;の中身を読んでみたりすると非常に参考になりました。&lt;/p&gt;
+&lt;p&gt;またpythonプロフェッショナルプログラミング(第2版)にパッケージ作成の解説があり、そちらも非常に参考になりました。&lt;/p&gt;
+&lt;iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;bc1=000000&amp;IS2=1&amp;bg1=FFFFFF&amp;fc1=000000&amp;lc1=0000FF&amp;t=laughk-22&amp;o=9&amp;p=8&amp;l=as4&amp;m=amazon&amp;f=ifr&amp;ref=ss_til&amp;asins=B00XZTYMG6" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;kite-string 本当にシンプルにtakosanのURL向けにリクエストを投げることしかしない雑なツールではあるのだけど、
+新卒の頃からずっと「コード書いて自分でツールを作って公開してみたい」と思い続けてきた目標がひょうんなことから達成することができました。&lt;/p&gt;
+&lt;p&gt;これまで頑張ってコード書いてみても公開したりするのが億劫でなかなか一歩踏み出せないところもあったけど、&lt;br /&gt;
+少なくともPyPIに登録することに対する抵抗は大分なくなったし、精神的にひとつの壁を越えられた感じがあってこれからは隙あらばどんどん自分で作ったコードを出していこうという気持ちになれたので kite-string は公開してみて本当に良かったと思います。&lt;/p&gt;</summary><category term="python"></category><category term="slack"></category></entry><entry><title>ブログのデプロイにWerckerを使って楽に投稿できる環境にした</title><link href="http://memo.laughk.org/2015/04/05/blog-build-ci-by-wercker.html" rel="alternate"></link><updated>2015-04-05T18:47:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-04-05:2015/04/05/blog-build-ci-by-wercker.html</id><summary type="html">&lt;p&gt;先週くらいに&lt;a href="http://wercker.com/"&gt;wercker&lt;/a&gt;を導入してこのブログのビルドを全自動にしたのでその時のメモ書き&lt;/p&gt;
 
 
 &lt;h2&gt;これまで&lt;/h2&gt;

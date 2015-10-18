@@ -1,5 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2015-06-07T00:00:00+09:00</updated><entry><title>kite-string(凧糸)というtakosanクライアントを公開してPyPIデビューしていた</title><link href="http://memo.laughk.org/2015/06/07/kite-string-release.html" rel="alternate"></link><updated>2015-06-07T00:00:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-06-07:2015/06/07/kite-string-release.html</id><summary type="html">&lt;h2&gt;TL;DR&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2015-10-18T09:10:00+09:00</updated><entry><title>PyConJP 2015 に行ってきた #pyconjp</title><link href="http://memo.laughk.org/2015/10/18/pyconjp2015-report.html" rel="alternate"></link><updated>2015-10-18T09:10:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-10-18:2015/10/18/pyconjp2015-report.html</id><summary type="html">&lt;p&gt;少し遅れちゃいましたが、先週末に行われた &lt;a href="https://pycon.jp/2015/ja/"&gt;PyConJP 2015&lt;/a&gt; のカンファレンスに参加したのでその時のメモ書きをまとめます。&lt;br /&gt;
+1日目のLTで「&lt;a href="https://pycon.jp/2015/ja/schedule/presentation/93/"&gt;3分でサーバオペレーションコマンドを作る技術&lt;/a&gt;」というタイトルで登壇させていただいたのですが、そちらはまた別途まとめます。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" src="https://cloud.githubusercontent.com/assets/1286319/10563137/c4858f3a-75b7-11e5-9638-779c754c2825.png" /&gt;&lt;/p&gt;
+
+
+&lt;h2&gt;すでにあるまとめとか&lt;/h2&gt;
+&lt;p&gt;当日の様子は下記のリンク先にまとめられているのでそちらを見るのが良いと思います。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://togetter.com/li/885210"&gt;【スライド・動画・実況全部入り】PyCon JP 2015 まとめまとめ #PyConJP - Togetterまとめ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://techstars.jp/blog/pycon15-1/"&gt;もう確認した？PyCon JP 2015、公開済み全スライドまとめ #pyconjp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;カンファレンス 1日目&lt;/h2&gt;
+&lt;p&gt;午前中は基調講演(内容は &lt;a href="http://ox.cx/b"&gt;ox.cx/b&lt;/a&gt; )から &lt;a href="https://pycon.jp/2015/ja/schedule/presentation/47/"&gt;強くなるためのプログラミング ープログラミングに関する様々なコンテストとそのはじめ方ー&lt;/a&gt; を聞いてという流れ。&lt;br /&gt;
+基調講演はホスティングのインフラに絡む話で個人的に「おお！PyConでインフラ絡みの話も聞けるとは！」という印象。&lt;br /&gt;
+その中でもメトリクスを監視について平均値だけ見てると情報が流れてくので微分して瞬間的な傾向も追っかけてるという話が興味深かった。&lt;br /&gt;
+あと地味にここで &lt;strong&gt;uWSGIのuってμのことだったのか！&lt;/strong&gt; と地味に初めて知った...&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;メトリクスに数学的なアプローチ確かにできれば便利そうだよね。普段Muninやらmackerelやら見てるが、そう言えばあまり意識してないなー &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/652653625747992577"&gt;2015, 10月 10&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;a href="https://pycon.jp/2015/ja/schedule/presentation/47/"&gt;強くなるためのプログラミング ープログラミングに関する様々なコンテストとそのはじめ方ー&lt;/a&gt; では分野別のコンテストに関する情報が満載で、 「興味が湧いた分野でとりあえずなんかやってみたい」もそうだし「なんかコード書きたいんだけど何すりゃいいのかよくわからん」という人も&lt;a href="http://www.slideshare.net/cocodrips/pyconjp"&gt;くーむさんの資料&lt;/a&gt;見れば強くなるきっかけが掴めそうだと思ったし自分もなんか新境地広げたい時にもっかい見ておこうと思った。&lt;/p&gt;
+&lt;p&gt;そんな感じで午前中は過ごしお昼の時間に、&lt;a href="http://plone.jp/plone-symposium-tokyo-2015"&gt;Ploneシンポジウム&lt;/a&gt;でもランチがかなり美味しくて期待していたけど案の定期待通り、美味しかった。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;ランチ。ガパオご飯とグリーンカレー &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt; &lt;a href="http://t.co/gHGJ521fxx"&gt;pic.twitter.com/gHGJ521fxx&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/652683232207499264"&gt;2015, 10月 10&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;ただこの時はLTに登壇する際のイメージがまだ掴みきれてなかったりとかして、
+サッとランチを食べてイメージ固めてる最中に &lt;a href="https://twitter.com/wolf20xx"&gt;@wolf20xx&lt;/a&gt; さんに声かけて頂いて大分緊張が和らいだ。その節は本当にありがとうございました。  &lt;/p&gt;
+&lt;p&gt;またお昼に&lt;a href="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&amp;amp;bc1=000000&amp;amp;IS2=1&amp;amp;bg1=FFFFFF&amp;amp;fc1=000000&amp;amp;lc1=0000FF&amp;amp;t=laughk-22&amp;amp;o=9&amp;amp;p=8&amp;amp;l=as4&amp;amp;m=amazon&amp;amp;f=ifr&amp;amp;ref=ss_til&amp;amp;asins=4774177075"&gt;Python ライブラリ厳選レシピ&lt;/a&gt;の先行発売が行われていて、価格も少しお得になっていたのでAmazonで予約していたがその場で購入。著者の皆様からサインも頂いてホクホクだった&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;:memo: amazonで予約してたのキャンセルしておく。(先行発売のものゲット) &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt; &lt;a href="http://t.co/20vbq7o7eo"&gt;pic.twitter.com/20vbq7o7eo&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/652734194355859456"&gt;2015, 10月 10&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;午後は&lt;a href="https://pycon.jp/2015/ja/schedule/presentation/53/"&gt;オープンデータプラットフォームを作る話&lt;/a&gt;と&lt;a href="https://pycon.jp/2015/ja/schedule/presentation/51/"&gt;Tornado/ElasticSearchで実現する大量ツイートのリアルタイム関連文書判定&lt;/a&gt;の話を聞いて適当にオープンスペースでだべりつつそのままコーヒーブレイクへ。気がついたら近くに &lt;a href="https://twitter.com/kitak"&gt;@kitak&lt;/a&gt; がいてビビったのを覚えてる。&lt;/p&gt;
+&lt;p&gt;その後は&lt;a href="tse - Pythonによるテキスト整形ユーティリティ"&gt;tseというsedやawkのような処理をpythonでできるツールのお話&lt;/a&gt;と&lt;a href="https://twitter.com/aodag"&gt;@aodag&lt;/a&gt;さんの&lt;a href="https://pycon.jp/2015/ja/schedule/presentation/46/"&gt;Packaging最前線&lt;/a&gt;を聞いていた。特にPackaging最前線の話は、最近妙にpipのアップデートが多いなと思っていたのでそのあたりのまとまった話が聞けてよかった。&lt;/p&gt;
+&lt;p&gt;そしてその後はカンファレンスホールでLT開始。&lt;br /&gt;
+実は前日までどのタイミングで自分がやるかわかっていなかったけど、なんと一番最初でした。&lt;br /&gt;
+ただ辺に後回しにされるよりも「俺がトップバッターだ！！！」と開き直れたので結果的に良かったです。&lt;br /&gt;
+そのへんは冒頭にも書いたようにまた別エントリとして書きます。&lt;/p&gt;
+&lt;p&gt;LT後はすっかり腑抜けになってしまってしばらく記憶が曖昧になってしまってましたが、&lt;br /&gt;
+一気に安心したことは覚えています。その後のパーティーでは料理、ビールが美味かったりいくつかLTのフィードバックをいただけたりで非常に良かったです。&lt;/p&gt;
+&lt;h2&gt;カンファレンス 2日目&lt;/h2&gt;
+&lt;p&gt;この日も午前中から参加
+基調講演からそのまま同じ場所に残ってJob Fairを聞いていた。&lt;/p&gt;
+&lt;p&gt;基調講演はBeProudの佐藤治夫さん。&lt;br /&gt;
+BeProudという会社/組織をどうやって作ってきたかという話だった。&lt;br /&gt;
+全体通して非常に良い話だったのだけど個人的に「感動すると創造的になれる」という下りのところが一番響いて、python限らず働いているうちは忘れずに大切にしたいなと思った。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;「感動すると創造的になれる」 いい話。感動し続けたい。 &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/653021669766774784"&gt;2015, 10月 11&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;Job Fair に関しても、最初は転職が絡んだ話かな？と思っていたけどパネルディスカッションが聞いていておもしろかった。
+特に「入口をもっとつくらないといけない。日本の何処かにいる「アイデアだけ持っている人」が検索した時に出てくるのはだいたい Rails というのが現状。」とう下りからのぐぐったらパイを増やすことの重要さ、志の低い人がいないと志の高い人が出てこないという話はなるほどな。と思ったし、自分が隙なことに関してアウトプットしていく大切さを実感した。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;「志の低い人が居ないと志の高い人が生まれてこない。」 &lt;a href="https://twitter.com/hashtag/PyConJP_C?src=hash"&gt;#PyConJP_C&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/653040423221399552"&gt;2015, 10月 11&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;ググった時のパイを増やすの確かに大事。アウトプットちゃんと増やさないとな... &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/PyConJP_C?src=hash"&gt;#PyConJP_C&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/653042388579909633"&gt;2015, 10月 11&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;ランチは2日目も基本的に前日同様4種類から選択できてよかったし美味かった。&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;今日も旨そう！ &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt; &lt;a href="http://t.co/RmSDMYoWME"&gt;pic.twitter.com/RmSDMYoWME&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/653055208893714432"&gt;2015, 10月 11&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;午後からは &lt;a href="https://pycon.jp/2015/ja/schedule/presentation/70/"&gt;uWSGI/Dockerを利用したWebサービス運用事例&lt;/a&gt;、 &lt;a href="https://pycon.jp/2015/ja/schedule/presentation/67/"&gt;野球Hack!~Pythonを用いたデータ分析と可視化&lt;/a&gt;、
+&lt;a href="https://pycon.jp/2015/ja/schedule/presentation/71/"&gt;PyPIデビュー 2015&lt;/a&gt;の話を聞いた。&lt;/p&gt;
+&lt;p&gt;uWSGI/Docker の話はなかなかuWSGIで運用しているという話を聞いたことがなかったので新鮮だった。&lt;a href="http://laugh-labo.blogspot.jp/2012/08/pythondjango-nginx-uwsgi-on-ubuntu.html"&gt;昔Tracを動かしたとき&lt;/a&gt;にちょこっと触っただけだったので、今後PythonでWeb絡みの何かやる際は触ってみようかなと思った。  &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://twitter.com/shinyorke"&gt;@shinyorke&lt;/a&gt;さんの野球Hack!は &lt;a href="http://pyhack.connpass.com/"&gt;#pyhack&lt;/a&gt;で度々見ていた野球Hack!のPyCon版を是非見たくて行ってみたけど、&lt;strong&gt;好きなことを好きな技術でやっているロールモデルとして非常によかった。&lt;/strong&gt;自分は野球がそれほど好きとかではないのだけど非常に楽しめた。  &lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;野球hack、俺は特別野球好きとかではないけど純粋に好きなことを技術で楽しんでる感があってすごく良かったし来年も聞きたい。 &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/PyConJP_1?src=hash"&gt;#PyConJP_1&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/653105825783746560"&gt;2015, 10月 11&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;最後は&lt;a href="https://pycon.jp/2015/ja/schedule/presentation/71/"&gt;PyPIデビュー2015&lt;/a&gt;。前日のPackaging最前線では全体的なトレンドの話だったけど、こちらは今現在の段階で具体的に何を使ってパッケージを作るのが良いか。という視点のお話。&lt;a href="http://memo.laughk.org/2015/06/07/kite-string-release.html"&gt;最近自分がPyPIに初めてパッケージをアップロードした際&lt;/a&gt;は、ググッても出てくる情報の書かれた時期で内容がバラバラで手探りでどうにかするしかなかったのが正直なところだったこともあり、2015年時点での情報はこれだ！というこの話は非常に良かった。 &lt;a href="https://tiwtter.com/tell_k"&gt;@tell_k&lt;/a&gt;さんの当日のスライドは保存版だと思う。 ( スライド -&amp;gt; &lt;a href="http://tell-k.github.io/pyconjp2015/"&gt;PyPIデビュー2015&lt;/a&gt; )&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;PyPIデビュー2015, setup.py の書き方とかその辺、ググると古い情報とごちゃ混ぜな感じだったのでこういうまとまった知見非常にありがたかった。 &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/PyConJP_C?src=hash"&gt;#PyConJP_C&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/653115480832524288"&gt;2015, 10月 11&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;最後はLTからクロージング
+LTは自分の番がすでに終わっていたので大分リラックスして聞けた。特に印象に残ったのが&lt;a href="https://pycon.jp/2015/ja/schedule/presentation/91/"&gt;Diversity in Brazil&lt;/a&gt;で、ブラジルでのPythonコミュニティの話(Ruby+Python = RuPy の話や PyLedies の規模だったり) やウミガメの甲羅を3Dプリンタで作ってった話など、自分の知らない視点からの話で面白かった。英語力がもっとあればな...&lt;/p&gt;
+&lt;p&gt;最後のクロージングでは抽選も行われ、すっかりPyConJP 2015のアイドルと化していたモノタロウ侍とのじゃんけん大会。&lt;br /&gt;
+なかなか勝てなかったけど、最後の方でなんと &lt;a href="https://www.jetbrains.com/pycharm/whatsnew/"&gt;PyCharm&lt;/a&gt; のProライセンスを頂いた。結構いい値段するものなので、いいものをいただけた。&lt;/p&gt;
+&lt;h2&gt;全体を通した感想&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/monotarosamurai"&gt;モノタロウ侍&lt;/a&gt;かわいい&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;電源確保がなかなか厳しい&lt;/p&gt;
+&lt;p&gt;これはPyConJPに限らずだけど、この規模のカンファレンスだと会場の場所も限られるだろうし必ずしも電源が豊富に用意できるわけではないだろうから
+Twitter見ながらメモとったりするんだとラップトップよりモバイルバッテリーが使えるスマホ+タブレットをもっと積極的に使ったほうがいいのかも。とは思った&lt;/p&gt;
+&lt;p&gt;Android だと検索結果をタブに追加できる&lt;a href="http://beeter.io/"&gt;beeter&lt;/a&gt;が個人的に使いやすかった。モバイルでも同等の機能持ってるTwitterクライアント使うとラップトップなしでも案外大丈夫そうだなという手応えがあった&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一部でWifiが切れるとい情報が流れていけど、個人的にそこまでひどいなーという状況には出くわさなかった&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;ElasticSearch の話題が多かったなと感じた。ここ最近のPythonでアツいところの機械学習やデータ解析とも絡んでるんだろうなと思った&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;英語、国際カンファレンス感&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;海外からの方も多数居てものすごく国際カンファレンス感があってよかった&lt;/li&gt;
+&lt;li&gt;英語力がホントに足りない。今年、来年くらいにかけて段階的にマジで英語勉強しようと思った。もっともっと楽しめるように&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;食べ物周りが全体的によい&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ランチは人数分あってしかも4種類のなかから選べるのがよかった。近くにスッとご飯食べに行けそうな場所もなさそうでこれ大事&lt;/li&gt;
+&lt;li&gt;ランチやパーティーのご飯おいしい、ビールがプレモルなの非常によかった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最後のじゃんけんで &lt;a href="https://www.jetbrains.com/pycharm/whatsnew/"&gt;PyCharm&lt;/a&gt; のProライセンスもらったしもっとpython書けというお告げだと思って頑張ろう (内容の通知はまだ、気長にお待ちしてます。)&lt;/p&gt;
+&lt;p&gt;&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;じゃんけんで PyCharmPro ライセンスもらったからもっとpython書かないと &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/653132298137681921"&gt;2015, 10月 11&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="python"></category><category term="pyconjp"></category></entry><entry><title>kite-string(凧糸)というtakosanクライアントを公開してPyPIデビューしていた</title><link href="http://memo.laughk.org/2015/06/07/kite-string-release.html" rel="alternate"></link><updated>2015-06-07T00:00:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-06-07:2015/06/07/kite-string-release.html</id><summary type="html">&lt;h2&gt;TL;DR&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/kentaro/takosan"&gt;takosan&lt;/a&gt; 向けの簡単なコマンドラインクライアントをpythonで書いてみた&lt;/li&gt;
 &lt;li&gt;ついでに PyPI デビューもできてよかった&lt;/li&gt;

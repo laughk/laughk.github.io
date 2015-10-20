@@ -30,12 +30,12 @@
 &lt;p&gt;といったものです。  &lt;/p&gt;
 &lt;p&gt;実はLT募集の前に &lt;a href="https://pycon.jp/2015/ja/proposals/vote/42/"&gt;10年続くWebサービスでも使えるOpsのためのfabric入門&lt;/a&gt; というタイトルでTalkプロポーザルの応募をしていて、&lt;br /&gt;
 実際に業務の隙間時間や&lt;a href="http://pyhack.connpass.com/"&gt;#pyhack&lt;/a&gt;に参加した際にコマンドラインツールを作成して、一部実際に業務で利用する環境に導入し始めている話までできればよかったのですがこちらはリジェクトという結果になりました。
-それでも多少なりともWeb系のシステム運用側から何か話ができないかなという思いでLTで出来る限りの内容でお話させていただいた次第です。~~(結果3分とタイトルに入れておきながら5分で話せる情報量の限界にトライする形になってしまった。)~~&lt;/p&gt;
+それでも多少なりともWeb系のシステム運用側から何か話ができないかなという思いでLTで出来る限りの内容でお話させていただいた次第です。&lt;S&gt;(結果3分とタイトルに入れておきながら5分で話せる情報量の限界にトライする形になってしまった。)&lt;/S&gt;&lt;/p&gt;
 &lt;p&gt;そのため、前提にあったレガシー環境(主にCentOS4以下がまだ結構な数で現役&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;)だらけでansibleが使えなかった話や、脆弱性対応で fabric を使ってみてチーム無いから「便利だけどワンライナーでもっと使いやすければすごく便利そう」といった反応を受けて実際にLTで紹介した内容を元に実際に作成したサービスに特化したWebオペレーションコマンドラインツールのお話なんかは飛んでしまった部分はあります。&lt;/p&gt;
 &lt;h2&gt;PyConJPでLTをやってみて思ったこと&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;緊張はかなりするし、資料を用意するのはパワーが必要ではある。&lt;/li&gt;
-&lt;li&gt;PyConJPの場合は登壇者は自然に撮影してもらえる ~~&lt;strong&gt;Facebookとかにドヤ顔で挙げれる素晴らしい写真が手にはいる&lt;/strong&gt;~~&lt;/li&gt;
+&lt;li&gt;PyConJPの場合は登壇者は自然に撮影してもらえる &lt;S&gt;&lt;strong&gt;Facebookとかにドヤ顔で挙げれる素晴らしい写真が手にはいる&lt;/strong&gt;&lt;/S&gt;&lt;/li&gt;
 &lt;li&gt;会場に居る時に自分は何をやっている人なのか？の説明がぐっとやりやすくなる。&lt;/li&gt;
 &lt;li&gt;Partyなどで登壇した時のネタを元に話ができる。&lt;/li&gt;
 &lt;/ul&gt;
@@ -55,7 +55,7 @@
 &lt;/ol&gt;
 &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Tue, 20 Oct 2015 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2015-10-20:2015/10/20/pyconjp2015-lt-report.html</guid><category>pyconjp</category><category>python</category></item><item><title>PyConJP 2015 に行ってきた #pyconjp</title><link>http://memo.laughk.org/2015/10/18/pyconjp2015-report.html</link><description>&lt;p&gt;少し遅れちゃいましたが、先週末に行われた &lt;a href="https://pycon.jp/2015/ja/"&gt;PyConJP 2015&lt;/a&gt; のカンファレンスに参加したのでその時のメモ書きをまとめます。&lt;br /&gt;
 1日目のLTで「&lt;a href="https://pycon.jp/2015/ja/schedule/presentation/93/"&gt;3分でサーバオペレーションコマンドを作る技術&lt;/a&gt;」というタイトルで登壇させていただいたのですが、そちらはまた別途まとめます。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2015-10-20 追記&lt;/strong&gt; LTのまとめ書きました
+&lt;p&gt;&lt;strong&gt;2015-10-20 追記&lt;/strong&gt; LTのまとめ書きました&lt;br /&gt;
 * &lt;a href="http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report"&gt;PyConJP 2015 で 「3分でサーバオペレーションコマンドを作る技術」というタイトルでLTしてきた #pyconjp&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="image" src="https://cloud.githubusercontent.com/assets/1286319/10563137/c4858f3a-75b7-11e5-9638-779c754c2825.png" /&gt;&lt;/p&gt;
 
@@ -167,7 +167,7 @@ Twitter見ながらメモとったりするんだとラップトップよりモ�
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;最後のじゃんけんで &lt;a href="https://www.jetbrains.com/pycharm/whatsnew/"&gt;PyCharm&lt;/a&gt; のProライセンスもらったしもっとpython書けというお告げだと思って頑張ろう (~~内容の通知はまだ、気長にお待ちしてます。~~ ライセンス情報いただきました！ありがとうございます！)&lt;/p&gt;
+&lt;p&gt;最後のじゃんけんで &lt;a href="https://www.jetbrains.com/pycharm/whatsnew/"&gt;PyCharm&lt;/a&gt; のProライセンスもらったしもっとpython書けというお告げだと思って頑張ろう (&lt;S&gt;内容の通知はまだ、気長にお待ちしてます。&lt;/S&gt;ライセンス情報いただきました！ありがとうございます！)&lt;/p&gt;
 &lt;p&gt;&lt;blockquote class="twitter-tweet" lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;じゃんけんで PyCharmPro ライセンスもらったからもっとpython書かないと &lt;a href="https://twitter.com/hashtag/pyconjp?src=hash"&gt;#pyconjp&lt;/a&gt;&lt;/p&gt;&amp;mdash; Kei Iwasaki (@laugh_k) &lt;a href="https://twitter.com/laugh_k/status/653132298137681921"&gt;2015, 10月 11&lt;/a&gt;&lt;/blockquote&gt;
 &lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;&lt;/p&gt;
 &lt;/li&gt;

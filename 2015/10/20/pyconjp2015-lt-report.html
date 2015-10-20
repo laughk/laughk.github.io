@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>NODE-SetagayaでTerminalのTips的なものを話してきた - 続・ラフなラボ</title>
+    <title>PyConJP 2015 で 「3分でサーバオペレーションコマンドを作る技術」というタイトルでLTしてきた #pyconjp - 続・ラフなラボ</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,9 +13,9 @@
 
     <!-- Open Graph tags -->
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="NODE-SetagayaでTerminalのTips的なものを話してきた"/>
-            <meta property="og:url" content="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html"/>
-            <meta property="og:description" content="しばらくの間参加できていなかった NODE-Setagaya に参加& Terminal の Tips 的なものを話してきました。 当日利用したスライドはこちら。 Cli mini Hack!#1 ~Terminalとの親睦を深めよう~ Embed しようとすると Tinkerer のビルドが何故かコケるのでリンクのみ共有です。。Pelican に以降したらコケなくなったので埋め込みました！"/>
+            <meta property="og:title" content="PyConJP 2015 で 「3分でサーバオペレーションコマンドを作る技術」というタイトルでLTしてきた #pyconjp"/>
+            <meta property="og:url" content="http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report.html"/>
+            <meta property="og:description" content="大分遅れましたが、自分用の記録としてまとめときます。 tl;dr PyConJP 2015 でLTしてきたという話 大規模なカンファレンスで発表するの、メリットしか無いしみんなまず手を上げてみればいいんじゃないかなと思った話 PyConJP 2015 に参加した際の全体的なメモに関してはこちらをご参照ください PyConJP 2015 に行ってきた #pyconjp"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.sandstone.min.css" type="text/css"/>
@@ -69,13 +69,13 @@
             <header class="page-header">
                 <span class="label label-default">
                     <i class="fa fa-calendar"></i>
-                        2014-04-13
+                        2015-10-20
                 </span>
                 <h1>
-                    <a href="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html"
+                    <a href="http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report.html"
                        rel="bookmark"
-                       title="Permalink to NODE-SetagayaでTerminalのTips的なものを話してきた">
-                        NODE-SetagayaでTerminalのTips的なものを話してきた
+                       title="Permalink to PyConJP 2015 で 「3分でサーバオペレーションコマンドを作る技術」というタイトルでLTしてきた #pyconjp">
+                        PyConJP 2015 で 「3分でサーバオペレーションコマンドを作る技術」というタイトルでLTしてきた #pyconjp
                     </a>
                 </h1>
                     <div id="fb-root"></div>
@@ -90,60 +90,68 @@
                     </script>
             </header>
             <div class="entry-content">
-                <p>しばらくの間参加できていなかった <tt class="docutils literal"><span class="pre">NODE-Setagaya</span></tt> に参加&amp; <tt class="docutils literal">Terminal</tt> の <tt class="docutils literal">Tips</tt> 的なものを話してきました。
-当日利用したスライドはこちら。</p>
-<div style="width: 65%">
-<script async class="speakerdeck-embed" data-id="d7cfa250a4ef0131c78c4612bbd7ec99" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-</div><p><a class="reference external" href="https://speakerdeck.com/laughk/cli-mini-hack-number-1-terminaltofalseqin-mu-woshen-meyou">Cli mini Hack!#1 ~Terminalとの親睦を深めよう~</a></p>
-<s>Embed しようとすると Tinkerer のビルドが何故かコケるのでリンクのみ共有です。。</s><p><tt class="docutils literal">Pelican</tt> に以降したらコケなくなったので埋め込みました！</p>
+                <p>大分遅れましたが、自分用の記録としてまとめときます。</p>
+<p><img alt="2015-10-14 09 02 12" src="https://cloud.githubusercontent.com/assets/1286319/10564243/2c67a9e2-75e7-11e5-8cb5-128a3542e9a4.jpg" /></p>
+<h2>tl;dr</h2>
+<ul>
+<li>PyConJP 2015 でLTしてきたという話</li>
+<li>大規模なカンファレンスで発表するの、メリットしか無いしみんなまず手を上げてみればいいんじゃないかなと思った話</li>
+</ul>
+<p><em>PyConJP 2015 に参加した際の全体的なメモに関してはこちらをご参照ください <a href="/2015/10/18/pyconjp2015-report.html">PyConJP 2015 に行ってきた #pyconjp</a></em></p>
 
-<div class="section" id="teminal">
-<h2>Teminalの使い方の話をしようと思ったわけ</h2>
-<div class="line-block">
-<div class="line">これまで <tt class="docutils literal"><span class="pre">NODE-Setagaya</span></tt> で話をする機会があった際は</div>
-<div class="line">「やってみたいんだけど、時間やきっかけなくてなかなか手が付けられてなかったものを扱うかなー」</div>
-<div class="line">という感じでテーマを選んでいたことが多かったのですが、今回はちょっと視点を変えてみました。</div>
-</div>
-<div class="line-block">
-<div class="line">そこそこの期間この業種で仕事してきたけど、案外自分の身の回りに <tt class="docutils literal">Twitter</tt> 界隈とかにいそうな</div>
-<div class="line">「ザ・ <tt class="docutils literal">Terminal</tt> 大好き！」って人がなかなか自分の周りにいないなーと思っていたところと、</div>
-<div class="line">割と自分自身では仕事を通じて <tt class="docutils literal">Terminal</tt> で作業していると落ち着いくなーという人間になったので</div>
-<div class="line">現状の「俺こうやってるけどみんなどう？」って感じのものを出してみればどんな反応があるのかな？</div>
-<div class="line">という興味から今回のテーマを選んでみました。</div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>感想とか</h2>
-<div class="line-block">
-<div class="line">「これは知っている！」</div>
-<div class="line">だったり</div>
-<div class="line"><tt class="docutils literal">vim</tt> のあたりでは「おー！これすげー！！」</div>
-<div class="line">と反応してもらえたり</div>
-<div class="line">「普段は面倒で調べるのが後回しになってた」</div>
-<div class="line">などなど、参加メンツからは反応があり、</div>
-<div class="line">テーマとしてはよいものが選べたかな。という手応えが有りました。</div>
-</div>
-<div class="line-block">
-<div class="line">ちょっと直前にゴタゴタした状況で作ってしまい、</div>
-<div class="line">かなり多めに時間を余してしまった点や、スライド自体がちゃんと閉められてなかったのは</div>
-<div class="line">今回の反省点だったとは思います。</div>
-</div>
-<div class="line-block">
-<div class="line">最初はやりたい内容を一度に全部流してしまうと、</div>
-<div class="line">自分自身も結構しんどいし、そもそも参加しているみんながついてこれるか不安だったので</div>
-<div class="line">今回の内容も人まずは基本的なところをピックアップした半分程度にとどめましたが、</div>
-<div class="line">機会があったら、<tt class="docutils literal">DEMO6</tt> の内容や今回扱いきれなかった部分を中心に</div>
-<div class="line">また <tt class="docutils literal">CLI mini Hack</tt> はやってみたいかなと思いました。</div>
-</div>
-</div>
 
+<h2>どんなLTしたの？</h2>
+<p>こんなLTです</p>
+<ul>
+<li>PyConJP2015 公式の案内 <a href="https://pycon.jp/2015/ja/schedule/presentation/93/">プレゼンテーション：3分でサーバオペレーションコマンドを作る技術 | PyCon JP 2015 in TOKYO</a></li>
+<li>Togetter <a href="http://togetter.com/li/885073">「3分でコマンド」「PyCon Canada」「チャット通知ライブラリ」「pandas」「Dask」LT そして初日のクロージング #PyConJP_C #pyconjp - Togetterまとめ</a></li>
+</ul>
+<p>当日使ったスライドはこちら</p>
+<iframe src="https://www.slideshare.net/slideshow/embed_code/key/CGmYFzkoDWcFHn" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+<p><div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/laughk/3-53764813" title="3分でサーバオペレーションコマンドを作る技術" target="_blank">3分でサーバオペレーションコマンドを作る技術</a> </strong> from <strong><a href="//www.slideshare.net/laughk" target="_blank">Kei Iwasaki</a></strong> </div></p>
+<p>このLTで伝えたかったこと、持って帰っていただけるといいなと思ったのは</p>
+<ul>
+<li>fabricっていう、SSH経由のオペレーションをいい感じにしてくれるツールがあるよ</li>
+<li>fabricを知っている人はデプロイツールのイメージが強いかも知れないけど、ライブラリとして使ってもいい感じだよ</li>
+<li>コマンドラインツールを作るときはClick使うと便利だったんでみんな使えばいいよ</li>
+<li><strong>今日紹介した内容なら、そこまでpython詳しくなくても始められるよ</strong></li>
+<li><strong>普段コードを書かないWeb系インフラエンジニアと呼ばれるサーバ管理者/オペレータの人でも手軽に始められるよ。</strong></li>
+</ul>
+<p>といったものです。  </p>
+<p>実はLT募集の前に <a href="https://pycon.jp/2015/ja/proposals/vote/42/">10年続くWebサービスでも使えるOpsのためのfabric入門</a> というタイトルでTalkプロポーザルの応募をしていて、<br />
+実際に業務の隙間時間や<a href="http://pyhack.connpass.com/">#pyhack</a>に参加した際にコマンドラインツールを作成して、一部実際に業務で利用する環境に導入し始めている話までできればよかったのですがこちらはリジェクトという結果になりました。
+それでも多少なりともWeb系のシステム運用側から何か話ができないかなという思いでLTで出来る限りの内容でお話させていただいた次第です。~~(結果3分とタイトルに入れておきながら5分で話せる情報量の限界にトライする形になってしまった。)~~</p>
+<p>そのため、前提にあったレガシー環境(主にCentOS4以下がまだ結構な数で現役<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>)だらけでansibleが使えなかった話や、脆弱性対応で fabric を使ってみてチーム無いから「便利だけどワンライナーでもっと使いやすければすごく便利そう」といった反応を受けて実際にLTで紹介した内容を元に実際に作成したサービスに特化したWebオペレーションコマンドラインツールのお話なんかは飛んでしまった部分はあります。</p>
+<h2>PyConJPでLTをやってみて思ったこと</h2>
+<ul>
+<li>緊張はかなりするし、資料を用意するのはパワーが必要ではある。</li>
+<li>PyConJPの場合は登壇者は自然に撮影してもらえる ~~<strong>Facebookとかにドヤ顔で挙げれる素晴らしい写真が手にはいる</strong>~~</li>
+<li>会場に居る時に自分は何をやっている人なのか？の説明がぐっとやりやすくなる。</li>
+<li>Partyなどで登壇した時のネタを元に話ができる。</li>
+</ul>
+<p>など、登壇してみて思うのは基本的に <strong>メリットしか無いです</strong>。<br />
+特に私の場合、今回技術的にそこまでテクニカルな内容でも無ければ、機械学習などのとりわけpython界隈の今アツい分野の話でもありません。<strong>普段Pythonやっててこんなのがよかったんですでど、どうでしょう？</strong> といった感じでした。  </p>
+<p>それでも大人数の人の前で発表する機会も得られたし、<br />
+なにより各種SNS、Twitter、そしてPartyなど会場で直接様々なフィードバックが得られます。</p>
+<p>「fabric 知らなかった」「Click便利」「もっと詳しく聞きたかった」「便利なコマンド作りたい」
+と思ったなどフィードバックいただけて本当にLT応募してみてよかったと思うし、何か些細なネタでもとりあえずみんな手を上げてみればいいよと思いました。</p>
+<p>すでに気が早いですが、来年はTalkプロポーザルでなにかお話ができればいいなと「次に向けてやるぞ！！」と思えました。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>現在絶賛リプレース中です&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 <div class="panel">
                     <div class="panel-body">
                     <!-- <div class="alert alert-dismissable alert-warning"> -->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-04-13T00:00:00+09:00"> 2014-04-13</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-10-20T00:00:00+09:00"> 2015-10-20</time>
     </span>
     <span class="label label-default">By</span>
     <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
@@ -151,15 +159,9 @@
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://memo.laughk.org/tag/mian-qiang-hui.html">勉強会</a>
+	<a href="http://memo.laughk.org/tag/pyconjp.html">pyconjp</a>
         /
-	<a href="http://memo.laughk.org/tag/node-setagaya.html">NODE-Setagaya</a>
-        /
-	<a href="http://memo.laughk.org/tag/terminal.html">Terminal</a>
-        /
-	<a href="http://memo.laughk.org/tag/shieruyun.html">シェル芸</a>
-        /
-	<a href="http://memo.laughk.org/tag/vim.html">vim</a>
+	<a href="http://memo.laughk.org/tag/python.html">python</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -168,9 +170,9 @@
 <!-- AddThis Button BEGIN -->
 <div class="social_tools">
 
-    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 
-        <div class="fb-like" data-href="http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+        <div class="fb-like" data-href="http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
         <a href="https://twitter.com/share" class="twitter-share-button addthis_button_tweet" data-lang="ja" data-related="laugh_k">ツイート</a>
 
@@ -232,8 +234,8 @@
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
-            var disqus_identifier = 'node_setagaya9_repo';
-            var disqus_url = 'http://memo.laughk.org/2014/04/13/node_setagaya9_repo.html';
+            var disqus_identifier = 'pyconjp2015-lt-report';
+            var disqus_url = 'http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report.html';
             var disqus_config = function () {
                 this.language = "ja";
             };

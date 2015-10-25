@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2015-10-20T00:00:00+09:00</updated><entry><title>PyConJP 2015 で 「3分でサーバオペレーションコマンドを作る技術」というタイトルでLTしてきた #pyconjp</title><link href="http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report.html" rel="alternate"></link><updated>2015-10-20T00:00:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-10-20:2015/10/20/pyconjp2015-lt-report.html</id><summary type="html">&lt;p&gt;大分遅れましたが、自分用の記録としてまとめときます。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2015-10-25T15:40:00+09:00</updated><entry><title>ペパボっぽい Libreoffice Impress のテーマっぽい何か</title><link href="http://memo.laughk.org/2015/10/25/pepabo-libreoffice-impress-theme.html" rel="alternate"></link><updated>2015-10-25T15:40:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-10-25:2015/10/25/pepabo-libreoffice-impress-theme.html</id><summary type="html">&lt;h2&gt;tl;dr&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ペパボっぽい Libreoffice Impress のテーマっぽいものを勢いで作って公開してみた話&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;hr /&gt;
+&lt;p&gt;最近自分もちょくちょくスライドを書く機会が出てきて、&lt;br /&gt;
+社内関連のものとかは &lt;a href="https://twitter.com/kenchan"&gt;@kenchan&lt;/a&gt; くんさんの &lt;a href="https://github.com/kenchan/keynote-theme"&gt;ペパボっぽいkeynoteテーマ&lt;/a&gt; をよく使わせていただいていた。&lt;/p&gt;
+&lt;p&gt;ただ自分がプライベートでメインで使ってる環境が ArchLinux で、&lt;br /&gt;
+先日の PyConJP 2015 のLTの時なんかのように外部の資料を作るときにわざわざサブのMacの環境使うのもなーと思い始めていたので Libreoffice impress 用にそれっぽいものを勝手に作って公開してみた。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/laughk/libreoffice-impress-theme"&gt;laughk/libreoffice-impress-theme&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;フォントは英字がArialで、日本語がM+フォントを使うことが前提。&lt;/li&gt;
+&lt;li&gt;Linux版 Libreoffice 4.4, 5.0 でのみ表示を確認済。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Libreoffice impress が keynote みたいにスライドを追加するときに複数の候補からスライドのスタイルを追加するみたいなことができなくて、「とりあえずそれっぽい形のスタイルのスライドを実際に追加しといたので適宜コピーするなり消すなりして使ってね」というしょぼい作りにはなってしまったけど、まあ個人的な要件は満たせそうなので良しとする。&lt;/p&gt;
+&lt;p&gt;Libreoffice impress、もう少しテンプレート作りやすくなって公開されるテーマ増えないかなー。&lt;/p&gt;</summary><category term="slide-theme"></category></entry><entry><title>PyConJP 2015 で 「3分でサーバオペレーションコマンドを作る技術」というタイトルでLTしてきた #pyconjp</title><link href="http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report.html" rel="alternate"></link><updated>2015-10-20T00:00:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-10-20:2015/10/20/pyconjp2015-lt-report.html</id><summary type="html">&lt;p&gt;大分遅れましたが、自分用の記録としてまとめときます。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2015-10-14 09 02 12" src="https://cloud.githubusercontent.com/assets/1286319/10564243/2c67a9e2-75e7-11e5-8cb5-128a3542e9a4.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;tl;dr&lt;/h2&gt;
 &lt;ul&gt;

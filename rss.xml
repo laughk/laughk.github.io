@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 20 Oct 2015 00:00:00 +0900</lastBuildDate><item><title>PyConJP 2015 で 「3分でサーバオペレーションコマンドを作る技術」というタイトルでLTしてきた #pyconjp</title><link>http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report.html</link><description>&lt;p&gt;大分遅れましたが、自分用の記録としてまとめときます。&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 25 Oct 2015 15:40:00 +0900</lastBuildDate><item><title>ペパボっぽい Libreoffice Impress のテーマっぽい何か</title><link>http://memo.laughk.org/2015/10/25/pepabo-libreoffice-impress-theme.html</link><description>&lt;h2&gt;tl;dr&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ペパボっぽい Libreoffice Impress のテーマっぽいものを勢いで作って公開してみた話&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;hr /&gt;
+&lt;p&gt;最近自分もちょくちょくスライドを書く機会が出てきて、&lt;br /&gt;
+社内関連のものとかは &lt;a href="https://twitter.com/kenchan"&gt;@kenchan&lt;/a&gt; くんさんの &lt;a href="https://github.com/kenchan/keynote-theme"&gt;ペパボっぽいkeynoteテーマ&lt;/a&gt; をよく使わせていただいていた。&lt;/p&gt;
+&lt;p&gt;ただ自分がプライベートでメインで使ってる環境が ArchLinux で、&lt;br /&gt;
+先日の PyConJP 2015 のLTの時なんかのように外部の資料を作るときにわざわざサブのMacの環境使うのもなーと思い始めていたので Libreoffice impress 用にそれっぽいものを勝手に作って公開してみた。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/laughk/libreoffice-impress-theme"&gt;laughk/libreoffice-impress-theme&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;フォントは英字がArialで、日本語がM+フォントを使うことが前提。&lt;/li&gt;
+&lt;li&gt;Linux版 Libreoffice 4.4, 5.0 でのみ表示を確認済。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Libreoffice impress が keynote みたいにスライドを追加するときに複数の候補からスライドのスタイルを追加するみたいなことができなくて、「とりあえずそれっぽい形のスタイルのスライドを実際に追加しといたので適宜コピーするなり消すなりして使ってね」というしょぼい作りにはなってしまったけど、まあ個人的な要件は満たせそうなので良しとする。&lt;/p&gt;
+&lt;p&gt;Libreoffice impress、もう少しテンプレート作りやすくなって公開されるテーマ増えないかなー。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Sun, 25 Oct 2015 15:40:00 +0900</pubDate><guid>tag:memo.laughk.org,2015-10-25:2015/10/25/pepabo-libreoffice-impress-theme.html</guid><category>slide-theme</category></item><item><title>PyConJP 2015 で 「3分でサーバオペレーションコマンドを作る技術」というタイトルでLTしてきた #pyconjp</title><link>http://memo.laughk.org/2015/10/20/pyconjp2015-lt-report.html</link><description>&lt;p&gt;大分遅れましたが、自分用の記録としてまとめときます。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2015-10-14 09 02 12" src="https://cloud.githubusercontent.com/assets/1286319/10564243/2c67a9e2-75e7-11e5-8cb5-128a3542e9a4.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;tl;dr&lt;/h2&gt;
 &lt;ul&gt;

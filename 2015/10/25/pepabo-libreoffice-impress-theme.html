@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>TwitPicに上げてる画像をシェル芸で救出してみた - 続・ラフなラボ</title>
+    <title>ペパボっぽい Libreoffice Impress のテーマっぽい何か - 続・ラフなラボ</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,9 +13,9 @@
 
     <!-- Open Graph tags -->
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="TwitPicに上げてる画像をシェル芸で救出してみた"/>
-            <meta property="og:url" content="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html"/>
-            <meta property="og:description" content="概要 最近になって twitpic が終わったり終わらなかったりな状況で 今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。"/>
+            <meta property="og:title" content="ペパボっぽい Libreoffice Impress のテーマっぽい何か"/>
+            <meta property="og:url" content="http://memo.laughk.org/2015/10/25/pepabo-libreoffice-impress-theme.html"/>
+            <meta property="og:description" content="tl;dr ペパボっぽい Libreoffice Impress のテーマっぽいものを勢いで作って公開してみた話"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://memo.laughk.org/theme/css/bootstrap.sandstone.min.css" type="text/css"/>
@@ -69,13 +69,13 @@
             <header class="page-header">
                 <span class="label label-default">
                     <i class="fa fa-calendar"></i>
-                        2014-10-26
+                        2015-10-25
                 </span>
                 <h1>
-                    <a href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html"
+                    <a href="http://memo.laughk.org/2015/10/25/pepabo-libreoffice-impress-theme.html"
                        rel="bookmark"
-                       title="Permalink to TwitPicに上げてる画像をシェル芸で救出してみた">
-                        TwitPicに上げてる画像をシェル芸で救出してみた
+                       title="Permalink to ペパボっぽい Libreoffice Impress のテーマっぽい何か">
+                        ペパボっぽい Libreoffice Impress のテーマっぽい何か
                     </a>
                 </h1>
                     <div id="fb-root"></div>
@@ -90,75 +90,31 @@
                     </script>
             </header>
             <div class="entry-content">
-                <!-- 冒頭 -->
-
-<h2>概要</h2>
-<p>最近になって twitpic が終わったり終わらなかったりな状況で<br />
-今後どうなるかもわからないし、昔あげていた画像を救出するのにシェル芸でやってみた話。</p>
-
-
-<h2>結果</h2>
-<p>とりあえず、結果からのせると以下のような感じ。<br />
-(追記) <code>png</code> を考慮するの漏れてたので修正しました。(追記おわり)</p>
-<div class="highlight"><pre>% <span class="nb">cd</span> /path/to/put_dir
-% <span class="nv">TWITPIC_URL</span><span class="o">=</span><span class="s2">&quot;http://twitpic.com/photos/laugh_k&quot;</span>
-% seq <span class="m">1</span> <span class="k">$(</span> curl -s <span class="si">${</span><span class="nv">TWITPIC_URL</span><span class="si">}</span> <span class="p">|</span> perl -nle <span class="s1">&#39;if(/&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span> <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>page <span class="p">;</span> <span class="k">do</span> curl -s <span class="s2">&quot;</span><span class="si">${</span><span class="nv">TWITPIC_URL</span><span class="si">}</span><span class="s2">?page=</span><span class="si">${</span><span class="nv">page</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> grep <span class="s1">&#39;&lt;a href=&quot;/&#39;</span> <span class="p">|</span> tail -n +8 <span class="p">|</span> head -20 <span class="p">|</span> perl -nle <span class="s1">&#39;if(/\/[^&quot;]+/){ print &quot;http://twitpic.com/$&amp;&quot; }&#39;</span> <span class="p">;</span> <span class="k">done</span> <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>img_page <span class="p">;</span> <span class="k">do</span> curl -sL <span class="s2">&quot;</span><span class="si">${</span><span class="nv">img_page</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> perl -nle <span class="s1">&#39;if(/&lt;img src=&quot;(https:\/\/[^.^&quot;]+\.cloudfront.net\/photos\/large\/[^&quot;]+)&quot;/){ print $1 }&#39;</span> <span class="p">;</span> <span class="k">done</span>  <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>img_url <span class="p">;</span> <span class="k">do</span> <span class="nv">img_name</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">img_url</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> grep -o -E <span class="s1">&#39;[^/]+\.(jpe?g|png|gif)&#39;</span> <span class="k">)</span> <span class="p">;</span> wget -O <span class="si">${</span><span class="nv">file</span><span class="si">}</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">img_url</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="k">done</span> 
-</pre></div>
-
-
-<p>流石にこれだとわかりづらいんでちょっと形成すると以下のような感じ</p>
-<div class="highlight"><pre>% <span class="nv">TWITPIC_URL</span><span class="o">=</span><span class="s2">&quot;http://twitpic.com/photos/laugh_k&quot;</span>
-
-<span class="c">### さすがに長ったらしいので、最後のページ情報取得は一旦分ける</span>
-% <span class="nv">LAST</span><span class="o">=</span><span class="k">$(</span> curl -s <span class="si">${</span><span class="nv">TWITPIC_URL</span><span class="si">}</span> <span class="p">|</span> perl -nle <span class="s1">&#39;if( /&lt;a href=&quot;\?page=([0-9]+)&quot;&gt;Last&lt;\/a&gt;/ ){ print $1, &quot;\n&quot; }&#39;</span> <span class="k">)</span>
-
-% seq <span class="m">1</span> <span class="si">${</span><span class="nv">LAST</span><span class="si">}</span> <span class="p">|</span> <span class="k">while</span> <span class="nb">read </span>page
-&gt; <span class="k">do</span>
-&gt;   curl -sL <span class="s2">&quot;</span><span class="si">${</span><span class="nv">TWITPIC_URL</span><span class="si">}</span><span class="s2">?page=</span><span class="si">${</span><span class="nv">page</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> 
-&gt;     grep <span class="s1">&#39;&lt;a href=&quot;/&#39;</span> <span class="p">|</span>
-&gt;     tail -n +8        <span class="p">|</span>
-&gt;     head -n <span class="m">20</span>        <span class="p">|</span>
-&gt;     perl -nle <span class="s1">&#39;if(/\/[^&quot;]+/){ print &quot;http://twitpic.com/$&amp;&quot; }&#39;</span>
-&gt; <span class="k">done</span> <span class="p">|</span>
-&gt; <span class="k">while</span> <span class="nb">read </span>img_page
-&gt; <span class="k">do</span>
-&gt;   curl -sL <span class="si">${</span><span class="nv">img_page</span><span class="si">}</span> <span class="p">|</span>
-&gt;     perl -nle <span class="s1">&#39;if(/&lt;img src=&quot;(https:\/\/[^.^&quot;]+\.cloudfront.net\/photos\/large\/[^&quot;]+)&quot;/){ print $1 }&#39;</span>
-&gt; <span class="k">done</span> <span class="p">|</span>
-&gt; <span class="k">while</span> <span class="nb">read </span>img_url
-&gt; <span class="k">do</span>
-&gt;   <span class="nv">img_name</span><span class="o">=</span><span class="k">$(</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">img_url</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> grep -o -E <span class="s1">&#39;[^/]+\.(jpe?g|png)&#39;</span> <span class="k">)</span>
-&gt;   wget -O <span class="si">${</span><span class="nv">img_name</span><span class="si">}</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">img_url</span><span class="si">}</span><span class="s2">&quot;</span>
-&gt; <span class="k">done</span>
-</pre></div>
-
-
-<h3>気にした点</h3>
+                <h2>tl;dr</h2>
 <ul>
-<li>
-<p>ページャーになってるんで最後のページ情報どうするか</p>
-<p>=&gt; ユーザーページトップにLASTのリンクがあったのでそこからひっぱった</p>
-</li>
-<li>
-<p>各画像のページのURLをどうやってピンポイントで出すか  </p>
-<p>=&gt; レイアウト的にどのリンクが引っかかるかわかったんで、<code>head</code>,<code>tail</code>でゴリ押し</p>
-</li>
-<li>
-<p>最終的にCloudfrontのリンクが取れるが、まんまwgetするとファイル名が大変なことになるので、その辺よしなに保存したい  </p>
-<p>=&gt; <code>sed</code> 使っても良かったけどパターン的に抽出のほうが楽そうだったので <code>grep -o -E</code> でファイル名を直接引っこ抜き</p>
-</li>
+<li>ペパボっぽい Libreoffice Impress のテーマっぽいものを勢いで作って公開してみた話</li>
 </ul>
-<h2>最後に</h2>
-<p>わざわざ画像取得するのにWindows起動するのも面倒だなとなって「よろしいならばシェル芸だ」とやってみたら意外にすんなり行けた。<br />
-糞長いし、ゴリ押し感半端無いし、もっとよさ気な方法あるかもだけど問題が解決できたのでよしとする。<br />
-Twitpicからの画像データ救出、他の言語の練習題材としてもよさ気な感じですね。  </p>
+
+
+<hr />
+<p>最近自分もちょくちょくスライドを書く機会が出てきて、<br />
+社内関連のものとかは <a href="https://twitter.com/kenchan">@kenchan</a> くんさんの <a href="https://github.com/kenchan/keynote-theme">ペパボっぽいkeynoteテーマ</a> をよく使わせていただいていた。</p>
+<p>ただ自分がプライベートでメインで使ってる環境が ArchLinux で、<br />
+先日の PyConJP 2015 のLTの時なんかのように外部の資料を作るときにわざわざサブのMacの環境使うのもなーと思い始めていたので Libreoffice impress 用にそれっぽいものを勝手に作って公開してみた。</p>
+<p><a href="https://github.com/laughk/libreoffice-impress-theme">laughk/libreoffice-impress-theme</a></p>
+<ul>
+<li>フォントは英字がArialで、日本語がM+フォントを使うことが前提。</li>
+<li>Linux版 Libreoffice 4.4, 5.0 でのみ表示を確認済。</li>
+</ul>
+<p>Libreoffice impress が keynote みたいにスライドを追加するときに複数の候補からスライドのスタイルを追加するみたいなことができなくて、「とりあえずそれっぽい形のスタイルのスライドを実際に追加しといたので適宜コピーするなり消すなりして使ってね」というしょぼい作りにはなってしまったけど、まあ個人的な要件は満たせそうなので良しとする。</p>
+<p>Libreoffice impress、もう少しテンプレート作りやすくなって公開されるテーマ増えないかなー。</p>
                 <div class="panel">
                     <div class="panel-body">
                     <!-- <div class="alert alert-dismissable alert-warning"> -->
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-10-26T19:20:00+09:00"> 2014-10-26</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-10-25T15:40:00+09:00"> 2015-10-25</time>
     </span>
     <span class="label label-default">By</span>
     <a href="http://memo.laughk.org/pages/about.html"><i class="fa fa-user"></i> Kei Iwasaki</a>
@@ -166,9 +122,7 @@ Twitpicからの画像データ救出、他の言語の練習題材としても�
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://memo.laughk.org/tag/shieruyun.html">シェル芸</a>
-        /
-	<a href="http://memo.laughk.org/tag/neta.html">ネタ</a>
+	<a href="http://memo.laughk.org/tag/slide-theme.html">slide-theme</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -177,9 +131,9 @@ Twitpicからの画像データ救出、他の言語の練習題材としても�
 <!-- AddThis Button BEGIN -->
 <div class="social_tools">
 
-    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    <a href="http://b.hatena.ne.jp/entry/http://memo.laughk.org/2015/10/25/pepabo-libreoffice-impress-theme.html" class="hatena-bookmark-button" data-hatena-bookmark-title="続・ラフなラボ" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 
-        <div class="fb-like" data-href="http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+        <div class="fb-like" data-href="http://memo.laughk.org/2015/10/25/pepabo-libreoffice-impress-theme.html" data-width="110px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 
         <a href="https://twitter.com/share" class="twitter-share-button addthis_button_tweet" data-lang="ja" data-related="laugh_k">ツイート</a>
 
@@ -241,8 +195,8 @@ Twitpicからの画像データ救出、他の言語の練習題材としても�
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'memolaughkorg'; // required: replace example with your forum shortname
-            var disqus_identifier = 'get-twitpic-img-by-shellart';
-            var disqus_url = 'http://memo.laughk.org/2014/10/26/get-twitpic-img-by-shellart.html';
+            var disqus_identifier = 'pepabo-libreoffice-impress-theme';
+            var disqus_url = 'http://memo.laughk.org/2015/10/25/pepabo-libreoffice-impress-theme.html';
             var disqus_config = function () {
                 this.language = "ja";
             };

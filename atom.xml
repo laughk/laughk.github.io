@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2015-10-25T15:40:00+09:00</updated><entry><title>ペパボっぽい Libreoffice Impress のテーマっぽい何か</title><link href="http://memo.laughk.org/2015/10/25/pepabo-libreoffice-impress-theme.html" rel="alternate"></link><updated>2015-10-25T15:40:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-10-25:2015/10/25/pepabo-libreoffice-impress-theme.html</id><summary type="html">&lt;h2&gt;tl;dr&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>続・ラフなラボ</title><link href="http://memo.laughk.org/" rel="alternate"></link><link href="http://memo.laughk.org/atom.xml" rel="self"></link><id>http://memo.laughk.org/</id><updated>2015-12-15T00:00:00+09:00</updated><entry><title>エンジニアの朝活にスポーツジムはいかがでしょう？</title><link href="http://memo.laughk.org/2015/12/15/shall-we-sports-gym.html" rel="alternate"></link><updated>2015-12-15T00:00:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-12-15:2015/12/15/shall-we-sports-gym.html</id><summary type="html">&lt;p&gt;日付が変わってしまいましたが、&lt;br /&gt;
+この記事は &lt;a href="http://qiita.com/advent-calendar/2015/pepabo"&gt;Pepabo Advent Calendar 2015 - Qiita&lt;/a&gt; の15日目の記事です。前回は... buty4649さん...!&lt;/p&gt;
+&lt;p&gt;今回はちょっと息抜き記事として、&lt;br /&gt;
+エンジニアも朝活を利用して適度に体を動かす習慣を作ってみるのはいかがでしょうか？&lt;br /&gt;
+ということを私個人がやっていることを紹介ながら書いてみようと思います。&lt;/p&gt;
+
+
+&lt;h1&gt;やってること&lt;/h1&gt;
+&lt;p&gt;ペパボに入ってからずーっと、&lt;br /&gt;
+毎朝会社近くのスポーツジムに寄ってから出社しています。なんやかんやで1年3ヶ月ほどでしょうか。&lt;/p&gt;
+&lt;h1&gt;なんでそんなことしてるの？&lt;/h1&gt;
+&lt;h3&gt;もともとスポーツジムには行ってた&lt;/h3&gt;
+&lt;p&gt;私はいわゆるWeb系のインフラエンジニアとして働いていますが&lt;br /&gt;
+時間外のエスカレーションは一番受けやすく、オンプレ環境があるとデータセンター作業があったりと実は結構体力勝負なところも多いです。&lt;/p&gt;
+&lt;p&gt;基本的にはいつでも対応できるコンディションを整えておきたいと思っていて、&lt;br /&gt;
+そのためにはある程度の体力付けておきたいなということから前職にいた時から当時の自宅近くのジムに通っていました。&lt;/p&gt;
+&lt;h3&gt;なんで朝？&lt;/h3&gt;
+&lt;p&gt;結構Web系の会社は業務開始が遅めのことが多く、ペパボも例外ではなく東京本社はAM10:00が始業時間。
+そのため就業後だと20時開始とかになり、定時でもジムが終わるのが22~23時とかなってしまって個人的にはなかなかしんどいです。
+特にペパボに入社した段階では住んでいる場所も変わっていて、就業後に自宅近くで... となると更に厳しい感じでした。&lt;/p&gt;
+&lt;p&gt;他にも就業後の時間だと勉強会や飲み会などのイベントも入りやすい時間で、リズムが崩れたりすることも多く、&lt;br /&gt;
+なんとかうまくやりくりできないかと考えて気がついたのが朝、就業前の時間でした。&lt;/p&gt;
+&lt;p&gt;定時が遅いということは逆に言えば朝の時間に余裕があります。
+調べてみると朝早い時間帯でもやっているジムは結構あって&lt;br /&gt;
+時間を絞ったモーニングコースとかで会員登録するとなかなかお得だったりもします。&lt;/p&gt;
+&lt;p&gt;ということで職場に近いところで見つけて通い始めたのでした。&lt;/p&gt;
+&lt;h1&gt;やってみてどうなの？&lt;/h1&gt;
+&lt;p&gt;マイナス面はなさそうだし、今の自分のライフスタイルにあっていると思っていて、&lt;br /&gt;
+今だと朝体動かさないと気持ち悪いくらいにはなってます。
+また、仕事前にバテるということも思いの外ほとんどないです。&lt;/p&gt;
+&lt;p&gt;もちろんジムでやることはできる範囲にはしていて、&lt;br /&gt;
+基本は30分程度のランニングがベースでキツ目の筋トレとかは毎回やっているわけではないです。&lt;/p&gt;
+&lt;p&gt;他にも単純に体を動かす以外にのいいこともあります。&lt;/p&gt;
+&lt;h3&gt;一日を始める敷居が下がっている&lt;/h3&gt;
+&lt;p&gt;朝起きたら「ジム行って体動かす」とだけ思って鞄片手に家を出ればいいので、余計なことを考えずに済んで気が楽です。&lt;br /&gt;
+特にスポーツジムの場合はシャワーなど水回りもちゃんとしてるので、「朝の準備もそっちですりゃいいやー」となるのも大きいです。&lt;/p&gt;
+&lt;p&gt;また会社のそばのジムにしたので、仕事前にシャワーが浴びれてリフレッシュして仕事に入れます。
+特に夏場の通勤時にかいた汗も一緒に流せるのはうれしいですね。&lt;/p&gt;
+&lt;h3&gt;朝の時間を有効に使おうと思うようになった&lt;/h3&gt;
+&lt;p&gt;前述している様に確かに一日を始める敷居を下げていると感じつつも、&lt;br /&gt;
+やっぱりどうしても行けないケース(出張、ジムがお休みなど)があります。&lt;/p&gt;
+&lt;p&gt;それでも、いつも朝仕事をする間に時間をとることが習慣になるので&lt;br /&gt;
+副作用的にジムに本来行っている時間を別の事にもスッと当てられるようになりました、&lt;/p&gt;
+&lt;p&gt;たとえば&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;早めに出社して集中して作業する時間を作る&lt;/li&gt;
+&lt;li&gt;役所に寄って手続きを済ませてから出社する&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;みたいな感じに。&lt;/p&gt;
+&lt;h1&gt;まとめ&lt;/h1&gt;
+&lt;p&gt;そんなわけで朝活の活用例として、スポーツジム通いで体力を強化をしてみるもいかがでしょうか。&lt;br /&gt;
+朝が苦手でない。が前提条件にはなってしまいますが定期的に体を動かしてリフレッシュもできますし、オススメです。&lt;/p&gt;</summary><category term="AdventCalendar"></category></entry><entry><title>ペパボっぽい Libreoffice Impress のテーマっぽい何か</title><link href="http://memo.laughk.org/2015/10/25/pepabo-libreoffice-impress-theme.html" rel="alternate"></link><updated>2015-10-25T15:40:00+09:00</updated><author><name>Kei Iwasaki</name></author><id>tag:memo.laughk.org,2015-10-25:2015/10/25/pepabo-libreoffice-impress-theme.html</id><summary type="html">&lt;h2&gt;tl;dr&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;ペパボっぽい Libreoffice Impress のテーマっぽいものを勢いで作って公開してみた話&lt;/li&gt;
 &lt;/ul&gt;

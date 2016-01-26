@@ -1,5 +1,5 @@
 .highlight pre .hll { background-color: #ffffcc }
-.highlight pre, .highlighttable pre { background: #002b36; color: #839496 }
+.highlight pre  { background: #002b36; color: #839496 }
 .highlight pre .c { color: #586e75; font-style: italic } /* Comment */
 .highlight pre .err { color: #dc322f } /* Error */
 .highlight pre .g { color: #839496 } /* Generic */
@@ -48,6 +48,7 @@
 .highlight pre .nv { color: #cb4b16 } /* Name.Variable */
 .highlight pre .ow { color: #859900 } /* Operator.Word */
 .highlight pre .w { color: #002b36 } /* Text.Whitespace */
+.highlight pre .mb { color: #2aa198 } /* Literal.Number.Bin */
 .highlight pre .mf { color: #2aa198 } /* Literal.Number.Float */
 .highlight pre .mh { color: #2aa198 } /* Literal.Number.Hex */
 .highlight pre .mi { color: #2aa198 } /* Literal.Number.Integer */

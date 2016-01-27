@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 15 Dec 2015 00:00:00 +0900</lastBuildDate><item><title>エンジニアの朝活にスポーツジムはいかがでしょう？</title><link>http://memo.laughk.org/2015/12/15/shall-we-sports-gym.html</link><description>&lt;p&gt;日付が変わってしまいましたが、&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 27 Jan 2016 00:00:00 +0900</lastBuildDate><item><title>ブログをリニューアルした</title><link>http://memo.laughk.org/2016/01/27/blog-renewal.html</link><description>&lt;p&gt;リニューアルといっても &lt;a href="http://docs.getpelican.com/"&gt;Pelican&lt;/a&gt; のテーマを変えただけなのだけど。&lt;/p&gt;
+
+
+&lt;p&gt;今回は今までと違って既存のテーマをforkしてガシガシいじってる。  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/laughk/pelican-svbhack"&gt;laughk/pelican-svbhack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;このブログは &lt;a href="http://docs.getpelican.com/"&gt;Pelican&lt;/a&gt; でビルドした静的ファイルを gihubpages にホスティングする形で使っていて、&lt;br /&gt;
+Pelican自体は結構豊富な種類のテーマが用意されている&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.pelicanthemes.com/"&gt;Pelican themes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;なのだけど、あまりシングルレイアウトでいい感じのものがなかったのと&lt;br /&gt;
+フォントとかデザインがあまり日本人向けじゃないかなーと個人的に感じるところが多くて中途半端なカスタムを加えたりとかしていた。&lt;/p&gt;
+&lt;p&gt;ただ自分で非公式にハックしてるのもメンテが大変だし、色々あまりよろしくは無いと思っていて、
+比較的シンプルなデザインだった &lt;a href="https://github.com/gfidente/pelican-svbhack"&gt;gfidente/pelican-svbhack - HTML&lt;/a&gt; がMITライセンスだったこともありありがたくフォークさせてもらうことにした次第。&lt;/p&gt;
+&lt;p&gt;まだ「これで完成かなー」というところまで全然こぎつけてないけど
+大体自分が使いたかったレイアウトで安定はしてきたかなというところでブログに適用してみた。&lt;br /&gt;
+デザインの細かな調整や配色、READMEとかも合わせてまだまだ整備していく予定。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Wed, 27 Jan 2016 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2016-01-27:2016/01/27/blog-renewal.html</guid><category></category></item><item><title>エンジニアの朝活にスポーツジムはいかがでしょう？</title><link>http://memo.laughk.org/2015/12/15/shall-we-sports-gym.html</link><description>&lt;p&gt;日付が変わってしまいましたが、&lt;br /&gt;
 この記事は &lt;a href="http://qiita.com/advent-calendar/2015/pepabo"&gt;Pepabo Advent Calendar 2015 - Qiita&lt;/a&gt; の15日目の記事です。前回は... buty4649さん...!&lt;/p&gt;
 &lt;p&gt;今回はちょっと息抜き記事として、&lt;br /&gt;
 エンジニアも朝活を利用して適度に体を動かす習慣を作ってみるのはいかがでしょうか？&lt;br /&gt;

@@ -93,13 +93,13 @@
 <div class="line">これさえ入れとけばドライバ周りで引っかかることもないようですし。インストールも以下のような感じでOKでした。</div>
 <div class="line">( 詳細は公式 <tt class="docutils literal">wiki</tt> を見るのが一番いいと思います -&gt; <a class="reference external" href="https://wiki.archlinux.org/index.php/VirtualBox_%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#Arch_Linux_.E3.82.92.E3.82.B2.E3.82.B9.E3.83.88.E3.81.AB.E3.81.99.E3.82.8B">VirtualBox (日本語) - ArchWiki</a> )</div>
 </div>
-<div class="highlight"><pre><span class="nv">$ </span>sudo pacman -S virtualbox-guest-utils
-<span class="nv">$ </span>sudo sh -c <span class="s1">&#39;cat &gt;&gt; /etc/modules-load.d/virtualbox.conf &lt;&lt; EOF</span>
+<div class="highlight"><pre>$ sudo pacman -S virtualbox-guest-utils
+$ sudo sh -c <span class="s1">&#39;cat &gt;&gt; /etc/modules-load.d/virtualbox.conf &lt;&lt; EOF</span>
 <span class="s1">vboxguest</span>
 <span class="s1">vboxsf</span>
 <span class="s1">vboxvideo</span>
 <span class="s1">EOF&#39;</span>
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;/usr/bin/VBoxClient-all&#39;</span> &gt;&gt; ~/.xinitrc
+$ <span class="nb">echo</span> <span class="s1">&#39;/usr/bin/VBoxClient-all&#39;</span> &gt;&gt; ~/.xinitrc
 </pre></div>
 </div>
 <div class="section" id="xps13osgui">

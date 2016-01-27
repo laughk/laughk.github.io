@@ -89,7 +89,7 @@
 <li><dl class="first docutils">
 <dt><tt class="docutils literal">sed <span class="pre">'s/./&amp;\n/g'</span></tt> より <tt class="docutils literal">grep <span class="pre">-o</span> .</tt> が便利。</dt>
 <dd><p class="first">会場でたちまち <tt class="docutils literal">grep</tt> ブームが発生しておりましたが、純粋にマッチ部分だけ抜き出す <tt class="docutils literal"><span class="pre">-o</span></tt> で縦表示にするテクニックがあるのに今まで気づかず目からウロコものでした。</p>
-<div class="last"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo </span>aabbcdabbcccdd <span class="p">|</span> grep -o .
+<div class="last"><div class="highlight"><pre>$ <span class="nb">echo</span> aabbcdabbcccdd <span class="p">|</span> grep -o .
 a
 a
 b
@@ -111,10 +111,10 @@ d
 <li><dl class="first docutils">
 <dt><tt class="docutils literal">grep <span class="pre">-q</span></tt> で結果を表示しない。</dt>
 <dd><p class="first">これは個人的に地味にいいなと思ったしらなかったオプションで、今までシェルスクリプトを書くときなんかに「ファイル内に文字列があるかないか判定したいだけ」のときなんかリターンコードを見るためだけにわざわざ <tt class="docutils literal">grep</tt> して <tt class="docutils literal">/dev/null</tt> に捨てるような無駄なことをしていたのですが、これからはスッキリ書けそうです。</p>
-<div class="last"><div class="highlight"><pre><span class="nv">$ </span>grep huga file2
+<div class="last"><div class="highlight"><pre>$ grep huga file2
 huga
-<span class="nv">$ </span>grep -q huga file2
-<span class="c">##  なにも表示されない</span>
+$ grep -q huga file2
+<span class="c1">##  なにも表示されない</span>
 </pre></div>
 </div></dd>
 </dl>
@@ -122,13 +122,13 @@ huga
 <li><dl class="first docutils">
 <dt><tt class="docutils literal">xargs</tt> で余計なレイアウトを取っ払える。</dt>
 <dd><p class="first">もはやシェル芸の定番と思っていた <tt class="docutils literal">xargs</tt> もこの使い方は知らなかったです。具体的には以下のような感じ。</p>
-<div class="last"><div class="highlight"><pre><span class="nv">$ </span>cat toi2.txt
+<div class="last"><div class="highlight"><pre>$ cat toi2.txt
              1
 <span class="m">2</span> 3
                  <span class="m">4</span>                     5
                                  <span class="m">6</span>     7
  <span class="m">8</span>         9
-<span class="nv">$ </span>cat toi2.txt <span class="p">|</span> xargs
+$ cat toi2.txt <span class="p">|</span> xargs
 <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> 9
 </pre></div>
 </div></dd>

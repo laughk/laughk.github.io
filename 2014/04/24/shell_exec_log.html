@@ -85,15 +85,15 @@
 <div class="section" id="id1">
 <h2>今までは</h2>
 <p>こんなことやってたわけです。</p>
-<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<div class="highlight"><pre><span class="ch">#!/bin/bash</span>
 <span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
 
-command1 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-command2 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
-...      &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</span>1
+command1 &gt;&gt; $LOGFILE 2&gt;<span class="p">&amp;</span>1
+command2 &gt;&gt; $LOGFILE 2&gt;<span class="p">&amp;</span>1
+...      &gt;&gt; $LOGFILE 2&gt;<span class="p">&amp;</span>1
+...      &gt;&gt; $LOGFILE 2&gt;<span class="p">&amp;</span>1
+...      &gt;&gt; $LOGFILE 2&gt;<span class="p">&amp;</span>1
+...      &gt;&gt; $LOGFILE 2&gt;<span class="p">&amp;</span>1
 </pre></div>
 <p>まあ1,2行くらいならいいのですが、これが5行超えてくるともう編集するのも読むのも嫌になってきます。
 この辺調べてみると、 <tt class="docutils literal">exec</tt> コマンド <span class="strike">によるプロセス置換 で</span> で出力を変更してあげると良いようです。</p>
@@ -106,11 +106,11 @@ command2 &gt;&gt; <span class="nv">$LOGFILE</span> 2&gt;<span class="p">&amp;</s
 </div>
 <div class="section" id="exec">
 <h2>execで解決</h2>
-<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<div class="highlight"><pre><span class="ch">#!/bin/bash</span>
 <span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
 
-<span class="nb">exec </span>1&gt; &gt;<span class="o">(</span>cat &gt;&gt; <span class="nv">$LOGFILE</span><span class="o">)</span>
-<span class="nb">exec </span>2&gt; &gt;<span class="o">(</span>cat &gt;&gt; <span class="nv">$LOGFILE</span><span class="o">)</span>
+<span class="nb">exec</span> 1&gt; &gt;<span class="o">(</span>cat &gt;&gt; $LOGFILE<span class="o">)</span>
+<span class="nb">exec</span> 2&gt; &gt;<span class="o">(</span>cat &gt;&gt; $LOGFILE<span class="o">)</span>
 
 command1
 command2
@@ -123,11 +123,11 @@ command2
 <div class="line">さらに <tt class="docutils literal">awk</tt> も使って以下のようにすると、ログの各行の先頭に</div>
 <div class="line"><tt class="docutils literal"><span class="pre">[YYYY-mm-dd</span> HH:MM:SS]</tt>  のようにタイムスタンプも付けられます。</div>
 </div>
-<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<div class="highlight"><pre><span class="ch">#!/bin/bash</span>
 <span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
 
-<span class="nb">exec </span>1&gt; &gt;<span class="o">(</span>awk <span class="s1">&#39;{print strftime(&quot;[%Y-%m-%d %H:%M:%S] &quot;),$0 } { fflush() } &#39;</span> &gt;&gt; <span class="nv">$LOGFILE</span><span class="o">)</span>
-<span class="nb">exec </span>2&gt; &gt;<span class="o">(</span>awk <span class="s1">&#39;{print strftime(&quot;[%Y-%m-%d %H:%M:%S] &quot;),$0 } { fflush() } &#39;</span> &gt;&gt; <span class="nv">$LOGFILE</span><span class="o">)</span>
+<span class="nb">exec</span> 1&gt; &gt;<span class="o">(</span>awk <span class="s1">&#39;{print strftime(&quot;[%Y-%m-%d %H:%M:%S] &quot;),$0 } { fflush() } &#39;</span> &gt;&gt; $LOGFILE<span class="o">)</span>
+<span class="nb">exec</span> 2&gt; &gt;<span class="o">(</span>awk <span class="s1">&#39;{print strftime(&quot;[%Y-%m-%d %H:%M:%S] &quot;),$0 } { fflush() } &#39;</span> &gt;&gt; $LOGFILE<span class="o">)</span>
 
 command1
 command2
@@ -156,11 +156,11 @@ command2
 <li><dl class="first docutils">
 <dt>もっとシンプルな <tt class="docutils literal">exec</tt></dt>
 <dd><p class="first"><tt class="docutils literal">awk</tt> などと組み合わせてフィルタリングするのは厳しいですが、単純に出力先を指定するにはこちらがよさそうです。</p>
-<div class="last"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<div class="last"><div class="highlight"><pre><span class="ch">#!/bin/bash</span>
 
 <span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
-<span class="nb">exec</span> &gt;&gt;<span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span>
-<span class="nb">exec </span>2&gt;<span class="p">&amp;</span>1
+<span class="nb">exec</span> &gt;&gt;<span class="s2">&quot;</span>$<span class="s2">LOGFILE&quot;</span>
+<span class="nb">exec</span> 2&gt;<span class="p">&amp;</span>1
 
 command1
 command2
@@ -174,7 +174,7 @@ command2
 <li><dl class="first docutils">
 <dt><tt class="docutils literal">{}</tt> を使った方法</dt>
 <dd><p class="first">この方法はコメントでご指摘いただくまで全く知りませんでした。。 こちらの記載方法のほうが汎用性が高そうで使いやすそうですね。</p>
-<div class="last"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<div class="last"><div class="highlight"><pre><span class="ch">#!/bin/bash</span>
 
 <span class="nv">LOGFILE</span><span class="o">=</span>/tmp/script-log
 
@@ -184,7 +184,7 @@ command2
     ...
     ...
     ...
-<span class="o">}</span> &gt;&gt; <span class="s2">&quot;</span><span class="nv">$LOGFILE</span><span class="s2">&quot;</span> 2&gt;<span class="p">&amp;</span>1
+<span class="o">}</span> &gt;&gt; <span class="s2">&quot;</span>$<span class="s2">LOGFILE&quot;</span> 2&gt;<span class="p">&amp;</span>1
 </pre></div>
 </div></dd>
 </dl>

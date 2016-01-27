@@ -81,7 +81,7 @@
 <ol>
 <li>
 <p>python2.7系最新をインストール(3系の対応が完璧でないっぽいため)  </p>
-<div class="highlight"><pre><span class="c"># 最新版を確認</span>
+<div class="highlight"><pre><span class="c1"># 最新版を確認</span>
 % pyenv install -l <span class="p">|</span> grep 2.7
 
 % pyenv install 2.7.8
@@ -94,20 +94,20 @@
 <p>作業ディレクトリを適当に作成</p>
 <div class="highlight"><pre>% mkdir -p ~/work/blog
 % <span class="nb">cd</span> ~/work/blog
-% pyenv <span class="nb">local </span>pelican
+% pyenv <span class="nb">local</span> pelican
 </pre></div>
 
 
 </li>
 <li>
 <p>Pelicanをインストール</p>
-<div class="highlight"><pre><span class="c">## Pelican 本体をインストール</span>
+<div class="highlight"><pre><span class="c1">## Pelican 本体をインストール</span>
 % pip install pelican
 
-<span class="c">## Markdown も使いたいのでインストール</span>
+<span class="c1">## Markdown も使いたいのでインストール</span>
 % pip install markdown
 
-<span class="c">## plugin, themeもクローン</span>
+<span class="c1">## plugin, themeもクローン</span>
 % git clone https://github.com/getpelican/pelican-plugins.git
 % git clone https://github.com/getpelican/pelican-themes.git
 </pre></div>
@@ -187,12 +187,12 @@
 <li>
 <p>pelicanconf.py</p>
 <div class="highlight"><pre><span class="n">EXTRA_PATH_METADATA</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;images&#39;</span><span class="p">:</span>           <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;images&#39;</span>     <span class="p">},</span>
-    <span class="s">&#39;extra/CNAME&#39;</span><span class="p">:</span>      <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;CNAME&#39;</span>      <span class="p">},</span>       <span class="c"># for original domain</span>
-    <span class="s">&#39;extra/empty&#39;</span><span class="p">:</span>      <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;.nojekyll&#39;</span>  <span class="p">},</span>       <span class="c"># for Githubpage</span>
-    <span class="s">&#39;extra/gitignore&#39;</span><span class="p">:</span>  <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;.gitignore&#39;</span> <span class="p">},</span>       <span class="c"># for Githubpage</span>
-    <span class="s">&#39;extra/gooleXXXXXXXX&#39;</span><span class="p">:</span>
-        <span class="p">{</span><span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;gooleXXXXXXXX&#39;</span> <span class="p">},</span>                    <span class="c"># for google analytics</span>
+    <span class="s1">&#39;images&#39;</span><span class="p">:</span>           <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;images&#39;</span>     <span class="p">},</span>
+    <span class="s1">&#39;extra/CNAME&#39;</span><span class="p">:</span>      <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;CNAME&#39;</span>      <span class="p">},</span>       <span class="c1"># for original domain</span>
+    <span class="s1">&#39;extra/empty&#39;</span><span class="p">:</span>      <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;.nojekyll&#39;</span>  <span class="p">},</span>       <span class="c1"># for Githubpage</span>
+    <span class="s1">&#39;extra/gitignore&#39;</span><span class="p">:</span>  <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;.gitignore&#39;</span> <span class="p">},</span>       <span class="c1"># for Githubpage</span>
+    <span class="s1">&#39;extra/gooleXXXXXXXX&#39;</span><span class="p">:</span>
+        <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;gooleXXXXXXXX&#39;</span> <span class="p">},</span>                    <span class="c1"># for google analytics</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -203,10 +203,10 @@
 <p>ここまできたら、一度HTMLファイルを生成してローカルでプレビューしてみます。</p>
 <div class="highlight"><pre>% pelican content -S pelicanconf.py -o output
 
-<span class="c">## pelican-quickstartの際に Makefile を生成していた場合は以下でもOK</span>
+<span class="c1">## pelican-quickstartの際に Makefile を生成していた場合は以下でもOK</span>
 % make html
 
-% <span class="nb">cd </span>output <span class="o">&amp;&amp;</span> python -m SimpleHTTPServer
+% <span class="nb">cd</span> output <span class="o">&amp;&amp;</span> python -m SimpleHTTPServer
 </pre></div>
 
 

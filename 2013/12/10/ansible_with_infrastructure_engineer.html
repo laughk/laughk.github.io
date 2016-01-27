@@ -125,13 +125,13 @@
 <h3>sshconfig.project</h3>
 <p>踏み台、内側ネットワークでそれぞれ作成
 (<tt class="docutils literal">Proxycommand</tt> で <tt class="docutils literal"><span class="pre">-F</span></tt> で自分自身を指定するのを忘れずに)、</p>
-<div class="highlight"><pre><span class="c">## 踏み台サーバ</span>
+<div class="highlight"><pre><span class="c1">## 踏み台サーバ</span>
 Host gateway
     User login_user
     IdentityFile /path/to/identity
     HostName xxx.xxx.xxx.xxx
 
-<span class="c">## 接続先のLAN、ログイン情報</span>
+<span class="c1">## 接続先のLAN、ログイン情報</span>
 Host 192.168.0.*
     User login_user
     Identityfile /path/to/identity
@@ -158,7 +158,7 @@ db01     <span class="nv">ansible_ssh_host</span><span class="o">=</span>192.168
 <div class="section" id="id3">
 <h3>実行</h3>
 <p>ここまでできたら環境変数に気をつけて実行するだけです。</p>
-<div class="highlight"><pre>% <span class="nb">export </span><span class="nv">ANSIBLE_SSH_ARGS</span><span class="o">=</span><span class="s1">&#39; -F sshconfig.project&#39;</span>
+<div class="highlight"><pre>% <span class="nb">export</span> <span class="nv">ANSIBLE_SSH_ARGS</span><span class="o">=</span><span class="s1">&#39; -F sshconfig.project&#39;</span>
 % ansible-playbook playbook-project.yml -i host.project
 </pre></div>
 </div>

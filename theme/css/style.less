@@ -179,6 +179,10 @@ main {
     div.article_meta {
       font-size: 12px;
       color: @med-grey;
+      p {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -223,6 +227,9 @@ footer {
       width: 70%;
       margin-left: 0.7em;
       margin-right: 0;
+      p {
+        font-size: 13px;
+      }
     }
 
     .author_link {
@@ -278,6 +285,16 @@ footer {
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
+
+      div.article_meta {
+        display: flex;
+        p {
+          margin-right: 1em;
+          div.article_meta_post_date {
+            width: 20em
+          }
+        }
+      }
     }
 
     header {

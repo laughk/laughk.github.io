@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 27 Jan 2016 00:00:00 +0900</lastBuildDate><item><title>ブログをリニューアルした</title><link>http://memo.laughk.org/2016/01/27/blog-renewal.html</link><description>&lt;p&gt;リニューアルといっても &lt;a href="http://docs.getpelican.com/"&gt;Pelican&lt;/a&gt; のテーマを変えただけなのだけど。&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>続・ラフなラボ</title><link>http://memo.laughk.org/</link><description></description><atom:link href="http://memo.laughk.org/rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 03 Feb 2016 00:00:00 +0900</lastBuildDate><item><title>PelicanテーマHSSを公開した</title><link>http://memo.laughk.org/2016/02/03/publish-pelican-hss.html</link><description>&lt;p&gt;&lt;a href="/2016/01/27/blog-renewal.html"&gt;前回&lt;/a&gt;の続き&lt;br /&gt;
+公開はしていたのですが、このブログ用に作っていた&lt;a href="http://getpelican.com/"&gt;Pelican&lt;/a&gt;のテーマが大体形になったかなーという段階まで来たので改めて。&lt;/p&gt;
+
+
+&lt;p&gt;リポジトリはこちらです。(前回のエントリから変わってます)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/laughk/pelican-hss"&gt;laughk/pelican-hss: HSS is responsive and single page design theme for Pelican.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;もともとは自分のブログ用にハックしてパブリックに置いておけばいいかな程度でやってたのですが、&lt;br /&gt;
+「こうしたい、ああしたい」といじりまくり、更には最近参加している社内のHTML5/CSS3モダンコーディング勉強会&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;で得た知識を使いたい！と熱が入りまくり、気がついたら見た目がほとんど別物にまでなっていました。&lt;/p&gt;
+&lt;p&gt;そんな経緯で、元の作者に可能な限り経緯を示しつつHSSと名前を変えて公開しています。
+見た目はこのブログそのもので大体以下のものが追加できたりします。(READMEにも説明をつけたのでこちらではざっくりと)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;作者ロゴのURL指定&lt;/li&gt;
+&lt;li&gt;Google Analytics の埋め込み&lt;/li&gt;
+&lt;li&gt;Google Adsense (レスポンシブのみ) の埋め込み&lt;/li&gt;
+&lt;li&gt;Disqus の埋め込み&lt;/li&gt;
+&lt;li&gt;ソーシャルボタン (twitter, facebook, pocket, はてぶ)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;他にも自分で足りないと思うものがあったら足すかもしれませんが、大体これくらいで一段落かなーとい感触はあります。&lt;/p&gt;
+&lt;p&gt;すでに Pelican を使っている人も、これから静的サイトジェネレーターでブログをやろうと思っている方も、よろしければご活用ください。 &lt;br /&gt;
+また、MITライセンスで公開していますので「微妙にここが気に食わない！」などありましたらご自由にフォークしてカスタムもお好きなようにどうぞ！&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;&lt;a href="http://www.amazon.co.jp/gp/product/B0176GNY26/ref=as_li_ss_tl?ie=UTF8&amp;amp;camp=247&amp;amp;creative=7399&amp;amp;creativeASIN=B0176GNY26&amp;amp;linkCode=as2&amp;amp;tag=laughk-22"&gt;HTML5/CSS3モダンコーディング フロントエンドエンジニアが教える3つの本格レイアウト スタンダード・グリッド・シングルページレイアウトの作り方&lt;/a&gt; を進めてます。わかりやすくて良いです。&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Kei Iwasaki</dc:creator><pubDate>Wed, 03 Feb 2016 00:00:00 +0900</pubDate><guid>tag:memo.laughk.org,2016-02-03:2016/02/03/publish-pelican-hss.html</guid><category>pelican</category></item><item><title>ブログをリニューアルした</title><link>http://memo.laughk.org/2016/01/27/blog-renewal.html</link><description>&lt;p&gt;リニューアルといっても &lt;a href="http://docs.getpelican.com/"&gt;Pelican&lt;/a&gt; のテーマを変えただけなのだけど。&lt;/p&gt;
 
 
 &lt;p&gt;今回は今までと違って既存のテーマをforkしてガシガシいじってる。  &lt;/p&gt;
